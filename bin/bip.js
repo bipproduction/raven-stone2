@@ -17,6 +17,11 @@ const list_menu = [
         act: _push_auto
     },
     {
+        id: "3",
+        name: "studio",
+        act: _studio
+    },
+    {
         id: "x",
         name: "help",
         act: _help
@@ -25,6 +30,10 @@ const list_menu = [
 ]
 
 
+async function _studio() {
+    execSync('npx prisma studio', { stdio: "inherit" })
+}
+
 
 async function _push_auto() {
     execSync(`git add -A && git commit -m "
@@ -32,7 +41,7 @@ async function _push_auto() {
     Description: auto
     Note: auto
     Refs: auto
-    " && git push origin ${branch}`, {stdio: "inherit"})
+    " && git push origin ${branch}`, { stdio: "inherit" })
 }
 
 async function _push() {
@@ -81,7 +90,7 @@ MENU
 \t${list_menu.map((v) => v.name).join('\t\n\t')}
 
 EXAMPLE
-    yarn local push
+    yarn bip ${list_menu[0].name}
     `.cyan)
 }
 
