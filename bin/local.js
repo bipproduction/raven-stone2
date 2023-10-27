@@ -3,6 +3,7 @@ const _ = require('lodash');
 const prompts = require("prompts")
 require('colors')
 const { execSync } = require('child_process')
+const branch = execSync('git rev-parse --abbrev-ref HEAD').toString()
 
 const list_menu = [
     {
@@ -12,14 +13,30 @@ const list_menu = [
     },
     {
         id: "2",
+        name: "push auto",
+        act: _push_auto
+    },
+    {
+        id: "x",
         name: "help",
         act: _help
     }
 
 ]
 
+
+
+async function _push_auto() {
+    execSync(`git add -A && git commit -m "
+    Title: auto
+    Description: auto
+    Note: auto
+    Refs: auto
+    " && git push origin ${branch}`, {stdio: "inherit"})
+}
+
 async function _push() {
-    const branch = execSync('git rev-parse --abbrev-ref HEAD').toString()
+
     const list_commit = [
         {
             ttl: "Title",
