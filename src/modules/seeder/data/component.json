@@ -1,0 +1,324 @@
+[
+    {
+        "id": 1,
+        "keyMenu": "md1",
+        "menu": "Emotion Editor",
+        "name": "search",
+        "label": "Pencarian Data"
+    },
+    {
+        "id": 2,
+        "keyMenu": "md1",
+        "menu": "Emotion Editor",
+        "name": "upload",
+        "label": "Upload Data"
+    },
+    {
+        "id": 3,
+        "keyMenu": "md1",
+        "menu": "Emotion Editor",
+        "name": "download",
+        "label": "Download Data"
+    },
+    {
+        "id": 4,
+        "keyMenu": "md1",
+        "menu": "Emotion Editor",
+        "name": "copy",
+        "label": "Copy Data"
+    },
+    {
+        "id": 5,
+        "keyMenu": "md1",
+        "menu": "Emotion Editor",
+        "name": "table",
+        "label": "Tabel Data"
+    },
+    {
+        "id": 6,
+        "keyMenu": "md2",
+        "menu": "Regional Data Pairing",
+        "name": "search",
+        "label": "Pencarian Data"
+    },
+    {
+        "id": 7,
+        "keyMenu": "md2",
+        "menu": "Regional Data Pairing",
+        "name": "upload",
+        "label": "Upload Data"
+    },
+    {
+        "id": 8,
+        "keyMenu": "md2",
+        "menu": "Regional Data Pairing",
+        "name": "download",
+        "label": "Download Data"
+    },
+    {
+        "id": 9,
+        "keyMenu": "md2",
+        "menu": "Regional Data Pairing",
+        "name": "copy",
+        "label": "Copy Data"
+    },
+    {
+        "id": 10,
+        "keyMenu": "md2",
+        "menu": "Regional Data Pairing",
+        "name": "table",
+        "label": "Tabel Data"
+    },
+    {
+        "id": 11,
+        "keyMenu": "md3",
+        "menu": "Audience",
+        "name": "search",
+        "label": "Pencarian Data"
+    },
+    {
+        "id": 12,
+        "keyMenu": "md3",
+        "menu": "Audience",
+        "name": "upload",
+        "label": "Upload Data"
+    },
+    {
+        "id": 13,
+        "keyMenu": "md3",
+        "menu": "Audience",
+        "name": "download",
+        "label": "Download Data"
+    },
+    {
+        "id": 14,
+        "keyMenu": "md3",
+        "menu": "Audience",
+        "name": "table",
+        "label": "Tabel Data"
+    },
+    {
+        "id": 15,
+        "keyMenu": "md4",
+        "menu": "Public Concern Trend",
+        "name": "search",
+        "label": "Pencarian Data"
+    },
+    {
+        "id": 16,
+        "keyMenu": "md4",
+        "menu": "Public Concern Trend",
+        "name": "upload",
+        "label": "Upload Data"
+    },
+    {
+        "id": 17,
+        "keyMenu": "md4",
+        "menu": "Public Concern Trend",
+        "name": "download",
+        "label": "Download Data"
+    },
+    {
+        "id": 18,
+        "keyMenu": "md4",
+        "menu": "Public Concern Trend",
+        "name": "table",
+        "label": "Tabel Data"
+    },
+    {
+        "id": 19,
+        "keyMenu": "md5",
+        "menu": "Leader Trait Assessment",
+        "name": "search",
+        "label": "Pencarian Data"
+    },
+    {
+        "id": 20,
+        "keyMenu": "md5",
+        "menu": "Leader Trait Assessment",
+        "name": "upload",
+        "label": "Upload Data"
+    },
+    {
+        "id": 21,
+        "keyMenu": "md5",
+        "menu": "Leader Trait Assessment",
+        "name": "download",
+        "label": "Download Data"
+    },
+    {
+        "id": 22,
+        "keyMenu": "md5",
+        "menu": "Leader Trait Assessment",
+        "name": "table",
+        "label": "Tabel Data"
+    },
+    {
+        "id": 23,
+        "keyMenu": "md6",
+        "menu": "Region Hot Issue",
+        "name": "search",
+        "label": "Pencarian Data"
+    },
+    {
+        "id": 24,
+        "keyMenu": "md6",
+        "menu": "Region Hot Issue",
+        "name": "upload",
+        "label": "Upload Data"
+    },
+    {
+        "id": 25,
+        "keyMenu": "md6",
+        "menu": "Region Hot Issue",
+        "name": "download",
+        "label": "Download Data"
+    },
+    {
+        "id": 26,
+        "keyMenu": "md6",
+        "menu": "Region Hot Issue",
+        "name": "table",
+        "label": "Tabel Data"
+    },
+    {
+        "id": 27,
+        "keyMenu": "md7",
+        "menu": "STEP",
+        "name": "search",
+        "label": "Pencarian Data"
+    },
+    {
+        "id": 28,
+        "keyMenu": "md7",
+        "menu": "STEP",
+        "name": "add",
+        "label": "Add Data"
+    },
+    {
+        "id": 29,
+        "keyMenu": "md7",
+        "menu": "STEP",
+        "name": "table",
+        "label": "Table Data"
+    },
+    {
+        "id": 30,
+        "keyMenu": "md7",
+        "menu": "STEP",
+        "name": "edit",
+        "label": "Edit Data"
+    },
+    {
+        "id": 31,
+        "keyMenu": "md7",
+        "menu": "STEP",
+        "name": "delete",
+        "label": "Delete Data"
+    },
+    {
+        "id": 32,
+        "keyMenu": "md8",
+        "menu": "SWOT",
+        "name": "search",
+        "label": "Pencarian Data"
+    },
+    {
+        "id": 33,
+        "keyMenu": "md8",
+        "menu": "SWOT",
+        "name": "add",
+        "label": "Add Data"
+    },
+    {
+        "id": 34,
+        "keyMenu": "md8",
+        "menu": "SWOT",
+        "name": "table",
+        "label": "Table Data"
+    },
+    {
+        "id": 35,
+        "keyMenu": "md8",
+        "menu": "SWOT",
+        "name": "edit",
+        "label": "Edit Data"
+    },
+    {
+        "id": 36,
+        "keyMenu": "md8",
+        "menu": "SWOT",
+        "name": "delete",
+        "label": "Delete Data"
+    },
+    {
+        "id": 37,
+        "keyMenu": "md9",
+        "menu": "ML-AI",
+        "name": "search",
+        "label": "Pencarian Data"
+    },
+    {
+        "id": 38,
+        "keyMenu": "md9",
+        "menu": "ML-AI",
+        "name": "add",
+        "label": "Add Data"
+    },
+    {
+        "id": 39,
+        "keyMenu": "md9",
+        "menu": "ML-AI",
+        "name": "table",
+        "label": "Table Data"
+    },
+    {
+        "id": 40,
+        "keyMenu": "md9",
+        "menu": "ML-AI",
+        "name": "edit",
+        "label": "Edit Data"
+    },
+    {
+        "id": 41,
+        "keyMenu": "md9",
+        "menu": "ML-AI",
+        "name": "delete",
+        "label": "Delete Data"
+    },
+    {
+        "id": 42,
+        "keyMenu": "md10",
+        "menu": "Candidate",
+        "name": "search",
+        "label": "Pencarian Data"
+    },
+    {
+        "id": 43,
+        "keyMenu": "md10",
+        "menu": "Candidate",
+        "name": "add",
+        "label": "Add Data"
+    },
+    {
+        "id": 44,
+        "keyMenu": "md10",
+        "menu": "Candidate",
+        "name": "table",
+        "label": "Table Data"
+    },
+    {
+        "id": 45,
+        "keyMenu": "md10",
+        "menu": "Candidate",
+        "name": "edit",
+        "label": "Edit Data"
+    },
+    {
+        "id": 46,
+        "keyMenu": "md10",
+        "menu": "Candidate",
+        "name": "delete",
+        "label": "Delete Data"
+    }
+]

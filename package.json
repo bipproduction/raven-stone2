@@ -11,14 +11,24 @@
   },
   "dependencies": {
     "@mantine/core": "^7.1.7",
+    "@mantine/dates": "^7.1.7",
+    "@mantine/dropzone": "^7.1.7",
     "@mantine/hooks": "^7.1.7",
     "@prisma/client": "^5.5.2",
+    "@types/lodash": "^4.14.200",
+    "@types/papaparse": "^5.3.10",
     "colors": "^1.4.0",
+    "dayjs": "^1.11.10",
+    "jotai": "^2.5.0",
     "lodash": "^4.17.21",
+    "moment": "^2.29.4",
     "next": "14.0.0",
+    "papaparse": "^5.4.1",
     "prompts": "^2.4.2",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-icons": "^4.11.0",
+    "react-simple-toasts": "^5.10.0"
   },
   "devDependencies": {
     "@types/node": "^20",

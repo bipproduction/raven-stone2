@@ -5,8 +5,8 @@ import { theme } from '../../theme';
 import '@mantine/core/styles.css';
 
 export const metadata = {
-  title: 'Mantine Next.js template',
-  description: 'I am using Mantine with Next.js!',
+  title: 'Raven Stone',
+  description: 'Raven Stone',
 };
 
 export default function RootLayout({ children }: { children: any }) {
@@ -17,7 +17,7 @@ export default function RootLayout({ children }: { children: any }) {
         <link rel="shortcut icon" href="/favicon.svg" />
         <meta
           name="viewport"
-          content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no"
+          content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=yes"
         />
       </head>
       <body>

@@ -10,7 +10,270 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Log {
-  id  String @id @default(cuid())
-  log String @db.Text
+model Component {
+  id         Int          @id @default(autoincrement())
+  menu       String?
+  label      String?
+  keyMenu    String?
+  name       String
+  isActive   Boolean      @default(true)
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+  UserAccess UserAccess[]
+}
+
+model UserRole {
+  id         Int          @id @default(autoincrement())
+  name       String
+  isActive   Boolean      @default(true)
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+  UserAccess UserAccess[]
+  User       User[]
+}
+
+model UserAccess {
+  id          Int       @id @default(autoincrement())
+  UserRole    UserRole  @relation(fields: [idUserRole], references: [id])
+  idUserRole  Int
+  Component   Component @relation(fields: [idComponent], references: [id])
+  idComponent Int
+  isActive    Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model User {
+  id         String    @id @default(cuid())
+  UserRole   UserRole  @relation(fields: [idUserRole], references: [id])
+  idUserRole Int
+  name       String
+  email      String    @unique
+  password   String
+  phone      String // kemungkinan ada 1 orang yang punya akun yg beda namun punya wa yg sama
+  isAllArea  Boolean   @default(false)
+  isActive   Boolean   @default(true)
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  UserLog    UserLog[]
+}
+
+model UserLog {
+  id          String   @id @default(cuid())
+  User        User     @relation(fields: [idUser], references: [id])
+  idUser      String
+  activity    String
+  description String   @db.Text
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model AreaProvinsi {
+  id                    Int                     @id @default(autoincrement())
+  name                  String
+  isActive              Boolean                 @default(true)
+  createdAt             DateTime                @default(now())
+  updatedAt             DateTime                @updatedAt
+  AreaKabkot            AreaKabkot[]
+  Audience              Audience[]
+  PublicConcernTrend    PublicConcernTrend[]
+  LeaderTraitAssessment LeaderTraitAssessment[]
+  RegionHotIssues       RegionHotIssues[]
+  CandidateEmotion      CandidateEmotion[]
+  PaslonEmotion         PaslonEmotion[]
+}
+
+model AreaKabkot {
+  id                    Int                     @id @default(autoincrement())
+  AreaProvinsi          AreaProvinsi            @relation(fields: [idProvinsi], references: [id])
+  idProvinsi            Int
+  name                  String
+  isActive              Boolean                 @default(true)
+  createdAt             DateTime                @default(now())
+  updatedAt             DateTime                @updatedAt
+  Audience              Audience[]
+  PublicConcernTrend    PublicConcernTrend[]
+  LeaderTraitAssessment LeaderTraitAssessment[]
+  RegionHotIssues       RegionHotIssues[]
+  CandidateEmotion      CandidateEmotion[]
+  PaslonEmotion         PaslonEmotion[]
+}
+
+model Candidate {
+  id               Int                @id @default(autoincrement())
+  name             String
+  img              String
+  isActive         Boolean            @default(true)
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+  Swot             Swot[]
+  Step             Step[]
+  Effect           Effect[]
+  CandidateEmotion CandidateEmotion[]
+}
+
+model Paslon {
+  id            Int             @id @default(autoincrement())
+  nameCapres    String
+  imgCapres     String
+  nameCawapres  String
+  imgCawapres   String
+  isActive      Boolean         @default(true)
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  MlAi          MlAi[]
+  PaslonEmotion PaslonEmotion[]
+}
+
+model Audience {
+  id           Int           @id @default(autoincrement())
+  AreaProvinsi AreaProvinsi? @relation(fields: [idProvinsi], references: [id])
+  idProvinsi   Int?
+  AreaKabkot   AreaKabkot?   @relation(fields: [idKabkot], references: [id])
+  idKabkot     Int?
+  value        Int
+  isActive     Boolean       @default(true)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+}
+
+model PublicConcernTrend {
+  id                Int           @id @default(autoincrement())
+  AreaProvinsi      AreaProvinsi? @relation(fields: [idProvinsi], references: [id])
+  idProvinsi        Int?
+  AreaKabkot        AreaKabkot?   @relation(fields: [idKabkot], references: [id])
+  idKabkot          Int?
+  pendidikan        Int
+  infrastruktur     Int
+  layananKesehatan  Int
+  kemiskinan        Int
+  lapanganPekerjaan Int
+  keadilanSosial    Int
+  isActive          Boolean       @default(true)
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+}
+
+model LeaderTraitAssessment {
+  id                    Int           @id @default(autoincrement())
+  AreaProvinsi          AreaProvinsi? @relation(fields: [idProvinsi], references: [id])
+  idProvinsi            Int?
+  AreaKabkot            AreaKabkot?   @relation(fields: [idKabkot], references: [id])
+  idKabkot              Int?
+  pekerjaKeras          Int
+  cerdas                Int
+  jujur                 Int
+  merakyat              Int
+  tegas                 Int
+  berpengalamanMemimpin Int
+  berprestasi           Int
+  latarBelakangMiliter  Int
+  agamis                Int
+  isActive              Boolean       @default(true)
+  createdAt             DateTime      @default(now())
+  updatedAt             DateTime      @updatedAt
+}
+
+model RegionHotIssues {
+  id           Int           @id @default(autoincrement())
+  AreaProvinsi AreaProvinsi? @relation(fields: [idProvinsi], references: [id])
+  idProvinsi   Int?
+  AreaKabkot   AreaKabkot?   @relation(fields: [idKabkot], references: [id])
+  idKabkot     Int?
+  description  String        @db.Text
+  isActive     Boolean       @default(true)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+}
+
+model Swot {
+  id          Int       @id @default(autoincrement())
+  Candidate   Candidate @relation(fields: [idCandidate], references: [id])
+  idCandidate Int
+  category    String //social, weakness dll
+  content     String    @db.Text
+  isActive    Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Step {
+  id          Int       @id @default(autoincrement())
+  Candidate   Candidate @relation(fields: [idCandidate], references: [id])
+  idCandidate Int
+  category    String //tecnology, economi dll
+  sentiment   Int       @default(1) //1: positive, 2: negative
+  content     String    @db.Text
+  isActive    Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model MlAi {
+  id          Int      @id @default(autoincrement())
+  Paslon      Paslon   @relation(fields: [idPaslon], references: [id])
+  idPaslon    Int
+  content     String   @db.Text
+  dateContent DateTime @db.Date
+  timeContent DateTime @db.Time
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Effect {
+  id          Int       @id @default(autoincrement())
+  Candidate   Candidate @relation(fields: [idCandidate], references: [id])
+  idCandidate Int
+  content     String    @db.Text
+  dateContent DateTime  @db.Date
+  timeContent DateTime  @db.Time
+  isActive    Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model CandidateEmotion {
+  id            String        @id @default(cuid())
+  AreaProvinsi  AreaProvinsi? @relation(fields: [idProvinsi], references: [id])
+  idProvinsi    Int?
+  AreaKabkot    AreaKabkot?   @relation(fields: [idKabkot], references: [id])
+  idKabkot      Int?
+  Candidate     Candidate     @relation(fields: [idCandidate], references: [id])
+  idCandidate   Int
+  dateEmotion   DateTime      @db.Date
+  confidence    Int
+  supportive    Int
+  positive      Int
+  undecided     Int
+  unsupportive  Int
+  uncomfortable Int
+  negative      Int
+  dissapproval  Int
+  isActive      Boolean       @default(true)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
+
+model PaslonEmotion {
+  id            String        @id @default(cuid())
+  AreaProvinsi  AreaProvinsi? @relation(fields: [idProvinsi], references: [id])
+  idProvinsi    Int?
+  AreaKabkot    AreaKabkot?   @relation(fields: [idKabkot], references: [id])
+  idKabkot      Int?
+  Paslon        Paslon        @relation(fields: [idPaslon], references: [id])
+  idPaslon      Int
+  dateEmotion   DateTime      @db.Date
+  confidence    Int
+  supportive    Int
+  positive      Int
+  undecided     Int
+  unsupportive  Int
+  uncomfortable Int
+  negative      Int
+  dissapproval  Int
+  isActive      Boolean       @default(true)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
 }
