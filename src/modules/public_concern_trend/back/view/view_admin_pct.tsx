@@ -5,7 +5,6 @@ import _ from "lodash"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import papa from "papaparse"
-import UploadDataPCT from "../component/upload_data_pct"
 import TableDataPCT from "../component/table_pct"
 
 export default function ViewAdminPCT({ param, provinsi, datatable, datadownload }: { param: any, provinsi: any, datatable: any, datadownload: any }) {
@@ -71,7 +70,22 @@ export default function ViewAdminPCT({ param, provinsi, datatable, datadownload 
                         }}
                         px={50}
                     >
-                        <UploadDataPCT />
+                        <Box
+                            style={{
+                                border: "1px dashed gray",
+                                borderRadius: 10,
+                                paddingTop: 40,
+                                paddingBottom: 40,
+                                paddingLeft: 30,
+                                paddingRight: 30,
+                                cursor: "pointer",
+                            }}
+                            onClick={() => router.push("/dashboard-admin/public-concern-trend/upload")}
+                        >
+                            <Text ta={"center"} size="xl" inline>
+                                UPLOAD DATA
+                            </Text>
+                        </Box>
                         {!_.isNull(datatable.title) &&
                             <Box
                                 style={{

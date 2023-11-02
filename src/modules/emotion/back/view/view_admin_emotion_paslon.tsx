@@ -9,8 +9,9 @@ import { useEffect, useState } from "react";
 import toast from "react-simple-toasts";
 import UploadDataEmotionPaslon from "../component/upload_data_emotion_paslon";
 import TableDataEmotionPaslon from "../component/table_emotion_paslon";
+import papa from "papaparse"
 
-export default function ViewAdminEmotionPaslon({ param, provinsi, paslon, datatable }: { param: any, provinsi: any, paslon: any, datatable: any }) {
+export default function ViewAdminEmotionPaslon({ param, provinsi, paslon, datatable, datadownload }: { param: any, provinsi: any, paslon: any, datatable: any, datadownload: any }) {
     const router = useRouter()
     const today = new Date();
 
@@ -30,7 +31,6 @@ export default function ViewAdminEmotionPaslon({ param, provinsi, paslon, datata
 
     async function onProvinsi({ idProv }: { idProv: any }) {
         setProvinsi(idProv)
-        setPaslon(null)
     }
 
 
@@ -107,6 +107,19 @@ export default function ViewAdminEmotionPaslon({ param, provinsi, paslon, datata
                                             backgroundColor: "gray",
                                             cursor: "pointer",
                                         }}
+
+                                        onClick={() => {
+                                            const dataJson = datadownload.data
+
+                                            const jsonData = papa.unparse(dataJson)
+                                            const jsonDataUrl = "data:text/csv;charset=utf-8," + encodeURIComponent(jsonData)
+
+                                            const jsonDwnloadLink = document.createElement("a")
+                                            jsonDwnloadLink.href = jsonDataUrl
+                                            jsonDwnloadLink.download = datadownload.title + ".csv"
+                                            jsonDwnloadLink.click()
+                                        }}
+
                                     >
                                         <Text c={"white"} fw={"bold"} ta={"center"}>
                                             DOWNLOAD
@@ -137,7 +150,7 @@ export default function ViewAdminEmotionPaslon({ param, provinsi, paslon, datata
             </Box>
             {!_.isNull(datatable.title) && (
                 <Box pt={20}>
-                    <TableDataEmotionPaslon title={datatable.title} data={datatable.data} />
+                    <TableDataEmotionPaslon title={datatable.title} data={datatable.data} th={datatable.th} datajam={datatable.jam} />
                 </Box>
             )}
         </>
