@@ -7,7 +7,6 @@ import { useEffect, useState } from "react"
 import toast from "react-simple-toasts"
 import papa from "papaparse"
 import TableDataRHI from "../component/table_rhi"
-import UploadDataRHI from "../component/upload_data_rhi"
 
 export default function ViewAdminRHI({ param, provinsi, datatable, datadownload }: { param: any, provinsi: any, datatable: any, datadownload: any }) {
     const router = useRouter()
@@ -73,7 +72,22 @@ export default function ViewAdminRHI({ param, provinsi, datatable, datadownload 
                         }}
                         px={50}
                     >
-                        <UploadDataRHI />
+                        <Box
+                            style={{
+                                border: "1px dashed gray",
+                                borderRadius: 10,
+                                paddingTop: 40,
+                                paddingBottom: 40,
+                                paddingLeft: 30,
+                                paddingRight: 30,
+                                cursor: "pointer",
+                            }}
+                            onClick={() => router.push("/dashboard-admin/region-hot-issue/upload")}
+                        >
+                            <Text ta={"center"} size="xl" inline>
+                                UPLOAD DATA
+                            </Text>
+                        </Box>
                         {!_.isNull(datatable.title) &&
                             <Box
                                 style={{
