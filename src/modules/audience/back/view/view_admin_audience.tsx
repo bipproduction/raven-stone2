@@ -5,7 +5,6 @@ import _ from "lodash"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import TableDataAudience from "../component/table_audience"
-import UploadDataAudience from "../component/upload_data_audience"
 import papa from "papaparse"
 
 export default function ViewAdminAudience({ param, provinsi, datatable, datadownload }: { param: any, provinsi: any, datatable: any, datadownload: any }) {
@@ -70,7 +69,22 @@ export default function ViewAdminAudience({ param, provinsi, datatable, datadown
                         }}
                         px={50}
                     >
-                        <UploadDataAudience />
+                        <Box
+                            style={{
+                                border: "1px dashed gray",
+                                borderRadius: 10,
+                                paddingTop: 40,
+                                paddingBottom: 40,
+                                paddingLeft:30,
+                                paddingRight:30,
+                                cursor: "pointer",
+                            }}
+                            onClick={() => router.push("/dashboard-admin/audience/upload")}
+                        >
+                            <Text ta={"center"} size="xl" inline>
+                                UPLOAD DATA
+                            </Text>
+                        </Box>
                         {!_.isNull(datatable.title) &&
                             <Box
                                 style={{

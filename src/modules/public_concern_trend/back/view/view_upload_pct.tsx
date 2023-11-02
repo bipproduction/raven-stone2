@@ -10,13 +10,12 @@ import { GrDocumentCsv } from 'react-icons/gr';
 import toast from "react-simple-toasts"
 import papa from 'papaparse'
 import { useAtom } from "jotai"
-import { isModalLta } from "../val/modal_lta"
-import ModalUploadLta from "../component/modal_upload_lta"
+import { isModalPct } from "../val/modal_pct"
+import ModalUploadPct from "../component/modal_upload_pct"
 
-
-export default function ViewUploadLTA() {
+export default function ViewUploadPct() {
     const [json, setJson] = useState<any[]>([])
-    const [openModal, setOpenModal] = useAtom(isModalLta)
+    const [openModal, setOpenModal] = useAtom(isModalPct)
 
 
     async function onLoad(data: any) {
@@ -25,15 +24,12 @@ export default function ViewUploadLTA() {
                 ('id' in data[0]) &&
                 ('Provinsi' in data[0]) &&
                 ('Kabkot' in data[0]) &&
-                ('pekerjaKeras' in data[0]) &&
-                ('cerdas' in data[0]) &&
-                ('jujur' in data[0]) &&
-                ('merakyat' in data[0]) &&
-                ('tegas' in data[0]) &&
-                ('berpengalamanMemimpin' in data[0]) &&
-                ('berprestasi' in data[0]) &&
-                ('latarBelakangMiliter' in data[0]) &&
-                ('agamis' in data[0])
+                ('pendidikan' in data[0]) &&
+                ('infrastruktur' in data[0]) &&
+                ('layananKesehatan' in data[0]) &&
+                ('kemiskinan' in data[0]) &&
+                ('keadilanSosial' in data[0]) &&
+                ('lapanganPekerjaan' in data[0])
             ) {
                 setJson(data as any)
             } else {
@@ -141,15 +137,12 @@ export default function ViewUploadLTA() {
                                                         <Table.Th>ID</Table.Th>
                                                         <Table.Th>Provinsi</Table.Th>
                                                         <Table.Th>Kabupaten/Kota</Table.Th>
-                                                        <Table.Th>Pekerja Keras</Table.Th>
-                                                        <Table.Th>Cerdas</Table.Th>
-                                                        <Table.Th>Jujur</Table.Th>
-                                                        <Table.Th>Merakyat</Table.Th>
-                                                        <Table.Th>Tegas</Table.Th>
-                                                        <Table.Th>Berpengalaman Memimpin</Table.Th>
-                                                        <Table.Th>Berprestasi</Table.Th>
-                                                        <Table.Th>Latar Belakang Militer</Table.Th>
-                                                        <Table.Th>Agamis</Table.Th>
+                                                        <Table.Th>Pendidikan</Table.Th>
+                                                        <Table.Th>Infrastruktur</Table.Th>
+                                                        <Table.Th>Layanan Kesehatan</Table.Th>
+                                                        <Table.Th>Kemiskinan</Table.Th>
+                                                        <Table.Th>Keadilan Sosial</Table.Th>
+                                                        <Table.Th>Lapangan Pekerjaan</Table.Th>
                                                     </Table.Tr>
                                                 </Table.Thead>
                                                 <Table.Tbody>
@@ -158,15 +151,12 @@ export default function ViewUploadLTA() {
                                                             <Table.Td>{home.id}</Table.Td>
                                                             <Table.Td>{home.Provinsi}</Table.Td>
                                                             <Table.Td>{home.Kabkot}</Table.Td>
-                                                            <Table.Td>{home.pekerjaKeras}</Table.Td>
-                                                            <Table.Td>{home.cerdas}</Table.Td>
-                                                            <Table.Td>{home.jujur}</Table.Td>
-                                                            <Table.Td>{home.merakyat}</Table.Td>
-                                                            <Table.Td>{home.tegas}</Table.Td>
-                                                            <Table.Td>{home.berpengalamanMemimpin}</Table.Td>
-                                                            <Table.Td>{home.berprestasi}</Table.Td>
-                                                            <Table.Td>{home.latarBelakangMiliter}</Table.Td>
-                                                            <Table.Td>{home.agamis}</Table.Td>
+                                                            <Table.Td>{home.pendidikan}</Table.Td>
+                                                            <Table.Td>{home.infrastruktur}</Table.Td>
+                                                            <Table.Td>{home.layananKesehatan}</Table.Td>
+                                                            <Table.Td>{home.kemiskinan}</Table.Td>
+                                                            <Table.Td>{home.keadilanSosial}</Table.Td>
+                                                            <Table.Td>{home.lapanganPekerjaan}</Table.Td>
                                                         </Table.Tr>
                                                     )}
                                                 </Table.Tbody>
@@ -193,7 +183,7 @@ export default function ViewUploadLTA() {
                 withCloseButton={false}
                 closeOnClickOutside={false}
             >
-                <ModalUploadLta data={json} onSuccess={(val) => {
+                <ModalUploadPct data={json} onSuccess={(val) => {
                     setJson([])
                 }} />
             </Modal>
