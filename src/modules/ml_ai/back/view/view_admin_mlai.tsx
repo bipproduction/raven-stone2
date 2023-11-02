@@ -1,34 +1,32 @@
 'use client'
 
-import { Button, Group, Select, Stack, Text } from "@mantine/core";
+import { Box, Button, Group, Paper, Select, SimpleGrid, Stack, Text } from "@mantine/core";
 import _ from "lodash";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-simple-toasts";
 import TableDataMLAI from "../component/table_data_mlai";
+import papa from "papaparse"
+import { DateInput } from "@mantine/dates";
+import moment from "moment";
 
-export default function ViewAdminMLAI({ params, provinsi, kabupaten, datatable }: { params: any, provinsi: any, kabupaten: any, datatable: any }) {
+export default function ViewAdminMLAI({ params, paslon, datatable, datadownload }: { params: any, paslon: any, datatable: any, datadownload: any }) {
     const router = useRouter();
-    const [dataProvinsi, setDataProvinsi] = useState(provinsi)
-    const [dataKabupaten, setDatakabupaten] = useState<any>(kabupaten)
-    const [isProvinsi, setProvinsi] = useState<any>(params.idProvinsi || null)
-    const [isKabupaten, setKabupaten] = useState<any>(params.idKabkot || null)
+    const [dataPaslon, setDataPaslon] = useState(paslon)
+    const [isPaslon, setPaslon] = useState<any>(params.idPaslon || null)
+    const [isDate, setDate] = useState<any>(params.date)
 
-    async function onKabupaten({ idProv }: { idProv: any }) {
-        setProvinsi(idProv)
-        setKabupaten(null)
-        // const dataKab = await MasterKabGetByProvince({ idProvinsi: Number(idProv) })
-        // setDatakabupaten(dataKab)
+    async function onChoose({ idPaslon }: { idPaslon: any }) {
+        setPaslon(idPaslon)
     }
 
     function onProsses() {
-        if (isProvinsi == null) return toast("Silahkan pilih provinsi", { theme: "dark" })
-        router.replace("/dashboard-admin/ml-ai?prov=" + isProvinsi + "&city=" + isKabupaten)
+        if (isPaslon == null) return toast("Silahkan pilih paslon", { theme: "dark" })
+        router.replace("/dashboard-admin/ml-ai?paslon=" + isPaslon + '&date=' + moment(isDate).format('YYYY-MM-DD'))
     }
 
     useEffect(() => {
-        setProvinsi(params.idProvinsi == 0 ? null : params.idProvinsi)
-        setKabupaten(params.idKabkot == 0 ? null : params.idKabkot)
+        setPaslon(params.idPaslon == 0 ? null : params.idPaslon)
     }, [params])
 
     return (
@@ -36,37 +34,87 @@ export default function ViewAdminMLAI({ params, provinsi, kabupaten, datatable }
             <Stack>
                 <Text fw={"bold"}>ML - AI</Text>
             </Stack>
-            <Group grow mt={30}>
-                <Select
-                    placeholder="Pilih Provinsi"
-                    data={dataProvinsi.map((pro: any) => ({
-                        value: String(pro.id),
-                        label: pro.name
-                    }))}
-                    required
-                    label={"Provinsi"}
-                    value={isProvinsi}
-                    onChange={(val) => (
-                        onKabupaten({ idProv: val })
-                    )}
-                    searchable
-                />
-                <Select
-                    placeholder="Pilih Kabupaten/Kota"
-                    data={dataKabupaten.map((kab: any) => ({
-                        value: String(kab.id),
-                        label: kab.name
-                    }))}
-                    label={"Kabupaten"}
-                    value={isKabupaten}
-                    onChange={(val) => (
-                        setKabupaten(val)
-                    )}
-                />
-                <Button mt={25} bg={"gray"} onClick={() => onProsses()}>
-                    PROSES
-                </Button>
-            </Group>
+            <Box pt={30}>
+                <SimpleGrid
+                    cols={{ base: 1, sm: 2, lg: 2 }}
+                    spacing={{ base: 10, sm: "xl" }}
+                >
+                    <Box>
+                        <Paper shadow="xs" p="xl">
+                            <Stack>
+                                <Select
+                                    placeholder="Pilih Paslon"
+                                    data={dataPaslon.map((pro: any) => ({
+                                        value: String(pro.id),
+                                        label: pro.name
+                                    }))}
+                                    value={isPaslon}
+                                    label={"Paslon"}
+                                    searchable
+                                    required
+                                    onChange={(val) => onChoose({ idPaslon: val })}
+                                />
+                                <DateInput valueFormat="DD-MM-YYYY" value={isDate} required
+                                    label={"Tanggal"} placeholder="Pilih Tanggal" onChange={(val) => { setDate(val) }} />
+                                <Button
+                                    bg={"gray"}
+                                    onClick={() => onProsses()}
+                                >
+                                    PROSES
+                                </Button>
+                            </Stack>
+                        </Paper>
+                    </Box>
+                    <Group
+                        justify="left"
+                        style={{
+                            backgroundColor: "white",
+                            borderRadius: 10,
+                        }}
+                        px={50}
+                    >
+                        <Box
+                            style={{
+                                border: "1px dashed gray",
+                                borderRadius: 10,
+                                padding: 40,
+                                cursor: "pointer",
+                            }}
+                            onClick={() => router.push("/dashboard-admin/ml-ai/upload")}
+                        >
+                            <Text ta={"center"} size="xl" inline>
+                                UPLOAD
+                            </Text>
+                        </Box>
+
+                        <Box
+                            style={{
+                                border: "1px dashed gray",
+                                borderRadius: 10,
+                                padding: 40,
+                                cursor: "pointer",
+                            }}
+
+                            onClick={() => {
+                                const dataJson = datadownload.data
+
+                                const jsonData = papa.unparse(dataJson)
+                                const jsonDataUrl = "data:text/csv;charset=utf-8," + encodeURIComponent(jsonData)
+
+                                const jsonDwnloadLink = document.createElement("a")
+                                jsonDwnloadLink.href = jsonDataUrl
+                                jsonDwnloadLink.download = datadownload.title + ".csv"
+                                jsonDwnloadLink.click()
+                            }}
+                        >
+                            <Text ta={"center"} size="xl" inline>
+                                DOWNLOAD
+                            </Text>
+                        </Box>
+
+                    </Group>
+                </SimpleGrid>
+            </Box>
             {!_.isNull(datatable.title) &&
                 <TableDataMLAI title={datatable.title} data={datatable.data} searchParam={params} />
             }

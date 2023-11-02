@@ -4,49 +4,29 @@ import { Box, Button, Group, Paper, Select, SimpleGrid, Stack, Text } from "@man
 import _ from "lodash"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
-import toast from "react-simple-toasts"
 import papa from "papaparse"
 import UploadDataPCT from "../component/upload_data_pct"
 import TableDataPCT from "../component/table_pct"
 
-export default function ViewAdminPCT({ param, provinsi, kabupaten, kecamatan, datatable, datadownload }: { param: any, provinsi: any, kabupaten: any, kecamatan: any, datatable: any, datadownload: any }) {
+export default function ViewAdminPCT({ param, provinsi, datatable, datadownload }: { param: any, provinsi: any, datatable: any, datadownload: any }) {
     const router = useRouter()
 
     const [dataProvinsi, setDataProvinsi] = useState(provinsi)
-    const [dataKabupaten, setDataKabupaten] = useState<any>(kabupaten)
-    const [dataKecamatan, setDataKecamatan] = useState<any>(kecamatan)
     const [isProvinsi, setProvinsi] = useState<any>(param.idProvinsi || null)
-    const [isKabupaten, setKabupaten] = useState<any>(param.idKabkot || null)
-    const [isKecamatan, setKecamatan] = useState<any>(param.idKec || null)
 
 
     useEffect(() => {
         setProvinsi((param.idProvinsi == 0) ? null : param.idProvinsi)
-        setKabupaten((param.idKabkot == 0) ? null : param.idKabkot)
-        setKecamatan((param.idKec == 0) ? null : param.idKec)
     }, [param])
 
 
     async function onProvinsi({ idProv }: { idProv: any }) {
         setProvinsi(idProv)
-        setKabupaten(null)
-        setKecamatan(null)
-        //   const dataDbKab = await MasterKabGetByProvince({ idProvinsi: Number(idProv) })
-        //   setDataKabupaten(dataDbKab)
-        setDataKecamatan([])
     }
 
-
-    async function onKabupaten({ idKab }: { idKab: any }) {
-        setKabupaten(idKab)
-        setKecamatan(null)
-        //   const dataDbKec = await MasterKecGetByKab({ idKabkot: idKab })
-        //   setDataKecamatan(dataDbKec)
-    }
 
     function onProccess() {
-        if (_.isNull(isProvinsi)) return toast("Silahkan pilih provinsi", { theme: "dark" })
-        router.replace('/dashboard-admin/public-concern-trend?prov=' + isProvinsi + '&city=' + isKabupaten + '&kec=' + isKecamatan)
+        router.replace('/dashboard-admin/public-concern-trend?prov=' + isProvinsi)
     }
 
 
@@ -70,32 +50,9 @@ export default function ViewAdminPCT({ param, provinsi, kabupaten, kecamatan, da
                                         label: pro.name
                                     }))}
                                     value={isProvinsi}
-                                    required
                                     label={"Provinsi"}
                                     searchable
                                     onChange={(val) => onProvinsi({ idProv: val })}
-                                />
-                                <Select
-                                    placeholder="Pilih Kabupaten/Kota"
-                                    data={dataKabupaten.map((kab: any) => ({
-                                        value: String(kab.id),
-                                        label: kab.name
-                                    }))}
-                                    value={isKabupaten}
-                                    label="Kabupaten/Kota"
-                                    searchable
-                                    onChange={(val) => onKabupaten({ idKab: val })}
-                                />
-                                <Select
-                                    placeholder="Pilih Kecamatan"
-                                    data={dataKecamatan.map((kec: any) => ({
-                                        value: String(kec.id),
-                                        label: kec.name
-                                    }))}
-                                    value={isKecamatan}
-                                    label="Kecamatan"
-                                    searchable
-                                    onChange={(val) => setKecamatan(val)}
                                 />
                                 <Button
                                     bg={"gray"}

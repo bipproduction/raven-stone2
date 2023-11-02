@@ -1,20 +1,20 @@
-import { ViewAdminSwot } from "@/modules/swot";
+import { funGetAllCandidate } from "@/modules/_global";
+import { ViewAdminSwot, funDownloadSwotByCandidate, funGetSwotByCandidate } from "@/modules/swot";
 import _ from "lodash";
 
-export default async function Page({ searchParams }: { searchParams: { prov: string, city: string } }) {
+export default async function Page({ searchParams }: { searchParams: { candidate: string } }) {
     const dataSwot = {
-        idProvinsi: (_.isNaN(Number(searchParams.prov)) ? 0 : Number(searchParams.prov)),
-        idKabkot: (_.isNaN(Number(searchParams.city)) ? 0 : Number(searchParams.city)),
-        tingkat: (_.isNaN(Number(searchParams.city)) ? 1 : 2)
+        idCandidate: (_.isNaN(Number(searchParams.candidate)) ? 1 : Number(searchParams.candidate)),
     }
 
-    // const pro = await MasterProvinceGetAll()
-    // const kab = await MasterKabGetByProvince({ idProvinsi: dataSwot.idProvinsi })
-    // const dataDB = await funGetAllSwot({ find: dataSwot })
+    const dataKandidat = await funGetAllCandidate()
+    const dataDB = await funGetSwotByCandidate({ candidate: dataSwot.idCandidate })
+    const dataDownload = await funDownloadSwotByCandidate({ candidate: dataSwot.idCandidate })
+
 
     return (
         <>
-            <ViewAdminSwot params={dataSwot} provinsi={[]} kabupaten={[]} datatable={{ title: null, data: [], th: [] }} />
+            <ViewAdminSwot params={dataSwot} kandidat={dataKandidat} datatable={dataDB} datadownload={dataDownload} />
         </>
     );
 }

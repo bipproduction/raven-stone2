@@ -8,44 +8,24 @@ import toast from "react-simple-toasts"
 import papa from "papaparse"
 import TableDataLTA from "../component/table_lta"
 
-export default function ViewAdminLTA({ datadownload, param, provinsi, kabupaten, kecamatan, datatable }: { datadownload: any, param: any, provinsi: any, kabupaten: any, kecamatan: any, datatable: any }) {
+export default function ViewAdminLTA({ datadownload, param, provinsi, datatable }: { datadownload: any, param: any, provinsi: any, datatable: any }) {
     const router = useRouter()
 
     const [dataProvinsi, setDataProvinsi] = useState(provinsi)
-    const [dataKabupaten, setDataKabupaten] = useState<any>(kabupaten)
-    const [dataKecamatan, setDataKecamatan] = useState<any>(kecamatan)
     const [isProvinsi, setProvinsi] = useState<any>(param.idProvinsi || null)
-    const [isKabupaten, setKabupaten] = useState<any>(param.idKabkot || null)
-    const [isKecamatan, setKecamatan] = useState<any>(param.idKec || null)
 
 
     useEffect(() => {
         setProvinsi((param.idProvinsi == 0) ? null : param.idProvinsi)
-        setKabupaten((param.idKabkot == 0) ? null : param.idKabkot)
-        setKecamatan((param.idKec == 0) ? null : param.idKec)
     }, [param])
 
 
     async function onProvinsi({ idProv }: { idProv: any }) {
         setProvinsi(idProv)
-        setKabupaten(null)
-        setKecamatan(null)
-        // const dataDbKab = await MasterKabGetByProvince({ idProvinsi: Number(idProv) })
-        // setDataKabupaten(dataDbKab)
-        setDataKecamatan([])
-    }
-
-
-    async function onKabupaten({ idKab }: { idKab: any }) {
-        setKabupaten(idKab)
-        setKecamatan(null)
-        // const dataDbKec = await MasterKecGetByKab({ idKabkot: idKab })
-        // setDataKecamatan(dataDbKec)
     }
 
     function onProccess() {
-        if (_.isNull(isProvinsi)) return toast("Silahkan pilih provinsi", { theme: "dark" })
-        router.replace('/dashboard-admin/leader-trait-assessment?prov=' + isProvinsi + '&city=' + isKabupaten + '&kec=' + isKecamatan)
+        router.replace('/dashboard-admin/leader-trait-assessment?prov=' + isProvinsi)
     }
 
     return (
@@ -68,32 +48,9 @@ export default function ViewAdminLTA({ datadownload, param, provinsi, kabupaten,
                                         label: pro.name
                                     }))}
                                     value={isProvinsi}
-                                    required
                                     label={"Provinsi"}
                                     searchable
                                     onChange={(val) => onProvinsi({ idProv: val })}
-                                />
-                                <Select
-                                    placeholder="Pilih Kabupaten/Kota"
-                                    data={dataKabupaten.map((kab: any) => ({
-                                        value: String(kab.id),
-                                        label: kab.name
-                                    }))}
-                                    value={isKabupaten}
-                                    label="Kabupaten/Kota"
-                                    searchable
-                                    onChange={(val) => onKabupaten({ idKab: val })}
-                                />
-                                <Select
-                                    placeholder="Pilih Kecamatan"
-                                    data={dataKecamatan.map((kec: any) => ({
-                                        value: String(kec.id),
-                                        label: kec.name
-                                    }))}
-                                    value={isKecamatan}
-                                    label="Kecamatan"
-                                    searchable
-                                    onChange={(val) => setKecamatan(val)}
                                 />
                                 <Button
                                     bg={"gray"}
@@ -105,13 +62,12 @@ export default function ViewAdminLTA({ datadownload, param, provinsi, kabupaten,
                         </Paper>
                     </Box>
                     <Group
-                        justify="center"
-                        grow
+                        justify="left"
                         style={{
                             backgroundColor: "white",
                             borderRadius: 10,
-                            padding: 20,
                         }}
+                        px={50}
                     >
                         <Box
                             style={{
@@ -127,30 +83,32 @@ export default function ViewAdminLTA({ datadownload, param, provinsi, kabupaten,
                             </Text>
                         </Box>
 
+                        {!_.isNull(datatable.title) && (
+                            <Box
+                                style={{
+                                    border: "1px dashed gray",
+                                    borderRadius: 10,
+                                    padding: 40,
+                                    cursor: "pointer",
+                                }}
+                                onClick={() => {
+                                    const dataJson = datadownload.data
 
-                        <Box
-                            style={{
-                                border: "1px dashed gray",
-                                borderRadius: 10,
-                                padding: 40,
-                                cursor: "pointer",
-                            }}
-                            onClick={() => {
-                                const dataJson = datadownload.data
+                                    const jsonData = papa.unparse(dataJson)
+                                    const jsonDataUrl = "data:text/csv;charset=utf-8," + encodeURIComponent(jsonData)
 
-                                const jsonData = papa.unparse(dataJson)
-                                const jsonDataUrl = "data:text/csv;charset=utf-8," + encodeURIComponent(jsonData)
+                                    const jsonDwnloadLink = document.createElement("a")
+                                    jsonDwnloadLink.href = jsonDataUrl
+                                    jsonDwnloadLink.download = datadownload.title
+                                    jsonDwnloadLink.click()
+                                }}
+                            >
+                                <Text ta={"center"} size="xl" inline>
+                                    DOWNLOAD
+                                </Text>
+                            </Box>
+                        )}
 
-                                const jsonDwnloadLink = document.createElement("a")
-                                jsonDwnloadLink.href = jsonDataUrl
-                                jsonDwnloadLink.download = datadownload.title
-                                jsonDwnloadLink.click()
-                            }}
-                        >
-                            <Text ta={"center"} size="xl" inline>
-                                DOWNLOAD
-                            </Text>
-                        </Box>
                     </Group>
                 </SimpleGrid>
             </Box>

@@ -5,6 +5,8 @@ import seederComponents from "./data/component.json"
 import seederUserRole from "./data/user_role.json"
 import seederUserAccess from "./data/user_access.json"
 import seederUser from "./data/user.json"
+import seederCandidate from "./data/candidate.json"
+import seederPaslon from "./data/paslon.json"
 
 export { ViewSeeder }
 export { seederProvinsi }
@@ -13,3 +15,6 @@ export { seederComponents }
 export { seederUserRole }
 export { seederUserAccess }
 export { seederUser }
+export { seederCandidate }
+export { seederPaslon }
+export {}

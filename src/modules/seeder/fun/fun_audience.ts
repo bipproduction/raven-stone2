@@ -33,7 +33,7 @@ export default async function funSeederAudience() {
         const wilayahTrue = dataWilayah.map((v: any) => ({
             ..._.omit(v, ["id", "AreaProvinsi"]),
             idKabkot: v.id,
-            idProvinsi: v.AreaKecamatan.AreaKabkot.AreaProvinsi.id,
+            idProvinsi: v.AreaProvinsi.id,
             value: 0
         }));
 

@@ -1,18 +1,15 @@
-import { ViewAdminPCT } from "@/modules/public_concern_trend"
+import { funGetAllProvince } from "@/modules/_global"
+import { ViewAdminPCT, funDownloadPctByArea, funGetPctByArea } from "@/modules/public_concern_trend"
 import _ from "lodash"
 
-export default function Page({ searchParams }: { searchParams: { prov: any, city: any, kec: any } }) {
+export default async function Page({ searchParams }: { searchParams: { prov: any } }) {
     const findData = {
-        idProvinsi: (_.isNaN(Number(searchParams.prov)) ? 0 : Number(searchParams.prov)),
-        idKabkot: (_.isNaN(Number(searchParams.city)) ? 0 : Number(searchParams.city)),
-        idKec: (_.isNaN(Number(searchParams.kec)) ? 0 : Number(searchParams.kec)),
+        idProvinsi: (_.isNaN(Number(searchParams.prov)) ? 0 : Number(searchParams.prov))
     }
 
-    // const prov = await MasterProvinceGetAll()
-    // const city = await MasterKabGetByProvince({ idProvinsi: findData.idProvinsi })
-    // const kec = await MasterKecGetByKab({ idKabkot: findData.idKabkot })
-    // const dataDB = await funGetPctByArea({ find: findData })
-    // const dataDownload = await funDownloadPCT({ find: findData })
+    const prov = await funGetAllProvince()
+    const data = await funGetPctByArea({ find: findData })
+    const dataDownload = await funDownloadPctByArea({ find: findData })
 
-    return <ViewAdminPCT param={findData} provinsi={[]} kabupaten={[]} kecamatan={[]} datatable={{ title: null, data: [], th: [] }} datadownload={[]} />;
+    return <ViewAdminPCT param={findData} provinsi={prov} datatable={data} datadownload={dataDownload} />;
 }

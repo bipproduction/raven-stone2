@@ -10,7 +10,7 @@ import { MdOutlineCancel } from "react-icons/md";
  * @param {Component} props mengambil file.
  * @returns Hasil menampilkan data yang sudah di upload
  */
-export default function UploadDataEmotion(props: Partial<DropzoneProps>) {
+export default function UploadDataEmotionCandidate(props: Partial<DropzoneProps>) {
     return (
         <>
             <Box

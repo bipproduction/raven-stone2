@@ -1,20 +1,19 @@
-import { ViewAdminStep } from "@/modules/step";
+import { funGetAllCandidate } from "@/modules/_global";
+import { ViewAdminStep, funDownloadStepCandidate, funGetStepByCandidate } from "@/modules/step";
 import _ from "lodash";
 
-export default function Page({ searchParams }: { searchParams: { prov: string, city: string } }) {
+export default async function Page({ searchParams }: { searchParams: { candidate: string } }) {
     const datastep = {
-        idProvinsi: (_.isNaN(Number(searchParams.prov)) ? 0 : Number(searchParams.prov)),
-        idKabkot: (_.isNaN(Number(searchParams.city)) ? 0 : Number(searchParams.city)),
-        tingkat: (_.isNaN(Number(searchParams.city)) ? 1 : 2)
+        idCandidate: (_.isNaN(Number(searchParams.candidate)) ? 1 : Number(searchParams.candidate)),
     }
 
-    // const pro = await MasterProvinceGetAll()
-    // const kab = await MasterKabGetByProvince({ idProvinsi: datastep.idProvinsi })
-    // const dataDB = await funGetAllStap({ find: datastep })
+    const dataKandidat = await funGetAllCandidate()
+    const dataDB = await funGetStepByCandidate({ candidate: datastep.idCandidate })
+    const dataDownload = await funDownloadStepCandidate({ candidate: datastep.idCandidate })
 
     return (
         <>
-            <ViewAdminStep params={datastep} provinsi={[]} kabupaten={[]} datatable={{ title: null, data: [], th: [] }} />
+            <ViewAdminStep params={datastep} kandidat={dataKandidat} datatable={dataDB} datadownload={dataDownload} />
         </>
     );
 }

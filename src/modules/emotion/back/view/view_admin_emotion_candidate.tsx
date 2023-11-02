@@ -7,58 +7,41 @@ import moment from "moment";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-simple-toasts";
-import UploadDataEmotion from "../component/upload_data_emotion";
-import TableDataEmotion from "../component/table_emotion";
+import UploadDataEmotionCandidate from "../component/upload_data_emotion_candidate";
+import TableDataEmotionCandidate from "../component/table_emotion_candidate";
+import papa from "papaparse"
 
-export default function ViewAdminEmotion({ param, provinsi, kabupaten, candidate, datatable }: { param: any, provinsi: any, kabupaten: any, candidate: any, datatable: any }) {
+export default function ViewAdminEmotionCandidate({ param, provinsi, candidate, datatable, datadownload }: { param: any, provinsi: any, candidate: any, datatable: any, datadownload: any }) {
     const router = useRouter()
-    const today = new Date();
+
+
 
     const [dataProvinsi, setDataProvinsi] = useState(provinsi)
-    const [dataKabupaten, setDataKabupaten] = useState<any>(kabupaten)
-    const [dataCandidate, setDataCandidate] = useState<any>(candidate)
+    const [dataCandidate, setDataCandidate] = useState(candidate)
     const [isProvinsi, setProvinsi] = useState<any>(param.idProvinsi || null)
-    const [isKabupaten, setKabupaten] = useState<any>(param.idKabkot || null)
     const [isCandidate, setCandidate] = useState<any>(param.idCandidate || null)
-    const [isDate, setDate] = useState<any>((_.isNull(param.date)) ? today : new Date(param.date))
+    const [isDate, setDate] = useState<any>(param.date)
+
 
 
 
     useEffect(() => {
         setProvinsi((param.idProvinsi == 0) ? null : param.idProvinsi)
-        setKabupaten((param.idKabkot == 0) ? null : param.idKabkot)
-        setCandidate((param.idCandidate == 0) ? null : param.idCandidate)
+        //setCandidate((param.idCandidate) ? console.log('ini') : console.log('else'))
         setDate((param.date == null) ? new Date() : new Date(param.date))
     }, [param])
 
-    async function onProvinsi({ idProv }: { idProv: any }) {
-        setProvinsi(idProv)
-        setKabupaten(null)
-        setCandidate(null)
-        // const dataDbKab = await MasterKabGetByProvince({ idProvinsi: Number(idProv) })
-        // const dataDbCan = await funGetCandidateActiveByArea({ find: { idProvinsi: Number(idProv), tingkat: 1 } })
-        // setDataKabupaten(dataDbKab)
-        // setDataCandidate(dataDbCan)
-    }
 
-
-    async function onKabupaten({ idKab }: { idKab: any }) {
-        setKabupaten(idKab)
-        setCandidate(null)
-        // const dataDbCan = await funGetCandidateActiveByArea({ find: { idProvinsi: Number(isProvinsi), idKabkot: Number(idKab), tingkat: 2 } })
-        // setDataCandidate(dataDbCan)
-    }
 
     function onProccess() {
-        if (_.isNull(isProvinsi)) return toast("Silahkan pilih provinsi", { theme: "dark" })
         if (_.isNull(isCandidate)) return toast("Silahkan pilih kandidat", { theme: "dark" })
-        router.replace('/dashboard-admin/emotion?prov=' + isProvinsi + '&city=' + isKabupaten + '&can=' + isCandidate + '&date=' + moment(isDate).format("YYYY-MM-DD"))
+        router.replace('/dashboard-admin/emotion-candidate?candidate=' + isCandidate + '&date=' + moment(isDate).format("YYYY-MM-DD") + '&prov=' + isProvinsi)
     }
 
     return (
         <>
             <Stack>
-                <Text fw={"bold"}>EMOTION EDITOR</Text>
+                <Text fw={"bold"}>EMOTION EDITOR CANDIDATE</Text>
             </Stack>
             <Box pt={30}>
                 <SimpleGrid
@@ -69,29 +52,6 @@ export default function ViewAdminEmotion({ param, provinsi, kabupaten, candidate
                     <Box>
                         <Paper shadow="xs" p="xl">
                             <Stack>
-                                <Select
-                                    placeholder="Pilih Provinsi"
-                                    data={dataProvinsi.map((pro: any) => ({
-                                        value: String(pro.id),
-                                        label: pro.name
-                                    }))}
-                                    value={isProvinsi}
-                                    required
-                                    label={"Provinsi"}
-                                    searchable
-                                    onChange={(val) => onProvinsi({ idProv: val })}
-                                />
-                                <Select
-                                    placeholder="Pilih Kabupaten/Kota"
-                                    data={dataKabupaten.map((kab: any) => ({
-                                        value: String(kab.id),
-                                        label: kab.name
-                                    }))}
-                                    value={isKabupaten}
-                                    label="Kabupaten/Kota"
-                                    searchable
-                                    onChange={(val) => onKabupaten({ idKab: val })}
-                                />
                                 <Select
                                     placeholder="Pilih Kandidat"
                                     data={dataCandidate.map((can: any) => ({
@@ -105,7 +65,18 @@ export default function ViewAdminEmotion({ param, provinsi, kabupaten, candidate
                                     onChange={(val) => { setCandidate(val) }}
                                 />
                                 <DateInput valueFormat="DD-MM-YYYY" required value={isDate}
-                                    label={"Select Date"} placeholder="SELECT DATE" onChange={(val) => { setDate(val) }} />
+                                    label={"Tanggal"} placeholder="Pilih Tanggal" onChange={(val) => { setDate(val) }} />
+                                <Select
+                                    placeholder="Pilih Provinsi"
+                                    data={dataProvinsi.map((pro: any) => ({
+                                        value: String(pro.id),
+                                        label: pro.name
+                                    }))}
+                                    value={isProvinsi}
+                                    label={"Provinsi"}
+                                    searchable
+                                    onChange={(val) => setProvinsi(val)}
+                                />
                                 <Button bg={"gray"} onClick={() => onProccess()}>
                                     PROSES
                                 </Button>
@@ -120,7 +91,7 @@ export default function ViewAdminEmotion({ param, provinsi, kabupaten, candidate
                         }}>
                             <Group justify="center">
 
-                                <UploadDataEmotion />
+                                <UploadDataEmotionCandidate />
                             </Group>
                         </Box>
                         {!_.isNull(datatable.title) && (
@@ -134,6 +105,17 @@ export default function ViewAdminEmotion({ param, provinsi, kabupaten, candidate
                                             paddingBottom: 50,
                                             backgroundColor: "gray",
                                             cursor: "pointer",
+                                        }}
+                                        onClick={() => {
+                                            const dataJson = datadownload.data
+
+                                            const jsonData = papa.unparse(dataJson)
+                                            const jsonDataUrl = "data:text/csv;charset=utf-8," + encodeURIComponent(jsonData)
+
+                                            const jsonDwnloadLink = document.createElement("a")
+                                            jsonDwnloadLink.href = jsonDataUrl
+                                            jsonDwnloadLink.download = datadownload.title + ".csv"
+                                            jsonDwnloadLink.click()
                                         }}
                                     >
                                         <Text c={"white"} fw={"bold"} ta={"center"}>
@@ -165,7 +147,7 @@ export default function ViewAdminEmotion({ param, provinsi, kabupaten, candidate
             </Box>
             {!_.isNull(datatable.title) && (
                 <Box pt={20}>
-                    <TableDataEmotion title={datatable.title} data={datatable.data} />
+                    <TableDataEmotionCandidate title={datatable.title} data={datatable.data} th={datatable.th} />
                 </Box>
             )}
         </>

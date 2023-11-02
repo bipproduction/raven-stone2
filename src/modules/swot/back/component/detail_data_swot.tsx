@@ -19,7 +19,6 @@ export default function DetailDataSwot({ v, i, onClick }: { v: any; i: any, onCl
             <Table.Tbody key={i}>
                 <Table.Tr>
                     <Table.Td>{i + 1}</Table.Td>
-                    <Table.Td>{v.name}</Table.Td>
                     <Table.Td>{v.category}</Table.Td>
                     <Table.Td>
                         <Center>
@@ -36,15 +35,6 @@ export default function DetailDataSwot({ v, i, onClick }: { v: any; i: any, onCl
                                     </ActionIcon>
                                 </Group>
                             </Stack>
-                            <ActionIcon
-                                variant="transparent"
-                                color="rgba(5, 128, 23, 1)"
-                                size="xl"
-                                aria-label="Edit"
-                                onClick={() => router.push("swot/edit/" + v.id)}
-                            >
-                                <MdEditCalendar size={20} />
-                            </ActionIcon>
                             <ActionIcon
                                 variant="transparent"
                                 color="rgba(209, 4, 4, 1)"

@@ -3,7 +3,7 @@
 import { Box, ScrollArea, Table, Text } from "@mantine/core";
 import { useEffect, useState } from "react";
 
-export default function TableDataEmotion({ title, data }: { title: string, data: any }) {
+export default function TableDataEmotionCandidate({ title, data, th }: { title: string, data: any, th: any }) {
     const [isData, setData] = useState(data)
 
     useEffect(() => {
@@ -36,30 +36,30 @@ export default function TableDataEmotion({ title, data }: { title: string, data:
                                     <Table.Thead>
                                         <Table.Tr>
                                             <Table.Th>NO</Table.Th>
-                                            <Table.Th>KABUPATEN / KOTA</Table.Th>
+                                            <Table.Th>{th}</Table.Th>
                                             <Table.Th>CONFIDENCE</Table.Th>
                                             <Table.Th>SUPPORTIVE</Table.Th>
                                             <Table.Th>POSITIVE</Table.Th>
-                                            <Table.Th>UNDERCIDED</Table.Th>
+                                            <Table.Th>UNDECIDED</Table.Th>
                                             <Table.Th>UNSUPPORTIVE</Table.Th>
                                             <Table.Th>NEGATIVE</Table.Th>
                                             <Table.Th>DISAPPROVAL</Table.Th>
                                         </Table.Tr>
                                     </Table.Thead>
                                     <Table.Tbody>
-                                        {/* {isData.map((v: any, i: any) => (
-                        <Table.Tr key={i}>
-                          <Table.Td>{v.id}</Table.Td>
-                          <Table.Td>{v.kabupaten}</Table.Td>
-                          <Table.Td>{v.Confidence}</Table.Td>
-                          <Table.Td>{v.Supportive}</Table.Td>
-                          <Table.Td>{v.Positive}</Table.Td>
-                          <Table.Td>{v.Undecided}</Table.Td>
-                          <Table.Td>{v.Unsupportive}</Table.Td>
-                          <Table.Td>{v.Negative}</Table.Td>
-                          <Table.Td>{v.Disapproval}</Table.Td>
-                        </Table.Tr>
-                      ))} */}
+                                        {isData.map((v: any, i: any) => (
+                                            <Table.Tr key={i}>
+                                                <Table.Td>{i + 1}</Table.Td>
+                                                <Table.Td>{v.name}</Table.Td>
+                                                <Table.Td>{v.confidence}</Table.Td>
+                                                <Table.Td>{v.supportive}</Table.Td>
+                                                <Table.Td>{v.positive}</Table.Td>
+                                                <Table.Td>{v.undecided}</Table.Td>
+                                                <Table.Td>{v.unsupportive}</Table.Td>
+                                                <Table.Td>{v.negative}</Table.Td>
+                                                <Table.Td>{v.disapproval}</Table.Td>
+                                            </Table.Tr>
+                                        ))}
                                     </Table.Tbody>
                                 </Table>
                             </ScrollArea>

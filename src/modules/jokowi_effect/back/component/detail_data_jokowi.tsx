@@ -9,6 +9,7 @@ import { MdDelete, MdEditCalendar } from "react-icons/md";
 export default function DetailDataJokowi({ v, i, onClick }: { v: any; i: any, onClick: (val: any) => void }) {
     const open = useState(false);
     const router = useRouter();
+    const formatDate = new Date(v.timeContent);
 
     function callBackDelete({ idDel }: { idDel: any }) {
         onClick(idDel)
@@ -18,7 +19,10 @@ export default function DetailDataJokowi({ v, i, onClick }: { v: any; i: any, on
             <Table.Tbody key={i}>
                 <Table.Tr>
                     <Table.Td>{i + 1}</Table.Td>
-                    <Table.Td>{v.name}</Table.Td>
+                    <Table.Td>{
+                        // moment(v.timeContent).format('MMMM Do YYYY, h:mm:ss a')
+                        formatDate.getHours()
+                    }</Table.Td>
                     <Table.Td>
                         <Center>
                             <Stack>
@@ -34,15 +38,6 @@ export default function DetailDataJokowi({ v, i, onClick }: { v: any; i: any, on
                                     </ActionIcon>
                                 </Group>
                             </Stack>
-                            <ActionIcon
-                                variant="transparent"
-                                color="rgba(5, 128, 23, 1)"
-                                size="xl"
-                                aria-label="Edit"
-                                onClick={() => router.push("ml-ai/edit/" + v.id)}
-                            >
-                                <MdEditCalendar size={20} />
-                            </ActionIcon>
                             <ActionIcon
                                 variant="transparent"
                                 color="rgba(209, 4, 4, 1)"

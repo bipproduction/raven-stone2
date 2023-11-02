@@ -10,17 +10,19 @@ import { useState } from "react";
 
 export default function LayoutAdmin({ children }: { children: React.ReactNode; }) {
     const [opened, { toggle }] = useDisclosure();
-    const dataDashboard = [
-        // {
-        //     key: "md0",
-        //     link: "/dashboard-admin",
-        //     label: "BERANDA",
-        // },
+    const dataEmotion = [
+        {
+            key: "md0",
+            link: "/dashboard-admin/emotion-paslon",
+            label: "PASLON",
+        },
         {
             key: "md1",
-            link: "/dashboard-admin/emotion",
-            label: "EMOTION EDITOR",
+            link: "/dashboard-admin/emotion-candidate",
+            label: "CANDIDATE",
         },
+    ]
+    const data1 = [
         {
             key: "md2",
             link: "/dashboard-admin/pairing",
@@ -150,7 +152,28 @@ export default function LayoutAdmin({ children }: { children: React.ReactNode; }
                     </Group>
                 </AppShell.Header>
                 <AppShell.Navbar p="md" pb={30}>
-                    {dataDashboard.map((item) => {
+                    <NavLink
+                        label="EMOTION EDITOR"
+                        childrenOffset={28}
+                        fw={"bolder"}
+                    >
+                        {dataEmotion.map((item) => {
+                            return (
+                                <NavLink
+                                    key={item.key}
+                                    active={item.link === active}
+                                    fw={item.label ? "bolder" : "normal"}
+                                    label={item.label}
+                                    onClick={() => {
+                                        router.push(item.link);
+                                    }}
+                                    color="#213555"
+                                    variant="filled"
+                                />
+                            );
+                        })}
+                    </NavLink>
+                    {data1.map((item) => {
                         return (
                             <NavLink
                                 key={item.key}

@@ -265,6 +265,7 @@ model PaslonEmotion {
   Paslon        Paslon        @relation(fields: [idPaslon], references: [id])
   idPaslon      Int
   dateEmotion   DateTime      @db.Date
+  timeEmotion   DateTime      @db.Time
   confidence    Int
   supportive    Int
   positive      Int

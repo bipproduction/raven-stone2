@@ -61,7 +61,7 @@ export default function TableDataStep({ title, data, searchParam }: { title: any
                         }}
                       >
                         <Table.Th>No</Table.Th>
-                        <Table.Th w={200}>Kandidat</Table.Th>
+                        {/* <Table.Th w={200}>Kandidat</Table.Th> */}
                         <Table.Th>Kategori</Table.Th>
                         <Table.Th>Sentiment</Table.Th>
                         <Table.Th>

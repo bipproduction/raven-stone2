@@ -62,7 +62,7 @@ export default function TableDataJokowi({ title, data, searchParam }: { title: a
                                             }}
                                         >
                                             <Table.Th>No</Table.Th>
-                                            <Table.Th w={200}>Kandidat</Table.Th>
+                                            <Table.Th w={200}>Jam</Table.Th>
                                             <Table.Th>
                                                 <Center>Aksi</Center>
                                             </Table.Th>

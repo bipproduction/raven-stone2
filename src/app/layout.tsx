@@ -3,6 +3,8 @@ import React from 'react';
 import { MantineProvider, ColorSchemeScript } from '@mantine/core';
 import { theme } from '../../theme';
 import '@mantine/core/styles.css';
+import "@mantine/dates/styles.css";
+import 'react-simple-toasts/dist/theme/dark.css'
 
 export const metadata = {
   title: 'Raven Stone',

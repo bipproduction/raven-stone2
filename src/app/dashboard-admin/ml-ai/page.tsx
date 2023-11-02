@@ -1,23 +1,21 @@
-import { ViewAdminMLAI } from "@/modules/ml_ai";
+import { funGetAllPaslon } from "@/modules/_global";
+import { ViewAdminMLAI, funDownloadMlaiPaslonDate, funGetMlaiPaslonDate } from "@/modules/ml_ai";
 import _ from "lodash";
 
-export default async function Page({ searchParams }: { searchParams: { prov: string, city: string, date: any } }) {
-
+export default async function Page({ searchParams }: { searchParams: { paslon: string, date: string } }) {
+    const today = new Date();
     const dataMlai = {
-        idProvinsi: (_.isNaN(Number(searchParams.prov)) ? 0 : Number(searchParams.prov)),
-        idKabkot: (_.isNaN(Number(searchParams.city)) ? 0 : Number(searchParams.city)),
-        tingkat: (_.isNaN(Number(searchParams.city)) ? 1 : 2),
-        date: (_.isUndefined(searchParams.date) ? null : searchParams.date)
+        idPaslon: (_.isNaN(Number(searchParams.paslon)) ? 1 : Number(searchParams.paslon)),
+        date: (_.isUndefined(searchParams.date) ? today : new Date(searchParams.date))
     }
 
-    // const pro = await MasterProvinceGetAll()
-    // const kab = await MasterKabGetByProvince({ idProvinsi: dataMlai.idProvinsi })
-    // const dataDB = await funGetAllMlAi({ find: dataMlai })
-
+    const dataPaslon = await funGetAllPaslon()
+    const dataDB = await funGetMlaiPaslonDate({ paslon: dataMlai.idPaslon, date: dataMlai.date })
+    const dataDownload = await funDownloadMlaiPaslonDate({ paslon: dataMlai.idPaslon, date: dataMlai.date })
 
     return (
         <>
-            <ViewAdminMLAI params={dataMlai} provinsi={[]} kabupaten={[]} datatable={{ title: null, data: [], th: [] }} />
+            <ViewAdminMLAI paslon={dataPaslon} params={dataMlai} datatable={dataDB} datadownload={dataDownload} />
         </>
     );
 }

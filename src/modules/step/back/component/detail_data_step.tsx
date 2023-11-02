@@ -18,7 +18,7 @@ export default function DetailDataStep({ v, i, onClick }: { v: any; i: any, onCl
             <Table.Tbody key={i}>
                 <Table.Tr>
                     <Table.Td>{i + 1}</Table.Td>
-                    <Table.Td>{v.name}</Table.Td>
+                    {/* <Table.Td>{v.name}</Table.Td> */}
                     <Table.Td>{v.category}</Table.Td>
                     <Table.Td>{(v.sentiment == "1") ? "Positive" : "Negative"}</Table.Td>
                     <Table.Td>
@@ -36,7 +36,7 @@ export default function DetailDataStep({ v, i, onClick }: { v: any; i: any, onCl
                                     </ActionIcon>
                                 </Group>
                             </Stack>
-                            <ActionIcon
+                            {/* <ActionIcon
                                 variant="transparent"
                                 color="rgba(5, 128, 23, 1)"
                                 size="xl"
@@ -45,7 +45,7 @@ export default function DetailDataStep({ v, i, onClick }: { v: any; i: any, onCl
 
                             >
                                 <MdEditCalendar size={20} />
-                            </ActionIcon>
+                            </ActionIcon> */}
                             <ActionIcon
                                 variant="transparent"
                                 color="rgba(209, 4, 4, 1)"

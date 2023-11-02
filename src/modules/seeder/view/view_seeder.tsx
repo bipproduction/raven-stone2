@@ -5,8 +5,15 @@ import { useState } from "react"
 import toast from "react-simple-toasts";
 import { funSeederProvinsi } from "../fun/fun_provinsi";
 import { funSeederKabupaten } from "../fun/fun_kabupaten";
+import funSeederAudience from "../fun/fun_audience";
+import funSeederPct from "../fun/fun_pct";
+import funSeederLta from "../fun/fun_lta";
+import funSeederRhi from "../fun/fun_rhi";
+import { funSeederCandidate } from "../fun/fun_candidate";
+import { funSeederPaslon } from "../fun/fun_paslon";
+import { on } from "events";
 
-export default function ViewSeeder({prov}:{prov:any}) {
+export default function ViewSeeder() {
     const [loading, setLoading] = useState(false)
 
 
@@ -39,50 +46,53 @@ export default function ViewSeeder({prov}:{prov:any}) {
     // WILAYAH
     async function onProvince() {
         setLoading(true);
-        const res = await prov();
+        const res = await funSeederProvinsi();
         if (res?.success)
             return setLoading(false), toast(res?.message, { theme: "dark" });
     }
+
     async function onKabupaten() {
         setLoading(true)
-        // const res = await funSeederKabupaten()
-        // if (res?.success) return setLoading(false), toast(res?.message, { theme: "dark" })
+        const res = await funSeederKabupaten()
+        if (res?.success) return setLoading(false), toast(res?.message, { theme: "dark" })
     }
 
 
     // DATA LAINYA
-    async function onLeader() {
-        setLoading(true)
-        // const res = await funSeederLeader()
-        // if (res?.success) return setLoading(false), toast(res?.message, { theme: "dark" })
-    }
-    async function onPublic() {
-        setLoading(true)
-        // const res = await funSeederPublic()
-        // if (res?.success) return setLoading(false), toast(res?.message, { theme: "dark" })
-    }
     async function onAudience() {
         setLoading(true)
-        // const res = await funSeederAudience()
-        // if (res?.success) return setLoading(false), toast(res?.message, { theme: "dark" })
+        const res = await funSeederAudience()
+        if (res?.success) return setLoading(false), toast(res?.message, { theme: "dark" })
     }
 
     async function onPCTFix() {
         setLoading(true)
-        // const res = await funSeederPct()
-        // if (res?.success) return setLoading(false), toast(res?.message, { theme: "dark" })
+        const res = await funSeederPct()
+        if (res?.success) return setLoading(false), toast(res?.message, { theme: "dark" })
     }
 
     async function onLTAFix() {
         setLoading(true)
-        // const res = await funSeederLta()
-        // if (res?.success) return setLoading(false), toast(res?.message, { theme: "dark" })
+        const res = await funSeederLta()
+        if (res?.success) return setLoading(false), toast(res?.message, { theme: "dark" })
     }
 
     async function onRHIFix() {
         setLoading(true)
-        // const res = await funSeederRhi()
-        // if (res?.success) return setLoading(false), toast(res?.message, { theme: "dark" })
+        const res = await funSeederRhi()
+        if (res?.success) return setLoading(false), toast(res?.message, { theme: "dark" })
+    }
+
+    async function onCandidate() {
+        setLoading(true)
+        const res = await funSeederCandidate()
+        if (res?.success) return setLoading(false), toast(res?.message, { theme: "dark" })
+    }
+
+    async function onPaslon() {
+        setLoading(true)
+        const res = await funSeederPaslon()
+        if (res?.success) return setLoading(false), toast(res?.message, { theme: "dark" })
     }
 
 
@@ -131,10 +141,12 @@ export default function ViewSeeder({prov}:{prov:any}) {
                         <Group justify="center" gap="md" grow my={15}>
                             <Button bg={"gray"} loading={loading} onClick={onAudience}>VALUE AUDIENCE</Button>
                             <Button bg={"gray"} loading={loading} onClick={onPCTFix}>VALUE PUBLIC CONCERN TREND</Button>
+                            <Button bg={"gray"} loading={loading} onClick={onLTAFix}>VALUE LEADER TRAIT ASSESSMENT</Button>
                         </Group>
                         <Group justify="center" gap="md" grow my={15}>
-                            <Button bg={"gray"} loading={loading} onClick={onLTAFix}>VALUE LEADER TRAIT ASSESSMENT</Button>
                             <Button bg={"gray"} loading={loading} onClick={onRHIFix}>VALUE REGION HOT ISSUES</Button>
+                            <Button bg={"gray"} loading={loading} onClick={onCandidate}>CANDIDATE</Button>
+                            <Button bg={"gray"} loading={loading} onClick={onPaslon}>PASLON</Button>
                         </Group>
                     </Paper>
                 </Box>

@@ -1,6 +1,6 @@
 "use server"
 
-import { prisma } from "@/modules/_global"
+import { countProvince, prisma } from "@/modules/_global"
 import { seederProvinsi } from ".."
 
 /**
@@ -8,11 +8,8 @@ import { seederProvinsi } from ".."
  * @returns hasil untuk data seeder provinsi
  */
 export async function funSeederProvinsi() {
-    const ProCount = await prisma.areaProvinsi.count({
-        where: {
-            isActive: true,
-        }
-    })
+
+    const ProCount = await countProvince()
 
     if (ProCount > 0) {
         return {
@@ -28,10 +25,5 @@ export async function funSeederProvinsi() {
             message: "Success Provinsi"
         }
     }
-
-    // return {
-    //     success: true,
-    //     message: "Success Provinsi"
-    // }
 
 }
