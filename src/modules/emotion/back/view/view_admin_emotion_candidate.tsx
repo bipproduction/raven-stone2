@@ -90,7 +90,6 @@ export default function ViewAdminEmotionCandidate({ param, provinsi, candidate, 
                             borderRadius: 10
                         }}>
                             <Group justify="center">
-
                                 <UploadDataEmotionCandidate />
                             </Group>
                         </Box>
