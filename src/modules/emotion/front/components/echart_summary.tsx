@@ -127,7 +127,7 @@ export default function EchartSummary() {
                         <Button variant='subtle' c={"white"}>Custom</Button>
                     </Group>
                 </Group>
-                <EChartsReact style={{ height: 300 }} option={options} />
+                <EChartsReact style={{height: 300 }} option={options} />
             </Box>
         </>
     )

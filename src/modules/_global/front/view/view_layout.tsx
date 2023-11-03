@@ -77,7 +77,7 @@ export default function ViewLayout({ children }: { children: React.ReactNode }) 
 
       >
         <AppShell.Navbar bg={"#1E1B1C"} style={{
-          border: "none"
+          border: "none",
         }}>
           <BackgroundImage src="/raven.png" h={"100%"} style={{
             backgroundPosition: "30%",
