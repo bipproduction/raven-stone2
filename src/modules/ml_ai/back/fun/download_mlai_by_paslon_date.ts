@@ -34,13 +34,14 @@ export default async function funDownloadMlaiPaslonDate({ paslon, date }: { pasl
             }
         })
 
+
         result = result.map((v: any) => ({
             ..._.omit(v, ["idPaslon", "timeContent", "dateContent", "content"]),
             id: v.id,
             idPaslon: v.idPaslon,
             paslon: dPaslon?.nameCapres + ' - ' + dPaslon?.nameCawapres,
             dateContent: moment(v.dateContent).format('YYYY-MM-DD'),
-            timeContent: moment(v.timeContent).format('HH:MM'),
+            timeContent: moment.utc(v.timeContent).format('HH:mm'),
             content: v.content
         }))
 
@@ -49,7 +50,7 @@ export default async function funDownloadMlaiPaslonDate({ paslon, date }: { pasl
             id: '',
             idPaslon: dPaslon?.id,
             paslon: dPaslon?.nameCapres + '-' + dPaslon?.nameCawapres,
-            dateContent: '(DD-MM-YYYY)',
+            dateContent: '(YYYY-MM-DD)',
             timeContent: '(HH:MM)',
             content: '(DESKRIPSI)'
         }]

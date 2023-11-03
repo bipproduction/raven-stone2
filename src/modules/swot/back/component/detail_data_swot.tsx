@@ -9,7 +9,6 @@ import { MdDelete, MdEditCalendar } from "react-icons/md";
 export default function DetailDataSwot({ v, i, onClick }: { v: any; i: any, onClick: (val: any) => void }) {
     const open = useState(false);
     const router = useRouter();
-    // const [openModal, setOpenModal] = useAtom(isModalValue);
 
     function callBackDelete({ idDel }: { idDel: any }) {
         onClick(idDel)

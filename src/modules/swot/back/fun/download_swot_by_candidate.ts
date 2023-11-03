@@ -7,7 +7,8 @@ export default async function funDownloadSwotByCandidate({ candidate }: { candid
     let result
     const cek = await prisma.swot.count({
         where: {
-            idCandidate: candidate
+            idCandidate: candidate,
+            isActive: true
         }
     })
 
@@ -20,7 +21,8 @@ export default async function funDownloadSwotByCandidate({ candidate }: { candid
     if (cek > 0) {
         result = await prisma.swot.findMany({
             where: {
-                idCandidate: candidate
+                idCandidate: candidate,
+                isActive: true
             },
             select: {
                 id: true,

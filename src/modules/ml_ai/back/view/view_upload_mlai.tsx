@@ -176,7 +176,7 @@ export default function ViewUploadMlai() {
                 closeOnClickOutside={false}
             >
                 <ModalUploadMlai data={json} onSuccess={(val) => {
-                    // setJson([])
+                    setJson([])
                 }} />
             </Modal>
         </>

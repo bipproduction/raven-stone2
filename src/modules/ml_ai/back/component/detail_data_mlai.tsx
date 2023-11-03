@@ -1,16 +1,14 @@
 'use client'
 
 import { ActionIcon, Box, Center, Collapse, Group, Stack, Table, Text } from "@mantine/core";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { CiRead, CiUnread } from "react-icons/ci";
 import { MdDelete, MdEditCalendar } from "react-icons/md";
 import moment from "moment";
 
 export default function DetailDataMLAI({ v, i, onClick }: { v: any; i: any, onClick: (val: any) => void }) {
-    const formatDate = new Date(v.timeContent);
+    const formatDate = moment.utc(v.timeContent).format('HH:mm');
     const open = useState(false);
-    const router = useRouter();
 
     function callBackDelete({ idDel }: { idDel: any }) {
         onClick(idDel)
@@ -20,10 +18,7 @@ export default function DetailDataMLAI({ v, i, onClick }: { v: any; i: any, onCl
             <Table.Tbody key={i}>
                 <Table.Tr>
                     <Table.Td>{i + 1}</Table.Td>
-                    <Table.Td>{
-                        // moment(v.timeContent).format('MMMM Do YYYY, h:mm:ss a')
-                        formatDate.getHours()
-                    }</Table.Td>
+                    <Table.Td>{formatDate}</Table.Td>
                     <Table.Td>
                         <Center>
                             <Stack>
