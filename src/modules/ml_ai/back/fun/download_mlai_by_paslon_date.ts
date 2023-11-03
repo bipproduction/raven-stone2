@@ -49,7 +49,7 @@ export default async function funDownloadMlaiPaslonDate({ paslon, date }: { pasl
             id: '',
             idPaslon: dPaslon?.id,
             paslon: dPaslon?.nameCapres + '-' + dPaslon?.nameCawapres,
-            dateContent: '(YYYY-MM-D)',
+            dateContent: '(DD-MM-YYYY)',
             timeContent: '(HH:MM)',
             content: '(DESKRIPSI)'
         }]
