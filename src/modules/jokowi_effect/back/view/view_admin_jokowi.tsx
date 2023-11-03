@@ -56,7 +56,7 @@ export default function ViewAdminJokowi({ param, datatable, datadownload }: { pa
                                 padding: 40,
                                 cursor: "pointer",
                             }}
-                            onClick={() => router.push("/dashboard-admin/ml-ai/upload")}
+                            onClick={() => router.push("/dashboard-admin/jokowi-effect/upload")}
                         >
                             <Text ta={"center"} size="xl" inline>
                                 UPLOAD
