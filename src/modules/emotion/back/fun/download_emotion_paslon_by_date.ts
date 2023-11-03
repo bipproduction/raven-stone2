@@ -138,7 +138,7 @@ export default async function funDownloadEmotionPaslonDate({ find }: { find: any
 
     if (emotion.length > 0) {
         result = emotion.map((v: any) => ({
-            ..._.omit(v, ["id", "idPaslon", "Paslon", "dateEmotion", "timeEmotion", "AreaKabkot", "AreaProvinsi", "idKabkot", "idProvinsi", "confidence", "dissaproval", "negative", "positive", "supportive", "uncomfortable", "undecided", "unsupportive"]),
+            ..._.omit(v, ["id", "idPaslon", "Paslon", "dateEmotion", "timeEmotion", "AreaKabkot", "AreaProvinsi", "idKabkot", "idProvinsi", "confidence", "dissapproval", "negative", "positive", "supportive", "uncomfortable", "undecided", "unsupportive"]),
             id: v.id,
             idPaslon: v.idPaslon,
             idProvinsi: v.idProvinsi,
@@ -146,15 +146,16 @@ export default async function funDownloadEmotionPaslonDate({ find }: { find: any
             paslon: v.Paslon.nameCapres + ' - ' + v.Paslon.nameCawapres,
             provinsi: v.AreaProvinsi.name,
             kabkot: v.AreaKabkot.name,
-            date: moment(v.dateEmotion).format('DD-MM-YYYY'),
+            date: moment(v.dateEmotion).format('YYYY-MM-DD'),
             time: moment(v.timeEmotion).format('HH:MM'),
             confidence: v.confidence,
             supportive: v.supportive,
             positive: v.supportive,
             undecided: v.undecided,
             unsupportive: v.unsupportive,
+            uncomfortable: v.uncomfortable,
             negative: v.negative,
-            dissaproval: v.dissaproval
+            dissapproval: v.dissapproval
 
         }))
     } else {
@@ -167,15 +168,16 @@ export default async function funDownloadEmotionPaslonDate({ find }: { find: any
             paslon: dPaslon?.nameCapres + ' - ' + dPaslon?.nameCawapres,
             provinsi: v.AreaProvinsi.name,
             kabkot: v.name,
-            date: moment(find.date).format('DD-MM-YYYY'),
+            date: moment(find.date).format('YYYY-MM-DD'),
             time: '(HH:MM)',
             confidence: '(nilai)',
             supportive: '(nilai)',
             positive: '(nilai)',
             undecided: '(nilai)',
             unsupportive: '(nilai)',
+            uncomfortable: '(nilai)',
             negative: '(nilai)',
-            dissaproval: '(nilai)'
+            dissapproval: '(nilai)'
 
         }))
     }

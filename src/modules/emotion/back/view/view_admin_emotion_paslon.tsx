@@ -7,7 +7,6 @@ import moment from "moment";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-simple-toasts";
-import UploadDataEmotionPaslon from "../component/upload_data_emotion_paslon";
 import TableDataEmotionPaslon from "../component/table_emotion_paslon";
 import papa from "papaparse"
 
@@ -91,8 +90,19 @@ export default function ViewAdminEmotionPaslon({ param, provinsi, paslon, datata
                             borderRadius: 10
                         }}>
                             <Group justify="center">
-
-                                <UploadDataEmotionPaslon />
+                                <Box
+                                    style={{
+                                        border: "1px dashed gray",
+                                        borderRadius: 10,
+                                        padding: 40,
+                                        cursor: "pointer",
+                                    }}
+                                    onClick={() => router.push("/dashboard-admin/emotion-paslon/upload")}
+                                >
+                                    <Text ta={"center"} size="xl" inline>
+                                        UPLOAD DATA
+                                    </Text>
+                                </Box>
                             </Group>
                         </Box>
                         {!_.isNull(datatable.title) && (
