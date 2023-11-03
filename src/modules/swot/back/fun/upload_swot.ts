@@ -3,28 +3,26 @@
 import { prisma } from "@/modules/_global"
 import { revalidatePath } from "next/cache";
 
-export default async function funUploadStep({ body }: { body: any }) {
+export default async function funUploadSwot({ body }: { body: any }) {
     let can
     for (let i of body) {
         can = Number(i.idCandidate)
         if (i.id == '') {
-            await prisma.step.create({
+            await prisma.swot.create({
                 data: {
                     idCandidate: Number(i.idCandidate),
                     category: String(i.category).toUpperCase(),
-                    sentiment: (i.sentiment == "POSITIVE") ? 1 : 2,
                     content: String(i.content)
                 }
             });
         } else {
-            await prisma.step.update({
+            await prisma.swot.update({
                 where: {
                     id: Number(i.id)
                 },
                 data: {
                     idCandidate: Number(i.idCandidate),
                     category: String(i.category).toUpperCase(),
-                    sentiment: (i.sentiment == "POSITIVE") ? 1 : 2,
                     content: String(i.content)
                 }
             });
@@ -32,7 +30,7 @@ export default async function funUploadStep({ body }: { body: any }) {
 
     }
 
-    revalidatePath('dashboard-admin/step?candidate=' + can)
+    revalidatePath('dashboard-admin/swot?candidate=' + can)
 
     return {
         success: true,
