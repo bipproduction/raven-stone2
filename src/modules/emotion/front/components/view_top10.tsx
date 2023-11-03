@@ -122,7 +122,7 @@ export default function ViewTop10() {
             }}>
                 <ScrollArea>
                     <Table withRowBorders={false}>
-                        <Table.Thead c={"white"} ta={'center'}>
+                        <Table.Thead c={"white"}>
                             <Table.Tr >
                                 <Table.Th>NO</Table.Th>
                                 <Table.Th>PROVINCE</Table.Th>
@@ -139,12 +139,12 @@ export default function ViewTop10() {
                                 <Table.Tr key={i}>
                                     <Table.Td>{i + 1}</Table.Td>
                                     <Table.Td>{v.provinsi}</Table.Td>
-                                    <Table.Td ta={'center'} c={"white"}>{v.locked}</Table.Td>
-                                    <Table.Td ta={'center'} c={"white"}>{v.filtered}</Table.Td>
-                                    <Table.Td ta={'center'} c={"#6ABD45"}>{v.confidence}</Table.Td>
-                                    <Table.Td ta={'center'} c={"#98CC6F"}>{v.supportive}</Table.Td>
-                                    <Table.Td ta={'center'} c={"#C6E2B7"}>{v.positive}</Table.Td>
-                                    <Table.Td ta={'center'} c={WARNA.merah}>{v.negative}</Table.Td>
+                                    <Table.Td c={"white"}>{v.locked}</Table.Td>
+                                    <Table.Td c={"white"}>{v.filtered}</Table.Td>
+                                    <Table.Td c={"#6ABD45"}>{v.confidence}</Table.Td>
+                                    <Table.Td c={"#98CC6F"}>{v.supportive}</Table.Td>
+                                    <Table.Td c={"#C6E2B7"}>{v.positive}</Table.Td>
+                                    <Table.Td c={WARNA.merah}>{v.negative}</Table.Td>
                                 </Table.Tr>
                             ))}
                         </Table.Tbody>
