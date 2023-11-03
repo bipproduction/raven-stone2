@@ -10,21 +10,19 @@ import { GrDocumentCsv } from 'react-icons/gr';
 import toast from "react-simple-toasts"
 import papa from 'papaparse'
 import { useAtom } from "jotai"
-import { isModalMlai } from "../val/modal_mlai"
-import ModalUploadMlai from "../component/modal_upload_mlai"
+import { isModalJokowi } from "../val/modal_jokowi"
+import ModalUploadJokowi from "../component/modal_upload_jokowi"
 
 
-export default function ViewUploadMlai() {
+export default function ViewUploadJokowi() {
     const [json, setJson] = useState<any[]>([])
-    const [openModal, setOpenModal] = useAtom(isModalMlai)
+    const [openModal, setOpenModal] = useAtom(isModalJokowi)
 
 
     async function onLoad(data: any) {
         if (data.length > 0) {
             if (
                 ('id' in data[0]) &&
-                ('idPaslon' in data[0]) &&
-                ('paslon' in data[0]) &&
                 ('dateContent' in data[0]) &&
                 ('timeContent' in data[0]) &&
                 ('content' in data[0])
@@ -133,8 +131,6 @@ export default function ViewUploadMlai() {
                                                         }}
                                                     >
                                                         <Table.Th>ID</Table.Th>
-                                                        <Table.Th>ID Paslon</Table.Th>
-                                                        <Table.Th>Paslon</Table.Th>
                                                         <Table.Th>Tanggal</Table.Th>
                                                         <Table.Th>Jam</Table.Th>
                                                         <Table.Th>Content</Table.Th>
@@ -144,8 +140,6 @@ export default function ViewUploadMlai() {
                                                     {json.map(home =>
                                                         <Table.Tr key={home.id}>
                                                             <Table.Td>{home.id}</Table.Td>
-                                                            <Table.Td>{home.idPaslon}</Table.Td>
-                                                            <Table.Td>{home.paslon}</Table.Td>
                                                             <Table.Td>{home.dateContent}</Table.Td>
                                                             <Table.Td>{home.timeContent}</Table.Td>
                                                             <Table.Td>{home.content}</Table.Td>
@@ -175,7 +169,7 @@ export default function ViewUploadMlai() {
                 withCloseButton={false}
                 closeOnClickOutside={false}
             >
-                <ModalUploadMlai data={json} onSuccess={(val) => {
+                <ModalUploadJokowi data={json} onSuccess={(val) => {
                     setJson([])
                 }} />
             </Modal>

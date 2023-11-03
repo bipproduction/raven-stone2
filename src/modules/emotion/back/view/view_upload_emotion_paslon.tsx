@@ -10,13 +10,12 @@ import { GrDocumentCsv } from 'react-icons/gr';
 import toast from "react-simple-toasts"
 import papa from 'papaparse'
 import { useAtom } from "jotai"
-import { isModalMlai } from "../val/modal_mlai"
-import ModalUploadMlai from "../component/modal_upload_mlai"
+import { isModalEmotionPaslon } from "../val/modal_emotion_paslon"
+import ModalUploadEmotionPaslon from "../component/modal_upload_emotion_paslon"
 
-
-export default function ViewUploadMlai() {
+export default function ViewUploadEmotionPaslon() {
     const [json, setJson] = useState<any[]>([])
-    const [openModal, setOpenModal] = useAtom(isModalMlai)
+    const [openModal, setOpenModal] = useAtom(isModalEmotionPaslon)
 
 
     async function onLoad(data: any) {
@@ -24,10 +23,21 @@ export default function ViewUploadMlai() {
             if (
                 ('id' in data[0]) &&
                 ('idPaslon' in data[0]) &&
+                ('idProvinsi' in data[0]) &&
+                ('idKabkot' in data[0]) &&
                 ('paslon' in data[0]) &&
-                ('dateContent' in data[0]) &&
-                ('timeContent' in data[0]) &&
-                ('content' in data[0])
+                ('provinsi' in data[0]) &&
+                ('kabkot' in data[0]) &&
+                ('date' in data[0]) &&
+                ('time' in data[0]) &&
+                ('confidence' in data[0]) &&
+                ('supportive' in data[0]) &&
+                ('positive' in data[0]) &&
+                ('undecided' in data[0]) &&
+                ('unsupportive' in data[0]) &&
+                ('uncomfortable' in data[0]) &&
+                ('negative' in data[0]) &&
+                ('dissaproval' in data[0])
             ) {
                 setJson(data as any)
             } else {
@@ -134,21 +144,43 @@ export default function ViewUploadMlai() {
                                                     >
                                                         <Table.Th>ID</Table.Th>
                                                         <Table.Th>ID Paslon</Table.Th>
+                                                        <Table.Th>ID Provinsi</Table.Th>
+                                                        <Table.Th>ID Kabkot</Table.Th>
                                                         <Table.Th>Paslon</Table.Th>
-                                                        <Table.Th>Tanggal</Table.Th>
-                                                        <Table.Th>Jam</Table.Th>
-                                                        <Table.Th>Content</Table.Th>
+                                                        <Table.Th>Provinsi</Table.Th>
+                                                        <Table.Th>Kabupaten/Kota</Table.Th>
+                                                        <Table.Th>Date</Table.Th>
+                                                        <Table.Th>Time</Table.Th>
+                                                        <Table.Th>Confidence</Table.Th>
+                                                        <Table.Th>Supportive</Table.Th>
+                                                        <Table.Th>Positive</Table.Th>
+                                                        <Table.Th>Undecided</Table.Th>
+                                                        <Table.Th>Unsupporitve</Table.Th>
+                                                        <Table.Th>Uncomfortable</Table.Th>
+                                                        <Table.Th>Negative</Table.Th>
+                                                        <Table.Th>Dissapproval</Table.Th>
                                                     </Table.Tr>
                                                 </Table.Thead>
                                                 <Table.Tbody>
-                                                    {json.map(home =>
-                                                        <Table.Tr key={home.id}>
+                                                    {json.map((home, i) =>
+                                                        <Table.Tr key={i + 1}>
                                                             <Table.Td>{home.id}</Table.Td>
                                                             <Table.Td>{home.idPaslon}</Table.Td>
+                                                            <Table.Td>{home.idProvinsi}</Table.Td>
+                                                            <Table.Td>{home.idKabkot}</Table.Td>
                                                             <Table.Td>{home.paslon}</Table.Td>
-                                                            <Table.Td>{home.dateContent}</Table.Td>
-                                                            <Table.Td>{home.timeContent}</Table.Td>
-                                                            <Table.Td>{home.content}</Table.Td>
+                                                            <Table.Td>{home.provinsi}</Table.Td>
+                                                            <Table.Td>{home.kabkot}</Table.Td>
+                                                            <Table.Td>{home.date}</Table.Td>
+                                                            <Table.Td>{home.time}</Table.Td>
+                                                            <Table.Td>{home.confidence}</Table.Td>
+                                                            <Table.Td>{home.supportive}</Table.Td>
+                                                            <Table.Td>{home.positive}</Table.Td>
+                                                            <Table.Td>{home.undecided}</Table.Td>
+                                                            <Table.Td>{home.unsupportive}</Table.Td>
+                                                            <Table.Td>{home.uncomfortable}</Table.Td>
+                                                            <Table.Td>{home.negative}</Table.Td>
+                                                            <Table.Td>{home.dissaproval}</Table.Td>
                                                         </Table.Tr>
                                                     )}
                                                 </Table.Tbody>
@@ -175,8 +207,8 @@ export default function ViewUploadMlai() {
                 withCloseButton={false}
                 closeOnClickOutside={false}
             >
-                <ModalUploadMlai data={json} onSuccess={(val) => {
-                    setJson([])
+                <ModalUploadEmotionPaslon data={json} onSuccess={(val) => {
+                    // setJson([])
                 }} />
             </Modal>
         </>

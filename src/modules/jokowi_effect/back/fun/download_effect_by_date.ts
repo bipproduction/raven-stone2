@@ -34,7 +34,7 @@ export default async function funDownloadEffectByDate({ date }: { date: any }) {
             ..._.omit(v, ["timeContent", "dateContent", "content"]),
             id: v.id,
             dateContent: moment(v.dateContent).format('YYYY-MM-DD'),
-            timeContent: moment(v.timeContent).format('HH:MM'),
+            timeContent: moment.utc(v.timeContent).format('HH:mm'),
             content: v.content
         }))
 
@@ -42,7 +42,7 @@ export default async function funDownloadEffectByDate({ date }: { date: any }) {
     } else {
         result = [{
             id: '',
-            dateContent: '(YYYY-MM-D)',
+            dateContent: '(YYYY-MM-DD)',
             timeContent: '(HH:MM)',
             content: '(DESKRIPSI)'
         }]

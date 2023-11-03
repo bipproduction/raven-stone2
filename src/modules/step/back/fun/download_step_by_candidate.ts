@@ -7,7 +7,8 @@ export default async function funDownloadStepCandidate({ candidate }: { candidat
     let result
     const cek = await prisma.step.count({
         where: {
-            idCandidate: candidate
+            idCandidate: candidate,
+            isActive: true
         }
     })
 
@@ -20,7 +21,8 @@ export default async function funDownloadStepCandidate({ candidate }: { candidat
     if (cek > 0) {
         result = await prisma.step.findMany({
             where: {
-                idCandidate: candidate
+                idCandidate: candidate,
+                isActive: true
             },
             select: {
                 id: true,

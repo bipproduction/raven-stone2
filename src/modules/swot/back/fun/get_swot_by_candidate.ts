@@ -5,7 +5,8 @@ import { prisma } from "@/modules/_global"
 export default async function funGetSwotByCandidate({ candidate }: { candidate: any }) {
     const result = await prisma.swot.findMany({
         where: {
-            idCandidate: candidate
+            idCandidate: candidate,
+            isActive: true
         }
     })
 

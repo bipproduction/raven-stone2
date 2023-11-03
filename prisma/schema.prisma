@@ -243,6 +243,7 @@ model CandidateEmotion {
   Candidate     Candidate     @relation(fields: [idCandidate], references: [id])
   idCandidate   Int
   dateEmotion   DateTime      @db.Date
+  timeEmotion   DateTime?     @db.Time
   confidence    Int
   supportive    Int
   positive      Int

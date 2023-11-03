@@ -1,21 +1,22 @@
 'use client'
 
 import { Box, Button, Center, Group, Modal, ScrollArea, Table, Text } from "@mantine/core";
-import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import DetailDataMLAI from "./detail_data_mlai";
+import { useAtom } from "jotai";
+import { isModalMlai } from "../val/modal_mlai";
+import ModalDeleteMlai from "./modal_delete_mlai";
+import { funGetMlaiPaslonDate } from "../..";
 
 export default function TableDataMLAI({ title, data, searchParam }: { title: any, data: any, searchParam: any }) {
-    // const [openModal, setOpenModal] = useAtom(isModalMlAi);
-    const router = useRouter();
+    const [openModal, setOpenModal] = useAtom(isModalMlai);
     const [dataDelete, setDataDelete] = useState(Number)
 
     const [isData, setData] = useState(data)
-    const searchParams = useSearchParams()
 
     async function onLoad() {
-        // const dataDB = await funGetAllMlAi({ find: searchParam })
-        // setData(dataDB.data)
+        const dataDB = await funGetMlaiPaslonDate({ date: searchParam.date, paslon: searchParam.idPaslon })
+        setData(dataDB.data)
     }
 
     useEffect(() => {
@@ -72,7 +73,7 @@ export default function TableDataMLAI({ title, data, searchParam }: { title: any
                                     {isData.map((v: any, i: any) => (
                                         <DetailDataMLAI v={v} i={i} key={i} onClick={(val) => {
                                             setDataDelete(val)
-                                            // setOpenModal(true)
+                                            setOpenModal(true)
                                         }} />
                                     ))}
                                 </Table>
@@ -82,15 +83,15 @@ export default function TableDataMLAI({ title, data, searchParam }: { title: any
                 </Box>
             </Box>
 
-            {/* <Modal
+            <Modal
                 opened={openModal}
                 onClose={() => setOpenModal(false)}
                 centered
                 withCloseButton={false}
                 closeOnClickOutside={false}
             >
-                <ModalDelMlAi id={dataDelete} onSuccess={() => onLoad()} />
-            </Modal> */}
+                <ModalDeleteMlai id={dataDelete} onSuccess={() => onLoad()} />
+            </Modal>
         </>
     );
 }

@@ -6,7 +6,8 @@ export default async function funGetStepByCandidate({ candidate }: { candidate: 
 
     const result = await prisma.step.findMany({
         where: {
-            idCandidate: candidate
+            idCandidate: candidate,
+            isActive: true
         }
     })
 
