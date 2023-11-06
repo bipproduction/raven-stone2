@@ -7,10 +7,10 @@ import { WARNA } from '@/modules/_global/fun/COLOR';
 
 
 /**
- * Fungsi untuk menampilkan echart summary.
- * @returns {component} menampilakn echart summary.
+ * Fungsi untuk menampilkan echart jokowi effect.
+ * @returns {component} menampilakn echart jokowi effect.
  */
-export default function EchartSummary() {
+export default function EchartJokowiEffect() {
     const [options, setOptions] = useState<EChartsOption>({});
 
     useShallowEffect(() => {
@@ -127,8 +127,10 @@ export default function EchartSummary() {
                         <Button variant='subtle' c={"white"}>Custom</Button>
                     </Group>
                 </Group>
-                <EChartsReact style={{height: 300 }} option={options} />
+                <EChartsReact style={{height: 250 }} option={options} />
             </Box>
         </>
     )
 }
+
+

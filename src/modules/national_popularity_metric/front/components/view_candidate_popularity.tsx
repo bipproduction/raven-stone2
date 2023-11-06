@@ -28,16 +28,16 @@ export default function ViewCandidatePopularity() {
             </SimpleGrid>
           </Grid.Col>
           <Grid.Col span={{ md: 7, lg: 7 }}>
-            <Grid justify="flex-end" align="center" pt={40}>
+            <Grid justify="flex-end" align="center" pt={20}>
               <Grid.Col span={6} >
-                  <Text fz={40} fs="italic" c={"white"}>
+                  <Text fz={32} fs="italic" c={"white"}>
                     SUCCESS
                     PROBABILITY
                     PROJECTION
                   </Text>
               </Grid.Col>
               <Grid.Col span={6}>
-                <Text ta={'start'} fw={"bold"} fz={100} c={"#1EBA1B"}>51.5%</Text>
+                <Text ta={'start'} fw={"bold"} fz={70} c={"#1EBA1B"}>51.05%</Text>
               </Grid.Col>
             </Grid>
           </Grid.Col>

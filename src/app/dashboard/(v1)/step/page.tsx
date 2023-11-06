@@ -1,5 +1,7 @@
+import { ViewStep } from "@/modules/step";
+
 export default function Page(){
     return(
-        <>Halaman step</>
+        <ViewStep/>
     )
 }

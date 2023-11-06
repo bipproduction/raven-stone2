@@ -1,9 +1,12 @@
 "use client"
 import PageSubTitle from '@/modules/_global/front/components/PageSubtitle';
-import { Box, Button, Divider, Grid, Group, Image, ScrollArea, Stack, Text } from '@mantine/core';
+import { WARNA } from '@/modules/_global/fun/COLOR';
+import { Box, Button, Divider, Grid, Group, Image, ScrollArea, SimpleGrid, Stack, Text } from '@mantine/core';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import { MdNavigateNext } from 'react-icons/md';
+import EchartJokowiEffect from './echart_jokowi_effect';
+import Top10JokowiEffect from './top10_jokowi_effect';
 
 
 
@@ -19,52 +22,102 @@ export default function JokowiEffectSummary() {
       <Stack pt={10}>
         <Grid>
           <Grid.Col span={{ md: 3, lg: 3 }}>
-            <Box>
-              <Image alt='candidate' src={"/candidate/c7.png"} maw={"auto"} mx="auto" />
-            </Box>
-          </Grid.Col>
-          <Grid.Col span={{ md: 9, lg: 9 }}>
-            <Box>
-              <Box style={{
-                backgroundColor: "#310943",
-                borderRadius: 10,
-                paddingLeft: 20,
-                paddingRight: 20,
-                paddingTop: 20
-              }}>
-                <ScrollArea h={170}>
-                  <Text c={"white"}>
-                    Joko Widodo pertama kali dikenal oleh masyarakat luas setelah ia mulai menjabat
-                    sebagai Wali Kota Surakarta (Solo). Dengan gaya kepemimpinan yang dianggap pro-rakyat
-                    dan berani menghadapi pejabat regional yang kuat, ia berhasil mengubah kota Solo dari
-                    kota yang dipenuhi kejahatan menjadi pusat seni dan budaya region.
-                    Joko Widodo pertama kali dikenal oleh masyarakat luas setelah ia mulai menjabat
-                    sebagai Wali Kota Surakarta (Solo). Dengan gaya kepemimpinan yang dianggap pro-rakyat
-                    dan berani menghadapi pejabat regional yang kuat, ia berhasil mengubah kota Solo dari
-                    kota yang dipenuhi kejahatan menjadi pusat seni dan budaya region.
-                    Joko Widodo pertama kali dikenal oleh masyarakat luas setelah ia mulai menjabat
-                    sebagai Wali Kota Surakarta (Solo). Dengan gaya kepemimpinan yang dianggap pro-rakyat
-                    dan berani menghadapi pejabat regional yang kuat, ia berhasil mengubah kota Solo dari
-                    kota yang dipenuhi kejahatan menjadi pusat seni dan budaya region
-                  </Text>
-                </ScrollArea>
-                <Box pt={10} pb={10}>
-                  <Divider />
-                  <Group justify='flex-end' pt={10}>
-                    <Box>
-                      <Button
-                        variant='subtle'
-                        radius={"md"} c={"white"}
-                        rightSection={<MdNavigateNext size={25} />} onClick={() => router.push("/dashboard/jokowi-effect")} >
-                        DETAIL VIEW JOKOWI EFFECT
-                      </Button>
-                    </Box>
-                  </Group>
-                </Box>
+            <Box pt={22}>
+              <Image alt='candidate' src={"/candidate/c7.png"} maw={300} mx="auto" />
+              <Box pt={10}>
+                <Text ta={'center'} fw={'bold'} c={"white"}>JOKO WIDODO</Text>
               </Box>
             </Box>
           </Grid.Col>
+          <Grid.Col span={{ md: 2, lg: 2 }}>
+            <Box pt={32}>
+              <SimpleGrid
+                cols={1}
+              >
+                <Box >
+                  <Box style={{
+                    backgroundColor: WARNA.hijau,
+                    border: "1px solid #ffff",
+                    padding: 5,
+                    borderRadius: 5
+                  }}>
+                    <Text ml={5} fz={13} c={"white"}>POSITIVE</Text>
+                    <Text ta={'center'} fw={'bold'} c={"white"} fz={24}>57.76%</Text>
+                  </Box>
+                </Box>
+                <Box>
+                  <Box style={{
+                    backgroundColor: "white",
+                    border: "1px solid #ffff",
+                    padding: 5,
+                    borderRadius: 5
+                  }}>
+                    <Text ml={5} fz={13} c={WARNA.hijau}>NEUTRAL</Text>
+                    <Text ta={'center'} fw={'bold'} c={WARNA.hijau} fz={24}>57.76%</Text>
+                  </Box>
+                </Box>
+                <Box>
+                  <Box style={{
+                    backgroundColor: WARNA.merah,
+                    border: "1px solid #ffff",
+                    padding: 5,
+                    borderRadius: 5
+                  }}>
+                    <Text ml={5} fz={13} c={"white"}>NEGATIVE</Text>
+                    <Text ta={'center'} fw={'bold'} c={"white"} fz={24}>57.76%</Text>
+                  </Box>
+                </Box>
+              </SimpleGrid>
+            </Box>
+          </Grid.Col>
+          <Grid.Col span={{ md: 7, lg: 7 }}>
+            <EchartJokowiEffect />
+          </Grid.Col>
         </Grid>
+      </Stack>
+      <Stack>
+        <Box pt={20}>
+          <Top10JokowiEffect />
+        </Box>
+        <Box pt={20}>
+          <Box style={{
+            backgroundColor: "#310943",
+            borderRadius: 10,
+            paddingLeft: 20,
+            paddingRight: 20,
+            paddingTop: 20
+          }}>
+            <ScrollArea h={170}>
+              <Text c={"white"}>
+                Joko Widodo pertama kali dikenal oleh masyarakat luas setelah ia mulai menjabat
+                sebagai Wali Kota Surakarta (Solo). Dengan gaya kepemimpinan yang dianggap pro-rakyat
+                dan berani menghadapi pejabat regional yang kuat, ia berhasil mengubah kota Solo dari
+                kota yang dipenuhi kejahatan menjadi pusat seni dan budaya region.
+                Joko Widodo pertama kali dikenal oleh masyarakat luas setelah ia mulai menjabat
+                sebagai Wali Kota Surakarta (Solo). Dengan gaya kepemimpinan yang dianggap pro-rakyat
+                dan berani menghadapi pejabat regional yang kuat, ia berhasil mengubah kota Solo dari
+                kota yang dipenuhi kejahatan menjadi pusat seni dan budaya region.
+                Joko Widodo pertama kali dikenal oleh masyarakat luas setelah ia mulai menjabat
+                sebagai Wali Kota Surakarta (Solo). Dengan gaya kepemimpinan yang dianggap pro-rakyat
+                dan berani menghadapi pejabat regional yang kuat, ia berhasil mengubah kota Solo dari
+                kota yang dipenuhi kejahatan menjadi pusat seni dan budaya region
+              </Text>
+            </ScrollArea>
+            <Box pt={10} pb={10}>
+              <Divider />
+              <Group justify='flex-end' pt={10}>
+                <Box>
+                  <Button
+                    variant='subtle'
+                    radius={"md"} c={"white"}
+                    rightSection={<MdNavigateNext size={25} />} onClick={() => router.push("/dashboard/jokowi-effect")} >
+                    DETAIL VIEW JOKOWI EFFECT
+                  </Button>
+                </Box>
+              </Group>
+            </Box>
+          </Box>
+        </Box>
       </Stack>
     </>
   );
