@@ -22,10 +22,10 @@ export default function ViewUploadEmotionCandidate() {
         if (data.length > 0) {
             if (
                 ('id' in data[0]) &&
-                ('idPaslon' in data[0]) &&
+                ('idCandidate' in data[0]) &&
                 ('idProvinsi' in data[0]) &&
                 ('idKabkot' in data[0]) &&
-                ('paslon' in data[0]) &&
+                ('candidate' in data[0]) &&
                 ('provinsi' in data[0]) &&
                 ('kabkot' in data[0]) &&
                 ('date' in data[0]) &&
@@ -143,10 +143,10 @@ export default function ViewUploadEmotionCandidate() {
                                                         }}
                                                     >
                                                         <Table.Th>ID</Table.Th>
-                                                        <Table.Th>ID Paslon</Table.Th>
+                                                        <Table.Th>ID Candidate</Table.Th>
                                                         <Table.Th>ID Provinsi</Table.Th>
                                                         <Table.Th>ID Kabkot</Table.Th>
-                                                        <Table.Th>Paslon</Table.Th>
+                                                        <Table.Th>Candidate</Table.Th>
                                                         <Table.Th>Provinsi</Table.Th>
                                                         <Table.Th>Kabupaten/Kota</Table.Th>
                                                         <Table.Th>Date</Table.Th>
@@ -155,7 +155,7 @@ export default function ViewUploadEmotionCandidate() {
                                                         <Table.Th>Supportive</Table.Th>
                                                         <Table.Th>Positive</Table.Th>
                                                         <Table.Th>Undecided</Table.Th>
-                                                        <Table.Th>Unsupporitve</Table.Th>
+                                                        <Table.Th>Unsupportive</Table.Th>
                                                         <Table.Th>Uncomfortable</Table.Th>
                                                         <Table.Th>Negative</Table.Th>
                                                         <Table.Th>Dissapproval</Table.Th>
@@ -165,10 +165,10 @@ export default function ViewUploadEmotionCandidate() {
                                                     {json.map((home, i) =>
                                                         <Table.Tr key={i + 1}>
                                                             <Table.Td>{home.id}</Table.Td>
-                                                            <Table.Td>{home.idPaslon}</Table.Td>
+                                                            <Table.Td>{home.idCandidate}</Table.Td>
                                                             <Table.Td>{home.idProvinsi}</Table.Td>
                                                             <Table.Td>{home.idKabkot}</Table.Td>
-                                                            <Table.Td>{home.paslon}</Table.Td>
+                                                            <Table.Td>{home.candidate}</Table.Td>
                                                             <Table.Td>{home.provinsi}</Table.Td>
                                                             <Table.Td>{home.kabkot}</Table.Td>
                                                             <Table.Td>{home.date}</Table.Td>
@@ -180,7 +180,7 @@ export default function ViewUploadEmotionCandidate() {
                                                             <Table.Td>{home.unsupportive}</Table.Td>
                                                             <Table.Td>{home.uncomfortable}</Table.Td>
                                                             <Table.Td>{home.negative}</Table.Td>
-                                                            <Table.Td>{home.dissaproval}</Table.Td>
+                                                            <Table.Td>{home.dissapproval}</Table.Td>
                                                         </Table.Tr>
                                                     )}
                                                 </Table.Tbody>

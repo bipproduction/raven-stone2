@@ -2,19 +2,10 @@
 
 import { Box, Group, ScrollArea, Select, Table, Text } from "@mantine/core";
 import { useEffect, useState } from "react";
-import { funGetEmotionCandidateDateArea } from "../..";
 
-export default function TableDataEmotionCandidate({ param, title, data, th, datajam }: { param: any, title: string, data: any, th: any, datajam: any }) {
+export default function TableDataPopularity({ title, data }: { title: string, data: any }) {
     const [isData, setData] = useState(data)
-    const [dataJam, setDataJam] = useState(datajam)
-    const [isJam, setJam] = useState((dataJam.length > 0) ? dataJam[0].timeEmotion : null)
-
-    async function getLoad(valJam: any) {
-        setJam(valJam)
-        param['jam'] = valJam
-        const dataDB = await funGetEmotionCandidateDateArea({ find: param })
-        setData(dataDB.data)
-    }
+    let angka
 
     useEffect(() => {
         setData(data)
@@ -34,17 +25,6 @@ export default function TableDataEmotionCandidate({ param, title, data, th, data
                         <Text fw={"bold"} c={"white"}>
                             {title}
                         </Text>
-                        {
-                            (datajam.length > 0) &&
-                            <Select
-                                data={datajam.map((can: any) => ({
-                                    value: String(can.timeEmotion),
-                                    label: can.timeEmotion
-                                }))}
-                                value={isJam}
-                                onChange={(val) => getLoad(val)}
-                            />
-                        }
                     </Group>
 
                     <Box pt={20}>
@@ -59,8 +39,9 @@ export default function TableDataEmotionCandidate({ param, title, data, th, data
                                 <Table withTableBorder horizontalSpacing="xl">
                                     <Table.Thead>
                                         <Table.Tr>
-                                            <Table.Th>NO</Table.Th>
-                                            <Table.Th>{th}</Table.Th>
+                                            <Table.Th>PASLON</Table.Th>
+                                            <Table.Th>JAM</Table.Th>
+                                            <Table.Th>RATE</Table.Th>
                                             <Table.Th>CONFIDENCE</Table.Th>
                                             <Table.Th>SUPPORTIVE</Table.Th>
                                             <Table.Th>POSITIVE</Table.Th>
@@ -74,8 +55,9 @@ export default function TableDataEmotionCandidate({ param, title, data, th, data
                                     <Table.Tbody>
                                         {isData.map((v: any, i: any) => (
                                             <Table.Tr key={i}>
-                                                <Table.Td>{i + 1}</Table.Td>
                                                 <Table.Td>{v.name}</Table.Td>
+                                                <Table.Td>{v.timeEmotion}</Table.Td>
+                                                <Table.Td>{(v.rate).toFixed(2)}%</Table.Td>
                                                 <Table.Td>{v.confidence}</Table.Td>
                                                 <Table.Td>{v.supportive}</Table.Td>
                                                 <Table.Td>{v.positive}</Table.Td>

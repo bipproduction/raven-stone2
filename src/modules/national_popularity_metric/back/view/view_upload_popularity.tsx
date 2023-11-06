@@ -10,12 +10,12 @@ import { GrDocumentCsv } from 'react-icons/gr';
 import toast from "react-simple-toasts"
 import papa from 'papaparse'
 import { useAtom } from "jotai"
-import { isModalEmotionPaslon } from "../val/modal_emotion"
-import ModalUploadEmotionPaslon from "../component/modal_upload_emotion_paslon"
+import { isModalPopularity } from "../val/modal_popularity"
+import ModalUploadPopularity from "../component/modal_upload_popularity"
 
-export default function ViewUploadEmotionPaslon() {
+export default function ViewUploadPopularity() {
     const [json, setJson] = useState<any[]>([])
-    const [openModal, setOpenModal] = useAtom(isModalEmotionPaslon)
+    const [openModal, setOpenModal] = useAtom(isModalPopularity)
 
 
     async function onLoad(data: any) {
@@ -23,13 +23,10 @@ export default function ViewUploadEmotionPaslon() {
             if (
                 ('id' in data[0]) &&
                 ('idPaslon' in data[0]) &&
-                ('idProvinsi' in data[0]) &&
-                ('idKabkot' in data[0]) &&
                 ('paslon' in data[0]) &&
-                ('provinsi' in data[0]) &&
-                ('kabkot' in data[0]) &&
                 ('date' in data[0]) &&
                 ('time' in data[0]) &&
+                ('rate' in data[0]) &&
                 ('confidence' in data[0]) &&
                 ('supportive' in data[0]) &&
                 ('positive' in data[0]) &&
@@ -64,7 +61,7 @@ export default function ViewUploadEmotionPaslon() {
                         borderRadius: 10
                     }}
                 >
-                    <Text fw={"bold"} c={"white"} mb={20}>UPLOAD DATA CSV</Text>
+                    <Text fw={"bold"} c={"white"} mb={20}>UPLOAD DATA NATIONAL POPULARITY</Text>
                     <Dropzone
                         style={{
                             border: "1px dashed",
@@ -144,13 +141,10 @@ export default function ViewUploadEmotionPaslon() {
                                                     >
                                                         <Table.Th>ID</Table.Th>
                                                         <Table.Th>ID Paslon</Table.Th>
-                                                        <Table.Th>ID Provinsi</Table.Th>
-                                                        <Table.Th>ID Kabkot</Table.Th>
                                                         <Table.Th>Paslon</Table.Th>
-                                                        <Table.Th>Provinsi</Table.Th>
-                                                        <Table.Th>Kabupaten/Kota</Table.Th>
                                                         <Table.Th>Date</Table.Th>
                                                         <Table.Th>Time</Table.Th>
+                                                        <Table.Th>Rate</Table.Th>
                                                         <Table.Th>Confidence</Table.Th>
                                                         <Table.Th>Supportive</Table.Th>
                                                         <Table.Th>Positive</Table.Th>
@@ -166,13 +160,10 @@ export default function ViewUploadEmotionPaslon() {
                                                         <Table.Tr key={i + 1}>
                                                             <Table.Td>{home.id}</Table.Td>
                                                             <Table.Td>{home.idPaslon}</Table.Td>
-                                                            <Table.Td>{home.idProvinsi}</Table.Td>
-                                                            <Table.Td>{home.idKabkot}</Table.Td>
                                                             <Table.Td>{home.paslon}</Table.Td>
-                                                            <Table.Td>{home.provinsi}</Table.Td>
-                                                            <Table.Td>{home.kabkot}</Table.Td>
                                                             <Table.Td>{home.date}</Table.Td>
                                                             <Table.Td>{home.time}</Table.Td>
+                                                            <Table.Td>{home.rate}</Table.Td>
                                                             <Table.Td>{home.confidence}</Table.Td>
                                                             <Table.Td>{home.supportive}</Table.Td>
                                                             <Table.Td>{home.positive}</Table.Td>
@@ -207,7 +198,7 @@ export default function ViewUploadEmotionPaslon() {
                 withCloseButton={false}
                 closeOnClickOutside={false}
             >
-                <ModalUploadEmotionPaslon data={json} onSuccess={(val) => {
+                <ModalUploadPopularity data={json} onSuccess={(val) => {
                     setJson([])
                 }} />
             </Modal>

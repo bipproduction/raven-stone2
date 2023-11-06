@@ -3,14 +3,14 @@
 import { Alert, Box, Button, Group, Text } from "@mantine/core"
 import { useAtom } from "jotai"
 import toast from "react-simple-toasts"
-import { isModalEmotionCandidate } from "../val/modal_emotion"
-import funUploadEmotionCandidate from "../fun/upload_emotion_candidate"
+import { isModalPopularity } from "../val/modal_popularity"
+import funUploadPopularity from "../fun/upload_popularity"
 
-export default function ModalUploadEmotionCandidate({ data, onSuccess }: { data: any, onSuccess: (val: any) => void }) {
-    const [openModal, setOpenModal] = useAtom(isModalEmotionCandidate)
+export default function ModalUploadPopularity({ data, onSuccess }: { data: any, onSuccess: (val: any) => void }) {
+    const [openModal, setOpenModal] = useAtom(isModalPopularity)
 
     async function onUpload() {
-        await funUploadEmotionCandidate({ body: data })
+        await funUploadPopularity({ body: data })
         toast('Success', { theme: 'dark' })
         setOpenModal(false)
         onSuccess(true)
@@ -21,7 +21,7 @@ export default function ModalUploadEmotionCandidate({ data, onSuccess }: { data:
             <Box>
                 <Alert color="gray" variant="outline">
                     <Text fw={700} ta={"center"} mb={20} mt={20}>
-                        ANDA YAKIN INGIN MENGUPDATE DATA EMOTION CANDIDATE?
+                        ANDA YAKIN INGIN MENGUPDATE DATA NATIONAL POPULARITY?
                     </Text>
                     <Group justify="space-between" pt={10}>
                         <Button

@@ -7,41 +7,38 @@ import moment from "moment";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-simple-toasts";
-import TableDataEmotionPaslon from "../component/table_emotion_paslon";
 import papa from "papaparse"
+import TableDataPopularity from "../component/table_popularity";
 
-export default function ViewAdminEmotionPaslon({ param, provinsi, paslon, datatable, datadownload }: { param: any, provinsi: any, paslon: any, datatable: any, datadownload: any }) {
+export default function ViewAdminPopularity({ param, datatable, datadownload }: { param: any, datatable: any, datadownload: any }) {
     const router = useRouter()
-    const today = new Date();
 
-    const [dataProvinsi, setDataProvinsi] = useState(provinsi)
-    const [dataPaslon, setDataPaslon] = useState<any>(paslon)
+
+
     const [isProvinsi, setProvinsi] = useState<any>(param.idProvinsi || null)
-    const [isPaslon, setPaslon] = useState<any>(param.idPaslon || null)
-    const [isDate, setDate] = useState<any>((_.isNull(param.date)) ? today : new Date(param.date))
+    const [isCandidate, setCandidate] = useState<any>(param.idCandidate || null)
+    const [isDate, setDate] = useState<any>(param.date)
+
 
 
 
     useEffect(() => {
         setProvinsi((param.idProvinsi == 0) ? null : param.idProvinsi)
-        setPaslon((param.idPaslon == 0) ? null : param.idPaslon)
+        //setCandidate((param.idCandidate) ? console.log('ini') : console.log('else'))
         setDate((param.date == null) ? new Date() : new Date(param.date))
     }, [param])
 
-    async function onProvinsi({ idProv }: { idProv: any }) {
-        setProvinsi(idProv)
-    }
 
 
     function onProccess() {
-        if (_.isNull(isPaslon)) return toast("Silahkan pilih paslon", { theme: "dark" })
-        router.replace('/dashboard-admin/emotion-paslon?paslon=' + isPaslon + '&date=' + moment(isDate).format("YYYY-MM-DD") + '&prov=' + isProvinsi)
+        if (_.isNull(isCandidate)) return toast("Silahkan pilih kandidat", { theme: "dark" })
+        router.replace('/dashboard-admin/national-popularity-metric?candidate=' + isCandidate + '&date=' + moment(isDate).format("YYYY-MM-DD") + '&prov=' + isProvinsi)
     }
 
     return (
         <>
             <Stack>
-                <Text fw={"bold"}>EMOTION EDITOR PASLON</Text>
+                <Text fw={"bold"}>NATIONAL POPULARITY METRIC</Text>
             </Stack>
             <Box pt={30}>
                 <SimpleGrid
@@ -52,31 +49,8 @@ export default function ViewAdminEmotionPaslon({ param, provinsi, paslon, datata
                     <Box>
                         <Paper shadow="xs" p="xl">
                             <Stack>
-                                <Select
-                                    placeholder="Pilih Paslon"
-                                    data={dataPaslon.map((can: any) => ({
-                                        value: String(can.id),
-                                        label: can.name
-                                    }))}
-                                    required
-                                    value={isPaslon}
-                                    label={"Paslon"}
-                                    searchable
-                                    onChange={(val) => { setPaslon(val) }}
-                                />
                                 <DateInput valueFormat="DD-MM-YYYY" required value={isDate}
                                     label={"Tanggal"} placeholder="Pilih Tanggal" onChange={(val) => { setDate(val) }} />
-                                <Select
-                                    placeholder="Pilih Provinsi"
-                                    data={dataProvinsi.map((pro: any) => ({
-                                        value: String(pro.id),
-                                        label: pro.name
-                                    }))}
-                                    value={isProvinsi}
-                                    label={"Provinsi"}
-                                    searchable
-                                    onChange={(val) => onProvinsi({ idProv: val })}
-                                />
                                 <Button bg={"gray"} onClick={() => onProccess()}>
                                     PROSES
                                 </Button>
@@ -97,7 +71,7 @@ export default function ViewAdminEmotionPaslon({ param, provinsi, paslon, datata
                                         padding: 40,
                                         cursor: "pointer",
                                     }}
-                                    onClick={() => router.push("/dashboard-admin/emotion-paslon/upload")}
+                                    onClick={() => router.push("/dashboard-admin/national-popularity-metric/upload")}
                                 >
                                     <Text ta={"center"} size="xl" inline>
                                         UPLOAD DATA
@@ -116,7 +90,6 @@ export default function ViewAdminEmotionPaslon({ param, provinsi, paslon, datata
                                         backgroundColor: "gray",
                                         cursor: "pointer",
                                     }}
-
                                     onClick={() => {
                                         const dataJson = datadownload.data
 
@@ -128,7 +101,6 @@ export default function ViewAdminEmotionPaslon({ param, provinsi, paslon, datata
                                         jsonDwnloadLink.download = datadownload.title + ".csv"
                                         jsonDwnloadLink.click()
                                     }}
-
                                 >
                                     <Text c={"white"} fw={"bold"} ta={"center"}>
                                         DOWNLOAD
@@ -145,7 +117,7 @@ export default function ViewAdminEmotionPaslon({ param, provinsi, paslon, datata
                                         backgroundColor: "gray",
                                         cursor: "pointer",
                                     }}
-                                    onClick={() => router.push("/dashboard-admin/emotion-paslon/copy-data")}
+                                    onClick={() => router.push("emotion/copy-data")}
                                 >
                                     <Text c={"white"} fw={"bold"} ta={"center"}>
                                         COPY DATA
@@ -158,7 +130,7 @@ export default function ViewAdminEmotionPaslon({ param, provinsi, paslon, datata
             </Box>
             {!_.isNull(datatable.title) && (
                 <Box pt={20}>
-                    <TableDataEmotionPaslon param={param} title={datatable.title} data={datatable.data} th={datatable.th} datajam={datatable.jam} />
+                    <TableDataPopularity title={datatable.title} data={datatable.data} />
                 </Box>
             )}
         </>

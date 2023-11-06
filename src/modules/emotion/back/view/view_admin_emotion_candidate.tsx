@@ -104,54 +104,52 @@ export default function ViewAdminEmotionCandidate({ param, provinsi, candidate, 
                                 </Box>
                             </Group>
                         </Box>
-                        {!_.isNull(datatable.title) && (
-                            <Group justify="space-between" grow pt={30}>
-                                <Box>
-                                    <Box
-                                        style={{
-                                            borderRadius: 10,
-                                            padding: 30,
-                                            paddingTop: 50,
-                                            paddingBottom: 50,
-                                            backgroundColor: "gray",
-                                            cursor: "pointer",
-                                        }}
-                                        onClick={() => {
-                                            const dataJson = datadownload.data
+                        <Group justify="space-between" grow pt={30}>
+                            <Box>
+                                <Box
+                                    style={{
+                                        borderRadius: 10,
+                                        padding: 30,
+                                        paddingTop: 50,
+                                        paddingBottom: 50,
+                                        backgroundColor: "gray",
+                                        cursor: "pointer",
+                                    }}
+                                    onClick={() => {
+                                        const dataJson = datadownload.data
 
-                                            const jsonData = papa.unparse(dataJson)
-                                            const jsonDataUrl = "data:text/csv;charset=utf-8," + encodeURIComponent(jsonData)
+                                        const jsonData = papa.unparse(dataJson)
+                                        const jsonDataUrl = "data:text/csv;charset=utf-8," + encodeURIComponent(jsonData)
 
-                                            const jsonDwnloadLink = document.createElement("a")
-                                            jsonDwnloadLink.href = jsonDataUrl
-                                            jsonDwnloadLink.download = datadownload.title + ".csv"
-                                            jsonDwnloadLink.click()
-                                        }}
-                                    >
-                                        <Text c={"white"} fw={"bold"} ta={"center"}>
-                                            DOWNLOAD
-                                        </Text>
-                                    </Box>
+                                        const jsonDwnloadLink = document.createElement("a")
+                                        jsonDwnloadLink.href = jsonDataUrl
+                                        jsonDwnloadLink.download = datadownload.title + ".csv"
+                                        jsonDwnloadLink.click()
+                                    }}
+                                >
+                                    <Text c={"white"} fw={"bold"} ta={"center"}>
+                                        DOWNLOAD
+                                    </Text>
                                 </Box>
-                                <Box>
-                                    <Box
-                                        style={{
-                                            borderRadius: 10,
-                                            padding: 30,
-                                            paddingTop: 50,
-                                            paddingBottom: 50,
-                                            backgroundColor: "gray",
-                                            cursor: "pointer",
-                                        }}
-                                        onClick={() => router.push("emotion/copy-data")}
-                                    >
-                                        <Text c={"white"} fw={"bold"} ta={"center"}>
-                                            COPY DATA
-                                        </Text>
-                                    </Box>
+                            </Box>
+                            <Box>
+                                <Box
+                                    style={{
+                                        borderRadius: 10,
+                                        padding: 30,
+                                        paddingTop: 50,
+                                        paddingBottom: 50,
+                                        backgroundColor: "gray",
+                                        cursor: "pointer",
+                                    }}
+                                    onClick={() => router.push("/dashboard-admin/emotion-candidate/copy-data")}
+                                >
+                                    <Text c={"white"} fw={"bold"} ta={"center"}>
+                                        COPY DATA
+                                    </Text>
                                 </Box>
-                            </Group>
-                        )}
+                            </Box>
+                        </Group>
                     </Box>
                 </SimpleGrid>
             </Box>

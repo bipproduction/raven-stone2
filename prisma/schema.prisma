@@ -114,16 +114,17 @@ model Candidate {
 }
 
 model Paslon {
-  id            Int             @id @default(autoincrement())
-  nameCapres    String
-  imgCapres     String
-  nameCawapres  String
-  imgCawapres   String
-  isActive      Boolean         @default(true)
-  createdAt     DateTime        @default(now())
-  updatedAt     DateTime        @updatedAt
-  MlAi          MlAi[]
-  PaslonEmotion PaslonEmotion[]
+  id               Int                @id @default(autoincrement())
+  nameCapres       String
+  imgCapres        String
+  nameCawapres     String
+  imgCawapres      String
+  isActive         Boolean            @default(true)
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+  MlAi             MlAi[]
+  PaslonEmotion    PaslonEmotion[]
+  PaslonPopularity PaslonPopularity[]
 }
 
 model Audience {
@@ -278,4 +279,24 @@ model PaslonEmotion {
   isActive      Boolean       @default(true)
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
+}
+
+model PaslonPopularity {
+  id            String    @id @default(cuid())
+  Paslon        Paslon    @relation(fields: [idPaslon], references: [id])
+  idPaslon      Int
+  dateEmotion   DateTime  @db.Date
+  timeEmotion   DateTime? @db.Time
+  rate          Float
+  confidence    Int
+  supportive    Int
+  positive      Int
+  undecided     Int
+  unsupportive  Int
+  uncomfortable Int
+  negative      Int
+  dissapproval  Int
+  isActive      Boolean   @default(true)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
 }
