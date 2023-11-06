@@ -1,3 +1,11 @@
+import funDownloadPopularityByDate from "./back/fun/download_popularity_by_date";
+import funGetPopularityByDate from "./back/fun/get_popularity_by_date";
+import ViewAdminPopularity from "./back/view/view_admin_popularity";
+import ViewUploadPopularity from "./back/view/view_upload_popularity";
 import ViewNationalPopularityMetric from "./front/view/view_national_popularity_metric";
 
-export {ViewNationalPopularityMetric}
+export { ViewNationalPopularityMetric }
+export { ViewAdminPopularity }
+export { funGetPopularityByDate }
+export { funDownloadPopularityByDate }
+export { ViewUploadPopularity }
