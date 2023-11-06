@@ -1,10 +1,20 @@
 'use client'
 
-import { Box, ScrollArea, Table, Text } from "@mantine/core";
+import { Box, ScrollArea, Select, Table, Text } from "@mantine/core";
 import { useEffect, useState } from "react";
+import { funGetEmotionCandidateDateArea } from "../..";
 
-export default function TableDataEmotionCandidate({ title, data, th }: { title: string, data: any, th: any }) {
+export default function TableDataEmotionCandidate({ param, title, data, th, datajam }: { param: any, title: string, data: any, th: any, datajam: any }) {
     const [isData, setData] = useState(data)
+    const [dataJam, setDataJam] = useState(datajam)
+    const [isJam, setJam] = useState((dataJam.length > 0) ? dataJam[0].timeEmotion : null)
+
+    async function getLoad(valJam: any) {
+        setJam(valJam)
+        param['jam'] = valJam
+        const dataDB = await funGetEmotionCandidateDateArea({ find: param })
+        setData(dataDB.data)
+    }
 
     useEffect(() => {
         setData(data)
@@ -23,6 +33,18 @@ export default function TableDataEmotionCandidate({ title, data, th }: { title: 
                     <Text fw={"bold"} c={"white"}>
                         {title}
                     </Text>
+                    {
+                        (datajam.length > 0) &&
+                        <Select
+                            data={datajam.map((can: any) => ({
+                                value: String(can.timeEmotion),
+                                label: can.timeEmotion
+                            }))}
+                            value={isJam}
+                            onChange={(val) => getLoad(val)}
+                        />
+                    }
+
                     <Box pt={20}>
                         <Box
                             style={{
@@ -42,8 +64,9 @@ export default function TableDataEmotionCandidate({ title, data, th }: { title: 
                                             <Table.Th>POSITIVE</Table.Th>
                                             <Table.Th>UNDECIDED</Table.Th>
                                             <Table.Th>UNSUPPORTIVE</Table.Th>
+                                            <Table.Th>UNCOMFORTABLE</Table.Th>
                                             <Table.Th>NEGATIVE</Table.Th>
-                                            <Table.Th>DISAPPROVAL</Table.Th>
+                                            <Table.Th>DISSAPPROVAL</Table.Th>
                                         </Table.Tr>
                                     </Table.Thead>
                                     <Table.Tbody>
@@ -56,8 +79,9 @@ export default function TableDataEmotionCandidate({ title, data, th }: { title: 
                                                 <Table.Td>{v.positive}</Table.Td>
                                                 <Table.Td>{v.undecided}</Table.Td>
                                                 <Table.Td>{v.unsupportive}</Table.Td>
+                                                <Table.Td>{v.uncomfortable}</Table.Td>
                                                 <Table.Td>{v.negative}</Table.Td>
-                                                <Table.Td>{v.disapproval}</Table.Td>
+                                                <Table.Td>{v.dissapproval}</Table.Td>
                                             </Table.Tr>
                                         ))}
                                     </Table.Tbody>

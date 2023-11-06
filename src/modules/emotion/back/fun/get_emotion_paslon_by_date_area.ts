@@ -5,7 +5,7 @@ import moment from "moment"
 import _ from "lodash"
 
 export default async function funGetEmotionPaslonDateArea({ find }: { find: any }) {
-    let emotion, dataJam, titleA, kondisi, kondisi2, thTrue, prov, result, jamFix
+    let emotion, dataJam, titleA, kondisi, kondisi2, thTrue, prov, result, jamFix, formatJam, isoDateTime
 
     const dPaslon = await funGetOnePaslon({ paslon: find.idPaslon })
 
@@ -38,18 +38,28 @@ export default async function funGetEmotionPaslonDateArea({ find }: { find: any 
         }
     });
 
-    dataJam = _.map(_.groupBy(dataJam, "timeEmotion"), (v: any) => ({
-        timeEmotion: v.timeEmotion
+    
+
+    const dataJamFix = _.map(_.groupBy(dataJam, "timeEmotion"), (v: any, i: any) => ({
+        timeEmotion: v[0].timeEmotion
     }))
 
-    if(dataJam.length > 0) {
+    formatJam = dataJamFix.map((v: any) => ({
+        ..._.omit(v, ["timeEmotion"]),
+        timeEmotion: moment.utc(v.timeEmotion).format('HH:mm')
+    }))
+
+    if (dataJamFix.length > 0) {
         if (find.jam != null) {
             jamFix = find.jam
+            jamFix = new Date('1970-01-01 ' + jamFix);
+            isoDateTime = new Date(jamFix.getTime() - (jamFix.getTimezoneOffset() * 60000)).toISOString();
         } else {
-            jamFix = dataJam[0].timeEmotion
+            isoDateTime = dataJamFix[0].timeEmotion
         }
+
     }
-    
+
 
 
     if (find.idProvinsi > 0 && find.idProvinsi <= 38) {
@@ -57,13 +67,13 @@ export default async function funGetEmotionPaslonDateArea({ find }: { find: any 
             idProvinsi: find.idProvinsi,
             idPaslon: find.idPaslon,
             dateEmotion: find.date,
-            timeEmotion: jamFix
+            timeEmotion: isoDateTime
         }
     } else {
         kondisi2 = {
             idPaslon: find.idPaslon,
             dateEmotion: find.date,
-            timeEmotion: jamFix
+            timeEmotion: isoDateTime
         }
     }
 
@@ -111,12 +121,13 @@ export default async function funGetEmotionPaslonDateArea({ find }: { find: any 
         titleA = 'PASLON ' + dPaslon?.id + ' - ' + moment(find.date).format('DD MMMM YYYY') + ' (SELURUH PROVINSI) '
         thTrue = 'PROVINSI'
 
-        result = emotion.map((v: any) => ({
+        const format = emotion.map((v: any) => ({
             ..._.omit(v, ["AreaKabkot", "AreaProvinsi"]),
             name: v.AreaProvinsi.name
         }))
 
-        result = _.map(_.groupBy(result, "idProvinsi"), (v: any) => ({
+        result = _.map(_.groupBy(format, "idProvinsi"), (v: any) => ({
+            name: _.toString(v[0].name),
             confidence: _.sumBy(v, 'confidence'),
             dissapproval: _.sumBy(v, 'dissapproval'),
             negative: _.sumBy(v, 'negative'),
@@ -132,11 +143,9 @@ export default async function funGetEmotionPaslonDateArea({ find }: { find: any 
     const allData = {
         title: titleA,
         th: thTrue,
-        jam: dataJam,
+        jam: formatJam,
         data: result
     }
-
-    // console.log(allData)
 
 
     return allData

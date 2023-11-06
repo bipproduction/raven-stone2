@@ -7,7 +7,6 @@ import moment from "moment";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-simple-toasts";
-import UploadDataEmotionCandidate from "../component/upload_data_emotion_candidate";
 import TableDataEmotionCandidate from "../component/table_emotion_candidate";
 import papa from "papaparse"
 
@@ -90,7 +89,19 @@ export default function ViewAdminEmotionCandidate({ param, provinsi, candidate, 
                             borderRadius: 10
                         }}>
                             <Group justify="center">
-                                <UploadDataEmotionCandidate />
+                                <Box
+                                    style={{
+                                        border: "1px dashed gray",
+                                        borderRadius: 10,
+                                        padding: 40,
+                                        cursor: "pointer",
+                                    }}
+                                    onClick={() => router.push("/dashboard-admin/emotion-candidate/upload")}
+                                >
+                                    <Text ta={"center"} size="xl" inline>
+                                        UPLOAD DATA
+                                    </Text>
+                                </Box>
                             </Group>
                         </Box>
                         {!_.isNull(datatable.title) && (
@@ -146,7 +157,7 @@ export default function ViewAdminEmotionCandidate({ param, provinsi, candidate, 
             </Box>
             {!_.isNull(datatable.title) && (
                 <Box pt={20}>
-                    <TableDataEmotionCandidate title={datatable.title} data={datatable.data} th={datatable.th} />
+                    <TableDataEmotionCandidate param={param} title={datatable.title} data={datatable.data} th={datatable.th} datajam={datatable.jam} />
                 </Box>
             )}
         </>

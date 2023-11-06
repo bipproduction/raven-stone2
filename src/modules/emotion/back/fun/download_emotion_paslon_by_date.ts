@@ -147,7 +147,7 @@ export default async function funDownloadEmotionPaslonDate({ find }: { find: any
             provinsi: v.AreaProvinsi.name,
             kabkot: v.AreaKabkot.name,
             date: moment(v.dateEmotion).format('YYYY-MM-DD'),
-            time: moment(v.timeEmotion).format('HH:MM'),
+            time: moment(v.timeEmotion).format('HH:mm'),
             confidence: v.confidence,
             supportive: v.supportive,
             positive: v.supportive,
@@ -188,8 +188,6 @@ export default async function funDownloadEmotionPaslonDate({ find }: { find: any
         title: titleA,
         data: result
     }
-
-    console.log(allData)
 
     return allData
 }

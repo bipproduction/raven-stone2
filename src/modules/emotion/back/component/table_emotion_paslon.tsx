@@ -2,9 +2,21 @@
 
 import { Box, Group, ScrollArea, Select, Table, Text } from "@mantine/core";
 import { useEffect, useState } from "react";
+import { funGetEmotionPaslonDateArea } from "../..";
 
-export default function TableDataEmotionPaslon({ title, data, th, datajam }: { title: string, data: any, th: any, datajam: any }) {
+export default function TableDataEmotionPaslon({ param, title, data, th, datajam }: { param: any, title: string, data: any, th: any, datajam: any }) {
     const [isData, setData] = useState(data)
+    const [dataJam, setDataJam] = useState(datajam)
+    const [isJam, setJam] = useState((dataJam.length > 0) ? dataJam[0].timeEmotion : null)
+
+
+    async function getLoad(valJam: any) {
+        setJam(valJam)
+        param['jam'] = valJam
+        const dataDB = await funGetEmotionPaslonDateArea({ find: param })
+        setData(dataDB.data)
+    }
+
 
     useEffect(() => {
         setData(data)
@@ -27,10 +39,14 @@ export default function TableDataEmotionPaslon({ title, data, th, datajam }: { t
                         {
                             (datajam.length > 0) &&
                             <Select
-                                data={datajam}
+                                data={datajam.map((can: any) => ({
+                                    value: String(can.timeEmotion),
+                                    label: can.timeEmotion
+                                }))}
+                                value={isJam}
+                                onChange={(val) => getLoad(val)}
                             />
                         }
-
                     </Group>
 
                     <Box pt={20}>
@@ -52,22 +68,24 @@ export default function TableDataEmotionPaslon({ title, data, th, datajam }: { t
                                             <Table.Th>POSITIVE</Table.Th>
                                             <Table.Th>UNDECIDED</Table.Th>
                                             <Table.Th>UNSUPPORTIVE</Table.Th>
+                                            <Table.Th>UNCOMFORTABLE</Table.Th>
                                             <Table.Th>NEGATIVE</Table.Th>
-                                            <Table.Th>DISAPPROVAL</Table.Th>
+                                            <Table.Th>DISSAPPROVAL</Table.Th>
                                         </Table.Tr>
                                     </Table.Thead>
                                     <Table.Tbody>
                                         {isData.map((v: any, i: any) => (
                                             <Table.Tr key={i}>
-                                                <Table.Td>{v.id}</Table.Td>
-                                                <Table.Td>{v.kabupaten}</Table.Td>
-                                                <Table.Td>{v.Confidence}</Table.Td>
-                                                <Table.Td>{v.Supportive}</Table.Td>
-                                                <Table.Td>{v.Positive}</Table.Td>
-                                                <Table.Td>{v.Undecided}</Table.Td>
-                                                <Table.Td>{v.Unsupportive}</Table.Td>
-                                                <Table.Td>{v.Negative}</Table.Td>
-                                                <Table.Td>{v.Disapproval}</Table.Td>
+                                                <Table.Td>{i + 1}</Table.Td>
+                                                <Table.Td>{v.name}</Table.Td>
+                                                <Table.Td>{v.confidence}</Table.Td>
+                                                <Table.Td>{v.supportive}</Table.Td>
+                                                <Table.Td>{v.positive}</Table.Td>
+                                                <Table.Td>{v.undecided}</Table.Td>
+                                                <Table.Td>{v.unsupportive}</Table.Td>
+                                                <Table.Td>{v.uncomfortable}</Table.Td>
+                                                <Table.Td>{v.negative}</Table.Td>
+                                                <Table.Td>{v.dissapproval}</Table.Td>
                                             </Table.Tr>
                                         ))}
                                     </Table.Tbody>
