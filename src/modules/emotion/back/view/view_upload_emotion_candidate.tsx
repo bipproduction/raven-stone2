@@ -10,12 +10,12 @@ import { GrDocumentCsv } from 'react-icons/gr';
 import toast from "react-simple-toasts"
 import papa from 'papaparse'
 import { useAtom } from "jotai"
-import { isModalEmotionPaslon } from "../val/modal_emotion"
-import ModalUploadEmotionPaslon from "../component/modal_upload_emotion_paslon"
+import { isModalEmotionCandidate } from "../val/modal_emotion"
+import ModalUploadEmotionCandidate from "../component/modal_upload_emotion_candidate"
 
-export default function ViewUploadEmotionPaslon() {
+export default function ViewUploadEmotionCandidate() {
     const [json, setJson] = useState<any[]>([])
-    const [openModal, setOpenModal] = useAtom(isModalEmotionPaslon)
+    const [openModal, setOpenModal] = useAtom(isModalEmotionCandidate)
 
 
     async function onLoad(data: any) {
@@ -207,7 +207,7 @@ export default function ViewUploadEmotionPaslon() {
                 withCloseButton={false}
                 closeOnClickOutside={false}
             >
-                <ModalUploadEmotionPaslon data={json} onSuccess={(val) => {
+                <ModalUploadEmotionCandidate data={json} onSuccess={(val) => {
                     setJson([])
                 }} />
             </Modal>

@@ -5,7 +5,7 @@ import moment from "moment"
 import _ from "lodash"
 
 export default async function funDownloadEmotionCandidateByDate({ find }: { find: any }) {
-    let emotion, titleA, kondisi, prov, result, daerah
+    let emotion, titleA, kondisi, kondisi2, prov, result, daerah, dataJam, jamFix
 
     const dCandidate = await funGetOneCandidate({ candidate: find.idCandidate })
 
@@ -61,8 +61,45 @@ export default async function funDownloadEmotionCandidateByDate({ find }: { find
         titleA = dCandidate?.name + ' - ' + moment(find.date).format('DD MMMM YYYY') + ' (SELURUH PROVINSI)'
     }
 
-    emotion = await prisma.candidateEmotion.findMany({
+    dataJam = await prisma.candidateEmotion.findMany({
         where: kondisi,
+        select: {
+            timeEmotion: true
+        },
+        orderBy: {
+            id: 'desc'
+        }
+    });
+
+    dataJam = _.map(_.groupBy(dataJam, "timeEmotion"), (v: any) => ({
+        timeEmotion: v.timeEmotion
+    }))
+
+    if (dataJam.length > 0) {
+        if (find.jam != null) {
+            jamFix = find.jam
+        } else {
+            jamFix = dataJam[0].timeEmotion
+        }
+    }
+
+    if (find.idProvinsi > 0 && find.idProvinsi <= 38) {
+        kondisi2 = {
+            idProvinsi: find.idProvinsi,
+            idCandidate: find.idCandidate,
+            dateEmotion: find.date,
+            timeEmotion: jamFix
+        }
+    } else {
+        kondisi2 = {
+            idCandidate: find.idCandidate,
+            dateEmotion: find.date,
+            timeEmotion: jamFix
+        }
+    }
+
+    emotion = await prisma.candidateEmotion.findMany({
+        where: kondisi2,
         select: {
             id: true,
             idCandidate: true,
@@ -77,6 +114,7 @@ export default async function funDownloadEmotionCandidateByDate({ find }: { find
             undecided: true,
             unsupportive: true,
             dateEmotion: true,
+            timeEmotion: true,
             AreaKabkot: {
                 select: {
                     name: true
@@ -97,7 +135,7 @@ export default async function funDownloadEmotionCandidateByDate({ find }: { find
 
     if (emotion.length > 0) {
         result = emotion.map((v: any) => ({
-            ..._.omit(v, ["id", "idCandidate", "Candidate", "dateEmotion", "AreaKabkot", "AreaProvinsi", "idKabkot", "idProvinsi", "confidence", "dissaproval", "negative", "positive", "supportive", "uncomfortable", "undecided", "unsupportive"]),
+            ..._.omit(v, ["id", "idCandidate", "Candidate", "dateEmotion", "AreaKabkot", "AreaProvinsi", "idKabkot", "idProvinsi", "confidence", "dissapproval", "negative", "positive", "supportive", "uncomfortable", "undecided", "unsupportive"]),
             id: v.id,
             idCandidate: v.idCandidate,
             idProvinsi: v.idProvinsi,
@@ -106,13 +144,15 @@ export default async function funDownloadEmotionCandidateByDate({ find }: { find
             provinsi: v.AreaProvinsi.name,
             kabkot: v.AreaKabkot.name,
             date: moment(v.dateEmotion).format('DD-MM-YYYY'),
+            time: moment(v.timeEmotion).format('HH:mm'),
             confidence: v.confidence,
             supportive: v.supportive,
             positive: v.supportive,
             undecided: v.undecided,
             unsupportive: v.unsupportive,
+            uncomfortable: v.uncomfortable,
             negative: v.negative,
-            dissaproval: v.dissaproval
+            dissapproval: v.dissapproval
 
         }))
     } else {
@@ -126,14 +166,15 @@ export default async function funDownloadEmotionCandidateByDate({ find }: { find
             provinsi: v.AreaProvinsi.name,
             kabkot: v.name,
             date: moment(find.date).format('DD-MM-YYYY'),
+            time: '(HH:MM)',
             confidence: '(nilai)',
             supportive: '(nilai)',
             positive: '(nilai)',
             undecided: '(nilai)',
             unsupportive: '(nilai)',
+            uncomfortable: '(nilai)',
             negative: '(nilai)',
-            dissaproval: '(nilai)'
-
+            dissapproval: '(nilai)'
         }))
     }
 

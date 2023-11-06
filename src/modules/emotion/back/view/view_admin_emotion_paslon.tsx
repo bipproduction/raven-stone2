@@ -160,7 +160,7 @@ export default function ViewAdminEmotionPaslon({ param, provinsi, paslon, datata
             </Box>
             {!_.isNull(datatable.title) && (
                 <Box pt={20}>
-                    <TableDataEmotionPaslon title={datatable.title} data={datatable.data} th={datatable.th} datajam={datatable.jam} />
+                    <TableDataEmotionPaslon param={param} title={datatable.title} data={datatable.data} th={datatable.th} datajam={datatable.jam} />
                 </Box>
             )}
         </>

@@ -5,7 +5,7 @@ import moment from "moment"
 import _ from "lodash"
 
 export default async function funGetEmotionCandidateDateArea({ find }: { find: any }) {
-    let emotion, titleA, kondisi, thTrue, prov, result
+    let emotion, dataJam, titleA, kondisi, kondisi2, thTrue, prov, result, jamFix, formatJam, isoDateTime
 
     const dCandidate = await funGetOneCandidate({ candidate: find.idCandidate })
 
@@ -27,10 +27,60 @@ export default async function funGetEmotionCandidateDateArea({ find }: { find: a
         }
     }
 
-    emotion = await prisma.candidateEmotion.findMany({
+
+    dataJam = await prisma.candidateEmotion.findMany({
         where: kondisi,
         select: {
+            timeEmotion: true
+        },
+        orderBy: {
+            id: 'desc'
+        }
+    });
+
+
+
+    const dataJamFix = _.map(_.groupBy(dataJam, "timeEmotion"), (v: any, i: any) => ({
+        timeEmotion: v[0].timeEmotion
+    }))
+
+    formatJam = dataJamFix.map((v: any) => ({
+        ..._.omit(v, ["timeEmotion"]),
+        timeEmotion: moment.utc(v.timeEmotion).format('HH:mm')
+    }))
+
+    if (dataJamFix.length > 0) {
+        if (find.jam != null) {
+            jamFix = find.jam
+            jamFix = new Date('1970-01-01 ' + jamFix);
+            isoDateTime = new Date(jamFix.getTime() - (jamFix.getTimezoneOffset() * 60000)).toISOString();
+        } else {
+            isoDateTime = dataJamFix[0].timeEmotion
+        }
+
+    }
+
+
+    if (find.idProvinsi > 0 && find.idProvinsi <= 38) {
+        kondisi2 = {
+            idProvinsi: find.idProvinsi,
+            idCandidate: find.idCandidate,
+            dateEmotion: find.date,
+            timeEmotion: isoDateTime
+        }
+    } else {
+        kondisi2 = {
+            idCandidate: find.idCandidate,
+            dateEmotion: find.date,
+            timeEmotion: isoDateTime
+        }
+    }
+
+    emotion = await prisma.candidateEmotion.findMany({
+        where: kondisi2,
+        select: {
             id: true,
+            timeEmotion: true,
             idKabkot: true,
             idProvinsi: true,
             confidence: true,
@@ -89,6 +139,7 @@ export default async function funGetEmotionCandidateDateArea({ find }: { find: a
     const allData = {
         title: titleA,
         th: thTrue,
+        jam: formatJam,
         data: result
     }
 
