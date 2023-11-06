@@ -4,6 +4,8 @@ import funGetEmotionCandidateDateArea from "./back/fun/get_emotion_candidate_by_
 import funGetEmotionPaslonDateArea from "./back/fun/get_emotion_paslon_by_date_area";
 import ViewAdminEmotionCandidate from "./back/view/view_admin_emotion_candidate";
 import ViewAdminEmotionPaslon from "./back/view/view_admin_emotion_paslon";
+import ViewCopyEmotionCandidate from "./back/view/view_copy_emotion_candidate";
+import ViewCopyEmotionPaslon from "./back/view/view_copy_emotion_paslon";
 import ViewUploadEmotionCandidate from "./back/view/view_upload_emotion_candidate";
 import ViewUploadEmotionPaslon from "./back/view/view_upload_emotion_paslon";
 import ViewSummary from "./front/view/view_summary";
@@ -17,3 +19,5 @@ export { funGetEmotionPaslonDateArea }
 export { funDownloadEmotionPaslonDate }
 export { ViewUploadEmotionPaslon }
 export { ViewUploadEmotionCandidate }
+export { ViewCopyEmotionPaslon }
+export { ViewCopyEmotionCandidate }

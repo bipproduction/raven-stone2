@@ -1,6 +1,6 @@
 'use client'
 
-import { Box, ScrollArea, Select, Table, Text } from "@mantine/core";
+import { Box, Group, ScrollArea, Select, Table, Text } from "@mantine/core";
 import { useEffect, useState } from "react";
 import { funGetEmotionCandidateDateArea } from "../..";
 
@@ -30,20 +30,22 @@ export default function TableDataEmotionCandidate({ param, title, data, th, data
                         borderRadius: 10,
                     }}
                 >
-                    <Text fw={"bold"} c={"white"}>
-                        {title}
-                    </Text>
-                    {
-                        (datajam.length > 0) &&
-                        <Select
-                            data={datajam.map((can: any) => ({
-                                value: String(can.timeEmotion),
-                                label: can.timeEmotion
-                            }))}
-                            value={isJam}
-                            onChange={(val) => getLoad(val)}
-                        />
-                    }
+                    <Group justify="space-between">
+                        <Text fw={"bold"} c={"white"}>
+                            {title}
+                        </Text>
+                        {
+                            (datajam.length > 0) &&
+                            <Select
+                                data={datajam.map((can: any) => ({
+                                    value: String(can.timeEmotion),
+                                    label: can.timeEmotion
+                                }))}
+                                value={isJam}
+                                onChange={(val) => getLoad(val)}
+                            />
+                        }
+                    </Group>
 
                     <Box pt={20}>
                         <Box

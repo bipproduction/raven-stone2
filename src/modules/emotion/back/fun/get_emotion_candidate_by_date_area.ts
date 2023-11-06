@@ -39,7 +39,6 @@ export default async function funGetEmotionCandidateDateArea({ find }: { find: a
     });
 
 
-
     const dataJamFix = _.map(_.groupBy(dataJam, "timeEmotion"), (v: any, i: any) => ({
         timeEmotion: v[0].timeEmotion
     }))
@@ -124,6 +123,7 @@ export default async function funGetEmotionCandidateDateArea({ find }: { find: a
         }))
 
         result = _.map(_.groupBy(result, "idProvinsi"), (v: any) => ({
+            name: _.toString(v[0].name),
             confidence: _.sumBy(v, 'confidence'),
             dissapproval: _.sumBy(v, 'dissapproval'),
             negative: _.sumBy(v, 'negative'),

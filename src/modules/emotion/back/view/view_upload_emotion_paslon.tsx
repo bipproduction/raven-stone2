@@ -155,7 +155,7 @@ export default function ViewUploadEmotionPaslon() {
                                                         <Table.Th>Supportive</Table.Th>
                                                         <Table.Th>Positive</Table.Th>
                                                         <Table.Th>Undecided</Table.Th>
-                                                        <Table.Th>Unsupporitve</Table.Th>
+                                                        <Table.Th>Unsupportive</Table.Th>
                                                         <Table.Th>Uncomfortable</Table.Th>
                                                         <Table.Th>Negative</Table.Th>
                                                         <Table.Th>Dissapproval</Table.Th>
