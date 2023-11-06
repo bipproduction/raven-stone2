@@ -38,14 +38,62 @@ export default function EchartBarPopularity() {
           type: 'pie',
           radius: '100%',
           data: [
-            { value: 1048, name: 'Confidence' },
-            { value: 735, name: 'Supportive' },
-            { value: 580, name: 'Positive' },
-            { value: 484, name: 'Undecided' },
-            { value: 300, name: 'Unsupportive' },
-            { value: 300, name: 'Uncomfortable' },
-            { value: 300, name: 'Negative' },
-            { value: 300, name: 'Disapproval' },
+            { 
+              value: 48, 
+              name: 'Confidence' ,
+              itemStyle:{
+                color: "#026D00"
+              }
+            },
+            { 
+              value: 35, 
+              itemStyle:{
+                color: "#62A334"
+              },
+              name: 'Supportive' 
+            },
+            { 
+              value: 80, 
+              itemStyle:{
+                color: "#62C63F"
+              },
+              name: 'Positive' 
+            },
+            { 
+              value: 48, 
+              itemStyle:{
+                color: "#8EE886"
+              },
+              name: 'Undecided' 
+            },
+            { 
+              value: 30, 
+              itemStyle:{
+                color: "#ED8C8C"
+              },
+              name: 'Unsupportive' 
+            },
+            { 
+              value: 30, 
+              itemStyle:{
+                color: "#D13232"
+              },
+              name: 'Uncomfortable' 
+            },
+            { 
+              value: 30, 
+              itemStyle:{
+                color: "#DD0202"
+              },
+              name: 'Negative' 
+            },
+            { 
+              value: 20, 
+              itemStyle:{
+                color: "#790000"
+              },
+              name: 'Disapproval'
+             },
           ],
           width: "68%",
           right: "80%",

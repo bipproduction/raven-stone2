@@ -77,7 +77,7 @@ export default function EchartPopularity() {
       //   padding: 10
       // }}
       >
-        <Group justify='flex-end' mr={50}>
+        <Group justify='flex-end' mr={30}>
           <Group>
             <Button variant='subtle' c={"white"}>Month</Button>
             <Divider orientation="vertical" />
@@ -86,7 +86,7 @@ export default function EchartPopularity() {
             <Button variant='subtle' c={"white"}>Custom</Button>
           </Group>
         </Group>
-        <EChartsReact style={{ height: 450 }} option={options} />
+        <EChartsReact style={{ width: "100%" }} option={options} />
       </Box>
     </>
   )
