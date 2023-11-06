@@ -6,33 +6,25 @@ import _ from "lodash";
 import moment from "moment";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import toast from "react-simple-toasts";
 import papa from "papaparse"
 import TableDataPopularity from "../component/table_popularity";
 
 export default function ViewAdminPopularity({ param, datatable, datadownload }: { param: any, datatable: any, datadownload: any }) {
     const router = useRouter()
 
-
-
-    const [isProvinsi, setProvinsi] = useState<any>(param.idProvinsi || null)
-    const [isCandidate, setCandidate] = useState<any>(param.idCandidate || null)
     const [isDate, setDate] = useState<any>(param.date)
 
 
 
 
     useEffect(() => {
-        setProvinsi((param.idProvinsi == 0) ? null : param.idProvinsi)
-        //setCandidate((param.idCandidate) ? console.log('ini') : console.log('else'))
         setDate((param.date == null) ? new Date() : new Date(param.date))
     }, [param])
 
 
 
     function onProccess() {
-        if (_.isNull(isCandidate)) return toast("Silahkan pilih kandidat", { theme: "dark" })
-        router.replace('/dashboard-admin/national-popularity-metric?candidate=' + isCandidate + '&date=' + moment(isDate).format("YYYY-MM-DD") + '&prov=' + isProvinsi)
+        router.replace('/dashboard-admin/national-popularity-metric?&date=' + moment(isDate).format("YYYY-MM-DD"))
     }
 
     return (
@@ -117,7 +109,7 @@ export default function ViewAdminPopularity({ param, datatable, datadownload }: 
                                         backgroundColor: "gray",
                                         cursor: "pointer",
                                     }}
-                                    onClick={() => router.push("emotion/copy-data")}
+                                    onClick={() => router.push("/dashboard-admin/national-popularity-metric/copy-data")}
                                 >
                                     <Text c={"white"} fw={"bold"} ta={"center"}>
                                         COPY DATA
