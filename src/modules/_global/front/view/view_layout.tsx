@@ -29,12 +29,12 @@ const dataFront = [
   {
     key: "5",
     link: "/dashboard/swot",
-    label: "SWOT"
+    label: "SWOT EVALUATION"
   },
   {
     key: "6",
     link: "/dashboard/step",
-    label: "STEP"
+    label: "STEP ASSESSMENT"
   },
   {
     key: "7",
