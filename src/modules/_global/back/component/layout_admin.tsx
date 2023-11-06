@@ -25,8 +25,8 @@ export default function LayoutAdmin({ children }: { children: React.ReactNode; }
     const data1 = [
         {
             key: "md2",
-            link: "/dashboard-admin/pairing",
-            label: "REGIONAL DATA PAIRING",
+            link: "/dashboard-admin/national-popularity-metric",
+            label: "NATIONAL POPULARITY METRIC",
         },
     ];
 
