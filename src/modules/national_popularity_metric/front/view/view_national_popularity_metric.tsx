@@ -25,7 +25,7 @@ export default function ViewNationalPopularityMetric() {
         <Box pt={10}>
           <ViewCandidatePopularity />
         </Box>
-        <Box pt={40}>
+        <Box pt={20}>
           <Grid justify="flex-end" align="center">
             <Grid.Col span={{ md: 7, lg: 7 }}>
               <EchartPopularity />
