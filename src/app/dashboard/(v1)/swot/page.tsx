@@ -1,5 +1,7 @@
+import { ViewSwot } from "@/modules/swot";
+
 export default function Page(){
     return (
-        <>Halaman swot</>
+        <ViewSwot/>
     )
 }
