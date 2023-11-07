@@ -1,7 +1,9 @@
 "use client"
 import PageSubTitle from '@/modules/_global/front/components/PageSubtitle';
 import { Box, Grid, Image, ScrollArea, Select, Stack, Text } from '@mantine/core';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import getBayCandidateStep from '../fun/get_by_candidate';
+import toast from 'react-simple-toasts';
 
 const data_step = [
   {
@@ -30,9 +32,32 @@ const data_step = [
   }
 ]
 
-export default function ViewStep() {
+export default function ViewStep({ params, kandidate, stepCandidate }: { params: any, kandidate: any, stepCandidate: any }) {
+  const [dataKandidate, setDataKandidate] = useState(kandidate)
+  const [iskandidate, setIsKandidate] = useState<any>(params.idCandidate || null)
+  const [isData, setData] = useState(stepCandidate)
+
+  useEffect(() => {
+    setData(stepCandidate)
+  }, [stepCandidate])
+
+  async function onChooseKandidat({ idCan }: { idCan: any }) {
+    setIsKandidate(idCan)
+  }
+
+  function onProsses() {
+    if (iskandidate == null) return toast("Silahkan pilih kandidat", { theme: "dark" })
+  }
+
+  useEffect(() => {
+    setIsKandidate(params.idCandidate == 0 ? null : params.idCandidate)
+  }, [params])
+
   return (
     <>
+    <pre>
+    {/* {JSON.stringify(isData, null, 1)} */}
+    </pre>
       <Stack>
         <PageSubTitle text1='STEP' text2='ASSESSMENT' />
         <Grid gutter={60}>
@@ -43,7 +68,14 @@ export default function ViewStep() {
             </Box>
             <Box pt={20}>
               <Select placeholder='Candidate'
-                data={['Prabowo', 'Gibran', 'Anis', 'Ganjar', 'Mahfud MD', 'Jokowi', 'Muhaimin']}
+                data={dataKandidate.map((pro: any) => ({
+                  value: String(pro.id),
+                  label: pro.name
+                }))}
+                value={iskandidate}
+                searchable
+                onChange={(val) => onChooseKandidat({ idCan: val })}
+                onClick={() => onProsses()}
               />
             </Box>
           </Grid.Col>
