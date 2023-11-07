@@ -11,7 +11,8 @@ import funSeederLta from "../fun/fun_lta";
 import funSeederRhi from "../fun/fun_rhi";
 import { funSeederCandidate } from "../fun/fun_candidate";
 import { funSeederPaslon } from "../fun/fun_paslon";
-import { on } from "events";
+import { funSeederUserRole } from "../fun/fun_user_role";
+import { funSeederUser } from "../fun/fun_user";
 
 export default function ViewSeeder() {
     const [loading, setLoading] = useState(false)
@@ -26,9 +27,9 @@ export default function ViewSeeder() {
     }
     async function onUserRole() {
         setLoading(true);
-        // const res = await funSeederUserRole();
-        // if (res?.success)
-        //     return setLoading(false), toast(res?.message, { theme: "dark" });
+        const res = await funSeederUserRole();
+        if (res?.success)
+            return setLoading(false), toast(res?.message, { theme: "dark" });
     }
     async function onUserAccess() {
         setLoading(true);
@@ -38,9 +39,9 @@ export default function ViewSeeder() {
     }
     async function onUser() {
         setLoading(true);
-        // const res = await funSeederUser();
-        // if (res?.success)
-        //     return setLoading(false), toast(res?.message, { theme: "dark" });
+        const res = await funSeederUser();
+        if (res?.success)
+            return setLoading(false), toast(res?.message, { theme: "dark" });
     }
 
     // WILAYAH

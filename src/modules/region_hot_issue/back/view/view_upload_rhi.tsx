@@ -51,7 +51,7 @@ export default function ViewUploadRhi() {
                         borderRadius: 10
                     }}
                 >
-                    <Text fw={"bold"} c={"white"} mb={20}>UPLOAD DATA CSV</Text>
+                    <Text fw={"bold"} c={"white"} mb={20}>UPLOAD DATA REGION HOT ISSUE</Text>
                     <Dropzone
                         style={{
                             border: "1px dashed",

@@ -56,7 +56,7 @@ export default function ViewUploadPct() {
                         borderRadius: 10
                     }}
                 >
-                    <Text fw={"bold"} c={"white"} mb={20}>UPLOAD DATA CSV</Text>
+                    <Text fw={"bold"} c={"white"} mb={20}>UPLOAD DATA PUBLIC CONCERN TRENDS</Text>
                     <Dropzone
                         style={{
                             border: "1px dashed",

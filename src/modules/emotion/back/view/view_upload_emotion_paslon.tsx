@@ -64,7 +64,7 @@ export default function ViewUploadEmotionPaslon() {
                         borderRadius: 10
                     }}
                 >
-                    <Text fw={"bold"} c={"white"} mb={20}>UPLOAD DATA CSV</Text>
+                    <Text fw={"bold"} c={"white"} mb={20}>UPLOAD DATA EMOTION PASLON</Text>
                     <Dropzone
                         style={{
                             border: "1px dashed",

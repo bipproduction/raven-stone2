@@ -2,7 +2,7 @@
     {
         "id": "UserDeveloper1",
         "idUserRole": 1,
-        "name": "Dev Amalia",
+        "name": "Amalia",
         "email": "amalia@bip.com",
         "password": "amalia@developer",
         "phone": "628980185458",
@@ -11,10 +11,19 @@
     {
         "id": "UserDeveloper2",
         "idUserRole": 1,
-        "name": "Dev Lukman",
+        "name": "Lukman",
         "email": "lukman@bip.com",
         "password": "lukman@developer",
         "phone": "6287701790942",
+        "isAllArea": true
+    },
+    {
+        "id": "UserDeveloper3",
+        "idUserRole": 1,
+        "name": "Malik",
+        "email": "malik@bip.com",
+        "password": "malik@developer",
+        "phone": "6289697338821",
         "isAllArea": true
     }
 ]

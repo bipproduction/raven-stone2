@@ -5,12 +5,16 @@ import { useAtom } from "jotai"
 import toast from "react-simple-toasts"
 import { isModalPopularity } from "../val/modal_popularity"
 import funCopyPopularity from "../fun/copy_popularity"
+import { useState } from "react"
 
 export default function ModalCopyPopularity({ from, to, onSuccess }: { from: any, to: any, onSuccess: (val: any) => void }) {
     const [openModal, setOpenModal] = useAtom(isModalPopularity)
+    const [isLoading, setLoading] = useState(false)
 
     async function onUpload() {
+        setLoading(true)
         await funCopyPopularity({ dateFrom: from, dateTo: to })
+        setLoading(false)
         toast('Success', { theme: 'dark' })
         setOpenModal(false)
         onSuccess(true)
@@ -32,7 +36,7 @@ export default function ModalCopyPopularity({ from, to, onSuccess }: { from: any
                         >
                             NO
                         </Button>
-                        <Button radius={10} color="gray.7" w={150} onClick={() => onUpload()}>
+                        <Button loading={isLoading} radius={10} color="gray.7" w={150} onClick={() => onUpload()}>
                             YES
                         </Button>
                     </Group>
