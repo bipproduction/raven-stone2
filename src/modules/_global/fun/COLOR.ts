@@ -3,6 +3,6 @@ export const WARNA = {
     hijau: "#076A17",
     merah: "#A71111",
     merah_emotion: '#DD0202',
-    hijau_emotion: "#62C63F"
-
+    hijau_emotion: "#62C63F",
+    ungu: "#230D37"
 }

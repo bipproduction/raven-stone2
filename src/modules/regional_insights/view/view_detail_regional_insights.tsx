@@ -1,7 +1,7 @@
 "use client"
 import PageSubTitle from '@/modules/_global/front/components/PageSubtitle';
+import { WARNA } from '@/modules/_global/fun/COLOR';
 import DetailSentimentAnalysis from '@/modules/emotion/front/components/detail_sentiment_analysis';
-import SentimentAnalysis from '@/modules/emotion/front/components/sentiment_analysis';
 import DetailEcahrtBarPolarRegionalInsights from '@/modules/leader_trait_assessment/front/components/detail_ecahrt_bar_polar_regional_insights';
 import DetailEchartPublicRegionalInsights from '@/modules/public_concern_trend/front/components/detail_echart_public_regional_insights';
 import DetailRegionHotIssue from '@/modules/region_hot_issue/front/components/detail_region_hot_issue';
@@ -40,15 +40,25 @@ export default function ViewDetailRegionalInsights() {
     <>
       <Stack>
         <PageSubTitle text1='REGIONAL' text2='INSIGHTS' />
-        <Group justify='space-between'>
-          <Text fz={30} fw={'bold'} c={"white"}>ACEH</Text>
-          <Group>
-            <TextInput placeholder='Search' />
-            <ActionIcon variant="subtle" onClick={() => router.push("/dashboard/regional-insights")} color="rgba(255, 255, 255, 1)" aria-label="close">
-              <AiOutlineClose style={{ width: '80%', height: '80%' }} stroke={1.5} />
-            </ActionIcon>
+        <Box
+          style={{
+            backgroundColor: WARNA.ungu,
+            position: "sticky",
+            top: 0,
+            zIndex: 100,
+            padding: 10
+          }}
+        >
+          <Group justify='space-between'>
+            <Text fz={30} fw={'bold'} c={"white"}>ACEH</Text>
+            <Group>
+              <TextInput placeholder='Search' />
+              <ActionIcon variant="subtle" onClick={() => router.push("/dashboard/regional-insights")} color="rgba(255, 255, 255, 1)" aria-label="close">
+                <AiOutlineClose style={{ width: '80%', height: '80%' }} stroke={1.5} />
+              </ActionIcon>
+            </Group>
           </Group>
-        </Group>
+        </Box>
         {provinsi.map((item) => {
           return (
             <Box pt={20} key={item.id} pb={20}>
