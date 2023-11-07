@@ -5,12 +5,16 @@ import { useAtom } from "jotai"
 import toast from "react-simple-toasts"
 import { isModalEmotionPaslon } from "../val/modal_emotion"
 import funCopyEmotionCandidate from "../fun/copy_emotion_candidate"
+import { useState } from "react"
 
 export default function ModalCopyEmotionCandidate({ from, to, onSuccess }: { from: any, to: any, onSuccess: (val: any) => void }) {
     const [openModal, setOpenModal] = useAtom(isModalEmotionPaslon)
+    const [isLoading, setLoading] = useState(false)
 
     async function onUpload() {
+        setLoading(true)
         await funCopyEmotionCandidate({ dateFrom: from, dateTo: to })
+        setLoading(false)
         toast('Success', { theme: 'dark' })
         setOpenModal(false)
         onSuccess(true)
@@ -32,7 +36,7 @@ export default function ModalCopyEmotionCandidate({ from, to, onSuccess }: { fro
                         >
                             NO
                         </Button>
-                        <Button radius={10} color="gray.7" w={150} onClick={() => onUpload()}>
+                        <Button loading={isLoading} radius={10} color="gray.7" w={150} onClick={() => onUpload()}>
                             YES
                         </Button>
                     </Group>

@@ -5,12 +5,16 @@ import { useAtom } from "jotai"
 import toast from "react-simple-toasts"
 import { isModalEmotionCandidate } from "../val/modal_emotion"
 import funUploadEmotionCandidate from "../fun/upload_emotion_candidate"
+import { useState } from "react"
 
 export default function ModalUploadEmotionCandidate({ data, onSuccess }: { data: any, onSuccess: (val: any) => void }) {
     const [openModal, setOpenModal] = useAtom(isModalEmotionCandidate)
+    const [isLoading, setLoading] = useState(false)
 
     async function onUpload() {
+        setLoading(true)
         await funUploadEmotionCandidate({ body: data })
+        setLoading(false)
         toast('Success', { theme: 'dark' })
         setOpenModal(false)
         onSuccess(true)
@@ -32,7 +36,7 @@ export default function ModalUploadEmotionCandidate({ data, onSuccess }: { data:
                         >
                             NO
                         </Button>
-                        <Button radius={10} color="gray.7" w={150} onClick={() => onUpload()}>
+                        <Button loading={isLoading} radius={10} color="gray.7" w={150} onClick={() => onUpload()}>
                             YES
                         </Button>
                     </Group>

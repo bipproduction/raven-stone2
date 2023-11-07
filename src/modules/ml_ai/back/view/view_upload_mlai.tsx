@@ -54,7 +54,7 @@ export default function ViewUploadMlai() {
                         borderRadius: 10
                     }}
                 >
-                    <Text fw={"bold"} c={"white"} mb={20}>UPLOAD DATA CSV</Text>
+                    <Text fw={"bold"} c={"white"} mb={20}>UPLOAD DATA ML-AI</Text>
                     <Dropzone
                         style={{
                             border: "1px dashed",

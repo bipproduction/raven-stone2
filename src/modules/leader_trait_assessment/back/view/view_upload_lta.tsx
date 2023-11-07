@@ -60,7 +60,7 @@ export default function ViewUploadLTA() {
                         borderRadius: 10
                     }}
                 >
-                    <Text fw={"bold"} c={"white"} mb={20}>UPLOAD DATA CSV</Text>
+                    <Text fw={"bold"} c={"white"} mb={20}>UPLOAD DATA LEADER TRAIT ASSESSMENT</Text>
                     <Dropzone
                         style={{
                             border: "1px dashed",
