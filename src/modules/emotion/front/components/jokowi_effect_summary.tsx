@@ -7,8 +7,14 @@ import React from 'react';
 import { MdNavigateNext } from 'react-icons/md';
 import EchartJokowiEffect from './echart_jokowi_effect';
 import Top10JokowiEffect from './top10_jokowi_effect';
+import { TypeAnimation } from 'react-type-animation';
 
-
+const data_jokowi = [
+  {
+    id: 1,
+    desc: "Joko Widodo pertama kali dikenal oleh masyarakat luas setelah ia mulai menjabat sebagai Wali Kota Surakarta (Solo). Dengan gaya kepemimpinan yang dianggap pro-rakyat dan berani menghadapi pejabat regional yang kuat, ia berhasil mengubah kota Solo dari kota yang dipenuhi kejahatan menjadi pusat seni dan budaya region. Joko Widodo pertama kali dikenal oleh masyarakat luas setelah ia mulai menjabat sebagai Wali Kota Surakarta (Solo). Dengan gaya kepemimpinan yang dianggap pro-rakyat dan berani menghadapi pejabat regional yang kuat, ia berhasil mengubah kota Solo dari kota yang dipenuhi kejahatan menjadi pusat seni dan budaya region. Joko Widodo pertama kali dikenal oleh masyarakat luas setelah ia mulai menjabat sebagai Wali Kota Surakarta (Solo). Dengan gaya kepemimpinan yang dianggap pro-rakyat dan berani menghadapi pejabat regional yang kuat, ia berhasil mengubah kota Solo dari kota yang dipenuhi kejahatan menjadi pusat seni dan budaya region"
+  }
+]
 
 /**
  * Fungsi untuk menampilkan Jokowi Effect.
@@ -87,22 +93,20 @@ export default function JokowiEffectSummary() {
             paddingRight: 20,
             paddingTop: 20
           }}>
-            <ScrollArea h={170}>
-              <Text c={"white"}>
-                Joko Widodo pertama kali dikenal oleh masyarakat luas setelah ia mulai menjabat
-                sebagai Wali Kota Surakarta (Solo). Dengan gaya kepemimpinan yang dianggap pro-rakyat
-                dan berani menghadapi pejabat regional yang kuat, ia berhasil mengubah kota Solo dari
-                kota yang dipenuhi kejahatan menjadi pusat seni dan budaya region.
-                Joko Widodo pertama kali dikenal oleh masyarakat luas setelah ia mulai menjabat
-                sebagai Wali Kota Surakarta (Solo). Dengan gaya kepemimpinan yang dianggap pro-rakyat
-                dan berani menghadapi pejabat regional yang kuat, ia berhasil mengubah kota Solo dari
-                kota yang dipenuhi kejahatan menjadi pusat seni dan budaya region.
-                Joko Widodo pertama kali dikenal oleh masyarakat luas setelah ia mulai menjabat
-                sebagai Wali Kota Surakarta (Solo). Dengan gaya kepemimpinan yang dianggap pro-rakyat
-                dan berani menghadapi pejabat regional yang kuat, ia berhasil mengubah kota Solo dari
-                kota yang dipenuhi kejahatan menjadi pusat seni dan budaya region
-              </Text>
-            </ScrollArea>
+            {data_jokowi.map((item) => {
+              return (
+                <ScrollArea h={170} key={item.id}>
+                  <TypeAnimation
+                    sequence={[
+                      item.desc,
+                      1000,
+                    ]}
+                    speed={70}
+                    style={{ fontSize: '16', color: "white" }}
+                  />
+                </ScrollArea>
+              )
+            })}
             <Box pt={10} pb={10}>
               <Divider />
               <Group justify='flex-end' pt={10}>
