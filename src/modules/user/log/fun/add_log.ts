@@ -6,7 +6,7 @@ import { cookies } from "next/headers"
 import _ from "lodash"
 
 export default async function funLogUser({ act, desc }: { act: any, desc: any }) {
-    const c = cookies().get("_tkn")
+    const c = cookies().get("_tknRV")
     const dataCookies = await unsealData(c!.value, { password: process.env.PWD as string })
 
     await prisma.userLog.create({

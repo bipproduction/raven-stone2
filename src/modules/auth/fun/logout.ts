@@ -4,7 +4,7 @@ import { cookies } from "next/headers"
 
 export async function funLogout() {
 
-    cookies().delete('_tkn')
+    cookies().delete('_tknRV')
 
     return {
         success: true,

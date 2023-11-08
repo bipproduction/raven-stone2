@@ -89,5 +89,26 @@
         "menu": "Admin Log User",
         "name": "",
         "label": "Log User"
+    },
+    {
+        "id": 14,
+        "keyMenu": "md13",
+        "menu": "Admin Role User",
+        "name": "",
+        "label": "Role User"
+    },
+    {
+        "id": 15,
+        "keyMenu": "md14",
+        "menu": "Admin Setting User",
+        "name": "",
+        "label": "Setting User"
+    },
+    {
+        "id": 16,
+        "keyMenu": "md15",
+        "menu": "User Dashboard",
+        "name": "",
+        "label": "User Dashboard"
     }
 ]

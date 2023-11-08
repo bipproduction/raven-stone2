@@ -51,6 +51,7 @@ export default function ViewVerification() {
     if (isOTP == inputOTP) {
       const setC = await funSetCookies({ user: isUser })
       await funLogUser({ act: 'LOGIN', desc: 'User login ke sistem' })
+      router.push('/dashboard/summary')
       toast("Verification code is correct", { theme: "dark" })
     } else {
       toast("Incorrect verification code", { theme: "dark" })
