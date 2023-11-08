@@ -1,18 +1,58 @@
 "use client"
 import { WARNA } from '@/modules/_global/fun/COLOR';
-import { ActionIcon, Box, Button, Flex, Group, Text, TextInput } from '@mantine/core';
+import { ActionIcon, Box, Button, Flex, Group, PasswordInput, Text, TextInput } from '@mantine/core';
 import { useFocusTrap } from '@mantine/hooks';
 import { useRouter } from 'next/navigation';
-import React from 'react';
+import React, { useState } from 'react';
 import { LuShieldCheck } from "react-icons/lu"
+import toast from 'react-simple-toasts';
+import { useAtom } from 'jotai';
+import { isCode, isIdUser, isPhone } from '../val/val_auth';
+import { ViewVerification, funLogin } from '..';
 
 /**
  * Fungsi untuk menampilkan view login.
  * @returns {component} menampilakn view login.
  */
+
+
 export default function ViewLogin() {
   const focusTrapRef = useFocusTrap();
   const router = useRouter()
+
+  const [isEmail, setEmail] = useState("")
+  const [isPassword, setPassword] = useState("")
+  const [isOTP, setOTP] = useAtom(isCode)
+  const [isValPhone, setValPhone] = useAtom(isPhone)
+  const [isUser, setUser] = useAtom(isIdUser)
+  const [isVerif, setVerif] = useState(false)
+
+  async function onLogin() {
+    if (isEmail == "" || isPassword == "")
+      return toast('Please fill in completely', { theme: 'dark' })
+    const cek = await funLogin({ email: isEmail, pass: isPassword })
+    if (!cek.success)
+      return toast(cek.message, { theme: 'dark' })
+    const code = Math.floor(Math.random() * 1000) + 1000
+
+    const res = await fetch(`https://wa.wibudev.com/code?nom=${cek.phone}&text=${code}`)
+      .then(
+        async (res) => {
+          if (res.status == 200) {
+            toast('Verification code has been sent', { theme: 'dark' })
+            setValPhone(cek.phone)
+            setOTP(code)
+            setUser(cek.id)
+            setVerif(true)
+          } else {
+            toast('Error', { theme: 'dark' })
+          }
+        }
+      );
+  }
+
+  if (isVerif) return <ViewVerification />
+
   return (
     <>
       <Box
@@ -41,10 +81,10 @@ export default function ViewLogin() {
                 </Text>
               </Group>
               <TextInput placeholder="Email" mt={30}
-              // onChange={(val) => setInpTlp(val.target.value)} 
+                onChange={(val) => setEmail(val.target.value)}
               />
-              <TextInput placeholder="Password" mt={30}
-              // onChange={(val) => setInpTlp(val.target.value)} 
+              <PasswordInput placeholder="Password" mt={30}
+                onChange={(val) => setPassword(val.target.value)}
               />
               <Group pt={10} justify='space-between'>
                 <Group>
@@ -60,10 +100,10 @@ export default function ViewLogin() {
                 c={WARNA.ungu}
                 bg={"white"}
                 fullWidth
-                // onClick={() => {
-                //   sendOTP()
-                // }}
-                onClick={() => router.push("/varification")}
+
+                onClick={() => {
+                  onLogin()
+                }}
               >
                 Login
               </Button>

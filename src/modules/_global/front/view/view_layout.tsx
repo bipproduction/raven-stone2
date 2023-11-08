@@ -127,13 +127,13 @@ export default function ViewLayout({ children }: { children: React.ReactNode }) 
                 )
               })}
               <AppShell.Section >
-                {settingName.map((item) => {
-                  return (
-                    <Box key={item.key} m={'xs'}>
+                {/* {settingName.map((item) => {
+                  return ( */}
+                    <Box key="8" m={'xs'}>
                       <NavLink
-                        label={<Text>{item.label}</Text>}
+                        label={<Text>SETTING</Text>}
                         childrenOffset={28}
-                        c={item.label ? "white" : "dark"}
+                        c={'SETTING' ? "white" : "dark"}
                         variant="subtle"
                         active
                         style={{
@@ -143,8 +143,8 @@ export default function ViewLayout({ children }: { children: React.ReactNode }) 
                         }}
                       >
                         <NavLink
-                          label={<Text>{item.label2}</Text>}
-                          c={item.label ? "white" : "dark"}
+                          label={<Text>LOGOUT</Text>}
+                          c={'SETTING' ? "white" : "dark"}
                           variant="subtle"
                           active
                           style={{
@@ -156,8 +156,8 @@ export default function ViewLayout({ children }: { children: React.ReactNode }) 
                         />
                       </NavLink>
                     </Box>
-                  )
-                })}
+                  {/* )
+                })} */}
               </AppShell.Section>
             </Box>
           </BackgroundImage>

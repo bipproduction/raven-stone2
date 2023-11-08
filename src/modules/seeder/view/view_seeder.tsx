@@ -13,6 +13,8 @@ import { funSeederCandidate } from "../fun/fun_candidate";
 import { funSeederPaslon } from "../fun/fun_paslon";
 import { funSeederUserRole } from "../fun/fun_user_role";
 import { funSeederUser } from "../fun/fun_user";
+import { funSeederComponents } from "../fun/fun_component";
+import { funSeederUserAccess } from "../fun/fun_user_access";
 
 export default function ViewSeeder() {
     const [loading, setLoading] = useState(false)
@@ -21,9 +23,9 @@ export default function ViewSeeder() {
     // USER
     async function onComponents() {
         setLoading(true);
-        // const res = await funSeederComponents();
-        // if (res?.success)
-        //     return setLoading(false), toast(res?.message, { theme: "dark" });
+        const res = await funSeederComponents();
+        if (res?.success)
+            return setLoading(false), toast(res?.message, { theme: "dark" });
     }
     async function onUserRole() {
         setLoading(true);
@@ -33,9 +35,9 @@ export default function ViewSeeder() {
     }
     async function onUserAccess() {
         setLoading(true);
-        // const res = await funSeederUserAccess();
-        // if (res?.success)
-        //     return setLoading(false), toast(res?.message, { theme: "dark" });
+        const res = await funSeederUserAccess();
+        if (res?.success)
+            return setLoading(false), toast(res?.message, { theme: "dark" });
     }
     async function onUser() {
         setLoading(true);

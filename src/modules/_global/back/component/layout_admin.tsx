@@ -6,6 +6,9 @@ import { usePathname, useRouter } from "next/navigation";
 import { FaUserCircle, FaUserTie } from "react-icons/fa";
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import { useState } from "react";
+import { funLogout } from "@/modules/auth";
+import toast from "react-simple-toasts";
+import { funLogUser } from "@/modules/user";
 
 
 export default function LayoutAdmin({ children }: { children: React.ReactNode; }) {
@@ -83,6 +86,12 @@ export default function LayoutAdmin({ children }: { children: React.ReactNode; }
         setActive(pathname);
     });
 
+    async function logoutYes() {
+        await funLogUser({ act: 'LOGOUT', desc: 'User logout dari sistem' })
+        await funLogout()
+        toast("Logout Success", { theme: "dark" })
+    }
+
     return (
         <>
             <AppShell
@@ -142,7 +151,7 @@ export default function LayoutAdmin({ children }: { children: React.ReactNode; }
                                                 style={{ width: rem(14), height: rem(14) }}
                                             />
                                         }
-                                    // onClick={onLogout}
+                                        onClick={() => { logoutYes() }}
                                     >
                                         Logout
                                     </Menu.Item>
