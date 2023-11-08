@@ -27,7 +27,6 @@ export default async function getBayCandidateStep({ candidate }: { candidate: an
         image: isCandidate?.img,
         data: result
     }
-    console.log(allData)
     return allData
 
 }
