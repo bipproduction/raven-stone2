@@ -15,13 +15,14 @@ export async function funSetCookies({ user }: { user: string }) {
         {
             cName: dataUser?.name,
             cIdUser: dataUser?.id,
+            cIdRoleUser: dataUser?.idUserRole
         },
         { password: process.env.PWD as string })
 
 
     cookies().set(
         {
-            name: "_tkn",
+            name: "_tknRV",
             value: tkn
         }
     )

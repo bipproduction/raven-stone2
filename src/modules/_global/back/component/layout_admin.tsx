@@ -11,7 +11,7 @@ import toast from "react-simple-toasts";
 import { funLogUser } from "@/modules/user";
 
 
-export default function LayoutAdmin({ children }: { children: React.ReactNode; }) {
+export default function LayoutAdmin({ name, menu, children }: { name: any, menu: any, children: React.ReactNode; }) {
     const [opened, { toggle }] = useDisclosure();
     const dataEmotion = [
         {
@@ -79,6 +79,29 @@ export default function LayoutAdmin({ children }: { children: React.ReactNode; }
         },
     ];
 
+    const dataDeveloper = [
+        {
+            key: "md11",
+            link: "/dashboard-admin/seeder",
+            label: "SEEDER",
+        },
+        {
+            key: "md12",
+            link: "/dashboard-admin/log-user",
+            label: "LOG USER",
+        },
+        {
+            key: "md13",
+            link: "/dashboard-admin/role-user",
+            label: "ROLE USER",
+        },
+        {
+            key: "md14",
+            link: "/dashboard-admin/user",
+            label: "USER",
+        },
+    ];
+
     const router = useRouter();
     const pathname = usePathname();
     const [active, setActive] = useState("");
@@ -90,6 +113,7 @@ export default function LayoutAdmin({ children }: { children: React.ReactNode; }
         await funLogUser({ act: 'LOGOUT', desc: 'User logout dari sistem' })
         await funLogout()
         toast("Logout Success", { theme: "dark" })
+        router.push('/')
     }
 
     return (
@@ -143,7 +167,7 @@ export default function LayoutAdmin({ children }: { children: React.ReactNode; }
                                             <FaUserTie style={{ width: rem(14), height: rem(14) }} />
                                         }
                                     >
-                                        Moh Alif Al Lukman
+                                        {name}
                                     </Menu.Item>
                                     <Menu.Item
                                         leftSection={
@@ -161,28 +185,31 @@ export default function LayoutAdmin({ children }: { children: React.ReactNode; }
                     </Group>
                 </AppShell.Header>
                 <AppShell.Navbar p="md" pb={30}>
-                    <NavLink
-                        label="EMOTION EDITOR"
-                        childrenOffset={28}
-                        fw={"bolder"}
-                    >
-                        {dataEmotion.map((item) => {
-                            return (
-                                <NavLink
-                                    key={item.key}
-                                    active={item.link === active}
-                                    fw={item.label ? "bolder" : "normal"}
-                                    label={item.label}
-                                    onClick={() => {
-                                        router.push(item.link);
-                                    }}
-                                    color="#213555"
-                                    variant="filled"
-                                />
-                            );
-                        })}
-                    </NavLink>
-                    {data1.map((item) => {
+                    {(menu.menuEmotion.length > 0) &&
+                        <NavLink
+                            label="EMOTION EDITOR"
+                            childrenOffset={28}
+                            fw={"bolder"}
+                        >
+                            {menu.menuEmotion.map((item: any) => {
+                                return (
+                                    <NavLink
+                                        key={item.key}
+                                        active={item.link === active}
+                                        fw={item.label ? "bolder" : "normal"}
+                                        label={item.label}
+                                        onClick={() => {
+                                            router.push(item.link);
+                                        }}
+                                        color="#213555"
+                                        variant="filled"
+                                    />
+                                );
+                            })}
+                        </NavLink>
+                    }
+
+                    {menu.menuData1.map((item: any) => {
                         return (
                             <NavLink
                                 key={item.key}
@@ -197,28 +224,33 @@ export default function LayoutAdmin({ children }: { children: React.ReactNode; }
                             />
                         );
                     })}
-                    <NavLink
-                        label="REGION VALUE EDITOR"
-                        childrenOffset={28}
-                        fw={"bolder"}
-                    >
-                        {dataRegion.map((item) => {
-                            return (
-                                <NavLink
-                                    key={item.key}
-                                    active={item.link === active}
-                                    fw={item.label ? "bolder" : "normal"}
-                                    label={item.label}
-                                    onClick={() => {
-                                        router.push(item.link);
-                                    }}
-                                    color="#213555"
-                                    variant="filled"
-                                />
-                            );
-                        })}
-                    </NavLink>
-                    {dataDua.map((item) => {
+
+                    {
+                        (menu.menuRegion.length > 0) &&
+                        <NavLink
+                            label="REGION VALUE EDITOR"
+                            childrenOffset={28}
+                            fw={"bolder"}
+                        >
+                            {menu.menuRegion.map((item: any) => {
+                                return (
+                                    <NavLink
+                                        key={item.key}
+                                        active={item.link === active}
+                                        fw={item.label ? "bolder" : "normal"}
+                                        label={item.label}
+                                        onClick={() => {
+                                            router.push(item.link);
+                                        }}
+                                        color="#213555"
+                                        variant="filled"
+                                    />
+                                );
+                            })}
+                        </NavLink>
+                    }
+
+                    {menu.menuData2.map((item: any) => {
                         return (
                             <NavLink
                                 key={item.key}
@@ -233,6 +265,32 @@ export default function LayoutAdmin({ children }: { children: React.ReactNode; }
                             />
                         );
                     })}
+
+                    {
+                        (menu.menuDeveloper.length > 0) &&
+                        <NavLink
+                            label="DEVELOPER"
+                            childrenOffset={28}
+                            fw={"bolder"}
+                        >
+                            {menu.menuDeveloper.map((item: any) => {
+                                return (
+                                    <NavLink
+                                        key={item.key}
+                                        active={item.link === active}
+                                        fw={item.label ? "bolder" : "normal"}
+                                        label={item.label}
+                                        onClick={() => {
+                                            router.push(item.link);
+                                        }}
+                                        color="#213555"
+                                        variant="filled"
+                                    />
+                                );
+                            })}
+                        </NavLink>
+                    }
+
                 </AppShell.Navbar>
                 <AppShell.Main bg={"#EAEAEA"}>
                     <Box p={10} pl={20} pr={20}>

@@ -1,6 +1,8 @@
 import ButtonBack from "./back/component/button_back";
 import LayoutAdmin from "./back/component/layout_admin";
+import funGetAccessAdmin from "./back/fun/get_access_admin";
 import prisma from "./bin/prisma";
+import funCekAkses from "./fun/cek_access";
 import { countKabkot } from "./fun/count_kabkot";
 import { countProvince } from "./fun/count_province";
 import funGetAllCandidate from "./fun/get_all_candidate";
@@ -19,3 +21,5 @@ export { funGetAllPaslon }
 export { funGetOnePaslon }
 export { funGetAllProvince }
 export { funGetOneCandidate }
+export { funCekAkses }
+export { funGetAccessAdmin }

@@ -4,8 +4,16 @@ import { useDisclosure, useShallowEffect } from '@mantine/hooks';
 import { AppShell, BackgroundImage, Box, Burger, Center, Divider, Grid, Group, Image, NavLink, Skeleton, Text, Title } from '@mantine/core';
 import { usePathname, useRouter } from 'next/navigation';
 import { WARNA } from '../../fun/COLOR';
+import { funLogUser } from '@/modules/user';
+import { funLogout } from '@/modules/auth';
+import toast from 'react-simple-toasts';
 
 const dataFront = [
+  {
+    key: "0",
+    link: "/dashboard/",
+    label: "LIVE DASHBOARD",
+  },
   {
     key: "1",
     link: "/dashboard/summary",
@@ -66,9 +74,19 @@ export default function ViewLayout({ children }: { children: React.ReactNode }) 
   const router = useRouter();
   const pathname = usePathname();
   const [active, setActive] = useState("");
+
   useShallowEffect(() => {
     setActive(pathname);
   });
+
+  async function logoutYes() {
+    await funLogUser({ act: 'LOGOUT', desc: 'User logout dari sistem' })
+    await funLogout()
+    toast("Logout Success", { theme: "dark" })
+    router.push('/')
+}
+
+
   return (
     <>
       <AppShell
@@ -153,6 +171,7 @@ export default function ViewLayout({ children }: { children: React.ReactNode }) 
                             left: 0,
                           }}
                           pl={50}
+                          onClick={()=>{logoutYes()}}
                         />
                       </NavLink>
                     </Box>

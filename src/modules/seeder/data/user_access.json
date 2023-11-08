@@ -63,5 +63,85 @@
         "id": 13,
         "idUserRole": 1,
         "idComponent": 13
+    },
+    {
+        "id": 14,
+        "idUserRole": 1,
+        "idComponent": 14
+    },
+    {
+        "id": 15,
+        "idUserRole": 1,
+        "idComponent": 15
+    },
+    {
+        "id": 16,
+        "idUserRole": 1,
+        "idComponent": 16
+    },
+    {
+        "id": 17,
+        "idUserRole": 2,
+        "idComponent": 1
+    },
+    {
+        "id": 18,
+        "idUserRole": 2,
+        "idComponent": 2
+    },
+    {
+        "id": 19,
+        "idUserRole": 2,
+        "idComponent": 3
+    },
+    {
+        "id": 20,
+        "idUserRole": 2,
+        "idComponent": 4
+    },
+    {
+        "id": 21,
+        "idUserRole": 2,
+        "idComponent": 5
+    },
+    {
+        "id": 22,
+        "idUserRole": 2,
+        "idComponent": 6
+    },
+    {
+        "id": 23,
+        "idUserRole": 2,
+        "idComponent": 7
+    },
+    {
+        "id": 24,
+        "idUserRole": 2,
+        "idComponent": 8
+    },
+    {
+        "id": 25,
+        "idUserRole": 2,
+        "idComponent": 9
+    },
+    {
+        "id": 26,
+        "idUserRole": 2,
+        "idComponent": 10
+    },
+    {
+        "id": 27,
+        "idUserRole": 2,
+        "idComponent": 11
+    },
+    {
+        "id": 28,
+        "idUserRole": 2,
+        "idComponent": 16
+    },
+    {
+        "id": 29,
+        "idUserRole": 3,
+        "idComponent": 16
     }
 ]
