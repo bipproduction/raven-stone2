@@ -4,6 +4,10 @@ import { Box, Grid, Image, ScrollArea, Select, Stack, Text } from '@mantine/core
 import React, { useEffect, useState } from 'react';
 import getBayCandidateStep from '../fun/get_by_candidate';
 import toast from 'react-simple-toasts';
+import { WARNA } from '@/modules/_global/fun/COLOR';
+import classes from "../components/step.module.css"
+import cx from 'clsx'
+import { TypeAnimation } from 'react-type-animation';
 
 const data_step = [
   {
@@ -55,16 +59,25 @@ export default function ViewStep({ params, kandidate, stepCandidate }: { params:
 
   return (
     <>
-    <pre>
-    {/* {JSON.stringify(isData, null, 1)} */}
-    </pre>
+      {/* <pre>
+        {JSON.stringify(isData, null, 1)}
+      </pre> */}
       <Stack>
         <PageSubTitle text1='STEP' text2='ASSESSMENT' />
         <Grid gutter={60}>
-          <Grid.Col span={{ md: 3, lg: 3 }}>
-            <Image alt='candidate' src={"/candidate/c1.png"} maw={"auto"} mx="auto" />
-            <Box pt={10}>
-              <Text ta={'center'} fw={'bold'} c={"white"}>PRABOWO SUBIANTO</Text>
+          <Grid.Col span={{ md: 3, lg: 3 }} >
+            {/* {isData.map((item: any) => {
+              return ( */}
+            {/* ) */}
+            {/* })} */}
+            <Box >
+              <Image alt='candidate'
+                src="/candidate/c1.png"
+                // src={`/candidate/${item.Image}`} 
+                maw={"auto"} mx="auto" />
+              <Box pt={10}>
+                <Text ta={'center'} fw={'bold'} c={"white"}>PRABOWO SUBIANTO</Text>
+              </Box>
             </Box>
             <Box pt={20}>
               <Select placeholder='Candidate'
@@ -80,33 +93,49 @@ export default function ViewStep({ params, kandidate, stepCandidate }: { params:
             </Box>
           </Grid.Col>
           <Grid.Col span={{ md: 9, lg: 9 }}>
-            {data_step.map((item) => {
-              return (
-                <Box key={item.id}>
-                  <Box pb={20}>
-                    <Text fz={30} c={"white"} fw={'bold'}>{item.name_step}</Text>
+            <ScrollArea h={700}>
+              {data_step.map((item) => {
+                return (
+                  <Box key={item.id}>
+                    <Box pb={20}>
+                      <Text fz={30} c={"white"} fw={'bold'}>{item.name_step}</Text>
+                    </Box>
+                    <Grid >
+                      <Grid.Col span={{ md: 6, lg: 6 }}>
+                        <Text c={"#0DBF0A"} fz={20}>POSITIVE</Text>
+                        <Box pt={10} pb={30}>
+                          <ScrollArea h={250}>
+                            <TypeAnimation
+                              sequence={[
+                                item.positive,
+                                1000,
+                              ]}
+                              speed={70}
+                              style={{ fontSize: '16', color: "white" }}
+                            />
+                          </ScrollArea>
+                        </Box>
+                      </Grid.Col>
+                      <Grid.Col span={{ md: 6, lg: 6 }}>
+                        <Text c={"#D01234"} fz={20}>NEGATIVE</Text>
+                        <Box pt={10} pb={30}>
+                          <ScrollArea h={250}>
+                            <TypeAnimation
+                              sequence={[
+                                item.negative,
+                                1000,
+                              ]}
+                              speed={70}
+                              style={{ fontSize: '16', color: "white" }}
+                            />
+                          </ScrollArea>
+                        </Box>
+                      </Grid.Col>
+                    </Grid>
                   </Box>
-                  <Grid >
-                    <Grid.Col span={{ md: 6, lg: 6 }}>
-                      <Text c={"#0DBF0A"} fz={20}>POSITIVE</Text>
-                      <Box pt={10} pb={30}>
-                        <ScrollArea h={250}>
-                          <Text c={"#C1C2C5"}> {item.positive}</Text>
-                        </ScrollArea>
-                      </Box>
-                    </Grid.Col>
-                    <Grid.Col span={{ md: 6, lg: 6 }}>
-                      <Text c={"#D01234"} fz={20}>NEGATIVE</Text>
-                      <Box pt={10} pb={30}>
-                        <ScrollArea h={250}>
-                          <Text c={"#C1C2C5"}> {item.negative}</Text>
-                        </ScrollArea>
-                      </Box>
-                    </Grid.Col>
-                  </Grid>
-                </Box>
-              )
-            })}
+                )
+              })}
+            </ScrollArea>
           </Grid.Col>
         </Grid>
       </Stack>

@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation';
 import React from 'react';
 import { HiDotsHorizontal } from 'react-icons/hi';
 import { MdNavigateNext } from 'react-icons/md';
+import { TypeAnimation } from 'react-type-animation';
 
 
 const data_jokowi = [
@@ -96,12 +97,14 @@ export default function ViewJokowiEffect() {
               variant="filled"
               placeholder="SELECT DATE"
             />
-            <Button variant='subtle' c={"white"}>10.30 WIB</Button>
-            <Button variant='subtle' c={"white"}>12.30 WIB</Button>
-            <Button variant='subtle' c={"white"}>13.30 WIB</Button>
-            <Button variant='subtle' c={"white"}>15.30 WIB</Button>
-            <Button variant='subtle' c={"white"}>15.30 WIB</Button>
-            <Button variant='subtle' c={"white"}>15.30 WIB</Button>
+            <Button variant='subtle' c={"white"}>10.30</Button>
+            <Button variant='subtle' c={"white"}>12.30</Button>
+            <Button variant='subtle' c={"white"}>13.30</Button>
+            <Button variant='subtle' c={"white"}>15.30</Button>
+            <Button variant='subtle' c={"white"}>15.32</Button>
+            <Button variant='subtle' c={"white"}>15.35</Button>
+            <Button variant='subtle' c={"white"}>15.38</Button>
+            <Button variant='subtle' c={"white"}>15.39</Button>
             <Menu shadow="md" width={200}>
               <Menu.Target>
                 <ActionIcon variant="subtle" color="rgba(255, 255, 255, 1)" aria-label="Settings">
@@ -110,19 +113,19 @@ export default function ViewJokowiEffect() {
               </Menu.Target>
               <Menu.Dropdown bg={"#230D37"}>
                 <Menu.Item bg={"#230D37"}>
-                  <Button variant='subtle' fullWidth c={"white"}>16.30 WIB</Button>
+                  <Button variant='subtle' fullWidth c={"white"}>16.30</Button>
                 </Menu.Item>
                 <Menu.Item bg={"#230D37"}>
-                  <Button variant='subtle' fullWidth c={"white"}>17.30 WIB</Button>
+                  <Button variant='subtle' fullWidth c={"white"}>17.30</Button>
                 </Menu.Item>
                 <Menu.Item bg={"#230D37"}>
-                  <Button variant='subtle' fullWidth c={"white"}>18.30 WIB</Button>
+                  <Button variant='subtle' fullWidth c={"white"}>18.30</Button>
                 </Menu.Item>
                 <Menu.Item bg={"#230D37"}>
-                  <Button variant='subtle' fullWidth c={"white"}>19.30 WIB</Button>
+                  <Button variant='subtle' fullWidth c={"white"}>19.30</Button>
                 </Menu.Item>
                 <Menu.Item bg={"#230D37"}>
-                  <Button variant='subtle' fullWidth c={"white"}>20.30 WIB</Button>
+                  <Button variant='subtle' fullWidth c={"white"}>20.30</Button>
                 </Menu.Item>
               </Menu.Dropdown>
             </Menu>
@@ -141,7 +144,14 @@ export default function ViewJokowiEffect() {
                   }}
                 >
                   <ScrollArea h={"100%"} w={"100%"}>
-                    <Text c={"#C1C2C5"} >{item.decs}</Text>
+                  <TypeAnimation
+                    sequence={[
+                      item.decs,
+                      1000,
+                    ]}
+                    speed={70}
+                    style={{ fontSize: '16', color: "white" }}
+                  />
                   </ScrollArea>
                 </Box>
               </Box>

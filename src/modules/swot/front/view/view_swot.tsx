@@ -2,6 +2,7 @@
 import PageSubTitle from '@/modules/_global/front/components/PageSubtitle';
 import { Box, Grid, Image, ScrollArea, Select, Stack, Text } from '@mantine/core';
 import React from 'react';
+import { TypeAnimation } from 'react-type-animation';
 const data_swot = [
   {
     id: 1,
@@ -45,16 +46,25 @@ export default function ViewSwot() {
             </Box>
           </Grid.Col>
           <Grid.Col span={{ md: 9, lg: 9 }}>
+          <ScrollArea h={700}>
             {data_swot.map((item) => {
               return (
                 <Box key={item.id}>
                   <Text fz={24} c={"#089A31"}>{item.name_swot}</Text>
                   <ScrollArea h={200}>
-                    <Text c={"#C1C2C5"}> {item.desc}</Text>
+                  <TypeAnimation
+                    sequence={[
+                      item.desc,
+                      1000,
+                    ]}
+                    speed={70}
+                    style={{ fontSize: '16', color: "white" }}
+                  />
                   </ScrollArea>
                 </Box>
               )
             })}
+          </ScrollArea>
             {/* {data_swot == undefined ? (
                       <Stack>
                         <Text>...</Text>

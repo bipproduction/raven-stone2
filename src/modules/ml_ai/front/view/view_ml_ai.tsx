@@ -4,6 +4,7 @@ import { ActionIcon, Box, Button, Grid, Group, Image, Menu, ScrollArea, Select, 
 import { DateInput } from '@mantine/dates';
 import React from 'react';
 import { HiDotsHorizontal } from "react-icons/hi"
+import { TypeAnimation } from 'react-type-animation';
 
 const data_ml = [
     {
@@ -44,10 +45,11 @@ export default function ViewMlAi() {
                                     variant="filled"
                                     placeholder="SELECT DATE"
                                 />
-                                <Button variant='subtle' c={"white"}>10.30 WIB</Button>
-                                <Button variant='subtle' c={"white"}>12.30 WIB</Button>
-                                <Button variant='subtle' c={"white"}>13.30 WIB</Button>
-                                <Button variant='subtle' c={"white"}>15.30 WIB</Button>
+                                <Button variant='subtle' c={"white"}>10.30</Button>
+                                <Button variant='subtle' c={"white"}>12.30</Button>
+                                <Button variant='subtle' c={"white"}>13.30</Button>
+                                <Button variant='subtle' c={"white"}>15.30</Button>
+                                <Button variant='subtle' c={"white"}>15.30</Button>
                                 <Menu shadow="md" width={200}>
                                     <Menu.Target>
                                         <ActionIcon variant="subtle" color="rgba(255, 255, 255, 1)" aria-label="Settings">
@@ -56,19 +58,19 @@ export default function ViewMlAi() {
                                     </Menu.Target>
                                     <Menu.Dropdown bg={"#230D37"}>
                                         <Menu.Item bg={"#230D37"}>
-                                            <Button variant='subtle' fullWidth c={"white"}>16.30 WIB</Button>
+                                            <Button variant='subtle' fullWidth c={"white"}>16.30</Button>
                                         </Menu.Item>
                                         <Menu.Item bg={"#230D37"}>
-                                            <Button variant='subtle' fullWidth c={"white"}>17.30 WIB</Button>
+                                            <Button variant='subtle' fullWidth c={"white"}>17.30</Button>
                                         </Menu.Item>
                                         <Menu.Item bg={"#230D37"}>
-                                            <Button variant='subtle' fullWidth c={"white"}>18.30 WIB</Button>
+                                            <Button variant='subtle' fullWidth c={"white"}>18.30</Button>
                                         </Menu.Item>
                                         <Menu.Item bg={"#230D37"}>
-                                            <Button variant='subtle' fullWidth c={"white"}>19.30 WIB</Button>
+                                            <Button variant='subtle' fullWidth c={"white"}>19.30</Button>
                                         </Menu.Item>
                                         <Menu.Item bg={"#230D37"}>
-                                            <Button variant='subtle' fullWidth c={"white"}>20.30 WIB</Button>
+                                            <Button variant='subtle' fullWidth c={"white"}>20.30</Button>
                                         </Menu.Item>
                                     </Menu.Dropdown>
                                 </Menu>
@@ -80,7 +82,16 @@ export default function ViewMlAi() {
                                     <Text c={"#089A31"} fz={20} fw={"bold"}>STRENGTH ANALYSIS IMPROVEMENT</Text>
                                     <Box pt={10}>
                                         <ScrollArea h={"100%"} w={"100%"}>
-                                            <Text c={"#C1C2C5"} >{item.desc}</Text>
+                                            <TypeAnimation
+                                                sequence={[
+                                                   item.desc,
+                                                    1000,
+                                                ]}
+                                                speed={70}
+                                                style={{ fontSize: '16', color: "white" }}
+                                                // repeat={Infinity}
+                                            />
+                                            {/* <Text c={"#C1C2C5"} >{item.desc}</Text> */}
                                         </ScrollArea>
                                     </Box>
                                 </Box>

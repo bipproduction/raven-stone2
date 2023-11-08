@@ -171,7 +171,7 @@ export default function ViewUploadPopularity() {
                                                             <Table.Td>{home.unsupportive}</Table.Td>
                                                             <Table.Td>{home.uncomfortable}</Table.Td>
                                                             <Table.Td>{home.negative}</Table.Td>
-                                                            <Table.Td>{home.dissaproval}</Table.Td>
+                                                            <Table.Td>{home.dissapproval}</Table.Td>
                                                         </Table.Tr>
                                                     )}
                                                 </Table.Tbody>

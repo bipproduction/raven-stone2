@@ -2,7 +2,7 @@
 import PageSubTitle from '@/modules/_global/front/components/PageSubtitle';
 import { WARNA } from '@/modules/_global/fun/COLOR';
 import DetailRegionalDataPairing from '@/modules/emotion/front/components/detail_regional_data_pairing';
-import { Box, Button, Grid, Group, Image, Select, SimpleGrid, Stack, Text } from '@mantine/core';
+import { Box, Button, Grid, Group, Image, ScrollArea, Select, SimpleGrid, Stack, Text } from '@mantine/core';
 import React from 'react';
 
 export default function ViewaPairing() {
@@ -11,26 +11,26 @@ export default function ViewaPairing() {
       <Stack>
         <PageSubTitle text1='REGIONAL' text2='DATA PAIRING' />
         <Box
-            style={{
-              backgroundColor: WARNA.ungu,
-              position: "sticky",
-              top: 0,
-              zIndex: 100,
-              padding:10
-            }}
-            >
-              <Group justify='flex-end'>
-                <Select
-                  placeholder='Select Region'
-                  data={['Bali', 'Jawa Barat', "Jawa Timur"]}
-                />
-                <Select
-                  placeholder='Select Candidate'
-                  data={['Prabowo x Gibran', 'Ganjar x Mahfud MD', "Anis x Muhaimin"]}
-                />
-                <Button bg={"white"} c={"dark"} radius={"lg"}>GENERATE</Button>
-              </Group>
-            </Box>
+          style={{
+            backgroundColor: WARNA.ungu,
+            position: "sticky",
+            top: 0,
+            zIndex: 100,
+            padding: 10
+          }}
+        >
+          <Group justify='flex-end'>
+            <Select
+              placeholder='Select Region'
+              data={['Bali', 'Jawa Barat', "Jawa Timur"]}
+            />
+            <Select
+              placeholder='Select Candidate'
+              data={['Prabowo x Gibran', 'Ganjar x Mahfud MD', "Anis x Muhaimin"]}
+            />
+            <Button bg={"white"} c={"dark"} radius={"lg"}>GENERATE</Button>
+          </Group>
+        </Box>
         <Grid pt={20} gutter={40}>
           <Grid.Col span={{ md: 5, lg: 5 }}>
             <SimpleGrid
@@ -67,9 +67,11 @@ export default function ViewaPairing() {
             </Box>
           </Grid.Col>
           <Grid.Col span={{ md: 7, lg: 7 }}>
-            <Box>
-              <DetailRegionalDataPairing />
-            </Box>
+            <ScrollArea h={600}>
+              <Box>
+                <DetailRegionalDataPairing />
+              </Box>
+            </ScrollArea>
           </Grid.Col>
         </Grid>
       </Stack>
