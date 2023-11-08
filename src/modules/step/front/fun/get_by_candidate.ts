@@ -1,6 +1,8 @@
+import { Title } from '@mantine/core';
 "use server"
 
 import { prisma } from "@/modules/_global"
+import _ from "lodash";
 
 export default async function getBayCandidateStep({ candidate }: { candidate: any }) {
 
@@ -11,7 +13,8 @@ export default async function getBayCandidateStep({ candidate }: { candidate: an
         },
         select: {
             category: true,
-            content: true
+            content: true,
+            sentiment: true
         }
     })
 
@@ -21,13 +24,21 @@ export default async function getBayCandidateStep({ candidate }: { candidate: an
             isActive: true
         }
     })
-
-    const allData = {
+    const dataOmit = result.map((item) => ({
+        ..._.omit(item, ["positive"], ["negative"]),
+        category: item.category,
+        content: item.content,
+        sentiment: item.sentiment,
         Title: isCandidate?.name,
-        image: isCandidate?.img,
-        data: result
-    }
-    console.log(allData)
-    return allData
+        Image: isCandidate?.img,
+    }))
+
+    // const allData = {
+    //     // Title: isCandidate?.name,
+    //     // image: isCandidate?.img,
+    //     data: dataOmit
+    // }
+    console.log(dataOmit)
+    return dataOmit
 
 }
