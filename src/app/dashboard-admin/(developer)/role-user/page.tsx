@@ -1,11 +1,12 @@
+import { ViewRoleUser } from '@/modules/user';
+import funGetAllRole from '@/modules/user/role/fun/get_all_role';
 import React from 'react';
 
-function Page() {
+export default async function Page() {
+  const data = await funGetAllRole()
   return (
-    <div>
-      Page
-    </div>
+    <>
+    <ViewRoleUser data={data}/>
+    </>
   );
 }
-
-export default Page;
