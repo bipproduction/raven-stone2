@@ -7,26 +7,61 @@ import {
   Flex,
   Group,
   PinInput,
-  Stack,
   Text,
 } from "@mantine/core";
 import { useFocusTrap } from "@mantine/hooks";
+import { useAtom } from "jotai";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { isCode, isIdUser, isPhone } from "../val/val_auth";
+import toast from "react-simple-toasts";
+import { funSetCookies } from "../fun/set_cookies";
+import { funLogUser } from "@/modules/user";
 
 
 /**
  * Fungsi untuk menampilkan view varification.
  * @returns {component} menampilakn view varification.
  */
-export default function ViewVarification() {
-  const focusTrapRef = useFocusTrap();
+export default function ViewVerification() {
+  const focusTrapRef = useFocusTrap()
   const router = useRouter()
+  const [isOTP, setOTP] = useAtom(isCode)
+  const [isValPhone, setValPhone] = useAtom(isPhone)
+  const [inputOTP, setInputOTP] = useState<any>()
+  const [isUser, setUser] = useAtom(isIdUser)
+
+
+  async function onResend() {
+    const code = Math.floor(Math.random() * 1000) + 1000
+    const res = await fetch(`https://wa.wibudev.com/code?nom=${isValPhone}&text=${code}`)
+      .then(
+        async (res) => {
+          if (res.status == 200) {
+            toast('Verification code has been sent', { theme: 'dark' })
+            setOTP(code)
+          } else {
+            toast('Error', { theme: 'dark' })
+          }
+        }
+      );
+  }
+
+  async function getVerification() {
+    if (isOTP == inputOTP) {
+      const setC = await funSetCookies({ user: isUser })
+      await funLogUser({ act: 'LOGIN', desc: 'User login ke sistem' })
+      toast("Verification code is correct", { theme: "dark" })
+    } else {
+      toast("Incorrect verification code", { theme: "dark" })
+    }
+  }
+
+
+
+
   return (
     <>
-      {/* <Flex>
-        <ButtonBack link="/" />
-      </Flex> */}
       <Box
         style={{
           backgroundColor: "#000000"
@@ -57,7 +92,9 @@ export default function ViewVarification() {
             <div ref={focusTrapRef}>
               <Group justify="center" mt={30}>
                 <PinInput
-                // onChange={setotp} 
+                  onChange={(val) => {
+                    setInputOTP(val)
+                  }}
                 />
               </Group>
             </div>
@@ -67,8 +104,7 @@ export default function ViewVarification() {
                 c={WARNA.ungu}
                 bg={"white"}
                 w={250}
-                // onClick={getverification}
-                onClick={() => router.push("/dashboard")}
+                onClick={() => { getVerification() }}
               >
                 Submit
               </Button>
@@ -77,7 +113,7 @@ export default function ViewVarification() {
               <Text fz={12} c="white">
                 Didnt receive a code ? {""}
                 <Anchor c="white"
-                  // onClick={sendOTP}
+                  onClick={() => { onResend() }}
                   fz={12}
                 >
                   Resend
