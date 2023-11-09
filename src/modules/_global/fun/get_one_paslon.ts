@@ -5,7 +5,7 @@ import { prisma } from ".."
 export default async function funGetOnePaslon({ paslon }: { paslon: any }) {
     const data = await prisma.paslon.findUnique({
         where: {
-            id: paslon
+            id: Number(paslon)
         }
     })
 

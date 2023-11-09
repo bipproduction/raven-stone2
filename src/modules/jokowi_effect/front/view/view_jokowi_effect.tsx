@@ -5,12 +5,10 @@ import EchartJokowiEffect from '@/modules/emotion/front/components/echart_jokowi
 import Top10JokowiEffect from '@/modules/emotion/front/components/top10_jokowi_effect';
 import { ActionIcon, Box, Button, Divider, Grid, Group, Image, Menu, ScrollArea, SimpleGrid, Stack, Text } from '@mantine/core';
 import { DateInput } from '@mantine/dates';
-import { values } from 'lodash';
-import { useRouter } from 'next/navigation';
-import React from 'react';
+import React, { useState } from 'react';
 import { HiDotsHorizontal } from 'react-icons/hi';
-import { MdNavigateNext } from 'react-icons/md';
 import { TypeAnimation } from 'react-type-animation';
+import { funGetEffectFront } from '../..';
 
 
 const data_jokowi = [
@@ -26,8 +24,26 @@ const data_jokowi = [
  * Fungsi untuk menampilkan Jokowi Effect.
  * @returns {component} menampilakn Jokowi Effect.
  */
-export default function ViewJokowiEffect() {
-  const router = useRouter()
+export default function ViewJokowiEffect({ effect }: { effect: any }) {
+  const [dataEffect, setDataEffect] = useState(effect.data)
+  const [dataJamEffect, setDataJamEffect] = useState(effect.dataJam)
+  const [isDate, setDate] = useState<any>(new Date())
+  const [isBTime, setBTime] = useState(effect.isJam)
+
+  async function chooseDate(value: any) {
+    setDate(value)
+    const data = await funGetEffectFront({ isDate: value })
+    setDataEffect(data.data)
+    setDataJamEffect(data.dataJam)
+    setBTime(data.isJam)
+  }
+
+  async function chooseTime(value: any) {
+    setBTime(value)
+    const data = await funGetEffectFront({ isDate: isDate, isTime: value})
+    setDataEffect(data.data)
+  }
+
   return (
     <>
       <PageSubTitle text1='JOKOWI' text2='EFFECT' />
@@ -96,16 +112,29 @@ export default function ViewJokowiEffect() {
             <DateInput
               variant="filled"
               placeholder="SELECT DATE"
+              maxDate={new Date()}
+              value={isDate}
+              onChange={(val) => {
+                chooseDate(val)
+              }}
             />
-            <Button variant='subtle' c={"white"}>10.30</Button>
-            <Button variant='subtle' c={"white"}>12.30</Button>
-            <Button variant='subtle' c={"white"}>13.30</Button>
-            <Button variant='subtle' c={"white"}>15.30</Button>
-            <Button variant='subtle' c={"white"}>15.32</Button>
-            <Button variant='subtle' c={"white"}>15.35</Button>
-            <Button variant='subtle' c={"white"}>15.38</Button>
-            <Button variant='subtle' c={"white"}>15.39</Button>
-            <Menu shadow="md" width={200}>
+            {
+              dataJamEffect.map((item: any, i: any) => {
+                return (
+                  <div key={i}>
+                    <Button variant={(isBTime == item.timeContent) ? 'filled' : 'subtle'} c={"white"}
+                      onClick={() => {
+                          chooseTime(item.timeContent)
+                      }}
+                    >
+                      {item.timeContent}
+                    </Button>
+                  </div>
+                )
+
+              })
+            }
+            {/* <Menu shadow="md" width={200}>
               <Menu.Target>
                 <ActionIcon variant="subtle" color="rgba(255, 255, 255, 1)" aria-label="Settings">
                   <HiDotsHorizontal style={{ width: '70%', height: '70%' }} stroke={1.5} />
@@ -128,10 +157,10 @@ export default function ViewJokowiEffect() {
                   <Button variant='subtle' fullWidth c={"white"}>20.30</Button>
                 </Menu.Item>
               </Menu.Dropdown>
-            </Menu>
+            </Menu> */}
           </Group>
         </Box>
-        {data_jokowi.map((item) => {
+        {dataEffect.map((item: any) => {
           return (
             <Box pt={10} key={item.id}>
               <Text c={"#089A31"} fz={20} fw={"bold"}>STRENGTH ANALYSIS IMPROVEMENT</Text>
@@ -140,18 +169,19 @@ export default function ViewJokowiEffect() {
                   style={{
                     backgroundColor: "#310943",
                     borderRadius: 10,
-                    padding: 20
+                    padding: 20,
+                    height: 300
                   }}
                 >
                   <ScrollArea h={"100%"} w={"100%"}>
-                  <TypeAnimation
-                    sequence={[
-                      item.decs,
-                      1000,
-                    ]}
-                    speed={70}
-                    style={{ fontSize: '16', color: "white" }}
-                  />
+                    <TypeAnimation
+                      sequence={[
+                        item.content,
+                        1000,
+                      ]}
+                      speed={70}
+                      style={{ fontSize: '16', color: "white" }}
+                    />
                   </ScrollArea>
                 </Box>
               </Box>

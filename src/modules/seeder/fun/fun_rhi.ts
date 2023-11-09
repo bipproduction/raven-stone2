@@ -13,12 +13,6 @@ export default async function funSeederRhi() {
             }
         })
     } else {
-        // const dataProv = await prisma.areaProvinsi.findMany({
-        //     select: {
-        //         id: true
-        //     }
-        // })
-
         const dataKabkot = await prisma.areaKabkot.findMany({
             select: {
                 id: true,
@@ -26,24 +20,12 @@ export default async function funSeederRhi() {
             }
         })
 
-
-        // const wilayahTrueProv = dataProv.map((v: any) => ({
-        //     ..._.omit(v, ["id"]),
-        //     idProvinsi: v.id,
-        //     description: '-'
-        // }));
-
         const wilayahTrueKabkot = dataKabkot.map((v: any) => ({
             ..._.omit(v, ["id"]),
             idKabkot: v.id,
             idProvinsi: v.idProvinsi,
             description: '-'
         }));
-
-
-        // await prisma.regionHotIssues.createMany({
-        //     data: wilayahTrueProv
-        // })
 
         await prisma.regionHotIssues.createMany({
             data: wilayahTrueKabkot
