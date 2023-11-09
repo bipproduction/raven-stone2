@@ -9,9 +9,7 @@ export default function ViewAddRoleUser({ data }: { data: any }) {
   const router = useRouter()
   const [isComponents, setIsComponents] = useState<any[]>(data)
   const [value, setValue] = useState<number[]>([])
-  const [isName, setName] = useState({
-    name: "",
-  })
+  const [isName, setName] = useState("")
 
   async function addRole() {
     const create = await funAddUserRole({ name: isName, component: value })
@@ -28,12 +26,9 @@ export default function ViewAddRoleUser({ data }: { data: any }) {
 
         <TextInput
           placeholder='Create Role User'
-          value={isName.name}
+          value={isName}
           onChange={(val) => 
-            setName({
-              ...isName,
-              name: val.target.value
-            })
+            setName(val.target.value)
           }
         />
         {isComponents.map((v, i) => (

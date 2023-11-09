@@ -1,29 +1,32 @@
 "use server"
 import { prisma } from '@/modules/_global';
-import { UserRole, Component } from './../../../../../node_modules/.prisma/client/index.d';
 import { revalidatePath } from 'next/cache';
 
 export default async function funAddUserRole({ name, component }: { name: any, component: any }) {
+
    const role = await prisma.userRole.create({
         data: {
-            name: name.name
-        },
-        select: {
-            id: true,
-            name: true
+            name: name
         }
     })
-    console.log(role)
+    // console.log(role)
 
-    // for (let i of component) {
-    //     console.log(i)
+    // await prisma.userAccess.create({
+    //     data:{
+    //         idComponent:1,
+    //         idUserRole:4,
+    //     }
+    // })
+
+    for (let i of component) {
+        console.log(i)
         await prisma.userAccess.create({
             data: {
-                idUserRole: 13,
-                idComponent: 1,
+                idUserRole: role.id,
+                idComponent: i,
             }
         })
-    // }
+    }
 
 
 
