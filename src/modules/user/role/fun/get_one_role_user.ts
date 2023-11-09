@@ -2,7 +2,7 @@
 
 import { prisma } from "@/modules/_global"
 
-export default async function funGetOneRoleUser({id}: {id: number}) {
+export default async function funGetOneRoleUser({ id }: { id: number }) {
     const data = await prisma.userRole.findUnique({
         where: {
             isActive: true,
@@ -13,5 +13,24 @@ export default async function funGetOneRoleUser({id}: {id: number}) {
             name: true
         }
     })
-    return data
+
+    const dataAccess = await prisma.userAccess.findMany({
+        where: {
+            idUserRole: Number(id)
+        },
+        select: {
+            idComponent: true
+        }
+    })
+
+
+
+    const allData = {
+        dataRole: data,
+        dataComponent: dataAccess.map((v) => (v.idComponent))
+    }
+
+    // console.log(dataAccess.map((v) => (v.idComponent)))
+
+    return allData
 }
