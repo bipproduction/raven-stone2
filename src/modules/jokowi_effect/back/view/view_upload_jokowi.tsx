@@ -21,17 +21,17 @@ export default function ViewUploadJokowi() {
 
     async function onLoad(data: any) {
         if (data.length > 0) {
-            if (
-                ('id' in data[0]) &&
-                ('dateContent' in data[0]) &&
-                ('timeContent' in data[0]) &&
-                ('content' in data[0])
-            ) {
+            // if (
+            //     ('id' in data[0]) &&
+            //     ('dateContent' in data[0]) &&
+            //     ('timeContent' in data[0]) &&
+            //     ('content' in data[0])
+            // ) {
                 setJson(data as any)
-            } else {
-                setJson([])
-                toast('Format CSV salah', { theme: 'dark' })
-            }
+            // } else {
+            //     setJson([])
+            //     toast('Format CSV salah', { theme: 'dark' })
+            // }
         } else {
             setJson([])
             toast('Data Kosong', { theme: 'dark' })
@@ -137,8 +137,8 @@ export default function ViewUploadJokowi() {
                                                     </Table.Tr>
                                                 </Table.Thead>
                                                 <Table.Tbody>
-                                                    {json.map(home =>
-                                                        <Table.Tr key={home.id}>
+                                                    {json.map((home:any, i:any) =>
+                                                        <Table.Tr key={i}>
                                                             <Table.Td>{home.id}</Table.Td>
                                                             <Table.Td>{home.dateContent}</Table.Td>
                                                             <Table.Td>{home.timeContent}</Table.Td>

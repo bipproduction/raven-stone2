@@ -1,7 +1,13 @@
-import { ViewMlAi } from "@/modules/ml_ai";
+import { funGetAllPaslon, funGetOnePaslon } from "@/modules/_global";
+import { ViewMlAi, funGetMlaiFront } from "@/modules/ml_ai";
 
-export default function Page(){
+export default async function Page() {
+
+    const dataMlAi = await funGetMlaiFront({ isPaslon: 1, isDate: new Date() })
+    const dataPaslon = await funGetAllPaslon()
+    const onePaslon = await funGetOnePaslon({paslon:1})
+
     return (
-        <ViewMlAi/>
+        <ViewMlAi data={dataMlAi} paslon={dataPaslon} cpaslon={onePaslon}/>
     )
 }

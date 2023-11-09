@@ -1,7 +1,8 @@
-import { ViewJokowiEffect } from "@/modules/jokowi_effect";
+import { ViewJokowiEffect, funGetEffectFront } from "@/modules/jokowi_effect";
 
-export default function Page(){
+export default async function Page(){
+    const dEffect = await funGetEffectFront({isDate: new Date()})
     return(
-        <ViewJokowiEffect/>
+        <ViewJokowiEffect effect={dEffect}/>
     )
 }
