@@ -7,17 +7,24 @@ import funUpdateUserRole from '../fun/update_user_role';
 import { theme } from '../../../../../theme';
 import { useAtom } from 'jotai';
 import { isModalRoleUser } from '../val/isModalUserRole';
-import { Box, Button, Grid, Modal, Stack, Text, TextInput } from '@mantine/core';
+import { Box, Button, Checkbox, Grid, Group, Modal, Stack, Text, TextInput } from '@mantine/core';
 import { ButtonBack } from '@/modules/_global';
 import { useFocusTrap } from '@mantine/hooks';
 import { WARNA } from '@/modules/_global/fun/COLOR';
 import ModalEditUserRole from '../components/modal_edit_user_role';
 
-export default function ViewEditRoleUser({ data }: { data: any }) {
+export default function ViewEditRoleUser({ data, component }: { data: any, component: any }) {
   const focusTrapRef = useFocusTrap();
   const router = useRouter()
   const [listData, setListData] = useState(data)
   const [valOpenModal, setOpenModal] = useAtom(isModalRoleUser)
+
+  const [isIdRole, setIdRole] = useState(data.dataRole.id)
+  const [isNameRole, setNameRole] = useState(data.dataRole.name)
+  const [dbComponent, setdbComponent] = useState(data.dataComponent)
+  const [isComponents, setIsComponents] = useState<any[]>(component)
+
+  // console.log(isIdRole)
 
   function validationData() {
     if (Object.values(listData).includes(""))
@@ -30,7 +37,7 @@ export default function ViewEditRoleUser({ data }: { data: any }) {
         <ButtonBack />
         <Box>
           <Grid>
-            <Grid.Col span={{md: 6, lg: 6}}  >
+            <Grid.Col span={{ md: 6, lg: 6 }}  >
               <Box
                 style={{
                   border: `1px solid #474747`,
@@ -41,11 +48,27 @@ export default function ViewEditRoleUser({ data }: { data: any }) {
               >
                 <Stack>
                   <Text>Edit Role User</Text>
-                  <TextInput placeholder="Name" value={listData.name} onChange={(val) => {
-                    setListData({
-                      ...listData, name: val.target.value
-                    })
+                  <TextInput placeholder="Name" value={isNameRole} onChange={(val) => {
+                    setNameRole(val.target.value)
                   }} />
+
+                  {isComponents.map((v, i) => (
+                    <Group key={i}>
+                      <Checkbox
+                        aria-label="Select row"
+                        checked={dbComponent.includes(v.id)}
+                        label={v.menu}
+                        onChange={(event) =>
+                          setdbComponent(
+                            event.currentTarget.checked
+                              ? [...dbComponent, v.id]
+                              : dbComponent.filter((id: any) => id !== v.id)
+                          )
+                        }
+                      />
+                    </Group>
+                  ))}
+
                   <Button fullWidth radius={10} color="gray.7" onClick={validationData}>SUBMIT</Button>
                 </Stack>
               </Box>
@@ -54,14 +77,14 @@ export default function ViewEditRoleUser({ data }: { data: any }) {
         </Box>
       </Stack>
       <Modal
-      size={"md"}
-      opened={valOpenModal}
-      onClose={()=>{setOpenModal(false)}}
-      centered
-      withCloseButton={false}
-      closeOnClickOutside={false}
+        size={"md"}
+        opened={valOpenModal}
+        onClose={() => { setOpenModal(false) }}
+        centered
+        withCloseButton={false}
+        closeOnClickOutside={false}
       >
-        <ModalEditUserRole data={listData}/>
+        <ModalEditUserRole name={isNameRole} component={dbComponent} id={isIdRole} />
       </Modal>
     </>
   );

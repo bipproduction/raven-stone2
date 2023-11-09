@@ -83,7 +83,7 @@ export const menu_developer = [
     },
     {
         key: "md14",
-        link: "/dashboard-admin/user",
+        link: "/dashboard-admin/setting-user",
         label: "USER",
     },
 ]

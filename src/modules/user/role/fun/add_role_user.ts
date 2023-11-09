@@ -9,17 +9,8 @@ export default async function funAddUserRole({ name, component }: { name: any, c
             name: name
         }
     })
-    // console.log(role)
-
-    // await prisma.userAccess.create({
-    //     data:{
-    //         idComponent:1,
-    //         idUserRole:4,
-    //     }
-    // })
-
     for (let i of component) {
-        console.log(i)
+        // console.log(i)
         await prisma.userAccess.create({
             data: {
                 idUserRole: role.id,
@@ -30,7 +21,7 @@ export default async function funAddUserRole({ name, component }: { name: any, c
 
 
 
-    // revalidatePath("/dashboard-admin/role-user")
+    revalidatePath("/dashboard-admin/role-user")
 
     return {
         success: true,
