@@ -1,23 +1,22 @@
 "use client"
-import { ActionIcon, Box, Button, Center, Group, Modal, Stack, Table, Text, Title } from '@mantine/core';
-import { useAtom } from 'jotai';
+import { ActionIcon, Box, Button, Center, Group, Modal, Stack, Table, Title } from '@mantine/core';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { MdDelete, MdOutlineModeEdit } from 'react-icons/md';
-import { isModalRoleUser } from '../val/isModalUserRole';
-import ModalUserRole from '../components/modal_del_user_role';
-import funGetAllRole from '../fun/get_all_role';
+import { isModalSetUser } from '../val/isModaSetUser';
+import { useAtom } from 'jotai';
+import { funGetAllSetUser } from '../fun/get_all_set_user';
+import ModalDelSetUser from '../components/modal_del_set_user';
 
-export default function ViewRoleUser({ data }: { data: any }) {
+export default function ViewSettingUser({ data }: { data: any }) {
   const router = useRouter()
-  const [isRole, setRole] = useState<any[]>(data)
-  const [valOpenModal, setOpenModal] = useAtom(isModalRoleUser)
+  const [lisData, setListData] = useState<any[]>(data)
   const [dataDelete, setDataDelete] = useState("")
+  const [valOpenModal, setOpenModal] = useAtom(isModalSetUser)
 
-
-  async function delroledata() {
-    const newData = await funGetAllRole()
-    setRole(newData)
+  async function deluser() {
+    const newData = await funGetAllSetUser()
+    setListData(newData)
   }
 
   return (
@@ -25,13 +24,17 @@ export default function ViewRoleUser({ data }: { data: any }) {
       <Stack>
         <Title>ROLE USER</Title>
         <Group justify='flex-end'>
-          <Button onClick={() => router.push("/dashboard-admin/role-user/add")}>Add User Role</Button>
+          <Button onClick={() => router.push("/dashboard-admin/setting-user/add")}>Add Setting User</Button>
         </Group>
         <Table>
           <Table.Thead>
             <Table.Tr>
               <Table.Th>No</Table.Th>
+              <Table.Th>User Role</Table.Th>
               <Table.Th>Name</Table.Th>
+              <Table.Th>Email</Table.Th>
+              <Table.Th>Password</Table.Th>
+              <Table.Th>Phone</Table.Th>
               <Table.Th>
                 <Center>
                   Action
@@ -40,10 +43,14 @@ export default function ViewRoleUser({ data }: { data: any }) {
             </Table.Tr>
           </Table.Thead>
           <Table.Tbody>
-            {isRole.map((v, i) => (
+            {lisData.map((v, i) => (
               <Table.Tr key={i}>
                 <Table.Td>{i + 1}</Table.Td>
+                <Table.Td>{v.UserRole}</Table.Td>
                 <Table.Td>{v.name}</Table.Td>
+                <Table.Td>{v.email}</Table.Td>
+                <Table.Td>{v.password}</Table.Td>
+                <Table.Td>{v.phone}</Table.Td>
                 <Table.Td>
                   <Group justify="center">
                     <Box>
@@ -62,7 +69,7 @@ export default function ViewRoleUser({ data }: { data: any }) {
                       <ActionIcon
                         color="yellow.9"
                         variant='subtle'
-                        onClick={() => router.push(`/dashboard-admin/role-user/edit/${v.id}`)}
+                        onClick={() => router.push(`/dashboard-admin/setting-user/edit/${v.id}`)}
                       >
                         <MdOutlineModeEdit size="23" />
                       </ActionIcon>
@@ -74,7 +81,6 @@ export default function ViewRoleUser({ data }: { data: any }) {
           </Table.Tbody>
         </Table>
       </Stack>
-
       <Modal
         size={"md"}
         opened={valOpenModal}
@@ -83,9 +89,9 @@ export default function ViewRoleUser({ data }: { data: any }) {
         withCloseButton={false}
         closeOnClickOutside={false}
       >
-        <ModalUserRole id={dataDelete} 
+        <ModalDelSetUser id={dataDelete} 
         onSuccess={(val) => {
-          delroledata()
+          deluser()
         }} />
       </Modal>
     </>
