@@ -2,9 +2,12 @@
 import PageSubTitle from '@/modules/_global/front/components/PageSubtitle';
 import { ActionIcon, Box, Button, Grid, Group, Image, Menu, ScrollArea, Select, Stack, Text } from '@mantine/core';
 import { DateInput } from '@mantine/dates';
-import React from 'react';
+import React, { useState } from 'react';
 import { HiDotsHorizontal } from "react-icons/hi"
 import { TypeAnimation } from 'react-type-animation';
+import { funGetMlaiFront } from '../..';
+import _ from 'lodash';
+import { funGetOnePaslon } from '@/modules/_global';
 
 const data_ml = [
     {
@@ -13,7 +16,45 @@ const data_ml = [
     }
 ]
 
-export default function ViewMlAi() {
+export default function ViewMlAi({ data, paslon, cpaslon }: { data: any, paslon: any, cpaslon: any }) {
+    const [dataMlai, setDataMlai] = useState(data.data)
+    const [dataJamMlai, setDataJamMlai] = useState(data.dataJam)
+    const [dataPaslon, setDataPaslon] = useState(paslon)
+    const [isDate, setDate] = useState<any>(new Date())
+    const [isBTime, setBTime] = useState(data.isJam)
+    const [isPaslon, setPaslon] = useState(1)
+    const [isCapres, setCapres] = useState(cpaslon.nameCapres.toUpperCase())
+    const [isImgCapres, setImgCapres] = useState(`/img/candidate/${cpaslon.imgCapres}`)
+    const [isCawapres, setCawapres] = useState(cpaslon.nameCawapres.toUpperCase())
+    const [isImgCawapres, setImgCawapres] = useState(`/img/candidate/${cpaslon.imgCawapres}`)
+
+    async function chooseDate(value: any) {
+        setDate(value)
+        const dataDB = await funGetMlaiFront({ isPaslon: isPaslon, isDate: value })
+        setDataMlai(dataDB.data)
+        setDataJamMlai(dataDB.dataJam)
+        setBTime(dataDB.isJam)
+    }
+
+    async function chooseTime(value: any) {
+        setBTime(value)
+        const data = await funGetMlaiFront({ isPaslon: isPaslon, isDate: isDate, isTime: value })
+        setDataMlai(data.data)
+    }
+
+    async function choosePaslon(value: any) {
+        setPaslon(value)
+        const dataDB = await funGetMlaiFront({ isPaslon: value, isDate: isDate })
+        const dataLoadPaslon = await funGetOnePaslon({ paslon: value })
+        setCapres((dataLoadPaslon?.nameCapres.toUpperCase()))
+        setCawapres((dataLoadPaslon?.nameCawapres.toUpperCase()))
+        setImgCapres(`/img/candidate/${dataLoadPaslon?.imgCapres}`)
+        setImgCawapres(`/img/candidate/${dataLoadPaslon?.imgCawapres}`)
+        setDataMlai(dataDB.data)
+        setDataJamMlai(dataDB.dataJam)
+        setBTime(dataDB.isJam)
+    }
+
     return (
         <>
             <Stack>
@@ -21,20 +62,25 @@ export default function ViewMlAi() {
                 <Grid gutter={60}>
                     <Grid.Col span={{ md: 3, lg: 3 }}>
                         <Box>
-                            <Image alt='candidate' src={"/candidate/c1.png"} maw={"auto"} mx="auto" />
+                            <Image alt='candidate' src={isImgCapres} maw={"auto"} mx="auto" />
                             <Box pt={10}>
-                                <Text ta={'center'} fw={'bold'} c={"white"}>PRABOWO SUBIANTO</Text>
+                                <Text ta={'center'} fw={'bold'} c={"white"}>{isCapres}</Text>
                             </Box>
                         </Box>
                         <Box pt={20}>
-                            <Image alt='candidate' src={"/candidate/c2.png"} maw={"auto"} mx="auto" />
+                            <Image alt='candidate' src={isImgCawapres} maw={"auto"} mx="auto" />
                             <Box pt={10}>
-                                <Text ta={'center'} fw={'bold'} c={"white"}>GIBRAN RAKABUMING</Text>
+                                <Text ta={'center'} fw={'bold'} c={"white"}>{isCawapres}</Text>
                             </Box>
                         </Box>
                         <Box pt={20}>
                             <Select placeholder='Candidate'
-                                data={['Prabowo', 'Gibran', 'Anis', 'Ganjar', 'Mahfud MD', 'Jokowi', 'Muhaimin']}
+                                data={dataPaslon.map((pro: any) => ({
+                                    value: String(pro.id),
+                                    label: pro.name
+                                }))}
+                                value={isPaslon.toString()}
+                                onChange={(val) => { choosePaslon(val) }}
                             />
                         </Box>
                     </Grid.Col>
@@ -44,13 +90,29 @@ export default function ViewMlAi() {
                                 <DateInput
                                     variant="filled"
                                     placeholder="SELECT DATE"
+                                    maxDate={new Date()}
+                                    value={isDate}
+                                    onChange={(val) => {
+                                        chooseDate(val)
+                                    }}
                                 />
-                                <Button variant='subtle' c={"white"}>10.30</Button>
-                                <Button variant='subtle' c={"white"}>12.30</Button>
-                                <Button variant='subtle' c={"white"}>13.30</Button>
-                                <Button variant='subtle' c={"white"}>15.30</Button>
-                                <Button variant='subtle' c={"white"}>15.30</Button>
-                                <Menu shadow="md" width={200}>
+                                {
+                                    dataJamMlai.map((item: any, i: any) => {
+                                        return (
+                                            <div key={i}>
+                                                <Button variant={(isBTime == item.timeContent) ? 'filled' : 'subtle'} c={"white"}
+                                                    onClick={() => {
+                                                        chooseTime(item.timeContent)
+                                                    }}
+                                                >
+                                                    {item.timeContent}
+                                                </Button>
+                                            </div>
+                                        )
+
+                                    })
+                                }
+                                {/* <Menu shadow="md" width={200}>
                                     <Menu.Target>
                                         <ActionIcon variant="subtle" color="rgba(255, 255, 255, 1)" aria-label="Settings">
                                             <HiDotsHorizontal style={{ width: '70%', height: '70%' }} stroke={1.5} />
@@ -73,10 +135,10 @@ export default function ViewMlAi() {
                                             <Button variant='subtle' fullWidth c={"white"}>20.30</Button>
                                         </Menu.Item>
                                     </Menu.Dropdown>
-                                </Menu>
+                                </Menu> */}
                             </Group>
                         </Box>
-                        {data_ml.map((item) => {
+                        {dataMlai.map((item: any) => {
                             return (
                                 <Box pt={20} key={item.id}>
                                     <Text c={"#089A31"} fz={20} fw={"bold"}>STRENGTH ANALYSIS IMPROVEMENT</Text>
@@ -84,12 +146,12 @@ export default function ViewMlAi() {
                                         <ScrollArea h={"100%"} w={"100%"}>
                                             <TypeAnimation
                                                 sequence={[
-                                                   item.desc,
+                                                    item.content,
                                                     1000,
                                                 ]}
                                                 speed={70}
                                                 style={{ fontSize: '16', color: "white" }}
-                                                // repeat={Infinity}
+                                            // repeat={Infinity}
                                             />
                                             {/* <Text c={"#C1C2C5"} >{item.desc}</Text> */}
                                         </ScrollArea>

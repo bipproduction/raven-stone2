@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 import moment from "moment";
 
 export default async function funUploadMlai({ body }: { body: any }) {
-    let pas, date, y, isoDateTime
+    let pas, date, y, isoDateTime, cek
     for (let i of body) {
         pas = Number(i.idPaslon)
         date = moment(i.dateContent).format('YYYY-MM-DD');
@@ -13,7 +13,7 @@ export default async function funUploadMlai({ body }: { body: any }) {
         isoDateTime = new Date(y.getTime() - (y.getTimezoneOffset() * 60000)).toISOString();
 
         if (i.id == '') {
-            const cek = await prisma.mlAi.findFirst({
+             cek = await prisma.mlAi.findFirst({
                 where: {
                     dateContent: new Date(i.dateContent),
                     timeContent: isoDateTime,

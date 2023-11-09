@@ -141,8 +141,8 @@ export default function ViewUploadMlai() {
                                                     </Table.Tr>
                                                 </Table.Thead>
                                                 <Table.Tbody>
-                                                    {json.map(home =>
-                                                        <Table.Tr key={home.id}>
+                                                    {json.map((home: any, i: any) =>
+                                                        <Table.Tr key={i}>
                                                             <Table.Td>{home.id}</Table.Td>
                                                             <Table.Td>{home.idPaslon}</Table.Td>
                                                             <Table.Td>{home.paslon}</Table.Td>
