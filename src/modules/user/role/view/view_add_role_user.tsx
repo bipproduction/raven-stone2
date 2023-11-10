@@ -1,26 +1,33 @@
 "use client"
-import { Box, Button, Checkbox, Group, SimpleGrid, Stack, TextInput } from '@mantine/core';
+import { Box, Button, Checkbox, Group, Modal, SimpleGrid, Stack, TextInput } from '@mantine/core';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import funAddUserRole from '../fun/add_role_user';
 import toast from 'react-simple-toasts';
 import { values } from 'lodash';
+import { useAtom } from 'jotai';
+import { isModalRoleUser } from '../val/isModalUserRole';
+import { ButtonBack } from '@/modules/_global';
+import ModalAddUserRole from '../components/modal_add_user_role';
 
 export default function ViewAddRoleUser({ data }: { data: any }) {
   const router = useRouter()
   const [isComponents, setIsComponents] = useState<any[]>(data)
   const [value, setValue] = useState<number[]>([])
   const [isName, setName] = useState("")
-
-  console.log(value)
-
-  async function addRole() {
-    const create = await funAddUserRole({ name: isName, component: value })
-    if (!create.success) return toast(create.message, { theme: "dark" });
+  const [valOpenModal, setOpenModal] = useAtom(isModalRoleUser)
+  
+  function validationData() {
+    if (Object.values(isName).includes(""))
+      return toast("The form cannot be empty", { theme: "dark" });
+    if (value.length < 1 || (value.length == 0))
+      return toast("User role cannot be empty", { theme: "dark" });
+    setOpenModal(true);
   }
   return (
     <>
       <Stack>
+        <ButtonBack />
         <TextInput
           placeholder='Create Role User'
           value={isName}
@@ -44,11 +51,21 @@ export default function ViewAddRoleUser({ data }: { data: any }) {
             />
           </Group>
         ))}
-        <Button color="gray.7" onClick={addRole}>
+        <Button color="gray.7" onClick={validationData}>
           SUBMIT
         </Button>
 
       </Stack>
+      <Modal
+        size={"md"}
+        opened={valOpenModal}
+        onClose={() => { setOpenModal(false) }}
+        centered
+        withCloseButton={false}
+        closeOnClickOutside={false}
+      >
+        <ModalAddUserRole isName={isName} value={value} />
+      </Modal>
     </>
   );
 }

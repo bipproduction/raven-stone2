@@ -2,11 +2,12 @@
 import { useAtom } from 'jotai';
 import React, { useState } from 'react';
 import { isModalSetUser } from '../val/isModaSetUser';
-import { Box, Button, Grid, GridCol, NumberInput, Select, Stack, Text, TextInput } from '@mantine/core';
+import { Box, Button, Grid, GridCol, Modal, NumberInput, Select, Stack, Text, TextInput } from '@mantine/core';
 import { ButtonBack } from '@/modules/_global';
 import { useFocusTrap } from '@mantine/hooks';
 import toast from 'react-simple-toasts';
 import funAddSetUser from '../fun/add_set_user';
+import ModalAddSetUser from '../components/modal-add_set_user';
 
 export default function ViewAddSettingUser({ roleUser }: { roleUser: any }) {
   const focusTrapRef = useFocusTrap();
@@ -25,18 +26,19 @@ export default function ViewAddSettingUser({ roleUser }: { roleUser: any }) {
     phone: ""
   })
 
-  async function addData() {
-    // if (Object.values(dataUser).includes(""))
-    //   return toast("Lengkapi Data Anda");
+  function validationData() {
     if (Object.values(dataUser).includes(""))
-      return toast("Lengkapi Data Anda");
-
-    const res = await funAddSetUser({data: dataUser});
-    if (!res.success) return toast(res.message);
-    toast("Success");
-
-    // console.log(dataUser)
+      return toast("The form cannot be empty", { theme: "dark" });
+    setOpenModal(true);
   }
+  // async function addData() {
+  //   if (Object.values(dataUser).includes(""))
+  //     return toast("Lengkapi Data Anda");
+
+  //   const res = await funAddSetUser({data: dataUser});
+  //   if (!res.success) return toast(res.message);
+  //   toast("Success");
+  // }
 
   return (
     <>
@@ -118,11 +120,21 @@ export default function ViewAddSettingUser({ roleUser }: { roleUser: any }) {
           />
           <Grid mt={20}>
             <Grid.Col span={{ md: 6, lg: 6 }}>
-              <Button fullWidth bg={'gray'} onClick={addData}>SUBMIT</Button>
+              <Button fullWidth bg={'gray'} onClick={validationData}>SUBMIT</Button>
             </Grid.Col>
           </Grid>
         </Box >
       </Stack>
+      <Modal
+        size={"md"}
+        opened={valOpenModal}
+        onClose={() => { setOpenModal(false) }}
+        centered
+        withCloseButton={false}
+        closeOnClickOutside={false}
+      >
+        <ModalAddSetUser dataUser={dataUser}/>
+      </Modal>
     </>
   );
 }

@@ -21,10 +21,11 @@ export default function ViewSettingUser({ data }: { data: any }) {
 
   return (
     <>
+
       <Stack>
-        <Title>ROLE USER</Title>
+        <Title>SEETING USER</Title>
         <Group justify='flex-end'>
-          <Button onClick={() => router.push("/dashboard-admin/setting-user/add")}>Add Setting User</Button>
+          <Button onClick={() => router.push("/dashboard-admin/setting-user/add")} bg={'gray'}>Add Setting User</Button>
         </Group>
         <Table>
           <Table.Thead>
