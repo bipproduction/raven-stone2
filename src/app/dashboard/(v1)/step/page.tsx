@@ -1,19 +1,17 @@
-import { funGetAllCandidate } from "@/modules/_global";
-import { ViewStep } from "@/modules/step";
-import getBayCandidateStep from "@/modules/step/front/fun/get_by_candidate";
+import { funGetAllCandidate, funGetOneCandidate } from "@/modules/_global";
+import { ViewStep, funGetStepFront } from "@/modules/step";
 import _ from "lodash";
 
-export default async function Page({searchParams}: {searchParams: {candidate: string}}){
-    const datastep = {
-        idCandidate: (_.isNaN(Number(searchParams.candidate)) ? 1 : Number(searchParams.candidate)),
-    }
+export default async function Page() {
+
     const dataCandidate = await funGetAllCandidate()
-    const data = await getBayCandidateStep({candidate: datastep.idCandidate})
-    return(
-        <ViewStep 
-        params={datastep}
-        kandidate={dataCandidate}
-        stepCandidate= {data}
+    const data = await funGetStepFront({ candidate: 1 })
+    const dataIsCandidate = await funGetOneCandidate({ candidate: 1 })
+    return (
+        <ViewStep
+            kandidate={dataCandidate}
+            stepCandidate={data}
+            cCandidate={dataIsCandidate}
         />
     )
 }
