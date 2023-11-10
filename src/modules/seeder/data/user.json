@@ -12,8 +12,8 @@
         "id": "UserDeveloper2",
         "idUserRole": 1,
         "name": "Lukman",
-        "email": "lukman@bip.com",
-        "password": "lukman_dev@developer",
+        "email": "lukman_dev@bip.com",
+        "password": "lukman@developer",
         "phone": "6287701790942",
         "isAllArea": true
     },
@@ -21,8 +21,8 @@
         "id": "UserDeveloper3",
         "idUserRole": 1,
         "name": "Malik",
-        "email": "malik@bip.com",
-        "password": "malik_dev@developer",
+        "email": "malik_dev@bip.com",
+        "password": "malik@developer",
         "phone": "6289697338821",
         "isAllArea": true
     },
