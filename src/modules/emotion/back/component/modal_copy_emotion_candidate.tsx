@@ -6,6 +6,7 @@ import toast from "react-simple-toasts"
 import { isModalEmotionPaslon } from "../val/modal_emotion"
 import funCopyEmotionCandidate from "../fun/copy_emotion_candidate"
 import { useState } from "react"
+import { funLogUser } from "@/modules/user"
 
 export default function ModalCopyEmotionCandidate({ from, to, onSuccess }: { from: any, to: any, onSuccess: (val: any) => void }) {
     const [openModal, setOpenModal] = useAtom(isModalEmotionPaslon)
@@ -14,6 +15,7 @@ export default function ModalCopyEmotionCandidate({ from, to, onSuccess }: { fro
     async function onUpload() {
         setLoading(true)
         await funCopyEmotionCandidate({ dateFrom: from, dateTo: to })
+        await funLogUser({ act: "COPY DATA", desc: `User Copy Data, Emotion Candidate From: ${from} To: ${to} ` })
         setLoading(false)
         toast('Success', { theme: 'dark' })
         setOpenModal(false)

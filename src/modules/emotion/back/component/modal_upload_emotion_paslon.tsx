@@ -6,6 +6,7 @@ import toast from "react-simple-toasts"
 import { isModalEmotionPaslon } from "../val/modal_emotion"
 import funUploadEmotionPaslon from "../fun/upload_emotion_paslon"
 import { useState } from "react"
+import { funLogUser } from "@/modules/user"
 
 export default function ModalUploadEmotionPaslon({ data, onSuccess }: { data: any, onSuccess: (val: any) => void }) {
     const [openModal, setOpenModal] = useAtom(isModalEmotionPaslon)
@@ -14,6 +15,7 @@ export default function ModalUploadEmotionPaslon({ data, onSuccess }: { data: an
     async function onUpload() {
         setLoading(true)
         await funUploadEmotionPaslon({ body: data })
+        await funLogUser({ act: "UPLOAD", desc: `User UPLOAD, Emotion Paslon` })
         setLoading(false)
         toast('Success', { theme: 'dark' })
         setOpenModal(false)
