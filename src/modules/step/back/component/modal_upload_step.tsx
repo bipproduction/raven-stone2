@@ -5,6 +5,7 @@ import { useAtom } from "jotai"
 import toast from "react-simple-toasts"
 import { isModalStep } from "../val/modal_step"
 import funUploadStep from "../fun/upload_step"
+import { funLogUser } from "@/modules/user"
 
 
 
@@ -13,6 +14,7 @@ export default function ModalUploadStep({ data, onSuccess }: { data: any, onSucc
 
     async function onUpload() {
         await funUploadStep({ body: data })
+        await funLogUser({ act: "UPLOAD", desc: `User Uploads Data Step` })
         toast('Success', { theme: 'dark' })
         setOpenModal(false)
         onSuccess(true)
