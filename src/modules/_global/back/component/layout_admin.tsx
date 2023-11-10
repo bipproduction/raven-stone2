@@ -1,6 +1,6 @@
 'use client'
 
-import { ActionIcon, AppShell, Box, Burger, Group, Menu, NavLink, UnstyledButton, rem } from "@mantine/core";
+import { ActionIcon, AppShell, Box, Burger, Group, Menu, Modal, NavLink, UnstyledButton, rem } from "@mantine/core";
 import { useDisclosure, useShallowEffect } from "@mantine/hooks";
 import { usePathname, useRouter } from "next/navigation";
 import { FaUserCircle, FaUserTie } from "react-icons/fa";
@@ -9,9 +9,13 @@ import { useState } from "react";
 import { funLogout } from "@/modules/auth";
 import toast from "react-simple-toasts";
 import { funLogUser } from "@/modules/user";
+import { useAtom } from "jotai";
+import { isModalLayout } from "../val/isModalLayout";
+import ModalLogout from "./modal_logout";
 
 
 export default function LayoutAdmin({ name, menu, children }: { name: any, menu: any, children: React.ReactNode; }) {
+    const [valOpenModal, setOpenModal] = useAtom(isModalLayout)
     const [opened, { toggle }] = useDisclosure();
     const dataEmotion = [
         {
@@ -109,13 +113,6 @@ export default function LayoutAdmin({ name, menu, children }: { name: any, menu:
         setActive(pathname);
     });
 
-    async function logoutYes() {
-        await funLogUser({ act: 'LOGOUT', desc: 'User logout dari sistem' })
-        await funLogout()
-        toast("Logout Success", { theme: "dark" })
-        router.push('/')
-    }
-
     return (
         <>
             <AppShell
@@ -175,7 +172,7 @@ export default function LayoutAdmin({ name, menu, children }: { name: any, menu:
                                                 style={{ width: rem(14), height: rem(14) }}
                                             />
                                         }
-                                        onClick={() => { logoutYes() }}
+                                        onClick={() => {setOpenModal(true)}}
                                     >
                                         Logout
                                     </Menu.Item>
@@ -298,6 +295,15 @@ export default function LayoutAdmin({ name, menu, children }: { name: any, menu:
                     </Box>
                 </AppShell.Main>
             </AppShell>
+            <Modal
+                opened={valOpenModal}
+                onClose={() => setOpenModal(false)}
+                centered
+                withCloseButton={false}
+                closeOnClickOutside={false}
+            >
+                <ModalLogout/>
+            </Modal>
         </>
     );
 }
