@@ -4,7 +4,6 @@ import fs from 'fs'
 export async function GET(req: NextRequest, { params }: { params: { name: any } }) {
     const real = `./public/${params.name[0]}/${params.name[1]}`
 
-    console.log(real)
     let fl;
 
     if (fs.existsSync(real)) {
