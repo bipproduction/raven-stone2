@@ -6,6 +6,7 @@ import toast from "react-simple-toasts"
 import { isModalPopularity } from "../val/modal_popularity"
 import funUploadPopularity from "../fun/upload_popularity"
 import { useState } from "react"
+import { funLogUser } from "@/modules/user"
 
 export default function ModalUploadPopularity({ data, onSuccess }: { data: any, onSuccess: (val: any) => void }) {
     const [openModal, setOpenModal] = useAtom(isModalPopularity)
@@ -14,6 +15,7 @@ export default function ModalUploadPopularity({ data, onSuccess }: { data: any, 
     async function onUpload() {
         setLoading(true)
         await funUploadPopularity({ body: data })
+        await funLogUser({ act: "UPLOAD", desc: `User Uploads, National Popularity Metric` })
         setLoading(false)
         toast('Success', { theme: 'dark' })
         setOpenModal(false)

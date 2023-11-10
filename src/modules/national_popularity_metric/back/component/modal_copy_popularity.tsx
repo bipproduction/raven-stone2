@@ -6,6 +6,7 @@ import toast from "react-simple-toasts"
 import { isModalPopularity } from "../val/modal_popularity"
 import funCopyPopularity from "../fun/copy_popularity"
 import { useState } from "react"
+import { funLogUser } from "@/modules/user"
 
 export default function ModalCopyPopularity({ from, to, onSuccess }: { from: any, to: any, onSuccess: (val: any) => void }) {
     const [openModal, setOpenModal] = useAtom(isModalPopularity)
@@ -14,6 +15,7 @@ export default function ModalCopyPopularity({ from, to, onSuccess }: { from: any
     async function onUpload() {
         setLoading(true)
         await funCopyPopularity({ dateFrom: from, dateTo: to })
+        await funLogUser({ act: "COPY DATA", desc: `User Copy Data, National Popularity Metric from: ${from} to: ${to} ` })
         setLoading(false)
         toast('Success', { theme: 'dark' })
         setOpenModal(false)
