@@ -133,7 +133,7 @@ export default function ViewAddSettingUser({ roleUser }: { roleUser: any }) {
         withCloseButton={false}
         closeOnClickOutside={false}
       >
-        <ModalAddSetUser dataUser={dataUser}/>
+        <ModalAddSetUser dataUser={dataUser} id={dataUser.idUserRole}/>
       </Modal>
     </>
   );

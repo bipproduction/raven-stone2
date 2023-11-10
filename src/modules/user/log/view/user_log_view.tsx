@@ -17,10 +17,11 @@ export default function UserLogView({ user }: { user: any }) {
     const [dateFrom, setDateFrom] = useState<any>(new Date())
     const [dateTo, setDateTo] = useState<any>(new Date())
     const [isUser, setUser] = useState("")
-    const [data, setData] = useState<any>([])
+    const [isdata, setData] = useState<any>([])
+    // const [dataValue, setDatavalue] = useState<any>(logData.value)
 
     async function onLog() {
-        const data = funGetLogUser({ body: { 'dateFrom': moment(dateFrom).format('YYYY-MM-DD'), 'dateTo': moment(dateTo).format('YYYY-MM-DD'), 'user': isUser, 'page': 1 } })
+        const data = await funGetLogUser({ body: { 'dateFrom': moment(dateFrom).format('YYYY-MM-DD'), 'dateTo': moment(dateTo).format('YYYY-MM-DD'), 'user': isUser, 'page': 1 } })
         setShow(true)
         setData(data)
     }
@@ -87,7 +88,7 @@ export default function UserLogView({ user }: { user: any }) {
                                 </Grid.Col>
                             </Grid>
                         </Box>
-                        {show && <TableLogUser />}
+                        {show && <TableLogUser user={isdata} />}
                     </Paper>
                 </Box>
             </Box>
