@@ -25,7 +25,7 @@ export default function ViewRoleUser({ data }: { data: any }) {
       <Stack>
         <Title>ROLE USER</Title>
         <Group justify='flex-end'>
-          <Button onClick={() => router.push("/dashboard-admin/role-user/add")}>Add User Role</Button>
+          <Button onClick={() => router.push("/dashboard-admin/role-user/add")} bg={"gray"}>Add User Role</Button>
         </Group>
         <Table>
           <Table.Thead>

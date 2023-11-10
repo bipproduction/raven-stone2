@@ -1,6 +1,7 @@
 'use server'
 
 import { prisma } from "@/modules/_global"
+import { UserLog } from "@prisma/client";
 import _ from "lodash"
 
 export default async function funGetLogUser({ body }: { body: any }) {
@@ -14,7 +15,7 @@ export default async function funGetLogUser({ body }: { body: any }) {
         skip: dataSkip,
         take: 25,
         where: {
-            idUser: body.user,
+            idUser: body.id,
             createdAt: {
                 lte: new Date(tglAwal).toISOString(),
                 gte: new Date(tglAkhir).toISOString(),
@@ -37,5 +38,11 @@ export default async function funGetLogUser({ body }: { body: any }) {
         name: v.User.name,
     }))
 
+    // const result = data.map((v) => ({
+    //     ..._.omit(v, ['User']),
+    //     name: v.User.name,
+    // }))
+
+    console.log(result)
     return result
 }

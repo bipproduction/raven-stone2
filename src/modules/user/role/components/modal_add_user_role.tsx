@@ -1,30 +1,29 @@
 import { Alert, Box, Button, Group, Text } from '@mantine/core';
 import { useAtom } from 'jotai';
+import { useRouter } from 'next/navigation';
 import React from 'react';
-import { isModalSetUser } from '../val/isModaSetUser';
-import funDelSetUser from '../fun/del_set_user';
+import { isModalRoleUser } from '../val/isModalUserRole';
+import funAddUserRole from '../fun/add_role_user';
 import toast from 'react-simple-toasts';
-import { funLogUser } from '../..';
 
-export default function ModalDelSetUser({ id, onSuccess }: { id: any, onSuccess: (val: any) => void }) {
-  const [valOpenModal, setOpenModal] = useAtom(isModalSetUser)
+export default function ModalAddUserRole({isName, value}: {isName: any, value: any}) {
+  const router = useRouter()
+  const [valOpenModal, setOpenModal] = useAtom(isModalRoleUser)
 
-  async function delRole() {
-    const del = await funDelSetUser({ id: id })
-    if (!del.success) return toast(del.message, { theme: "dark" })
-    await funLogUser({act:"DELETE", desc:`User Delete Data User ${id}`})
-    toast("Success", { theme: "dark" });
+  async function addRole() {
+    const create = await funAddUserRole({ name: isName, component: value })
+    if (!create.success) return toast(create.message, { theme: "dark" });
+    router.push("/dashboard-admin/role-user")
     setOpenModal(false);
-    onSuccess(del.delData)
   }
+
   return (
     <>
       <Box>
         <Alert color="gray" variant="outline">
-          <Text fw={700} ta={"center"} mb={20} mt={20}>ARE YOU SURE TO DELETE THIS SETTING USER?</Text>
+          <Text fw={700} ta={"center"} mb={20} mt={20}>ARE YOU SURE TO ADD THIS ROLE USER?</Text>
           <Group justify="space-between" pt={10}>
             <Button
-
               radius={10}
               color="gray.7"
               w={150}
@@ -36,7 +35,7 @@ export default function ModalDelSetUser({ id, onSuccess }: { id: any, onSuccess:
               radius={10}
               color="gray.7"
               w={150}
-              onClick={delRole}
+              onClick={addRole}
             >
               YES
             </Button>
@@ -46,3 +45,4 @@ export default function ModalDelSetUser({ id, onSuccess }: { id: any, onSuccess:
     </>
   );
 }
+

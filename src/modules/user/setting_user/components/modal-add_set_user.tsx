@@ -1,30 +1,30 @@
 import { Alert, Box, Button, Group, Text } from '@mantine/core';
-import { useAtom } from 'jotai';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 import { isModalSetUser } from '../val/isModaSetUser';
-import funDelSetUser from '../fun/del_set_user';
+import { useAtom } from 'jotai';
+import funAddSetUser from '../fun/add_set_user';
 import toast from 'react-simple-toasts';
-import { funLogUser } from '../..';
 
-export default function ModalDelSetUser({ id, onSuccess }: { id: any, onSuccess: (val: any) => void }) {
+export default function ModalAddSetUser({ dataUser }: { dataUser: any }) {
+  const router = useRouter()
   const [valOpenModal, setOpenModal] = useAtom(isModalSetUser)
 
-  async function delRole() {
-    const del = await funDelSetUser({ id: id })
-    if (!del.success) return toast(del.message, { theme: "dark" })
-    await funLogUser({act:"DELETE", desc:`User Delete Data User ${id}`})
-    toast("Success", { theme: "dark" });
+  async function addetUser() {
+    const res = await funAddSetUser({ data: dataUser });
+    if (!res.success) return toast(res.message);
+    toast("Success");
+    router.push("/dashboard-admin/setting-user")
     setOpenModal(false);
-    onSuccess(del.delData)
   }
+
   return (
     <>
       <Box>
         <Alert color="gray" variant="outline">
-          <Text fw={700} ta={"center"} mb={20} mt={20}>ARE YOU SURE TO DELETE THIS SETTING USER?</Text>
+          <Text fw={700} ta={"center"} mb={20} mt={20}>ARE YOU SURE TO ADD THIS SETTING USER?</Text>
           <Group justify="space-between" pt={10}>
             <Button
-
               radius={10}
               color="gray.7"
               w={150}
@@ -36,7 +36,7 @@ export default function ModalDelSetUser({ id, onSuccess }: { id: any, onSuccess:
               radius={10}
               color="gray.7"
               w={150}
-              onClick={delRole}
+              onClick={addetUser}
             >
               YES
             </Button>
@@ -46,3 +46,4 @@ export default function ModalDelSetUser({ id, onSuccess }: { id: any, onSuccess:
     </>
   );
 }
+
