@@ -75,8 +75,8 @@ export default function ViewAdminAudience({ param, provinsi, datatable, datadown
                                 borderRadius: 10,
                                 paddingTop: 40,
                                 paddingBottom: 40,
-                                paddingLeft:30,
-                                paddingRight:30,
+                                paddingLeft: 30,
+                                paddingRight: 30,
                                 cursor: "pointer",
                             }}
                             onClick={() => router.push("/dashboard-admin/audience/upload")}
