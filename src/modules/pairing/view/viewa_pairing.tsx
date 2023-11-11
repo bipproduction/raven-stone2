@@ -1,11 +1,33 @@
 "use client"
+import { funGetOnePaslon } from '@/modules/_global';
 import PageSubTitle from '@/modules/_global/front/components/PageSubtitle';
 import { WARNA } from '@/modules/_global/fun/COLOR';
 import DetailRegionalDataPairing from '@/modules/emotion/front/components/detail_regional_data_pairing';
 import { Box, Button, Grid, Group, Image, ScrollArea, Select, SimpleGrid, Stack, Text } from '@mantine/core';
-import React from 'react';
+import React, { useState } from 'react';
 
-export default function ViewaPairing() {
+export default function ViewaPairing({ paslon, provinsi, cpaslon, data }: { paslon: any, provinsi: any, cpaslon: any, data: any }) {
+  const [isData, setData] = useState(data)
+  const [isPaslon, setPaslon] = useState(1)
+  const [isProvinsi, setProvinsi] = useState(null)
+
+  console.log('data di view', isData)
+
+  const [isCapres, setCapres] = useState(cpaslon.nameCapres.toUpperCase())
+  const [isImgCapres, setImgCapres] = useState(`/img/candidate/${cpaslon.imgCapres}`)
+  const [isCawapres, setCawapres] = useState(cpaslon.nameCawapres.toUpperCase())
+  const [isImgCawapres, setImgCawapres] = useState(`/img/candidate/${cpaslon.imgCawapres}`)
+
+
+  async function onGenerate() {
+    const dataLoadPaslon = await funGetOnePaslon({ paslon: isPaslon })
+    setCapres((dataLoadPaslon?.nameCapres.toUpperCase()))
+    setCawapres((dataLoadPaslon?.nameCawapres.toUpperCase()))
+    setImgCapres(`/img/candidate/${dataLoadPaslon?.imgCapres}`)
+    setImgCawapres(`/img/candidate/${dataLoadPaslon?.imgCawapres}`)
+
+  }
+
   return (
     <>
       <Stack>
@@ -21,14 +43,23 @@ export default function ViewaPairing() {
         >
           <Group justify='flex-end'>
             <Select
-              placeholder='Select Region'
-              data={['Bali', 'Jawa Barat', "Jawa Timur"]}
+              placeholder="Select Region"
+              data={provinsi.map((pro: any) => ({
+                value: String(pro.id),
+                label: pro.name
+              }))}
+              value={isProvinsi}
+              onChange={(val: any) => setProvinsi(val)}
             />
-            <Select
-              placeholder='Select Candidate'
-              data={['Prabowo x Gibran', 'Ganjar x Mahfud MD', "Anis x Muhaimin"]}
+            <Select placeholder='Candidate'
+              data={paslon.map((pro: any) => ({
+                value: String(pro.id),
+                label: pro.name
+              }))}
+              value={isPaslon.toString()}
+              onChange={(val: any) => { setPaslon(val) }}
             />
-            <Button bg={"white"} c={"dark"} radius={"lg"}>GENERATE</Button>
+            <Button bg={"white"} c={"dark"} radius={"lg"} onClick={onGenerate}>GENERATE</Button>
           </Group>
         </Box>
         <Grid pt={20} gutter={40}>
@@ -39,15 +70,15 @@ export default function ViewaPairing() {
               verticalSpacing={{ base: 'md', sm: 'xl' }}
             >
               <Box>
-                <Image alt='candidate' src={"/candidate/c1.png"} maw={"auto"} mx="auto" />
+                <Image alt='candidate' src={isImgCapres} maw={"auto"} mx="auto" />
                 <Box pt={10}>
-                  <Text ta={'center'} fw={'bold'} c={"white"}>PRABOWO SUBIANTO</Text>
+                  <Text ta={'center'} fw={'bold'} c={"white"}>{isCapres}</Text>
                 </Box>
               </Box>
               <Box>
-                <Image alt='candidate' src="/candidate/c2.png" maw={"auto"} mx="auto" />
+                <Image alt='candidate' src={isImgCawapres} maw={"auto"} mx="auto" />
                 <Box pt={10}>
-                  <Text ta={'center'} fw={'bold'} c={"white"}>GIBRAN RAKABUMING</Text>
+                  <Text ta={'center'} fw={'bold'} c={"white"}>{isCawapres}</Text>
                 </Box>
               </Box>
             </SimpleGrid>
@@ -68,9 +99,11 @@ export default function ViewaPairing() {
           </Grid.Col>
           <Grid.Col span={{ md: 7, lg: 7 }}>
             <ScrollArea h={600}>
-              <Box>
-                <DetailRegionalDataPairing />
-              </Box>
+              {isData.map((v: any, i: any) => (
+                <Box key={i}>
+                  <DetailRegionalDataPairing data={v} />
+                </Box>
+              ))}
             </ScrollArea>
           </Grid.Col>
         </Grid>

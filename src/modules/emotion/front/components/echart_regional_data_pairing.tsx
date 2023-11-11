@@ -8,23 +8,7 @@ const provinsi = [
   {
     id: 1,
     name: 'ACEH',
-  },
-  {
-    id: 2,
-    name: 'BALI',
-  },
-  {
-    id: 3,
-    name: 'JAWA TIMUR',
-  },
-  {
-    id: 4,
-    name: 'JAWA TENGAH',
-  },
-  {
-    id: 5,
-    name: 'JAWA BARAT',
-  },
+  }
 
 ]
 
@@ -139,11 +123,10 @@ export default function EchartRegionalDataPairing() {
   }
   return (
     <>
-    {provinsi.map((item) => {
-      return(
-      <Box key={item.id}>
+    
+      <Box>
         <Box>
-        <Text c={"white"} fw={"bold"} fz={30}>{item.name}</Text>
+        <Text c={"white"} fw={"bold"} fz={30}>ACEH</Text>
         </Box>
         <Group justify='flex-end' >
           <Text c={"white"} fw={'bold'}>SENTIMENT ANALYSIS</Text>
@@ -152,8 +135,6 @@ export default function EchartRegionalDataPairing() {
         <EChartsReact style={{ width: "100%" }} option={options} />
         </Box>
       </Box>
-      )
-    })}
     </>
   );
 }
