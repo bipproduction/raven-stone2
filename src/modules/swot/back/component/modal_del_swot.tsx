@@ -5,6 +5,7 @@ import { useAtom } from "jotai"
 import toast from "react-simple-toasts"
 import { isModalSwot } from "../val/modal_swot"
 import funDelSwotById from "../fun/del_swot_by_id"
+import { funLogUser } from "@/modules/user"
 
 
 export default function ModalDeleteSwot({ id, onSuccess }: { id: any, onSuccess: (val: any) => void }) {
@@ -12,6 +13,7 @@ export default function ModalDeleteSwot({ id, onSuccess }: { id: any, onSuccess:
 
     async function onDelete() {
         await funDelSwotById({ idData: id })
+        await funLogUser({act:"DELETE", desc:`User Deletes Data Swot With User ID  ${id}`})
         toast('Success', { theme: 'dark' })
         setOpenModal(false)
         onSuccess(true)

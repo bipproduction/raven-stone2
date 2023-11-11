@@ -119,7 +119,7 @@ export default function ViewEditSettingUser({ roleUser, data }: { roleUser: any,
         withCloseButton={false}
         closeOnClickOutside={false}
       >
-        <ModalEditSetUser data={dataUser}/>
+        <ModalEditSetUser data={dataUser} id={dataUser.idUserRole}/>
       </Modal>
     </>
   );

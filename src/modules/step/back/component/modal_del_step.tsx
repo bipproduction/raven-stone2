@@ -5,6 +5,7 @@ import { useAtom } from "jotai"
 import toast from "react-simple-toasts"
 import { isModalStep } from "../val/modal_step"
 import funDelStepById from "../fun/del_step"
+import { funLogUser } from "@/modules/user"
 
 
 export default function ModalDeleteStep({ id, onSuccess }: { id: any, onSuccess: (val: any) => void }) {
@@ -12,6 +13,7 @@ export default function ModalDeleteStep({ id, onSuccess }: { id: any, onSuccess:
 
     async function onDelete() {
         await funDelStepById({ idData: id })
+        await funLogUser({ act: "DELETE", desc: `User Deletes Data Step With User ID ${id}` })
         toast('Success', { theme: 'dark' })
         setOpenModal(false)
         onSuccess(true)

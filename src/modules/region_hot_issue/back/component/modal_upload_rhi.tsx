@@ -5,6 +5,7 @@ import { useAtom } from "jotai"
 import toast from "react-simple-toasts"
 import { isModalRhi } from "../val/modal_rhi"
 import funUploadRhi from "../fun/upload_rhi"
+import { funLogUser } from "@/modules/user"
 
 
 export default function ModalUploadRhi({ data, onSuccess }: { data: any, onSuccess: (val: any) => void }) {
@@ -12,6 +13,7 @@ export default function ModalUploadRhi({ data, onSuccess }: { data: any, onSucce
 
     async function onUpload() {
         await funUploadRhi({ body: data })
+        await funLogUser({ act: "UPLOAD", desc: `User Uploads Data Public Concerns Trends` })
         toast('Success', { theme: 'dark' })
         setOpenModal(false)
         onSuccess(true)

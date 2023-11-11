@@ -4,6 +4,7 @@ import { isModalRoleUser } from '../val/isModalUserRole';
 import { Alert, Box, Button, Group, Text } from '@mantine/core';
 import funDelUserRole from '../fun/delete_user_role';
 import toast from 'react-simple-toasts';
+import { funLogUser } from '../..';
 
 export default function ModalUserRole({ id, onSuccess }: { id: any, onSuccess: (val: any) => void }) {
   const [valOpenModal, setOpenModal] = useAtom(isModalRoleUser)
@@ -11,6 +12,7 @@ export default function ModalUserRole({ id, onSuccess }: { id: any, onSuccess: (
   async function delRole() {
     const del = await funDelUserRole({ id: id })
     if (!del.success) return toast(del.message, { theme: "dark" })
+    await funLogUser({act:"DELETE", desc:`User Deletes Data Role With User ID  ${id}`})
     toast("Success", { theme: "dark" });
     setOpenModal(false);
     onSuccess(del.delData)

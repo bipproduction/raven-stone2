@@ -2,7 +2,7 @@
 
 import { prisma } from "@/modules/_global"
 import { UserLog } from "@prisma/client";
-import _ from "lodash"
+import _, { ceil } from "lodash"
 
 export default async function funGetLogUser({ body }: { body: any }) {
 
@@ -15,7 +15,7 @@ export default async function funGetLogUser({ body }: { body: any }) {
         skip: dataSkip,
         take: 25,
         where: {
-            idUser: body.id,
+            idUser: body.User,
             createdAt: {
                 lte: new Date(tglAwal).toISOString(),
                 gte: new Date(tglAkhir).toISOString(),
@@ -36,13 +36,22 @@ export default async function funGetLogUser({ body }: { body: any }) {
     const result = data.map((v) => ({
         ..._.omit(v, ['User']),
         name: v.User.name,
+
     }))
 
-    // const result = data.map((v) => ({
-    //     ..._.omit(v, ['User']),
-    //     name: v.User.name,
-    // }))
+    // const nData= await prisma.userLog.count({
+    //     where: {
+    //         isActive: true,
+    //         idUser: body.User,
+    //     }
+    // })
 
-    console.log(result)
+
+    // const allData = {
+    //     data : result,
+    //     nPage: ceil(nData / 25)
+    // }
+    // console.log(result)
+
     return result
 }

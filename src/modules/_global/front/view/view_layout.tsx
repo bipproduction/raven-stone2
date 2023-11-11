@@ -1,12 +1,15 @@
 "use client"
 import React, { useState } from 'react';
 import { useDisclosure, useShallowEffect } from '@mantine/hooks';
-import { AppShell, BackgroundImage, Box, Burger, Center, Divider, Grid, Group, Image, NavLink, Skeleton, Text, Title } from '@mantine/core';
+import { AppShell, BackgroundImage, Box, Burger, Center, Divider, Grid, Group, Image, Modal, NavLink, Skeleton, Text, Title } from '@mantine/core';
 import { usePathname, useRouter } from 'next/navigation';
 import { WARNA } from '../../fun/COLOR';
 import { funLogUser } from '@/modules/user';
 import { funLogout } from '@/modules/auth';
 import toast from 'react-simple-toasts';
+import { useAtom } from 'jotai';
+import { isModalLayoutUser } from '../val/isModalLayoutUser';
+import ModalLogoutUser from '../components/modal_logout_user';
 
 const dataFront = [
   {
@@ -70,6 +73,7 @@ const settingName = [
  * @returns {component} menampilakn layout dashboard.
  */
 export default function ViewLayout({ children }: { children: React.ReactNode }) {
+  const [valOpenModal, setOpenModal] = useAtom(isModalLayoutUser)
   const [opened, { toggle }] = useDisclosure();
   const router = useRouter();
   const pathname = usePathname();
@@ -79,12 +83,7 @@ export default function ViewLayout({ children }: { children: React.ReactNode }) 
     setActive(pathname);
   });
 
-  async function logoutYes() {
-    await funLogUser({ act: 'LOGOUT', desc: 'User logout dari sistem' })
-    await funLogout()
-    toast("Logout Success", { theme: "dark" })
-    router.push('/')
-}
+
 
 
   return (
@@ -147,35 +146,35 @@ export default function ViewLayout({ children }: { children: React.ReactNode }) 
               <AppShell.Section >
                 {/* {settingName.map((item) => {
                   return ( */}
-                    <Box key="8" m={'xs'}>
-                      <NavLink
-                        label={<Text>SETTING</Text>}
-                        childrenOffset={28}
-                        c={'SETTING' ? "white" : "dark"}
-                        variant="subtle"
-                        active
-                        style={{
-                          position: "absolute",
-                          bottom: 160,
-                          left: 0,
-                        }}
-                      >
-                        <NavLink
-                          label={<Text>LOGOUT</Text>}
-                          c={'SETTING' ? "white" : "dark"}
-                          variant="subtle"
-                          active
-                          style={{
-                            position: "absolute",
-                            bottom: 120,
-                            left: 0,
-                          }}
-                          pl={50}
-                          onClick={()=>{logoutYes()}}
-                        />
-                      </NavLink>
-                    </Box>
-                  {/* )
+                <Box key="8" m={'xs'}>
+                  <NavLink
+                    label={<Text>SETTING</Text>}
+                    childrenOffset={28}
+                    c={'SETTING' ? "white" : "dark"}
+                    variant="subtle"
+                    active
+                    style={{
+                      position: "absolute",
+                      bottom: 160,
+                      left: 0,
+                    }}
+                  >
+                    <NavLink
+                      label={<Text>LOGOUT</Text>}
+                      c={'SETTING' ? "white" : "dark"}
+                      variant="subtle"
+                      active
+                      style={{
+                        position: "absolute",
+                        bottom: 120,
+                        left: 0,
+                      }}
+                      pl={50}
+                      onClick={() => { setOpenModal(true) }}
+                    />
+                  </NavLink>
+                </Box>
+                {/* )
                 })} */}
               </AppShell.Section>
             </Box>
@@ -197,6 +196,15 @@ export default function ViewLayout({ children }: { children: React.ReactNode }) 
           </Box>
         </AppShell.Main>
       </AppShell>
+      <Modal
+        opened={valOpenModal}
+        onClose={() => setOpenModal(false)}
+        centered
+        withCloseButton={false}
+        closeOnClickOutside={false}
+      >
+        <ModalLogoutUser/>
+      </Modal>
     </>
   );
 }

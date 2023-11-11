@@ -5,12 +5,14 @@ import { useAtom } from "jotai"
 import toast from "react-simple-toasts"
 import { isModalLta } from "../val/modal_lta"
 import funUploadLta from "../fun/upload_lta"
+import { funLogUser } from "@/modules/user"
 
 export default function ModalUploadLta({ data, onSuccess }: { data: any, onSuccess: (val: any) => void }) {
     const [openModal, setOpenModal] = useAtom(isModalLta)
 
     async function onUpload() {
         await funUploadLta({ body: data })
+        await funLogUser({ act: "UPLOAD", desc: `User Uploads Data Leader Trait Assessment` })
         toast('Success', { theme: 'dark' })
         setOpenModal(false)
         onSuccess(true)

@@ -5,14 +5,16 @@ import { isModalSetUser } from '../val/isModaSetUser';
 import { useAtom } from 'jotai';
 import funAddSetUser from '../fun/add_set_user';
 import toast from 'react-simple-toasts';
+import { funLogUser } from '../..';
 
-export default function ModalAddSetUser({ dataUser }: { dataUser: any }) {
+export default function ModalAddSetUser({ dataUser, id }: { dataUser: any, id: any }) {
   const router = useRouter()
   const [valOpenModal, setOpenModal] = useAtom(isModalSetUser)
 
   async function addetUser() {
     const res = await funAddSetUser({ data: dataUser });
     if (!res.success) return toast(res.message);
+    await funLogUser({act:"ADD", desc:`User Add Data Setting User With User ID  ${id}`})
     toast("Success");
     router.push("/dashboard-admin/setting-user")
     setOpenModal(false);

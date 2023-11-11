@@ -5,6 +5,7 @@ import { useAtom } from "jotai"
 import toast from "react-simple-toasts"
 import { isModalJokowi } from "../val/modal_jokowi"
 import funDelEffectById from "../fun/del_effect_by_id"
+import { funLogUser } from "@/modules/user"
 
 
 export default function ModalDeleteJokowi({ id, onSuccess }: { id: any, onSuccess: (val: any) => void }) {
@@ -12,6 +13,7 @@ export default function ModalDeleteJokowi({ id, onSuccess }: { id: any, onSucces
 
     async function onDelete() {
         await funDelEffectById({ idData: id })
+        await funLogUser({ act: "DELETE", desc: `User Deletes Data Jokowi Effect With User ID ${id}` })
         toast('Success', { theme: 'dark' })
         setOpenModal(false)
         onSuccess(true)

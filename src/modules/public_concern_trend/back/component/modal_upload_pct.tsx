@@ -5,12 +5,14 @@ import { useAtom } from "jotai"
 import toast from "react-simple-toasts"
 import { isModalPct } from "../val/modal_pct"
 import funUploadPct from "../fun/upload_pct"
+import { funLogUser } from "@/modules/user"
 
 export default function ModalUploadPct({ data, onSuccess }: { data: any, onSuccess: (val: any) => void }) {
     const [openModal, setOpenModal] = useAtom(isModalPct)
 
     async function onUpload() {
         await funUploadPct({ body: data })
+        await funLogUser({ act: "UPLOAD", desc: `User Uploads Data Public Concerns Trends` })
         toast('Success', { theme: 'dark' })
         setOpenModal(false)
         onSuccess(true)

@@ -5,6 +5,7 @@ import { useAtom } from "jotai"
 import toast from "react-simple-toasts"
 import { isModalSwot } from "../val/modal_swot"
 import funUploadSwot from "../fun/upload_swot"
+import { funLogUser } from "@/modules/user"
 
 
 
@@ -14,6 +15,7 @@ export default function ModalUploadSwot({ data, onSuccess }: { data: any, onSucc
 
     async function onUpload() {
         await funUploadSwot({ body: data })
+        await funLogUser({ act: "UPLOAD", desc: `User Uploads Data Swot` })
         toast('Success', { theme: 'dark' })
         setOpenModal(false)
         onSuccess(true)

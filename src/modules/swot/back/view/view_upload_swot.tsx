@@ -172,7 +172,7 @@ export default function ViewUploadSwot() {
                 withCloseButton={false}
                 closeOnClickOutside={false}
             >
-                <ModalUploadSwot data={json} onSuccess={(val) => {
+                <ModalUploadSwot data={json}   onSuccess={(val) => {
                     setJson([])
                 }} />
             </Modal>

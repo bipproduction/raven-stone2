@@ -5,6 +5,7 @@ import { useAtom } from "jotai"
 import toast from "react-simple-toasts"
 import { isModalJokowi } from "../val/modal_jokowi"
 import funUploadEffect from "../fun/upload_effect"
+import { funLogUser } from "@/modules/user"
 
 
 
@@ -16,6 +17,7 @@ export default function ModalUploadJokowi({ data, onSuccess }: { data: any, onSu
 
     async function onUpload() {
         await funUploadEffect({ body: data })
+        await funLogUser({ act: "DELETE", desc: `User Deletes Data Jokowi Effect` })
         toast('Success', { theme: 'dark' })
         setOpenModal(false)
         onSuccess(true)

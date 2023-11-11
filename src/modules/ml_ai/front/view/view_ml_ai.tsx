@@ -112,30 +112,35 @@ export default function ViewMlAi({ data, paslon, cpaslon }: { data: any, paslon:
 
                                     })
                                 }
-                                {/* <Menu shadow="md" width={200}>
+                                <Menu shadow="md" width={200}>
                                     <Menu.Target>
                                         <ActionIcon variant="subtle" color="rgba(255, 255, 255, 1)" aria-label="Settings">
                                             <HiDotsHorizontal style={{ width: '70%', height: '70%' }} stroke={1.5} />
                                         </ActionIcon>
                                     </Menu.Target>
-                                    <Menu.Dropdown bg={"#230D37"}>
+                                    <Menu.Dropdown>
                                         <Menu.Item bg={"#230D37"}>
-                                            <Button variant='subtle' fullWidth c={"white"}>16.30</Button>
+                                            <Text ta={"center"} c={"white"} fz={16}>
+                                                16.31
+                                            </Text>
                                         </Menu.Item>
-                                        <Menu.Item bg={"#230D37"}>
-                                            <Button variant='subtle' fullWidth c={"white"}>17.30</Button>
+                                        <Menu.Item bg={"#230D37"} mt={5}>
+                                            <Text ta={"center"} c={"white"} fz={16}>
+                                                18.33
+                                            </Text>
                                         </Menu.Item>
-                                        <Menu.Item bg={"#230D37"}>
-                                            <Button variant='subtle' fullWidth c={"white"}>18.30</Button>
+                                        <Menu.Item bg={"#230D37"} mt={5}>
+                                            <Text ta={"center"} c={"white"} fz={16}>
+                                                19.45
+                                            </Text>
                                         </Menu.Item>
-                                        <Menu.Item bg={"#230D37"}>
-                                            <Button variant='subtle' fullWidth c={"white"}>19.30</Button>
-                                        </Menu.Item>
-                                        <Menu.Item bg={"#230D37"}>
-                                            <Button variant='subtle' fullWidth c={"white"}>20.30</Button>
+                                        <Menu.Item bg={"#230D37"} mt={5}>
+                                            <Text ta={"center"} c={"white"} fz={16}>
+                                                21.23
+                                            </Text>
                                         </Menu.Item>
                                     </Menu.Dropdown>
-                                </Menu> */}
+                                </Menu>
                             </Group>
                         </Box>
                         {dataMlai.map((item: any) => {

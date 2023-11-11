@@ -5,14 +5,17 @@ import React from 'react';
 import { isModalRoleUser } from '../val/isModalUserRole';
 import funAddUserRole from '../fun/add_role_user';
 import toast from 'react-simple-toasts';
+import { funLogUser } from '../..';
+import { AnyNaptrRecord } from 'dns';
 
-export default function ModalAddUserRole({isName, value}: {isName: any, value: any}) {
+export default function ModalAddUserRole({isName, value,}: {isName: any, value: any}) {
   const router = useRouter()
   const [valOpenModal, setOpenModal] = useAtom(isModalRoleUser)
 
   async function addRole() {
     const create = await funAddUserRole({ name: isName, component: value })
     if (!create.success) return toast(create.message, { theme: "dark" });
+    await funLogUser({act:"ADD", desc:`User Add Data Role With User`})
     router.push("/dashboard-admin/role-user")
     setOpenModal(false);
   }

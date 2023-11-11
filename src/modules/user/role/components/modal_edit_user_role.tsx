@@ -6,6 +6,7 @@ import { isModalRoleUser } from '../val/isModalUserRole';
 import funUpdateUserRole from '../fun/update_user_role';
 import toast from 'react-simple-toasts';
 import { useRouter } from 'next/navigation';
+import { funLogUser } from '../..';
 
 export default function ModalEditUserRole({ name, component, id }: {name: any, component: any, id: any }) {
   const [valOpenModal, setOpenModal] = useAtom(isModalRoleUser)
@@ -14,6 +15,7 @@ export default function ModalEditUserRole({ name, component, id }: {name: any, c
   async function updateData() {
     const edit = await funUpdateUserRole({ name: name, id: id, component: component })
     if (!edit.success) return toast(edit.message, { theme: "dark" });
+    await funLogUser({act:"EDIT", desc:`User Edit Data Role With User ID  ${id}`})
     toast("Success", { theme: "dark" });
     router.push("/dashboard-admin/role-user")
     setOpenModal(false);

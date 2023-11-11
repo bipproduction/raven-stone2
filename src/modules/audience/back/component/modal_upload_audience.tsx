@@ -5,12 +5,14 @@ import { useAtom } from "jotai"
 import { isModalAudience } from "../val/modal_audience"
 import funUploadAudience from "../fun/upload_audience"
 import toast from "react-simple-toasts"
+import { funLogUser } from "@/modules/user"
 
 export default function ModalUploadAudience({ data, onSuccess }: { data: any, onSuccess: (val: any) => void }) {
     const [openModal, setOpenModal] = useAtom(isModalAudience)
 
     async function onUpload() {
         await funUploadAudience({ body: data })
+        await funLogUser({ act: "UPLOAD", desc: `User Uploads Data Audience` })
         toast('Success', { theme: 'dark' })
         setOpenModal(false)
         onSuccess(true)

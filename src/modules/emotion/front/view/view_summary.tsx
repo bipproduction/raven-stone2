@@ -17,9 +17,9 @@ export default function ViewSummary() {
     <>
       <PageSubTitle text1='EMOTIONAL' text2='SPECTRUM CHART' />
       <Stack pt={10}>
-        <ViewSummaryCandidate/>
+        <ViewSummaryCandidate />
         <Box pt={20}>
-          <JokowiEffectSummary/>
+          <JokowiEffectSummary />
         </Box>
       </Stack>
     </>

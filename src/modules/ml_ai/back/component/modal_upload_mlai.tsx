@@ -5,6 +5,7 @@ import { useAtom } from "jotai"
 import toast from "react-simple-toasts"
 import { isModalMlai } from "../val/modal_mlai"
 import funUploadMlai from "../fun/upload_mlai"
+import { funLogUser } from "@/modules/user"
 
 
 
@@ -15,6 +16,7 @@ export default function ModalUploadMlai({ data, onSuccess }: { data: any, onSucc
 
     async function onUpload() {
         await funUploadMlai({ body: data })
+        await funLogUser({act:"UPLOAD", desc:`User UPLOAD, Data ML AI`})
         toast('Success', { theme: 'dark' })
         setOpenModal(false)
         onSuccess(true)
