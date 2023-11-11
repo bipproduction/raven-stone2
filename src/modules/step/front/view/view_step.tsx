@@ -25,6 +25,7 @@ export default function ViewStep({ kandidate, stepCandidate, cCandidate }: { kan
     setData(dataS)
   }
 
+
   return (
     <>
       <Stack>
