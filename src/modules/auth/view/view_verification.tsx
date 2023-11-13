@@ -1,5 +1,4 @@
 "use client";
-import { WARNA } from "@/modules/_global/fun/COLOR";
 import {
   Anchor,
   Box,
@@ -17,6 +16,7 @@ import { isCode, isIdUser, isPhone } from "../val/val_auth";
 import toast from "react-simple-toasts";
 import { funSetCookies } from "../fun/set_cookies";
 import { funLogUser } from "@/modules/user";
+import { WARNA } from "@/modules/_global";
 
 
 /**

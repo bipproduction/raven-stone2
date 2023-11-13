@@ -3,6 +3,7 @@ import funGetPopularityByDate from "./back/fun/get_popularity_by_date";
 import ViewAdminPopularity from "./back/view/view_admin_popularity";
 import ViewCopyPopularity from "./back/view/view_copy_popularity";
 import ViewUploadPopularity from "./back/view/view_upload_popularity";
+import funGetRateFront from "./front/fun/get_rate";
 import ViewNationalPopularityMetric from "./front/view/view_national_popularity_metric";
 
 export { ViewNationalPopularityMetric }
@@ -11,3 +12,4 @@ export { funGetPopularityByDate }
 export { funDownloadPopularityByDate }
 export { ViewUploadPopularity }
 export { ViewCopyPopularity }
+export { funGetRateFront }
