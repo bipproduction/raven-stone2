@@ -6,7 +6,7 @@ import _ from "lodash"
 export default async function funGetPairingFront({ paslon, region }: { paslon: any, region?: any }) {
     let kondisi
 
-    if (_.isUndefined(region)) {
+    if (_.isUndefined(region) || _.isNull(region)) {
         kondisi = {
             idPaslon: Number(paslon),
             dateEmotion: new Date(),
