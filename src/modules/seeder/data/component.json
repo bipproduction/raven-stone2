@@ -1,0 +1,114 @@
+[
+    {
+        "id": 1,
+        "keyMenu": "md0",
+        "menu": "Admin Emotion Editor Paslon",
+        "name": "",
+        "label": "Emotion Editor Paslon"
+    },
+    {
+        "id": 2,
+        "keyMenu": "md1",
+        "menu": "Admin Emotion Editor Candidate",
+        "name": "",
+        "label": "Emotion Editor Candidate"
+    },
+    {
+        "id": 3,
+        "keyMenu": "md2",
+        "menu": "Admin National Popularity",
+        "name": "",
+        "label": "National Popularity"
+    },
+    {
+        "id": 4,
+        "keyMenu": "md3",
+        "menu": "Admin Audience",
+        "name": "",
+        "label": "Audience"
+    },
+    {
+        "id": 5,
+        "keyMenu": "md4",
+        "menu": "Admin Public Concern Trend",
+        "name": "",
+        "label": "Public Concern Trend"
+    },
+    {
+        "id": 6,
+        "keyMenu": "md5",
+        "menu": "Admin Leader Trait Assessment",
+        "name": "",
+        "label": "Leader Trait Assessment"
+    },
+    {
+        "id": 7,
+        "keyMenu": "md6",
+        "menu": "Admin Region Hot Issues",
+        "name": "",
+        "label": "Region Hot Issues"
+    },
+    {
+        "id": 8,
+        "keyMenu": "md7",
+        "menu": "Admin Step",
+        "name": "",
+        "label": "Step"
+    },
+    {
+        "id": 9,
+        "keyMenu": "md8",
+        "menu": "Admin Swot",
+        "name": "",
+        "label": "Swot"
+    },
+    {
+        "id": 10,
+        "keyMenu": "md9",
+        "menu": "Admin Ml-Ai",
+        "name": "",
+        "label": "Ml-Ai"
+    },
+    {
+        "id": 11,
+        "keyMenu": "md10",
+        "menu": "Admin Jokowi Effect",
+        "name": "",
+        "label": "Jokowi Effect"
+    },
+    {
+        "id": 12,
+        "keyMenu": "md11",
+        "menu": "Admin Seeder",
+        "name": "",
+        "label": "Seeder"
+    },
+    {
+        "id": 13,
+        "keyMenu": "md12",
+        "menu": "Admin Log User",
+        "name": "",
+        "label": "Log User"
+    },
+    {
+        "id": 14,
+        "keyMenu": "md13",
+        "menu": "Admin Role User",
+        "name": "",
+        "label": "Role User"
+    },
+    {
+        "id": 15,
+        "keyMenu": "md14",
+        "menu": "Admin Setting User",
+        "name": "",
+        "label": "Setting User"
+    },
+    {
+        "id": 16,
+        "keyMenu": "md15",
+        "menu": "User Dashboard",
+        "name": "",
+        "label": "User Dashboard"
+    }
+]

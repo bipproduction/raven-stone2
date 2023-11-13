@@ -3,10 +3,12 @@ import React from 'react';
 import { MantineProvider, ColorSchemeScript } from '@mantine/core';
 import { theme } from '../../theme';
 import '@mantine/core/styles.css';
+import "@mantine/dates/styles.css";
+import 'react-simple-toasts/dist/theme/dark.css'
 
 export const metadata = {
-  title: 'Mantine Next.js template',
-  description: 'I am using Mantine with Next.js!',
+  title: 'Raven Stone',
+  description: 'Raven Stone',
 };
 
 export default function RootLayout({ children }: { children: any }) {
@@ -17,7 +19,7 @@ export default function RootLayout({ children }: { children: any }) {
         <link rel="shortcut icon" href="/favicon.svg" />
         <meta
           name="viewport"
-          content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no"
+          content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=yes"
         />
       </head>
       <body>
