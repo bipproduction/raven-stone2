@@ -1,17 +1,19 @@
+import { COLOR_EMOTION } from '@/modules/_global';
 import { Box } from '@mantine/core';
 import { useShallowEffect } from '@mantine/hooks';
 import { EChartsOption } from 'echarts';
 import EChartsReact from 'echarts-for-react';
-import React, { useState } from 'react';
+import _ from 'lodash';
+import React, { useEffect, useState } from 'react';
 
-export default function EchartBarPopularity() {
-  const [options, setOptions] = useState<EChartsOption>({});
+export default function EchartBarPopularity({ emotion }: { emotion: any }) {
+  const [options, setOptions] = useState<EChartsOption>({})
 
-  useShallowEffect(() => {
-    loadData()
-  }, [])
+  useEffect(() => {
+    loadData(emotion)
+  }, [emotion])
 
-  const loadData = () => {
+  const loadData = (dataEmotion: any) => {
     const option: EChartsOption = {
       legend: {
         textStyle: {
@@ -37,64 +39,18 @@ export default function EchartBarPopularity() {
           name: 'Access From',
           type: 'pie',
           radius: '100%',
-          data: [
-            { 
-              value: 48, 
-              name: 'Confidence' ,
-              itemStyle:{
-                color: "#026D00"
-              }
-            },
-            { 
-              value: 35, 
-              itemStyle:{
-                color: "#62A334"
+          data: Object.keys(dataEmotion ?? []).map(
+            (v: any) =>
+            ({
+              name: v,
+              value: dataEmotion[v],
+              itemStyle: {
+                color:
+                  COLOR_EMOTION.find((v2) => _.lowerCase(v2.name) == v)
+                    ?.color ?? "gray",
               },
-              name: 'Supportive' 
-            },
-            { 
-              value: 80, 
-              itemStyle:{
-                color: "#62C63F"
-              },
-              name: 'Positive' 
-            },
-            { 
-              value: 48, 
-              itemStyle:{
-                color: "#8EE886"
-              },
-              name: 'Undecided' 
-            },
-            { 
-              value: 30, 
-              itemStyle:{
-                color: "#ED8C8C"
-              },
-              name: 'Unsupportive' 
-            },
-            { 
-              value: 30, 
-              itemStyle:{
-                color: "#D13232"
-              },
-              name: 'Uncomfortable' 
-            },
-            { 
-              value: 30, 
-              itemStyle:{
-                color: "#DD0202"
-              },
-              name: 'Negative' 
-            },
-            { 
-              value: 20, 
-              itemStyle:{
-                color: "#790000"
-              },
-              name: 'Disapproval'
-             },
-          ],
+            })
+          ),
           width: "68%",
           right: "80%",
           left: "0%",
