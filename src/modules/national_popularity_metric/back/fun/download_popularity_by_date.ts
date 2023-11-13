@@ -13,6 +13,7 @@ export default async function funDownloadPopularityByDate({ date }: { date: any 
             dateEmotion: date
         },
         select: {
+            id: true,
             idPaslon: true,
             timeEmotion: true,
             rate: true,
@@ -40,7 +41,7 @@ export default async function funDownloadPopularityByDate({ date }: { date: any 
             idPaslon: v.idPaslon,
             paslon: v.Paslon.nameCapres + ' - ' + v.Paslon.nameCawapres,
             date: moment(date).format('YYYY-MM-DD'),
-            time: moment(v.timeEmotion).format('HH:mm'),
+            time: moment.utc(v.timeEmotion).format('HH:mm'),
             rate: v.rate,
             confidence: v.confidence,
             supportive: v.supportive,
@@ -51,6 +52,7 @@ export default async function funDownloadPopularityByDate({ date }: { date: any 
             negative: v.negative,
             dissapproval: v.dissapproval
         }))
+
     } else {
         const dPaslon = await funGetAllPaslon()
         result = dPaslon.map((v: any) => ({

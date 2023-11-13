@@ -288,14 +288,14 @@ model PaslonPopularity {
   dateEmotion   DateTime  @db.Date
   timeEmotion   DateTime? @db.Time
   rate          Float
-  confidence    Int
-  supportive    Int
-  positive      Int
-  undecided     Int
-  unsupportive  Int
-  uncomfortable Int
-  negative      Int
-  dissapproval  Int
+  confidence    Float
+  supportive    Float
+  positive      Float
+  undecided     Float
+  unsupportive  Float
+  uncomfortable Float
+  negative      Float
+  dissapproval  Float
   isActive      Boolean   @default(true)
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt

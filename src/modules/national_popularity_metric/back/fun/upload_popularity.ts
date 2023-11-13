@@ -61,15 +61,15 @@ export default async function funUploadPopularity({ body }: { body: any }) {
                     id: i.id
                 },
                 data: {
-                    rate: i.rate,
-                    confidence: i.confidence,
-                    supportive: i.supportive,
-                    positive: i.positive,
-                    undecided: i.undecided,
-                    unsupportive: i.unsupportive,
-                    uncomfortable: i.uncomfortable,
-                    negative: i.negative,
-                    dissapproval: i.dissapproval,
+                    rate: Number(i.rate),
+                    confidence: Number(i.confidence),
+                    supportive: Number(i.supportive),
+                    positive: Number(i.positive),
+                    undecided: Number(i.undecided),
+                    unsupportive: Number(i.unsupportive),
+                    uncomfortable: Number(i.uncomfortable),
+                    negative: Number(i.negative),
+                    dissapproval: Number(i.dissapproval),
                 }
             });
         }

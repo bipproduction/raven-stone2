@@ -14,15 +14,16 @@ export default function ModalLogout() {
   async function logoutYes() {
     await funLogUser({ act: 'LOGOUT', desc: 'User logout dari sistem' })
     await funLogout()
+    setOpenModal(false)
     toast("Logout Success", { theme: "dark" })
     router.push('/')
-}
+  }
   return (
     <>
       <Box>
         <Alert color="gray" variant="outline">
           <Text fw={700} ta={"center"} mb={20} mt={20}>
-          ARE YOU SURE YOU WANT TO LOGOUT?
+            ARE YOU SURE YOU WANT TO LOGOUT?
           </Text>
           <Group justify="space-between" pt={10}>
             <Button

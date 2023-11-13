@@ -1,7 +1,7 @@
-import { Box, Center, Flex, Grid, Group, Image, SimpleGrid, Text, Title } from '@mantine/core';
+import { Box, Grid, Image, SimpleGrid, Text } from '@mantine/core';
 import React from 'react';
 
-export default function ViewCandidatePopularity() {
+export default function ViewCandidatePopularity({ dataPaslon, probability }: { dataPaslon: any, probability: any }) {
   return (
     <>
       <Box>
@@ -13,15 +13,15 @@ export default function ViewCandidatePopularity() {
               verticalSpacing={{ base: 'md', sm: 'xl' }}
             >
               <Box>
-                <Image alt='candidate' src={"/candidate/c1.png"} maw={"auto"} mx="auto" />
+                <Image alt='candidate' src={`/img/candidate/${dataPaslon.imgCapres}`} maw={"auto"} mx="auto" />
                 <Box pt={10}>
-                  <Text ta={'center'} fw={'bold'} c={"white"}>PRABOWO SUBIANTO</Text>
+                  <Text ta={'center'} fw={'bold'} c={"white"}>{dataPaslon.nameCapres.toUpperCase()}</Text>
                 </Box>
               </Box>
               <Box>
-                <Image alt='candidate' src={"/candidate/c2.png"} maw={"auto"} mx="auto" />
+                <Image alt='candidate' src={`/img/candidate/${dataPaslon.imgCawapres}`} maw={"auto"} mx="auto" />
                 <Box pt={10}>
-                  <Text ta={'center'} fw={'bold'} c={"white"}>GIBRAN RAKABUMING</Text>
+                  <Text ta={'center'} fw={'bold'} c={"white"}>{dataPaslon.nameCawapres.toUpperCase()}</Text>
                 </Box>
               </Box>
             </SimpleGrid>
@@ -29,14 +29,14 @@ export default function ViewCandidatePopularity() {
           <Grid.Col span={{ md: 7, lg: 7 }}>
             <Grid justify="flex-end" align="center" pt={20}>
               <Grid.Col span={6} >
-                  <Text fz={32} fs="italic" c={"white"}>
-                    SUCCESS
-                    PROBABILITY
-                    PROJECTION
-                  </Text>
+                <Text fz={32} fs="italic" c={"white"}>
+                  SUCCESS
+                  PROBABILITY
+                  PROJECTION
+                </Text>
               </Grid.Col>
               <Grid.Col span={6}>
-                <Text ta={'start'} fw={"bold"} fz={70} c={"#1EBA1B"}>51.05%</Text>
+                <Text ta={'start'} fw={"bold"} fz={70} c={"#1EBA1B"}>{probability}%</Text>
               </Grid.Col>
             </Grid>
           </Grid.Col>
