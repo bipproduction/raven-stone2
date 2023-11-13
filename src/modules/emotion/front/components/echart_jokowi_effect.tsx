@@ -1,9 +1,11 @@
+'use client'
+
 import { useShallowEffect } from '@mantine/hooks'
 import React, { useState } from 'react'
 import { EChartsOption, color } from "echarts";
 import EChartsReact from "echarts-for-react";
 import { Box, Button, Divider, Group } from '@mantine/core';
-import { WARNA } from '@/modules/_global/fun/COLOR';
+import { WARNA } from '@/modules/_global';
 
 
 /**

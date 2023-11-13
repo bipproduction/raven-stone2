@@ -1,6 +1,4 @@
 "use client"
-import PageSubTitle from '@/modules/_global/front/components/PageSubtitle';
-import { WARNA } from '@/modules/_global/fun/COLOR';
 import { Box, Button, Divider, Grid, Group, Image, ScrollArea, SimpleGrid, Stack, Text } from '@mantine/core';
 import { useRouter } from 'next/navigation';
 import React from 'react';
@@ -8,6 +6,7 @@ import { MdNavigateNext } from 'react-icons/md';
 import EchartJokowiEffect from './echart_jokowi_effect';
 import Top10JokowiEffect from './top10_jokowi_effect';
 import { TypeAnimation } from 'react-type-animation';
+import { PageSubTitle, WARNA } from '@/modules/_global';
 
 const data_jokowi = [
   {

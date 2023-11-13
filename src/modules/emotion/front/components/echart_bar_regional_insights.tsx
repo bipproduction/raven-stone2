@@ -1,11 +1,23 @@
+import { COLOR_EMOTION } from '@/modules/_global';
 import { Box, Group, Text } from '@mantine/core';
 import { useShallowEffect } from '@mantine/hooks';
 import { EChartsOption } from 'echarts';
 import EChartsReact from 'echarts-for-react';
+import _ from 'lodash';
 import React, { useState } from 'react';
 
-export default function EchartBarRegionalInsights() {
-  const [options, setOptions] = useState<EChartsOption>({});
+export default function EchartBarRegionalInsights({ dataEmotion }: { dataEmotion: any }) {
+  const [options, setOptions] = useState<EChartsOption>({})
+  const [dataChart, setDataChart] = useState<any>({
+    confidence: Number(dataEmotion.confidence),
+    supportive: Number(dataEmotion.supportive),
+    positive: Number(dataEmotion.positive),
+    undecided: Number(dataEmotion.undecided),
+    unsupportive: Number(dataEmotion.unsupportive),
+    uncomfortable: Number(dataEmotion.uncomfortable),
+    negative: Number(dataEmotion.negative),
+    dissapproval: Number(dataEmotion.dissapproval),
+  })
 
   useShallowEffect(() => {
     loadData()
@@ -47,7 +59,7 @@ export default function EchartBarRegionalInsights() {
           axisLabel: {
             color: "white",
             formatter: (a: any) => {
-              return `${a} %`;
+              return `${a}`;
             },
           },
         }
@@ -57,57 +69,18 @@ export default function EchartBarRegionalInsights() {
           name: 'Direct',
           type: 'bar',
           barWidth: '70%',
-          data: [
-            {
-              value: 30,
+          data: Object.keys(dataChart ?? []).map(
+            (v: any) =>
+            ({
+              name: v,
+              value: dataChart[v],
               itemStyle: {
-                color: '#026D00'
-              }
-            },
-            {
-              value: 33,
-              itemStyle: {
-                color: '#62A334'
-              }
-            },
-            {
-              value: 67,
-              itemStyle: {
-                color: '#62C63F'
-              }
-            },
-            {
-              value: 29,
-              itemStyle: {
-                color: '#8EE886'
-              }
-            },
-            {
-              value: 57,
-              itemStyle: {
-                color: '#ED8C8C'
-              }
-            },
-            {
-              value: 87,
-              itemStyle: {
-                color: '#D13232'
-              }
-            },
-            {
-              value: 10,
-              itemStyle: {
-                color: '#DD0202'
-              }
-            },
-            {
-              value: 40,
-              itemStyle: {
-                color: '#790000'
-              }
-            },
-
-          ],
+                color:
+                  COLOR_EMOTION.find((v2) => _.lowerCase(v2.name) == v)
+                    ?.color ?? "gray",
+              },
+            })
+          ),
         }
       ]
     };

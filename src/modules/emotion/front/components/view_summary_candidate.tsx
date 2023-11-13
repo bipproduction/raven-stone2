@@ -1,9 +1,9 @@
 "use client"
-import { WARNA } from '@/modules/_global/fun/COLOR';
 import { Box, Button, Grid, Group, Image, SimpleGrid, Text } from '@mantine/core';
 import React from 'react';
 import EchartSummary from './echart_summary';
 import ViewTop10 from './view_top10';
+import { WARNA } from '@/modules/_global';
 
 const dataSummary = [
   {
