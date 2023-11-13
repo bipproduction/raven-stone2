@@ -5,24 +5,32 @@ import _ from "lodash"
 import moment from "moment"
 
 export default async function funGetEffectFront({ isDate, isTime }: { isDate: any, isTime?: any }) {
-    let jamFix, isoDateTime
+    let jamFix, isoDateTime, kondisi
     const jamNow = new Date().getHours() + 1 + ':00:00'
 
-
-    const IniisoDateTime = new Date(new Date('1970-01-01 ' + jamNow).getTime() - (new Date('1970-01-01 ' + jamNow).getTimezoneOffset() * 60000)).toISOString();
-
-    const dataJam = await prisma.effect.findMany({
-        where: {
+    if (moment(isDate).format('YYYY-MM-DD') == moment(new Date()).format('YYYY-MM-DD')) {
+        const IniisoDateTime = new Date(new Date('1970-01-01 ' + jamNow).getTime() - (new Date('1970-01-01 ' + jamNow).getTimezoneOffset() * 60000)).toISOString();
+        kondisi = {
             isActive: true,
             dateContent: isDate,
             timeContent: {
                 lt: IniisoDateTime
             }
-        },
+        }
+    } else {
+        kondisi = {
+            isActive: true,
+            dateContent: isDate,
+        }
+    }
+
+    const dataJam = await prisma.effect.findMany({
+        where: kondisi,
         orderBy: {
             timeContent: 'desc'
         }
     })
+
 
     const dataJamFix = _.map(_.groupBy(dataJam, "timeContent"), (v: any, i: any) => ({
         timeContent: v[0].timeContent

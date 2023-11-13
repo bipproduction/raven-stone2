@@ -22,7 +22,6 @@ export default async function funUpdateUserRole({ name, component, id }: {name: 
     })
 
     for (let i of component) {
-        // console.log(i)
         await prisma.userAccess.create({
             data: {
                 idUserRole: Number(id),

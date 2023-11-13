@@ -1,10 +1,9 @@
 "use client"
-import PageSubTitle from '@/modules/_global/front/components/PageSubtitle';
 import { Box, Grid, Image, ScrollArea, Select, Stack, Text } from '@mantine/core';
 import React, { useState } from 'react';
 import { TypeAnimation } from 'react-type-animation';
 import _ from 'lodash';
-import { funGetOneCandidate } from '@/modules/_global';
+import { PageSubTitle, funGetOneCandidate } from '@/modules/_global';
 import funGetStepFront from '../fun/get_step_front';
 
 export default function ViewStep({ kandidate, stepCandidate, cCandidate }: { kandidate: any, stepCandidate: any, cCandidate: any }) {

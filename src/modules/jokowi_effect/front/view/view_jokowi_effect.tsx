@@ -1,23 +1,12 @@
 "use client"
-import PageSubTitle from '@/modules/_global/front/components/PageSubtitle';
-import { WARNA } from '@/modules/_global/fun/COLOR';
-import EchartJokowiEffect from '@/modules/emotion/front/components/echart_jokowi_effect';
-import Top10JokowiEffect from '@/modules/emotion/front/components/top10_jokowi_effect';
-import { ActionIcon, Box, Button, Divider, Grid, Group, Image, Menu, ScrollArea, SimpleGrid, Stack, Text } from '@mantine/core';
+import { ActionIcon, Box, Button, Grid, Group, Image, Menu, ScrollArea, SimpleGrid, Stack, Text } from '@mantine/core';
 import { DateInput } from '@mantine/dates';
 import React, { useState } from 'react';
-import { HiDotsHorizontal } from 'react-icons/hi';
 import { TypeAnimation } from 'react-type-animation';
 import { funGetEffectFront } from '../..';
+import { PageSubTitle, WARNA } from '@/modules/_global';
+import { EchartJokowiEffect, Top10JokowiEffect } from '@/modules/emotion';
 
-
-const data_jokowi = [
-  {
-    id: 1,
-    decs: "Joko Widodo pertama kali dikenal oleh masyarakat luas setelah ia mulai menjabat sebagai Wali Kota Surakarta (Solo). Dengan gaya kepemimpinan yang dianggap pro-rakyat dan berani menghadapi pejabat regional yang kuat, ia berhasil mengubah kota Solo dari kota yang dipenuhi kejahatan menjadi pusat seni dan budaya region. Joko Widodo pertama kali dikenal oleh masyarakat luas setelah ia mulai menjabat sebagai Wali Kota Surakarta (Solo). Dengan gaya kepemimpinan yang dianggap pro-rakyat dan berani menghadapi pejabat regional yang kuat, ia berhasil mengubah kota Solo dari kota yang dipenuhi kejahatan menjadi pusat seni dan budaya region. Joko Widodo pertama kali dikenal oleh masyarakat luas setelah ia mulai menjabat sebagai Wali Kota Surakarta (Solo). Dengan gaya kepemimpinan yang dianggap pro-rakyat dan berani menghadapi pejabat regional yang kuat, ia berhasil mengubah kota Solo dari kota yang dipenuhi kejahatan menjadi pusat seni dan budaya region"
-
-  }
-]
 
 
 /**
@@ -134,7 +123,7 @@ export default function ViewJokowiEffect({ effect }: { effect: any }) {
 
               })
             }
-            <Menu shadow="md" width={200}>
+            {/* <Menu shadow="md" width={200}>
               <Menu.Target>
                 <ActionIcon variant="subtle" color="rgba(255, 255, 255, 1)" aria-label="Settings">
                   <HiDotsHorizontal style={{ width: '70%', height: '70%' }} stroke={1.5} />
@@ -162,7 +151,7 @@ export default function ViewJokowiEffect({ effect }: { effect: any }) {
                   </Text>
                 </Menu.Item>
               </Menu.Dropdown>
-            </Menu>
+            </Menu> */}
           </Group>
         </Box>
         {dataEffect.map((item: any) => {

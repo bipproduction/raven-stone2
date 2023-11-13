@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { funLogUser } from '@/modules/user';
 import { funLogout } from '@/modules/auth';
 import toast from 'react-simple-toasts';
-import { WARNA } from '../../fun/COLOR';
+import { WARNA } from '../..';
 
 export default function ModalLogoutUser() {
   const router = useRouter()
