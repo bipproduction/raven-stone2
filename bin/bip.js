@@ -29,7 +29,6 @@ const list_menu = [
 
 ]
 
-
 async function _studio() {
     execSync('npx prisma studio', { stdio: "inherit" })
 }
