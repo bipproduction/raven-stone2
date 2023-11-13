@@ -77,7 +77,7 @@ export default function ViewMlAi({ data, paslon, cpaslon }: { data: any, paslon:
                                     value: String(pro.id),
                                     label: pro.name
                                 }))}
-                                value={isPaslon.toString()}
+                                value={_.toString(isPaslon)}
                                 onChange={(val) => { choosePaslon(val) }}
                             />
                         </Box>
