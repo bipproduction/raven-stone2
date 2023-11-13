@@ -1,5 +1,4 @@
 "use client"
-import { WARNA } from '@/modules/_global/fun/COLOR';
 import { ActionIcon, Box, Button, Flex, Group, PasswordInput, Text, TextInput } from '@mantine/core';
 import { useFocusTrap } from '@mantine/hooks';
 import { useRouter } from 'next/navigation';
@@ -9,6 +8,7 @@ import toast from 'react-simple-toasts';
 import { useAtom } from 'jotai';
 import { isCode, isIdUser, isPhone } from '../val/val_auth';
 import { ViewVerification, funLogin } from '..';
+import { WARNA } from '@/modules/_global';
 
 /**
  * Fungsi untuk menampilkan view login.

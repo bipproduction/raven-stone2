@@ -1,10 +1,9 @@
 "use client"
-import PageSubTitle from '@/modules/_global/front/components/PageSubtitle';
 import { Box, Grid, Image, ScrollArea, Select, Stack, Text } from '@mantine/core';
 import React, { useState } from 'react';
 import { TypeAnimation } from 'react-type-animation';
 import { funGetSwotFront } from '../..';
-import { funGetOneCandidate } from '@/modules/_global';
+import { PageSubTitle, funGetOneCandidate } from '@/modules/_global';
 import _ from 'lodash';
 
 

@@ -1,11 +1,9 @@
 "use client"
-import PageSubTitle from '@/modules/_global/front/components/PageSubtitle';
 import { Box, Grid, Stack } from '@mantine/core';
 import React from 'react';
-// import ViewSummaryCandidate from '../components/view_summary_candidate';
-import ViewTop10 from '../components/view_top10';
 import JokowiEffectSummary from '../components/jokowi_effect_summary';
 import ViewSummaryCandidate from '../components/view_summary_candidate';
+import { PageSubTitle } from '@/modules/_global';
 
 
 /**

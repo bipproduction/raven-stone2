@@ -3,13 +3,10 @@ import React, { useState } from 'react';
 import { useDisclosure, useShallowEffect } from '@mantine/hooks';
 import { AppShell, BackgroundImage, Box, Burger, Center, Divider, Grid, Group, Image, Modal, NavLink, Skeleton, Text, Title } from '@mantine/core';
 import { usePathname, useRouter } from 'next/navigation';
-import { WARNA } from '../../fun/COLOR';
-import { funLogUser } from '@/modules/user';
-import { funLogout } from '@/modules/auth';
-import toast from 'react-simple-toasts';
 import { useAtom } from 'jotai';
 import { isModalLayoutUser } from '../val/isModalLayoutUser';
 import ModalLogoutUser from '../components/modal_logout_user';
+import { WARNA } from '../..';
 
 const dataFront = [
   {

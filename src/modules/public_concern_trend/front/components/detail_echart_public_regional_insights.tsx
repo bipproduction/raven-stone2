@@ -1,11 +1,22 @@
+'use client'
+
+import { COLOR_EMOTION } from '@/modules/_global';
 import { Box, Group, Text } from '@mantine/core';
 import { useShallowEffect } from '@mantine/hooks';
 import { EChartsOption } from 'echarts';
 import EChartsReact from 'echarts-for-react';
 import React, { useState } from 'react';
 
-export default function DetailEchartPublicRegionalInsights() {
-  const [options, setOptions] = useState<EChartsOption>({});
+export default function DetailEchartPublicRegionalInsights({ dataPct }: { dataPct: any }) {
+  const [options, setOptions] = useState<EChartsOption>({})
+  const [dataChart, setDataChart] = useState<any>({
+    infrastruktur: Number(dataPct[0].infrastruktur),
+    keadilanSosial: Number(dataPct[0].keadilanSosial),
+    kemiskinan: Number(dataPct[0].kemiskinan),
+    lapanganPekerjaan: Number(dataPct[0].lapanganPekerjaan),
+    layananKesehatan: Number(dataPct[0].layananKesehatan),
+    pendidikan: Number(dataPct[0].pendidikan),
+  })
 
   useShallowEffect(() => {
     loadData()
@@ -28,7 +39,7 @@ export default function DetailEchartPublicRegionalInsights() {
       yAxis: [
         {
           type: "category",
-          data: ['Education', 'Health Services',  'Infrastructure', 'Poverty',  'Social Justice','Jobs'],
+          data: ['Education', 'Health Services', 'Infrastructure', 'Poverty', 'Social Justice', 'Jobs'],
           axisTick: {
             alignWithLabel: true,
           },
@@ -47,7 +58,7 @@ export default function DetailEchartPublicRegionalInsights() {
           type: "value",
 
           axisLabel: {
-            color:"white",
+            color: "white",
             rotate: 25,
           },
         },
@@ -57,52 +68,18 @@ export default function DetailEchartPublicRegionalInsights() {
           name: "Direct",
           type: "bar",
           barWidth: "60%",
-          data: [
-            {
-              value: 13330,
+          data: Object.keys(dataChart ?? []).map(
+            (v: any, i: any) =>
+            ({
+              name: v,
+              value: dataChart[v],
               itemStyle: {
-                color: '#026D00'
-              }
-            },
-            {
-              value: 21333,
-              itemStyle: {
-                color: '#62A334'
-              }
-            },
-            {
-              value: 11167,
-              itemStyle: {
-                color: '#62C63F'
-              }
-            },
-            {
-              value: 21989,
-              itemStyle: {
-                color: '#790000'
-              }
-            },
-            {
-              value: 52337,
-              itemStyle: {
-                color: '#ED8C8C'
-              }
-            },
-            {
-              value: 31817,
-              itemStyle: {
-                color: '#D13232'
-              }
-            },
-
-            {
-              value: 11240,
-              itemStyle: {
-                color: '#790000'
-              }
-            },
-
-          ],
+                color:
+                  COLOR_EMOTION.find((v2) => v2.id == String(i))
+                    ?.color ?? "gray",
+              },
+            })
+          ),
         },
       ],
     };
@@ -114,7 +91,7 @@ export default function DetailEchartPublicRegionalInsights() {
         <Group >
           <Text c={"white"} fw={'bold'}>PUBLIC CONCERNS TRENDS</Text>
         </Group>
-        <EChartsReact style={{width: "100%" }} option={options} />
+        <EChartsReact style={{ width: "100%" }} option={options} />
       </Box>
     </>
   );

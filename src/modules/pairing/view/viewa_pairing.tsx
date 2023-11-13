@@ -1,17 +1,18 @@
 "use client"
-import { funGetOnePaslon } from '@/modules/_global';
-import PageSubTitle from '@/modules/_global/front/components/PageSubtitle';
-import { WARNA } from '@/modules/_global/fun/COLOR';
-import DetailRegionalDataPairing from '@/modules/emotion/front/components/detail_regional_data_pairing';
+import { PageSubTitle, WARNA, funGetOnePaslon } from '@/modules/_global';
 import { Box, Button, Grid, Group, Image, ScrollArea, Select, SimpleGrid, Stack, Text } from '@mantine/core';
 import React, { useState } from 'react';
+import { funGetPairingFront } from '..';
+import { funGetRateFront } from '@/modules/national_popularity_metric';
+import _ from 'lodash';
+import { DetailRegionalDataPairing } from '@/modules/emotion';
 
-export default function ViewaPairing({ paslon, provinsi, cpaslon, data }: { paslon: any, provinsi: any, cpaslon: any, data: any }) {
+export default function ViewaPairing({ paslon, provinsi, cpaslon, data, audience, rate }: { paslon: any, provinsi: any, cpaslon: any, data: any, audience: any, rate: any }) {
   const [isData, setData] = useState(data)
+  const [isRate, setRate] = useState(rate)
   const [isPaslon, setPaslon] = useState(1)
   const [isProvinsi, setProvinsi] = useState(null)
 
-  console.log('data di view', isData)
 
   const [isCapres, setCapres] = useState(cpaslon.nameCapres.toUpperCase())
   const [isImgCapres, setImgCapres] = useState(`/img/candidate/${cpaslon.imgCapres}`)
@@ -25,6 +26,12 @@ export default function ViewaPairing({ paslon, provinsi, cpaslon, data }: { pasl
     setCawapres((dataLoadPaslon?.nameCawapres.toUpperCase()))
     setImgCapres(`/img/candidate/${dataLoadPaslon?.imgCapres}`)
     setImgCawapres(`/img/candidate/${dataLoadPaslon?.imgCawapres}`)
+
+    const dataLoadDB = await funGetPairingFront({ paslon: isPaslon, region: isProvinsi })
+    setData(dataLoadDB)
+
+    const dataLoadRate = await funGetRateFront({ paslon: isPaslon })
+    setRate(dataLoadRate)
 
   }
 
@@ -56,7 +63,7 @@ export default function ViewaPairing({ paslon, provinsi, cpaslon, data }: { pasl
                 value: String(pro.id),
                 label: pro.name
               }))}
-              value={isPaslon.toString()}
+              value={_.toString(isPaslon)}
               onChange={(val: any) => { setPaslon(val) }}
             />
             <Button bg={"white"} c={"dark"} radius={"lg"} onClick={onGenerate}>GENERATE</Button>
@@ -93,7 +100,7 @@ export default function ViewaPairing({ paslon, provinsi, cpaslon, data }: { pasl
               }}
             >
               <Text ta={"center"} c={"white"} fz={55} fw={"bold"}>
-                76.90%
+                {(isRate) ? isRate.rate + '%' : '0%'}
               </Text>
             </Box>
           </Grid.Col>
@@ -101,7 +108,7 @@ export default function ViewaPairing({ paslon, provinsi, cpaslon, data }: { pasl
             <ScrollArea h={600}>
               {isData.map((v: any, i: any) => (
                 <Box key={i}>
-                  <DetailRegionalDataPairing data={v} />
+                  <DetailRegionalDataPairing dataEmotion={v} dataAudience={audience} />
                 </Box>
               ))}
             </ScrollArea>

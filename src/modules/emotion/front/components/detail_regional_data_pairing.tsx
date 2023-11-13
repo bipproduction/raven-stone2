@@ -1,42 +1,40 @@
 "use client"
-import { WARNA } from '@/modules/_global/fun/COLOR';
-import { Box, Button, Grid, Group, Stack, Text } from '@mantine/core';
-import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { Box, Grid, Group, Stack, Text } from '@mantine/core';
+import React from 'react';
 import EchartRegionalDataPairing from './echart_regional_data_pairing';
-import { funGetLockedAudience } from '@/modules/audience';
+import _, { filter } from 'lodash';
+import { WARNA } from '@/modules/_global';
 
-export default function DetailRegionalDataPairing({ data }: { data: any }) {
-  console.log('detail',data);
-  const router = useRouter()
-  const [isLocked, setLocked] = useState(0)
+export default function DetailRegionalDataPairing({ dataEmotion, dataAudience }: { dataEmotion: any, dataAudience: any }) {
+  const locked = dataAudience
+    .filter((v: any) => v.idProvinsi === dataEmotion.idProvinsi)
+    .map((itm: any) => Number(itm.value))
 
-  async function getLoad(prov: any) {
-    // console.log('ini detail', prov)
-    const load = await funGetLockedAudience({ provinsi: prov })
-    // console.log(load)
-    // setLocked(load)
-  }
-
-  useEffect(() => {
-    getLoad(data.idProvinsi)
-  }, [data])
-
+  const filtered = _.sum([
+    dataEmotion.confidence,
+    dataEmotion.dissapproval,
+    dataEmotion.negative,
+    dataEmotion.positive,
+    dataEmotion.supportive,
+    dataEmotion.uncomfortable,
+    dataEmotion.undecided,
+    dataEmotion.unsupportive,
+  ])
 
   return (
     <>
-      <Stack>
+      <Stack mb={50}>
         <Box>
-          <EchartRegionalDataPairing />
+          <EchartRegionalDataPairing dataEmotion={dataEmotion} total={filtered} />
           <Group pl={20}>
             <Grid gutter="xl">
               <Grid.Col span={{ md: 6, lg: 6 }}>
                 <Text c={WARNA.merah_emotion} fz={15}>Locked Audience</Text>
-                <Text ta={'center'} c={WARNA.hijau_emotion} fz={25} fw={'bold'}>3.887.189</Text>
+                <Text ta={'center'} c={WARNA.hijau_emotion} fz={25} fw={'bold'}>{Intl.NumberFormat("id-ID").format(Number(locked))}</Text>
               </Grid.Col>
               <Grid.Col span={{ md: 6, lg: 6 }}>
                 <Text c={WARNA.merah_emotion} fz={15}>Locked Audience</Text>
-                <Text ta={'center'} c={WARNA.hijau_emotion} fz={25} fw={'bold'}>3.887.189</Text>
+                <Text ta={'center'} c={WARNA.hijau_emotion} fz={25} fw={'bold'}>{Intl.NumberFormat("id-ID").format(Number(filtered))}</Text>
               </Grid.Col>
             </Grid>
           </Group>

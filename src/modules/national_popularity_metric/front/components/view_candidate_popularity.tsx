@@ -1,4 +1,3 @@
-import { WARNA } from '@/modules/_global/fun/COLOR';
 import { Box, Center, Flex, Grid, Group, Image, SimpleGrid, Text, Title } from '@mantine/core';
 import React from 'react';
 

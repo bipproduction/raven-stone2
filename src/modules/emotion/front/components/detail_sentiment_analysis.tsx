@@ -1,26 +1,43 @@
 "use client"
-import { WARNA } from '@/modules/_global/fun/COLOR';
 import { Box, Button, Grid, Group, Stack, Text } from '@mantine/core';
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import DetailEchartBarRegionalInsights from './detail_echart_bar_regional_insights';
+import { WARNA } from '@/modules/_global';
+import _ from 'lodash';
 
-export default function DetailSentimentAnalysis() {
-  const router = useRouter()
+export default function DetailSentimentAnalysis({ dataAudience, dataEmotion }: { dataAudience: any, dataEmotion: any }) {
+
+  const locked = dataAudience
+    .filter((v: any) => v.idKabkot === dataEmotion.idKabkot)
+    .map((itm: any) => Number(itm.value))
+
+
+  const filtered = _.sum([
+    dataEmotion.confidence,
+    dataEmotion.dissapproval,
+    dataEmotion.negative,
+    dataEmotion.positive,
+    dataEmotion.supportive,
+    dataEmotion.uncomfortable,
+    dataEmotion.undecided,
+    dataEmotion.unsupportive,
+  ])
+
   return (
     <>
       <Stack>
         <Box>
-          <DetailEchartBarRegionalInsights />
+          <DetailEchartBarRegionalInsights dataEmotion={dataEmotion} />
           <Group pl={20}>
             <Grid gutter="xl">
               <Grid.Col span={{ md: 6, lg: 6 }}>
                 <Text c={WARNA.merah_emotion} fz={15}>Locked Audience</Text>
-                <Text ta={'center'} c={WARNA.hijau_emotion} fz={25} fw={'bold'}>3.887.189</Text>
+                <Text ta={'center'} c={WARNA.hijau_emotion} fz={25} fw={'bold'}>{Intl.NumberFormat("id-ID").format(Number(locked))}</Text>
               </Grid.Col>
               <Grid.Col span={{ md: 6, lg: 6 }}>
                 <Text c={WARNA.merah_emotion} fz={15}>Locked Audience</Text>
-                <Text ta={'center'} c={WARNA.hijau_emotion} fz={25} fw={'bold'}>3.887.189</Text>
+                <Text ta={'center'} c={WARNA.hijau_emotion} fz={25} fw={'bold'}>{Intl.NumberFormat("id-ID").format(Number(filtered))}</Text>
               </Grid.Col>
             </Grid>
           </Group>

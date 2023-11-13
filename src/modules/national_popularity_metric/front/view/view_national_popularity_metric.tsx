@@ -1,10 +1,10 @@
 "use client"
-import PageSubTitle from '@/modules/_global/front/components/PageSubtitle';
 import { Box, Button, Grid, Group, Select, Stack } from '@mantine/core';
 import React from 'react';
 import ViewCandidatePopularity from '../components/view_candidate_popularity';
 import EchartPopularity from '../components/echart_popularity';
 import EchartBarPopularity from '../components/echart_bar_popularity';
+import { PageSubTitle } from '@/modules/_global';
 
 
 export default function ViewNationalPopularityMetric() {

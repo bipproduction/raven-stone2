@@ -10,7 +10,6 @@ export default async function funAddUserRole({ name, component }: { name: any, c
         }
     })
     for (let i of component) {
-        // console.log(i)
         await prisma.userAccess.create({
             data: {
                 idUserRole: role.id,

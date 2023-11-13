@@ -8,6 +8,13 @@ import ViewCopyEmotionCandidate from "./back/view/view_copy_emotion_candidate";
 import ViewCopyEmotionPaslon from "./back/view/view_copy_emotion_paslon";
 import ViewUploadEmotionCandidate from "./back/view/view_upload_emotion_candidate";
 import ViewUploadEmotionPaslon from "./back/view/view_upload_emotion_paslon";
+import DetailRegionalDataPairing from "./front/components/detail_regional_data_pairing";
+import DetailSentimentAnalysis from "./front/components/detail_sentiment_analysis";
+import EchartJokowiEffect from "./front/components/echart_jokowi_effect";
+import SentimentAnalysis from "./front/components/sentiment_analysis";
+import Top10JokowiEffect from "./front/components/top10_jokowi_effect";
+import funGetEmotionDetailRegionalFront from "./front/fun/get_emotion_detail_regional_front";
+import funGetEmotionRegionalFront from "./front/fun/get_emotion_regional_front";
 import ViewSummary from "./front/view/view_summary";
 
 export { ViewAdminEmotionCandidate }
@@ -21,3 +28,10 @@ export { ViewUploadEmotionPaslon }
 export { ViewUploadEmotionCandidate }
 export { ViewCopyEmotionPaslon }
 export { ViewCopyEmotionCandidate }
+export { DetailRegionalDataPairing }
+export { SentimentAnalysis }
+export { DetailSentimentAnalysis }
+export { EchartJokowiEffect }
+export { Top10JokowiEffect }
+export { funGetEmotionRegionalFront }
+export { funGetEmotionDetailRegionalFront }

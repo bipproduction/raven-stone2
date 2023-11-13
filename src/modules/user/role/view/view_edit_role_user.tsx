@@ -1,16 +1,12 @@
 "use client"
 import React, { useState } from 'react';
-import funGetOneRoleUser from '../fun/get_one_role_user';
 import { useRouter } from 'next/navigation';
 import toast from 'react-simple-toasts';
-import funUpdateUserRole from '../fun/update_user_role';
-import { theme } from '../../../../../theme';
 import { useAtom } from 'jotai';
 import { isModalRoleUser } from '../val/isModalUserRole';
 import { Box, Button, Checkbox, Grid, Group, Modal, Stack, Text, TextInput } from '@mantine/core';
 import { ButtonBack } from '@/modules/_global';
 import { useFocusTrap } from '@mantine/hooks';
-import { WARNA } from '@/modules/_global/fun/COLOR';
 import ModalEditUserRole from '../components/modal_edit_user_role';
 
 export default function ViewEditRoleUser({ data, component }: { data: any, component: any }) {
@@ -23,8 +19,6 @@ export default function ViewEditRoleUser({ data, component }: { data: any, compo
   const [isNameRole, setNameRole] = useState(data.dataRole.name)
   const [dbComponent, setdbComponent] = useState(data.dataComponent)
   const [isComponents, setIsComponents] = useState<any[]>(component)
-
-  // console.log(isIdRole)
 
   function validationData() {
     if (Object.values(listData).includes(""))

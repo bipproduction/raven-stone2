@@ -1,13 +1,11 @@
 "use client"
-import PageSubTitle from '@/modules/_global/front/components/PageSubtitle';
 import { ActionIcon, Box, Button, Grid, Group, Image, Menu, ScrollArea, Select, Stack, Text } from '@mantine/core';
 import { DateInput } from '@mantine/dates';
 import React, { useState } from 'react';
-import { HiDotsHorizontal } from "react-icons/hi"
 import { TypeAnimation } from 'react-type-animation';
 import { funGetMlaiFront } from '../..';
 import _ from 'lodash';
-import { funGetOnePaslon } from '@/modules/_global';
+import { PageSubTitle, funGetOnePaslon } from '@/modules/_global';
 
 const data_ml = [
     {
@@ -112,7 +110,7 @@ export default function ViewMlAi({ data, paslon, cpaslon }: { data: any, paslon:
 
                                     })
                                 }
-                                <Menu shadow="md" width={200}>
+                                {/* <Menu shadow="md" width={200}>
                                     <Menu.Target>
                                         <ActionIcon variant="subtle" color="rgba(255, 255, 255, 1)" aria-label="Settings">
                                             <HiDotsHorizontal style={{ width: '70%', height: '70%' }} stroke={1.5} />
@@ -140,7 +138,7 @@ export default function ViewMlAi({ data, paslon, cpaslon }: { data: any, paslon:
                                             </Text>
                                         </Menu.Item>
                                     </Menu.Dropdown>
-                                </Menu>
+                                </Menu> */}
                             </Group>
                         </Box>
                         {dataMlai.map((item: any) => {

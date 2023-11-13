@@ -1,38 +1,24 @@
 "use client"
-import PageSubTitle from '@/modules/_global/front/components/PageSubtitle';
-import { WARNA } from '@/modules/_global/fun/COLOR';
-import EchartBarRegionalInsights from '@/modules/emotion/front/components/echart_bar_regional_insights';
-import SentimentAnalysis from '@/modules/emotion/front/components/sentiment_analysis';
-import EcahrtBarPolarRegionalInsights from '@/modules/leader_trait_assessment/front/components/ecahrt_bar_polar_regional_insights';
-import EchartPublicRegionalInsights from '@/modules/public_concern_trend/front/components/echart_public_regional_insights';
+import { PageSubTitle, WARNA } from '@/modules/_global';
+import { SentimentAnalysis, funGetEmotionRegionalFront } from '@/modules/emotion';
+import { EcahrtBarPolarRegionalInsights } from '@/modules/leader_trait_assessment';
+import { EchartPublicRegionalInsights } from '@/modules/public_concern_trend';
 import { Box, Button, Grid, Group, Select, Stack, Text, TextInput } from '@mantine/core';
-import React from 'react';
+import _ from 'lodash';
+import React, { useState } from 'react';
 
-const provinsi = [
-  {
-    id: 1,
-    name: 'ACEH',
-  },
-  {
-    id: 2,
-    name: 'BALI',
-  },
-  {
-    id: 3,
-    name: 'JAWA TIMUR',
-  },
-  {
-    id: 4,
-    name: 'JAWA TENGAH',
-  },
-  {
-    id: 5,
-    name: 'JAWA BARAT',
-  },
 
-]
 
-export default function ViewRegionalInsights() {
+export default function ViewRegionalInsights({ candidate, provinsi, audience, emotion, pct, lta }: { candidate: any, provinsi: any, audience: any, emotion: any, pct: any, lta: any }) {
+  const [isCandidate, setCandidate] = useState(1)
+  const [isProvinsi, setProvinsi] = useState(null)
+  const [isData, setData] = useState(emotion)
+
+  async function onGenerate() {
+    const dataLoad = await funGetEmotionRegionalFront({ candidate: isCandidate, region: isProvinsi })
+    setData(dataLoad)
+  }
+
   return (
     <>
       <Stack>
@@ -47,26 +33,40 @@ export default function ViewRegionalInsights() {
           }}
         >
           <Group justify='flex-end'>
-            <TextInput placeholder='Search' />
             <Select
-              placeholder="Candidate"
-              data={['Prabowo', 'Anis', 'Ganjar']}
+              placeholder="Select Region"
+              data={provinsi.map((pro: any) => ({
+                value: String(pro.id),
+                label: pro.name
+              }))}
+              value={isProvinsi}
+              searchable
+              onChange={(val: any) => setProvinsi(val)}
             />
-            <Button radius={"lg"} c={"dark"} bg={"white"}>GENERATE</Button>
+            <Select placeholder='Candidate'
+              data={candidate.map((pro: any) => ({
+                value: String(pro.id),
+                label: pro.name
+              }))}
+              value={_.toString(isCandidate)}
+              onChange={(val: any) => { setCandidate(val) }}
+              required
+            />
+            <Button radius={"lg"} c={"dark"} bg={"white"} onClick={onGenerate}>GENERATE</Button>
           </Group>
         </Box>
-        {provinsi.map((item) => {
+        {isData.map((item: any, i: any) => {
           return (
-            <Box pt={20} key={item.id}>
+            <Box pt={20} key={i}>
               <Text fz={33} fw={"bold"} c={"white"}>{item.name}</Text>
               <Grid gutter={40}>
                 <Grid.Col span={{ md: 6, lg: 6 }}>
-                  <SentimentAnalysis />
+                  <SentimentAnalysis dataAudience={audience} dataEmotion={item} candidate={isCandidate} />
                 </Grid.Col>
                 <Grid.Col span={{ md: 6, lg: 6 }}>
-                  <EchartPublicRegionalInsights />
+                  <EchartPublicRegionalInsights dataPct={pct.filter((v: any) => v.idProvinsi === item.idProvinsi)} />
                   <Box pt={30}>
-                    <EcahrtBarPolarRegionalInsights />
+                    <EcahrtBarPolarRegionalInsights dataLta={lta.filter((v: any) => v.idProvinsi === item.idProvinsi)} />
                   </Box>
                 </Grid.Col>
               </Grid>

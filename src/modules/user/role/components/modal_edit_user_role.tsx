@@ -8,14 +8,14 @@ import toast from 'react-simple-toasts';
 import { useRouter } from 'next/navigation';
 import { funLogUser } from '../..';
 
-export default function ModalEditUserRole({ name, component, id }: {name: any, component: any, id: any }) {
+export default function ModalEditUserRole({ name, component, id }: { name: any, component: any, id: any }) {
   const [valOpenModal, setOpenModal] = useAtom(isModalRoleUser)
-  const router= useRouter()
-  // console.log("modal", id)
+  const router = useRouter()
+
   async function updateData() {
     const edit = await funUpdateUserRole({ name: name, id: id, component: component })
     if (!edit.success) return toast(edit.message, { theme: "dark" });
-    await funLogUser({act:"EDIT", desc:`User Edit Data Role With User ID  ${id}`})
+    await funLogUser({ act: "EDIT", desc: `User Edit Data Role With User ID  ${id}` })
     toast("Success", { theme: "dark" });
     router.push("/dashboard-admin/role-user")
     setOpenModal(false);

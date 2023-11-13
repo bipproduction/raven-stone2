@@ -30,7 +30,6 @@ export default async function funGetOneRoleUser({ id }: { id: number }) {
         dataComponent: dataAccess.map((v) => (v.idComponent))
     }
 
-    // console.log(dataAccess.map((v) => (v.idComponent)))
 
     return allData
 }

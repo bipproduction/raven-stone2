@@ -26,7 +26,6 @@ export default function ViewAdminEmotionCandidate({ param, provinsi, candidate, 
 
     useEffect(() => {
         setProvinsi((param.idProvinsi == 0) ? null : param.idProvinsi)
-        //setCandidate((param.idCandidate) ? console.log('ini') : console.log('else'))
         setDate((param.date == null) ? new Date() : new Date(param.date))
     }, [param])
 

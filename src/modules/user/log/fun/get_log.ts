@@ -1,8 +1,7 @@
 'use server'
 
 import { prisma } from "@/modules/_global"
-import { UserLog } from "@prisma/client";
-import _, { ceil } from "lodash"
+import _ from "lodash"
 
 export default async function funGetLogUser({ body }: { body: any }) {
 
@@ -39,19 +38,6 @@ export default async function funGetLogUser({ body }: { body: any }) {
 
     }))
 
-    // const nData= await prisma.userLog.count({
-    //     where: {
-    //         isActive: true,
-    //         idUser: body.User,
-    //     }
-    // })
-
-
-    // const allData = {
-    //     data : result,
-    //     nPage: ceil(nData / 25)
-    // }
-    // console.log(result)
 
     return result
 }

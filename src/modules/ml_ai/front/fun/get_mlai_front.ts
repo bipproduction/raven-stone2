@@ -5,21 +5,30 @@ import _ from "lodash"
 import moment from "moment";
 
 export default async function funGetMlaiFront({ isPaslon, isDate, isTime }: { isPaslon: any, isDate: any, isTime?: any }) {
-    let jamFix, isoDateTime
+    let jamFix, isoDateTime, kondisi
     const jamNow = new Date().getHours() + 1 + ':00:00'
 
-
-    const IniisoDateTime = new Date(new Date('1970-01-01 ' + jamNow).getTime() - (new Date('1970-01-01 ' + jamNow).getTimezoneOffset() * 60000)).toISOString();
-
-    const dataJam = await prisma.mlAi.findMany({
-        where: {
+    if (moment(isDate).format('YYYY-MM-DD') == moment(new Date()).format('YYYY-MM-DD')) {
+        const IniisoDateTime = new Date(new Date('1970-01-01 ' + jamNow).getTime() - (new Date('1970-01-01 ' + jamNow).getTimezoneOffset() * 60000)).toISOString();
+        kondisi = {
             isActive: true,
             idPaslon: Number(isPaslon),
             dateContent: isDate,
             timeContent: {
                 lt: IniisoDateTime
             }
-        },
+        }
+    } else {
+        kondisi = {
+            isActive: true,
+            idPaslon: Number(isPaslon),
+            dateContent: isDate,
+        }
+    }
+
+
+    const dataJam = await prisma.mlAi.findMany({
+        where: kondisi,
         orderBy: {
             timeContent: 'desc'
         }

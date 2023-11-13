@@ -135,7 +135,7 @@ export default async function funDownloadEmotionCandidateByDate({ find }: { find
 
     if (emotion.length > 0) {
         result = emotion.map((v: any) => ({
-            ..._.omit(v, ["id", "idCandidate", "Candidate", "dateEmotion", "AreaKabkot", "AreaProvinsi", "idKabkot", "idProvinsi", "confidence", "dissapproval", "negative", "positive", "supportive", "uncomfortable", "undecided", "unsupportive"]),
+            ..._.omit(v, ["id", "idCandidate", "Candidate", "dateEmotion", "timeEmotion", "AreaKabkot", "AreaProvinsi", "idKabkot", "idProvinsi", "confidence", "dissapproval", "negative", "positive", "supportive", "uncomfortable", "undecided", "unsupportive"]),
             id: v.id,
             idCandidate: v.idCandidate,
             idProvinsi: v.idProvinsi,
@@ -144,7 +144,7 @@ export default async function funDownloadEmotionCandidateByDate({ find }: { find
             provinsi: v.AreaProvinsi.name,
             kabkot: v.AreaKabkot.name,
             date: moment(v.dateEmotion).format('YYYY-MM-DD'),
-            time: moment(v.timeEmotion).format('HH:mm'),
+            time: moment.utc(v.timeEmotion).format('HH:mm'),
             confidence: v.confidence,
             supportive: v.supportive,
             positive: v.supportive,

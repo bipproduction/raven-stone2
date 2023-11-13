@@ -1,4 +1,4 @@
-import { WARNA } from '@/modules/_global/fun/COLOR';
+import { WARNA } from '@/modules/_global';
 import { Box, Group, Pagination, ScrollArea, Table } from '@mantine/core';
 import React from 'react';
 

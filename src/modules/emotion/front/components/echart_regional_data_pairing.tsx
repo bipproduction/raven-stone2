@@ -1,8 +1,10 @@
+import { COLOR_EMOTION } from '@/modules/_global';
 import { Box, Group, Text } from '@mantine/core';
 import { useShallowEffect } from '@mantine/hooks';
 import { EChartsOption } from 'echarts';
 import EChartsReact from 'echarts-for-react';
 import React, { useState } from 'react';
+import _ from 'lodash';
 
 const provinsi = [
   {
@@ -12,8 +14,20 @@ const provinsi = [
 
 ]
 
-export default function EchartRegionalDataPairing() {
+export default function EchartRegionalDataPairing({ dataEmotion, total }: { dataEmotion: any, total: any }) {
   const [options, setOptions] = useState<EChartsOption>({});
+  const [dataChart, setDataChart] = useState<any>({
+    confidence: _.round((Number(dataEmotion.confidence) / total) * 100, 2),
+    supportive: _.round((Number(dataEmotion.supportive) / total) * 100, 2),
+    positive: _.round((Number(dataEmotion.positive) / total) * 100, 2),
+    undecided: _.round((Number(dataEmotion.undecided) / total) * 100, 2),
+    unsupportive: _.round((Number(dataEmotion.unsupportive) / total) * 100, 2),
+    uncomfortable: _.round((Number(dataEmotion.uncomfortable) / total) * 100, 2),
+    negative: _.round((Number(dataEmotion.negative) / total) * 100, 2),
+    dissapproval: _.round((Number(dataEmotion.dissapproval) / total) * 100, 2),
+  })
+
+
 
   useShallowEffect(() => {
     loadData()
@@ -24,7 +38,13 @@ export default function EchartRegionalDataPairing() {
         trigger: 'axis',
         axisPointer: {
           type: 'shadow'
-        }
+        },
+        formatter: (a: any) => {
+          return `
+          <i>${_.upperCase(a[0].data.name)}</i>
+          <h1>${a[0].data.value} %</h1>
+          `;
+        },
       },
       grid: {
         left: '3%',
@@ -55,7 +75,7 @@ export default function EchartRegionalDataPairing() {
           axisLabel: {
             color: "white",
             formatter: (a: any) => {
-              return `${a} %`;
+              return `${a}%`;
             },
           },
         }
@@ -65,57 +85,18 @@ export default function EchartRegionalDataPairing() {
           name: 'Direct',
           type: 'bar',
           barWidth: '70%',
-          data: [
-            {
-              value: 30,
+          data: Object.keys(dataChart ?? []).map(
+            (v: any) =>
+            ({
+              name: v,
+              value: dataChart[v],
               itemStyle: {
-                color: '#026D00'
-              }
-            },
-            {
-              value: 33,
-              itemStyle: {
-                color: '#62A334'
-              }
-            },
-            {
-              value: 67,
-              itemStyle: {
-                color: '#62C63F'
-              }
-            },
-            {
-              value: 29,
-              itemStyle: {
-                color: '#8EE886'
-              }
-            },
-            {
-              value: 57,
-              itemStyle: {
-                color: '#ED8C8C'
-              }
-            },
-            {
-              value: 87,
-              itemStyle: {
-                color: '#D13232'
-              }
-            },
-            {
-              value: 10,
-              itemStyle: {
-                color: '#DD0202'
-              }
-            },
-            {
-              value: 40,
-              itemStyle: {
-                color: '#790000'
-              }
-            },
-
-          ],
+                color:
+                  COLOR_EMOTION.find((v2) => _.lowerCase(v2.name) == v)
+                    ?.color ?? "gray",
+              },
+            })
+          ),
         }
       ]
     };
@@ -123,16 +104,16 @@ export default function EchartRegionalDataPairing() {
   }
   return (
     <>
-    
+
       <Box>
         <Box>
-        <Text c={"white"} fw={"bold"} fz={30}>ACEH</Text>
+          <Text c={"white"} fw={"bold"} fz={30}>{dataEmotion.name}</Text>
         </Box>
         <Group justify='flex-end' >
           <Text c={"white"} fw={'bold'}>SENTIMENT ANALYSIS</Text>
         </Group>
-        <Box pb={20}>
-        <EChartsReact style={{ width: "100%" }} option={options} />
+        <Box pb={10}>
+          <EChartsReact style={{ width: "100%", height:420 }} option={options} />
         </Box>
       </Box>
     </>

@@ -1,13 +1,12 @@
 "use client"
-import PageSubTitle from '@/modules/_global/front/components/PageSubtitle';
-import { WARNA } from '@/modules/_global/fun/COLOR';
-import DetailSentimentAnalysis from '@/modules/emotion/front/components/detail_sentiment_analysis';
-import DetailEcahrtBarPolarRegionalInsights from '@/modules/leader_trait_assessment/front/components/detail_ecahrt_bar_polar_regional_insights';
-import DetailEchartPublicRegionalInsights from '@/modules/public_concern_trend/front/components/detail_echart_public_regional_insights';
-import DetailRegionHotIssue from '@/modules/region_hot_issue/front/components/detail_region_hot_issue';
-import { ActionIcon, Box, Button, Grid, Group, Select, Stack, Text, TextInput } from '@mantine/core';
+import { PageSubTitle, WARNA } from '@/modules/_global';
+import { DetailSentimentAnalysis, funGetEmotionDetailRegionalFront } from '@/modules/emotion';
+import { DetailEcahrtBarPolarRegionalInsights } from '@/modules/leader_trait_assessment';
+import { DetailEchartPublicRegionalInsights } from '@/modules/public_concern_trend';
+import { DetailRegionHotIssue } from '@/modules/region_hot_issue';
+import { ActionIcon, Box, Grid, Group, Select, Stack, Text, TextInput } from '@mantine/core';
 import { useRouter } from 'next/navigation';
-import React from 'react';
+import React, { useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 
 const provinsi = [
@@ -34,8 +33,16 @@ const provinsi = [
 
 ]
 
-export default function ViewDetailRegionalInsights() {
+export default function ViewDetailRegionalInsights({ parameter, emotion, audience, rhi, lta, pct, region, kabupaten }: { parameter: any, emotion: any, audience: any, rhi: any, lta: any, pct: any, region: any, kabupaten: any }) {
+  const [isEmotion, setEmotion] = useState(emotion)
+  const [isKabupaten, setKabupaten] = useState(null)
   const router = useRouter()
+
+  async function onChoose(value: any) {
+    setKabupaten(value)
+    const loadData = await funGetEmotionDetailRegionalFront({ candidate: parameter.idCandidate, provinsi: parameter.idProvinsi, kabupaten: value })
+    setEmotion(loadData)
+  }
   return (
     <>
       <Stack>
@@ -50,30 +57,39 @@ export default function ViewDetailRegionalInsights() {
           }}
         >
           <Group justify='space-between'>
-            <Text fz={30} fw={'bold'} c={"white"}>ACEH</Text>
+            <Text fz={30} fw={'bold'} c={"white"}>{region.name}</Text>
             <Group>
-              <TextInput placeholder='Search' />
+              <Select
+                placeholder="Select Region"
+                data={kabupaten.map((pro: any) => ({
+                  value: String(pro.id),
+                  label: pro.name
+                }))}
+                value={isKabupaten}
+                searchable
+                onChange={(val: any) => onChoose(val)}
+              />
               <ActionIcon variant="subtle" onClick={() => router.push("/dashboard/regional-insights")} color="rgba(255, 255, 255, 1)" aria-label="close">
                 <AiOutlineClose style={{ width: '80%', height: '80%' }} stroke={1.5} />
               </ActionIcon>
             </Group>
           </Group>
         </Box>
-        {provinsi.map((item) => {
+        {isEmotion.map((item: any, i: any) => {
           return (
-            <Box pt={20} key={item.id} pb={20}>
+            <Box pt={20} key={i} pb={20}>
               <Grid gutter={40}>
                 <Grid.Col span={{ md: 6, lg: 6 }}>
-                  <DetailRegionHotIssue />
+                  <DetailRegionHotIssue data={rhi.filter((v: any) => v.idKabkot === item.idKabkot)} />
                   <Box pt={40}>
-                    <DetailEchartPublicRegionalInsights />
+                    <DetailEchartPublicRegionalInsights dataPct={pct.filter((v: any) => v.idKabkot === item.idKabkot)} />
                   </Box>
                 </Grid.Col>
                 <Grid.Col span={{ md: 6, lg: 6 }}>
                   <Text fz={33} fw={"bold"} c={"white"}>{item.name}</Text>
-                  <DetailSentimentAnalysis />
+                  <DetailSentimentAnalysis dataAudience={audience} dataEmotion={item} />
                   <Box pt={40}>
-                    <DetailEcahrtBarPolarRegionalInsights />
+                    <DetailEcahrtBarPolarRegionalInsights dataLta={lta.filter((v: any) => v.idKabkot === item.idKabkot)} />
                   </Box>
                 </Grid.Col>
               </Grid>
