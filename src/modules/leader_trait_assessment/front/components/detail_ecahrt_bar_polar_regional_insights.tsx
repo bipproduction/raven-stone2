@@ -1,11 +1,39 @@
+'use client'
+
+import { COLOR_EMOTION } from '@/modules/_global';
 import { Box, Text } from '@mantine/core';
 import { useShallowEffect } from '@mantine/hooks';
 import { EChartsOption } from 'echarts';
 import EChartsReact from 'echarts-for-react';
+import _ from 'lodash';
 import React, { useState } from 'react';
 
-export default function DetailEcahrtBarPolarRegionalInsights() {
+export default function DetailEcahrtBarPolarRegionalInsights({ dataLta }: { dataLta: any }) {
   const [options, setOptions] = useState<EChartsOption>({});
+
+  const total = _.sum([
+    dataLta[0].pekerjaKeras,
+    dataLta[0].cerdas,
+    dataLta[0].jujur,
+    dataLta[0].merakyat,
+    dataLta[0].tegas,
+    dataLta[0].berpengalamanMemimpin,
+    dataLta[0].berprestasi,
+    dataLta[0].latarBelakangMiliter,
+    dataLta[0].agamis,
+  ])
+
+  const [dataChart, setDataChart] = useState<any>({
+    pekerjaKeras: _.round((Number(dataLta[0].pekerjaKeras) / total) * 100, 2),
+    cerdas: _.round((Number(dataLta[0].cerdas) / total) * 100, 2),
+    jujur: _.round((Number(dataLta[0].jujur) / total) * 100, 2),
+    merakyat: _.round((Number(dataLta[0].merakyat) / total) * 100, 2),
+    tegas: _.round((Number(dataLta[0].tegas) / total) * 100, 2),
+    berpengalamanMemimpin: _.round((Number(dataLta[0].berpengalamanMemimpin) / total) * 100, 2),
+    berprestasi: _.round((Number(dataLta[0].berprestasi) / total) * 100, 2),
+    latarBelakangMiliter: _.round((Number(dataLta[0].latarBelakangMiliter) / total) * 100, 2),
+    agamis: _.round((Number(dataLta[0].agamis) / total) * 100, 2),
+  })
 
   useShallowEffect(() => {
     loadData()
@@ -19,6 +47,9 @@ export default function DetailEcahrtBarPolarRegionalInsights() {
         trigger: "axis",
         axisPointer: {
           type: "shadow",
+        },
+        formatter: function (params: any) {
+          return _.upperCase(params[0].name) + " : " + params[0].value + "%";
         },
       },
       angleAxis: {
@@ -39,63 +70,18 @@ export default function DetailEcahrtBarPolarRegionalInsights() {
           type: "bar",
           coordinateSystem: "polar",
           barWidth: 80,
-          data: [
-            {
-              value: 2323,
+          data: Object.keys(dataChart ?? []).map(
+            (v: any, i: any) =>
+            ({
+              name: v,
+              value: dataChart[v],
               itemStyle: {
-                color: "#5F3E94"
-              }
-            },
-            {
-              value: 1223,
-              itemStyle: {
-                color: "#1EB0D8"
-              }
-            },
-            {
-              value: 3323,
-              itemStyle: {
-                color: "#145C8C"
-              }
-            },
-            {
-              value: 1323,
-              itemStyle: {
-                color: "#93C76C"
-              }
-            },
-            {
-              value: 2223,
-              itemStyle: {
-                color: "#C4E0B6"
-              }
-            },
-            {
-              value: 2623,
-              itemStyle: {
-                color: "#7C1617"
-              }
-            },
-            {
-              value: 1123,
-              itemStyle: {
-                color: "#F1B8B9"
-              }
-            },
-            {
-              value: 1923,
-              itemStyle: {
-                color: "#62AF40"
-              }
-            },
-            {
-              value: 3323,
-              itemStyle: {
-                color: "#7D2933"
-              }
-            },
-
-          ],
+                color:
+                  COLOR_EMOTION.find((v2) => v2.id == String(i))
+                    ?.color ?? "gray",
+              },
+            })
+          ),
           itemStyle: {
             shadowBlur: 20,
             shadowOffsetX: 0,
