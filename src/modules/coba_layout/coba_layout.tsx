@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import AnimateCssReact from "animate-css-reactjs";
 import {
   ActionIcon,
@@ -7,7 +7,11 @@ import {
   AppShellNavbar,
   AppShellSection,
   Box,
+  Burger,
+  Button,
+  Group,
   Stack,
+  Text,
   Tooltip,
 } from "@mantine/core";
 import { useAtom } from "jotai";
@@ -16,7 +20,10 @@ import {
   sNavbarSmall,
 } from "../_global/front/val/isModalLayoutUser";
 import { CiDiscount1 } from "react-icons/ci";
-import { MdArrowForwardIos } from "react-icons/md";
+import { MdArrowForwardIos, MdClose } from "react-icons/md";
+import { useDisclosure } from "@mantine/hooks";
+import { AiOutlineClose } from "react-icons/ai";
+import { isModalGlobalCoba } from "./val/iisGlobalCoba";
 
 const mobile = [
   {
@@ -41,54 +48,62 @@ const mobile = [
   },
 ];
 
-const CobaLayout = () => {
-  const [isOpenSmall, setIsOpenSmall] = useAtom(sNavbarSmall);
-  const [isNavbarOpen, setNavbarOpen] = useAtom(sNavbarOpen);
-  return (
-    <>
-      <AppShell>
-        <AnimateCssReact animation="fadeIn">
-          <AppShellNavbar hidden={!isNavbarOpen} w={{ sm: 100, lg: 100 }}>
-            <AppShellSection grow>
-              <Stack align="center" p={"xs"}>
-                {mobile.map((v, i) => (
-                  <Box key={i}>
-                    <Tooltip label={v.label}>
-                      <ActionIcon
-                        bg={v.label ? "dark" : ""}
-                        radius={100}
-                        size={30}
-                        variant="subtle"
-                      >
-                        <v.icon size={30} color={"white"} />
-                      </ActionIcon>
-                    </Tooltip>
-                  </Box>
-                ))}
-              </Stack>
-            </AppShellSection>
-            <AppShellSection>
-              <ActionIcon
-                onClick={() => setIsOpenSmall(false)}
-                m={"md"}
-                radius={100}
-                size={34}
-              >
-                <MdArrowForwardIos size={34} />
-              </ActionIcon>
-            </AppShellSection>
-          </AppShellNavbar>
-        </AnimateCssReact>
-      </AppShell>
-    </>
-  );
-};
+export default function CobaNavbar() {
+  const [opened, { toggle }] = useDisclosure();
+  const [disabled, { toggle: toggleDisabled }] = useDisclosure();
+  const [isOpenCoba, setOpenCoba] = useAtom(isModalGlobalCoba);
 
-export function NavbarFull() {
   return (
-    <>
-    
-    </>
-  )
+    <AppShell
+      navbar={{ width: 300, breakpoint: "sm", collapsed: { mobile: !opened } }}
+      padding="md"
+      disabled={isOpenCoba}
+    >
+      <AppShell.Navbar p="md">
+        <Group justify="flex-end">
+          <ActionIcon onClick={() => setOpenCoba(true)}>
+            <AiOutlineClose />
+          </ActionIcon>
+        </Group>
+        {mobile.map((item) => {
+          return (
+            <Box key={item.id}>
+              <Tooltip label={item.label}>
+                <ActionIcon
+                  bg={item.label ? "dark" : ""}
+                  radius={100}
+                  size={32}
+                  variant="light"
+                >
+                  <item.icon size={32} color={"white"} />
+                </ActionIcon>
+              </Tooltip>
+            </Box>
+          );
+        })}
+      </AppShell.Navbar>
+      <AppShellSection>
+        <Button onClick={() => setOpenCoba(false)}>buka</Button>
+        {mobile.map((item) => {
+          return (
+            <Box key={item.id}>
+              <Tooltip label={item.label}>
+                <ActionIcon
+                  bg={item.label ? "dark" : ""}
+                  radius={100}
+                  size={32}
+                  variant="light"
+                >
+                  <item.icon size={32} color={"white"} />
+                </ActionIcon>
+              </Tooltip>
+            </Box>
+          );
+        })}
+      </AppShellSection>
+      <AppShell.Main>
+        <Text>Selamat Datang</Text>
+      </AppShell.Main>
+    </AppShell>
+  );
 }
-export default CobaLayout;

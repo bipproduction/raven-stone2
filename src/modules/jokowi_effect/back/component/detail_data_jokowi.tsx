@@ -2,13 +2,15 @@
 
 import { ActionIcon, Box, Center, Collapse, Group, Stack, Table, Text } from "@mantine/core";
 import { useState } from "react";
-import { CiRead, CiUnread } from "react-icons/ci";
+import { CiEdit, CiRead, CiUnread } from "react-icons/ci";
 import { MdDelete, MdEditCalendar } from "react-icons/md";
 import moment from "moment";
+import { useRouter } from "next/navigation";
 
 export default function DetailDataJokowi({ v, i, onClick }: { v: any; i: any, onClick: (val: any) => void }) {
     const open = useState(false);
     const formatDate = moment.utc(v.timeContent).format('HH:mm');
+    const router = useRouter();
 
     function callBackDelete({ idDel }: { idDel: any }) {
         onClick(idDel)
@@ -34,6 +36,15 @@ export default function DetailDataJokowi({ v, i, onClick }: { v: any; i: any, on
                                     </ActionIcon>
                                 </Group>
                             </Stack>
+                            <ActionIcon
+                                variant="transparent"
+                                color="green"
+                                size="xl"
+                                aria-label="Edit"
+                                onClick={() => router.push(`/dashboard-admin/jokowi-effect/edit/221`)}
+                            >
+                                <CiEdit size={25} />
+                            </ActionIcon>
                             <ActionIcon
                                 variant="transparent"
                                 color="rgba(209, 4, 4, 1)"

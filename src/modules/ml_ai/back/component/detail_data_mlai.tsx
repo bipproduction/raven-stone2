@@ -2,13 +2,17 @@
 
 import { ActionIcon, Box, Center, Collapse, Group, Stack, Table, Text } from "@mantine/core";
 import { useState } from "react";
-import { CiRead, CiUnread } from "react-icons/ci";
+import { CiEdit, CiRead, CiUnread } from "react-icons/ci";
 import { MdDelete, MdEditCalendar } from "react-icons/md";
 import moment from "moment";
+import { FaRegEdit } from "react-icons/fa";
+import { LuClipboardEdit } from "react-icons/lu";
+import { useRouter } from "next/navigation";
 
 export default function DetailDataMLAI({ v, i, onClick }: { v: any; i: any, onClick: (val: any) => void }) {
     const formatDate = moment.utc(v.timeContent).format('HH:mm');
     const open = useState(false);
+    const router = useRouter()
 
     function callBackDelete({ idDel }: { idDel: any }) {
         onClick(idDel)
@@ -34,6 +38,15 @@ export default function DetailDataMLAI({ v, i, onClick }: { v: any; i: any, onCl
                                     </ActionIcon>
                                 </Group>
                             </Stack>
+                            <ActionIcon
+                                variant="transparent"
+                                color="green"
+                                size="xl"
+                                aria-label="Edit"
+                                onClick={() => router.push(`/dashboard-admin/ml-ai/edit/221`)}
+                            >
+                                <CiEdit size={25} />
+                            </ActionIcon>
                             <ActionIcon
                                 variant="transparent"
                                 color="rgba(209, 4, 4, 1)"
