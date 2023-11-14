@@ -212,7 +212,7 @@ model Step {
 }
 
 model MlAi {
-  id          Int      @id @default(autoincrement())
+  id          String   @id @default(cuid())
   Paslon      Paslon   @relation(fields: [idPaslon], references: [id])
   idPaslon    Int
   content     String   @db.Text
@@ -224,7 +224,7 @@ model MlAi {
 }
 
 model Effect {
-  id          Int       @id @default(autoincrement())
+  id          String    @id @default(cuid())
   Candidate   Candidate @relation(fields: [idCandidate], references: [id])
   idCandidate Int
   content     String    @db.Text

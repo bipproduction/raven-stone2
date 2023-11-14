@@ -48,7 +48,7 @@ export default async function funUploadEffect({ body }: { body: any }) {
         } else {
             await prisma.effect.update({
                 where: {
-                    id: Number(i.id)
+                    id: i.id
                 },
                 data: {
                     dateContent: new Date(i.dateContent),
