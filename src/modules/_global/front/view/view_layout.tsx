@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import { useDisclosure, useShallowEffect } from '@mantine/hooks';
 import { AppShell, BackgroundImage, Box, Burger, Center, Divider, Grid, Group, Image, Modal, NavLink, Skeleton, Text, Title } from '@mantine/core';
 import { usePathname, useRouter } from 'next/navigation';
-import { useAtom } from 'jotai';
-import { isModalLayoutUser } from '../val/isModalLayoutUser';
+import { useAtom, useAtomValue } from 'jotai';
+import { isModalLayoutUser, sNavbarSmall } from '../val/isModalLayoutUser';
 import ModalLogoutUser from '../components/modal_logout_user';
 import { WARNA } from '../..';
 
@@ -13,37 +13,68 @@ const dataFront = [
     key: "0",
     link: "/dashboard/",
     label: "LIVE DASHBOARD",
+    color: "#FFFFFF",
+    garisBawah: "#C92A2A"
   },
   {
     key: "1",
     link: "/dashboard/summary",
-    label: "SUMMARY"
+    label: "SUMMARY",
+    color: "#868686",
+    garisBawah: "#868686"
   },
   {
     key: "2",
     link: "/dashboard/national-popularity-metric",
-    label: "NATIONAL POPULARITY METRIC"
+    label: "NATIONAL POPULARITY METRIC",
+    color: "#868686",
+    garisBawah: "#868686"
   },
   {
     key: "3",
     link: "/dashboard/regional-insights",
-    label: "REGIONAL INSIGHTS"
+    label: "REGIONAL INSIGHTS",
+    color: "#868686",
+    garisBawah: "#868686"
   },
   {
     key: "4",
     link: "/dashboard/regional-data-pairing",
-    label: "REGIONAL DATA PAIRING"
+    label: "REGIONAL DATA PAIRING",
+    color: "#868686",
+    garisBawah: "#868686"
   },
   {
     key: "5",
     link: "/dashboard/swot",
-    label: "SWOT EVALUATION"
+    label: "SWOT EVALUATION",
+    color: "#868686",
+    garisBawah: "#868686"
   },
   {
     key: "6",
     link: "/dashboard/step",
-    label: "STEP ASSESSMENT"
+    label: "STEP ASSESSMENT",
+    color: "#868686",
+    garisBawah: "#868686"
   },
+  {
+    key: "7",
+    link: "/dashboard/ml-ai",
+    label: "ML-AI",
+    color: "#FFFFFF",
+    garisBawah: "#C92A2A"
+  },
+  {
+    key: "8",
+    link: "/dashboard/jokowi-effect",
+    label: "JOKOWI EFFECT",
+    color: "#FFFFFF",
+    garisBawah: "#C92A2A"
+  },
+]
+
+const menuOn = [
   {
     key: "7",
     link: "/dashboard/ml-ai",
@@ -54,14 +85,6 @@ const dataFront = [
     link: "/dashboard/jokowi-effect",
     label: "JOKOWI EFFECT"
   },
-]
-
-const settingName = [
-  {
-    key: "8",
-    label: "SETTING",
-    label2: "LOGOUT"
-  }
 ]
 
 
@@ -75,14 +98,12 @@ export default function ViewLayout({ children }: { children: React.ReactNode }) 
   const router = useRouter();
   const pathname = usePathname();
   const [active, setActive] = useState("");
+  const [isSmall, setIsSmall] = useAtom(sNavbarSmall)
 
   useShallowEffect(() => {
     setActive(pathname);
   });
-
-
-
-
+  
   return (
     <>
       <AppShell
@@ -118,7 +139,7 @@ export default function ViewLayout({ children }: { children: React.ReactNode }) 
                           </Title>
                           <Grid pt={5}>
                             <Grid.Col span={3}>
-                              <Divider color="red.9" size="lg" />
+                              <Divider color={item.garisBawah} size="lg" />
                             </Grid.Col>
                           </Grid>
                         </Box>
@@ -134,7 +155,7 @@ export default function ViewLayout({ children }: { children: React.ReactNode }) 
                       onClick={() => {
                         router.push(item.link);
                       }}
-                      c={item.label ? "white" : "dark"}
+                      c={item.color}
                       variant="subtle"
                     />
                   </Box>
