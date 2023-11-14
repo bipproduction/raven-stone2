@@ -6,6 +6,10 @@ import { TypeAnimation } from 'react-type-animation';
 import { funGetEffectFront } from '../..';
 import { PageSubTitle, WARNA } from '@/modules/_global';
 import { EchartJokowiEffect, Top10JokowiEffect } from '@/modules/emotion';
+import { HiDotsHorizontal } from "react-icons/hi"
+import { useAtom } from 'jotai';
+import { _valReadIdEffect } from '../val/val_jokowi_effect';
+import WrapperEffect from '../component/wrapper_push_read_effect';
 
 
 
@@ -18,6 +22,7 @@ export default function ViewJokowiEffect({ effect }: { effect: any }) {
   const [dataJamEffect, setDataJamEffect] = useState(effect.dataJam)
   const [isDate, setDate] = useState<any>(new Date())
   const [isBTime, setBTime] = useState(effect.isJam)
+  const [valRead, setRead] = useAtom(_valReadIdEffect)
 
   async function chooseDate(value: any) {
     setDate(value)
@@ -102,13 +107,14 @@ export default function ViewJokowiEffect({ effect }: { effect: any }) {
               variant="filled"
               placeholder="SELECT DATE"
               maxDate={new Date()}
+              minDate={new Date('2023-09-01')}
               value={isDate}
               onChange={(val) => {
                 chooseDate(val)
               }}
             />
             {
-              dataJamEffect.map((item: any, i: any) => {
+              dataJamEffect.slice(0, 5).map((item: any, i: any) => {
                 return (
                   <div key={i}>
                     <Button variant={(isBTime == item.timeContent) ? 'filled' : 'subtle'} c={"white"}
@@ -123,35 +129,32 @@ export default function ViewJokowiEffect({ effect }: { effect: any }) {
 
               })
             }
-            {/* <Menu shadow="md" width={200}>
-              <Menu.Target>
-                <ActionIcon variant="subtle" color="rgba(255, 255, 255, 1)" aria-label="Settings">
-                  <HiDotsHorizontal style={{ width: '70%', height: '70%' }} stroke={1.5} />
-                </ActionIcon>
-              </Menu.Target>
-              <Menu.Dropdown >
-                <Menu.Item bg={"#230D37"}>
-                  <Text ta={"center"} c={"white"} fz={16}>
-                    16.31
-                  </Text>
-                </Menu.Item>
-                <Menu.Item bg={"#230D37"} mt={5}>
-                  <Text ta={"center"} c={"white"} fz={16}>
-                    18.33
-                  </Text>
-                </Menu.Item>
-                <Menu.Item bg={"#230D37"} mt={5}>
-                  <Text ta={"center"} c={"white"} fz={16}>
-                    19.45
-                  </Text>
-                </Menu.Item>
-                <Menu.Item bg={"#230D37"} mt={5}>
-                  <Text ta={"center"} c={"white"} fz={16}>
-                    21.23
-                  </Text>
-                </Menu.Item>
-              </Menu.Dropdown>
-            </Menu> */}
+            {dataJamEffect.length > 5 &&
+              <Menu shadow="md" width={200}>
+                <Menu.Target>
+                  <ActionIcon variant="subtle" color="rgba(255, 255, 255, 1)" aria-label="Settings">
+                    <HiDotsHorizontal style={{ width: '70%', height: '70%' }} stroke={1.5} />
+                  </ActionIcon>
+                </Menu.Target>
+                <Menu.Dropdown>
+                  <ScrollArea h={300}>
+                    {
+                      dataJamEffect.slice(5, dataJamEffect.length).map((item: any, i: any) => {
+                        return (
+                          <Menu.Item mb={5} bg={(isBTime == item.timeContent) ? 'blue' : "#230D37"} key={i} onClick={() => { chooseTime(item.timeContent) }}>
+                            <Text ta={"center"} c={"white"} fz={16}>
+                              {item.timeContent}
+                            </Text>
+                          </Menu.Item>
+                        )
+
+                      })
+                    }
+                  </ScrollArea>
+
+                </Menu.Dropdown>
+              </Menu>
+            }
           </Group>
         </Box>
         {dataEffect.map((item: any) => {
@@ -168,14 +171,26 @@ export default function ViewJokowiEffect({ effect }: { effect: any }) {
                   }}
                 >
                   <ScrollArea h={"100%"} w={"100%"}>
-                    <TypeAnimation
-                      sequence={[
-                        item.content,
-                        1000,
-                      ]}
-                      speed={70}
-                      style={{ fontSize: '16', color: "white" }}
-                    />
+                    {
+                      valRead.includes(item.id) ? (
+                        <>
+                          <Text style={{ fontSize: '16', color: "white" }} >{item.content}</Text>
+                        </>
+                      ) : (
+                        <>
+                          <WrapperEffect id={item.id}>
+                            <TypeAnimation
+                              sequence={[
+                                item.content,
+                                1000,
+                              ]}
+                              speed={99}
+                              style={{ fontSize: '16', color: "white" }}
+                            />
+                          </WrapperEffect>
+                        </>
+                      )
+                    }
                   </ScrollArea>
                 </Box>
               </Box>
