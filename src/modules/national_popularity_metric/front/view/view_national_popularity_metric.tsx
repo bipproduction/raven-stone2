@@ -15,14 +15,14 @@ export default function ViewNationalPopularityMetric({ paslon, cpaslon, dataNow 
   const [isDataPaslon, setDataPaslon] = useState(cpaslon)
   const [isDataNow, setDataNow] = useState(dataNow)
   const [dataChart, setDataChart] = useState<any>({
-    confidence: Number(isDataNow.confidence),
-    supportive: Number(isDataNow.supportive),
-    positive: Number(isDataNow.positive),
-    undecided: Number(isDataNow.undecided),
-    unsupportive: Number(isDataNow.unsupportive),
-    uncomfortable: Number(isDataNow.uncomfortable),
-    negative: Number(isDataNow.negative),
-    dissapproval: Number(isDataNow.dissapproval),
+    confidence: Number(isDataNow?.confidence),
+    supportive: Number(isDataNow?.supportive),
+    positive: Number(isDataNow?.positive),
+    undecided: Number(isDataNow?.undecided),
+    unsupportive: Number(isDataNow?.unsupportive),
+    uncomfortable: Number(isDataNow?.uncomfortable),
+    negative: Number(isDataNow?.negative),
+    dissapproval: Number(isDataNow?.dissapproval),
   })
 
   async function onGenerate() {
@@ -73,7 +73,7 @@ export default function ViewNationalPopularityMetric({ paslon, cpaslon, dataNow 
             </Group>
           </Box>
           <Box pt={10}>
-            <ViewCandidatePopularity dataPaslon={isDataPaslon} probability={isDataNow.rate} />
+            <ViewCandidatePopularity dataPaslon={isDataPaslon} probability={isDataNow?.rate} />
           </Box>
           <Box pt={20}>
             <Grid justify="flex-end" align="center">

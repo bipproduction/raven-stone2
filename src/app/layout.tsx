@@ -23,7 +23,7 @@ export const metadata = {
 export default function RootLayout({ children }: { children: any }) {
   return (
     <html lang="en">
-      <head>
+      <head suppressHydrationWarning={false}>
         <ColorSchemeScript />
         <link rel="shortcut icon" href="/favicon.svg" />
         <meta
@@ -36,4 +36,5 @@ export default function RootLayout({ children }: { children: any }) {
       </body>
     </html>
   );
+  
 }

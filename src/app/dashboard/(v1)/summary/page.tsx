@@ -1,6 +1,7 @@
-import { ViewSummary } from "@/modules/emotion";
+import { ViewSummary, funGetPaslonFront } from "@/modules/emotion";
 
-export default function Page() {
+export default async function Page() {
+    // const dPaslon = await funGetPaslonFront()
     return (
         <>
         <ViewSummary/>
