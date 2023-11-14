@@ -45,35 +45,48 @@ export default function ViewNationalPopularityMetric({ paslon, cpaslon, dataNow 
 
   return (
     <>
-      <PageSubTitle text1='NATIONAL' text2='POPULARITY METRICS' />
-      <Stack pt={10}>
-        <Box>
-          <Group justify='flex-end'>
-            <Select placeholder='Candidate'
-              data={paslon.map((pro: any) => ({
-                value: String(pro.id),
-                label: pro.name
-              }))}
-              value={_.toString(isPaslon)}
-              onChange={(val) => { setPaslon(val) }}
-            />
-            <Button radius={"md"} bg={"white"} c={"dark"} onClick={onGenerate}>GENERATE</Button>
-          </Group>
-        </Box>
-        <Box pt={10}>
-          <ViewCandidatePopularity dataPaslon={isDataPaslon} probability={isDataNow?.rate} />
-        </Box>
-        <Box pt={20}>
-          <Grid justify="flex-end" align="center">
-            <Grid.Col span={{ md: 7, lg: 7 }}>
-              <EchartPopularity />
-            </Grid.Col>
-            <Grid.Col span={{ md: 5, lg: 5 }}>
-              <EchartBarPopularity emotion={dataChart} />
-            </Grid.Col>
-          </Grid>
-        </Box>
-      </Stack>
+      <Box style={{
+        backgroundColor: "rgba(27,11,47,0.8)",
+        zIndex: 100,
+        position: "fixed",
+        width: "100%",
+        height: "100%",
+        top: 0,
+        left: 0,
+        backdropFilter: `blur(10px)`,
+        // opacity: 0.8,
+      }}></Box>
+      <Box>
+        <PageSubTitle text1='NATIONAL' text2='POPULARITY METRICS' />
+        <Stack pt={10}>
+          <Box>
+            <Group justify='flex-end'>
+              <Select placeholder='Candidate'
+                data={paslon.map((pro: any) => ({
+                  value: String(pro.id),
+                  label: pro.name
+                }))}
+                value={_.toString(isPaslon)}
+                onChange={(val) => { setPaslon(val) }}
+              />
+              <Button radius={"md"} bg={"white"} c={"dark"} onClick={onGenerate}>GENERATE</Button>
+            </Group>
+          </Box>
+          <Box pt={10}>
+            <ViewCandidatePopularity dataPaslon={isDataPaslon} probability={isDataNow?.rate} />
+          </Box>
+          <Box pt={20}>
+            <Grid justify="flex-end" align="center">
+              <Grid.Col span={{ md: 7, lg: 7 }}>
+                <EchartPopularity />
+              </Grid.Col>
+              <Grid.Col span={{ md: 5, lg: 5 }}>
+                <EchartBarPopularity emotion={dataChart} />
+              </Grid.Col>
+            </Grid>
+          </Box>
+        </Stack>
+      </Box>
     </>
   );
 }
