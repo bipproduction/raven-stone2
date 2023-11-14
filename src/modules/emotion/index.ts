@@ -15,6 +15,7 @@ import SentimentAnalysis from "./front/components/sentiment_analysis";
 import Top10JokowiEffect from "./front/components/top10_jokowi_effect";
 import funGetEmotionDetailRegionalFront from "./front/fun/get_emotion_detail_regional_front";
 import funGetEmotionRegionalFront from "./front/fun/get_emotion_regional_front";
+import funGetPaslonFront from "./front/fun/get_paslon_front";
 import ViewSummary from "./front/view/view_summary";
 
 export { ViewAdminEmotionCandidate }
@@ -35,3 +36,4 @@ export { EchartJokowiEffect }
 export { Top10JokowiEffect }
 export { funGetEmotionRegionalFront }
 export { funGetEmotionDetailRegionalFront }
+export { funGetPaslonFront }
