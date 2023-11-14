@@ -48,7 +48,7 @@ export default async function funUploadMlai({ body }: { body: any }) {
         } else {
             await prisma.mlAi.update({
                 where: {
-                    id: Number(i.id)
+                    id: i.id
                 },
                 data: {
                     idPaslon: pas,
