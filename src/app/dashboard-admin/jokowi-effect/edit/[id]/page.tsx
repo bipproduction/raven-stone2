@@ -1,10 +1,11 @@
 import { ViewEditAdminJokowi } from '@/modules/jokowi_effect';
+import funGetOneJokowiEffect from '@/modules/jokowi_effect/back/fun/get_one_jokowi_effect';
 import React from 'react';
 
-function Page() {
+export default async function Page({params}: {params: {id: string}}) {
+
+  const data = await funGetOneJokowiEffect({id: params.id})
   return (
-    <ViewEditAdminJokowi/>
+    <ViewEditAdminJokowi data={data}/>
   );
 }
-
-export default Page;
