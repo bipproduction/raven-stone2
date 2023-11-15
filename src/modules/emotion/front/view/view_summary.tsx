@@ -22,7 +22,6 @@ export default function ViewSummary() {
         top: 0,
         left: 0,
         backdropFilter: `blur(10px)`,
-        // opacity: 0.8,
       }}>
       </Box>
       <Box>
@@ -30,7 +29,7 @@ export default function ViewSummary() {
         <Stack pt={10}>
           <ViewSummaryCandidate />
           <Box pt={20}>
-            <JokowiEffectSummary />
+            <JokowiEffectSummary emotion={[]} locked={[]}/>
           </Box>
         </Stack>
       </Box>

@@ -2,7 +2,7 @@
 
 import { prisma } from "@/modules/_global"
 
-export default async function funGetPaslonFront() {
+export default async function funGetAllPaslonFront() {
     const data = await prisma.paslon.findMany({
         orderBy: {
             id: "asc"

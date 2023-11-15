@@ -17,7 +17,7 @@ import WrapperEffect from '../component/wrapper_push_read_effect';
  * Fungsi untuk menampilkan Jokowi Effect.
  * @returns {component} menampilakn Jokowi Effect.
  */
-export default function ViewJokowiEffect({ effect }: { effect: any }) {
+export default function ViewJokowiEffect({ effect, emotion, locked }: { effect: any, emotion: any, locked: any }) {
   const [dataEffect, setDataEffect] = useState(effect.data)
   const [dataJamEffect, setDataJamEffect] = useState(effect.dataJam)
   const [isDate, setDate] = useState<any>(new Date())
@@ -99,7 +99,7 @@ export default function ViewJokowiEffect({ effect }: { effect: any }) {
       </Stack>
       <Stack>
         <Box pt={20}>
-          <Top10JokowiEffect />
+          <Top10JokowiEffect data={emotion} dataLocked={locked} />
         </Box>
         <Box pt={20}>
           <Group>
@@ -151,7 +151,6 @@ export default function ViewJokowiEffect({ effect }: { effect: any }) {
                       })
                     }
                   </ScrollArea>
-
                 </Menu.Dropdown>
               </Menu>
             }

@@ -10,6 +10,7 @@ import { countKabkot } from "./fun/count_kabkot";
 import { countProvince } from "./fun/count_province";
 import funGetAllCandidate from "./fun/get_all_candidate";
 import funGetAllPaslon from "./fun/get_all_paslon";
+import funGetAllPaslonFront from "./fun/get_all_paslon_front";
 import funGetAllProvince from "./fun/get_all_province";
 import funGetKabkotByProvinsi from "./fun/get_kabkot_by_province";
 import funGetOneCandidate from "./fun/get_one_candidate";
@@ -34,3 +35,4 @@ export { WARNA }
 export { PageSubTitle }
 export { funGetOneProvinsi }
 export { funGetKabkotByProvinsi }
+export { funGetAllPaslonFront }
