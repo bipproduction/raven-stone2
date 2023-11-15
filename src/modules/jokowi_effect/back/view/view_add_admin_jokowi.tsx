@@ -1,6 +1,6 @@
 "use client"
 import { ButtonBack, WARNA } from '@/modules/_global';
-import { ActionIcon, Box, Button, Group, Select, SimpleGrid, Stack, Text, TextInput } from '@mantine/core';
+import { ActionIcon, Box, Button, Group, Modal, Select, SimpleGrid, Stack, Text, TextInput } from '@mantine/core';
 import { DateInput, TimeInput } from '@mantine/dates';
 import React, { useEffect, useRef, useState } from 'react';
 import { AiOutlineClockCircle } from 'react-icons/ai';
@@ -16,19 +16,31 @@ import { Color } from '@tiptap/extension-color';
 import TextStyle from '@tiptap/extension-text-style';
 import { CiPickerEmpty } from 'react-icons/ci';
 import { useRouter } from 'next/navigation';
+import moment from 'moment';
+import { time } from 'console';
+import { cookies } from 'next/headers';
+import toast from 'react-simple-toasts';
+import { useAtom } from 'jotai';
+import { isModalJokowi } from '../val/modal_jokowi';
+import ModalAddJokowiEffect from '../component/modal_add_jokowi_effect';
 
 
 export default function ViewAddAdminJokowi() {
   const ref = useRef<HTMLInputElement>(null);
   const router = useRouter();
-
-  const content = ''
+  const [valOpenModal, setOpenModal] = useAtom(isModalJokowi)
+  // const [inputTgl, setInputTgl] = useState(new Date())
+  // const [inputWaktu, setInputWaktu] = useState("")
 
   const pickerControl = (
     <ActionIcon variant="subtle" color="gray" onClick={() => ref.current?.showPicker()}>
       <AiOutlineClockCircle style={{ width: "70%", height: "70%" }} />
     </ActionIcon>
   );
+
+
+  const [isContent, setContent] = useState('')
+  // const content = ''
 
   const editor = useEditor({
     extensions: [
@@ -42,8 +54,21 @@ export default function ViewAddAdminJokowi() {
       Color,
       TextAlign.configure({ types: ['heading', 'paragraph'] }),
     ],
-    content,
+    content: isContent,
   });
+
+  const [isDataJokowi, setIsDataJokowi] = useState({
+    dateContent: "",
+    timeContent: ""
+  })
+
+  function validationData() {
+    if (Object.values(isDataJokowi).includes(""))
+      return toast("The form cannot be empty", { theme: "dark" });
+    setOpenModal(true);
+
+  }
+// console.log( isDataJokowi)
   return (
     <>
       <Stack>
@@ -59,6 +84,12 @@ export default function ViewAddAdminJokowi() {
             <DateInput valueFormat="DD-MM-YYYY" required
               label={"Tanggal"}
               placeholder="Pilih Tanggal"
+              onChange={(e) => {
+                setIsDataJokowi({
+                  ...isDataJokowi,
+                  dateContent: moment(e).format("YYYY-MM-DD"),
+                });
+              }}
             />
           </Box>
           <Box>
@@ -66,6 +97,12 @@ export default function ViewAddAdminJokowi() {
               label="Klik Icon Waktu"
               required ref={ref}
               rightSection={pickerControl}
+              onChange={(val) => {
+                setIsDataJokowi({
+                  ...isDataJokowi,
+                  timeContent: String(val.target.value)
+                })
+              }}
             />
           </Box>
         </SimpleGrid>
@@ -148,8 +185,18 @@ export default function ViewAddAdminJokowi() {
         </Box>
       </Stack>
       <Group justify='flex-end' pt={20}>
-        <Button color={"gray"} w={200}>SUBMIT</Button>
+        <Button color={"gray"} w={200} onClick={validationData}>SUBMIT</Button>
       </Group>
+      <Modal
+        size={"md"}
+        opened={valOpenModal}
+        onClose={() => { setOpenModal(false) }}
+        centered
+        withCloseButton={false}
+        closeOnClickOutside={false}
+      >
+       <ModalAddJokowiEffect dataJokowi={isDataJokowi} textContent={editor?.getHTML()} />
+      </Modal>
     </>
   );
 }

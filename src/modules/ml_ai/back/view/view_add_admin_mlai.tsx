@@ -1,6 +1,6 @@
 "use client"
 import { ButtonBack, WARNA } from '@/modules/_global';
-import { ActionIcon, Box, Button, Group, Select, SimpleGrid, Stack, Text, TextInput } from '@mantine/core';
+import { ActionIcon, Box, Button, Group, Modal, Select, SimpleGrid, Stack, Text, TextInput } from '@mantine/core';
 import { DateInput, TimeInput } from '@mantine/dates';
 import React, { useEffect, useRef, useState } from 'react';
 import { AiOutlineClockCircle } from 'react-icons/ai';
@@ -18,6 +18,9 @@ import { CiPickerEmpty } from 'react-icons/ci';
 import { useRouter } from 'next/navigation';
 import toast from 'react-simple-toasts';
 import moment from 'moment';
+import { useAtom } from 'jotai';
+import { isModalMlai } from '../val/modal_mlai';
+import ModalAddMlAi from '../component/modal_add_ml_ai';
 
 
 export default function ViewAddAdminMlai({ params, paslon, }: {params: any, paslon: any,}) {
@@ -26,17 +29,9 @@ export default function ViewAddAdminMlai({ params, paslon, }: {params: any, pasl
   const [dataPaslon, setDataPaslon] = useState(paslon)
   const [isPaslon, setPaslon] = useState<any>(params.idPaslon || null)
   const [isDate, setDate] = useState<any>(params.date)
-  const [dataMl, setDataMl] = useState({
-    idPaslon: Number(),
-    content: String(),
-    dateContent: "",
-    timeContent: new Date().toISOString()
-  })
+  const [valOpenModal, setOpenModal] = useAtom(isModalMlai)
 
-  // async function onChoose({ idPaslon }: { idPaslon: any }) {
-  //   setPaslon(idPaslon)
-  // }
-  const content =''
+  const [isContent, setContent] = useState('')
 
   function onProsses() {
     if (isPaslon == null) return toast("Silahkan pilih paslon", { theme: "dark" })
@@ -65,9 +60,20 @@ export default function ViewAddAdminMlai({ params, paslon, }: {params: any, pasl
       Color,
       TextAlign.configure({ types: ['heading', 'paragraph'] }),
     ],
-    content,
+    content: isContent,
   });
-  // console.log(dataMl)
+  const [isDataMlAi, setDataMlAi] = useState({
+    idPaslon: Number(),
+    dateContent: "",
+    timeContent: ""
+  })
+
+  function validationData() {
+    if (Object.values(isDataMlAi).includes(""))
+      return toast("The form cannot be empty", { theme: "dark" });
+    setOpenModal(true);
+
+  }
 
   return (
     <>
@@ -84,14 +90,15 @@ export default function ViewAddAdminMlai({ params, paslon, }: {params: any, pasl
             <Select
               label={"Paslon"}
               required
-              value={isPaslon}
+              // value={isPaslon}
+              placeholder='Pilih Paslon'
               data={dataPaslon.map((pro: any) => ({
                 value: String(pro.id),
                 label: pro.name
               }))}
               onChange={(val: any) =>
-                setDataMl({
-                  ...dataMl,
+                setDataMlAi({
+                  ...isDataMlAi,
                   idPaslon: val
                 })
               }
@@ -101,12 +108,12 @@ export default function ViewAddAdminMlai({ params, paslon, }: {params: any, pasl
             <DateInput valueFormat="DD-MM-YYYY" required
               label={"Tanggal"}
               placeholder="Pilih Tanggal"
-              onChange={(val: any) =>
-                setDataMl({
-                  ...dataMl,
-                  dateContent: val
-                })
-              }
+              onChange={(e) => {
+                setDataMlAi({
+                  ...isDataMlAi,
+                  dateContent: moment(e).format("YYYY-MM-DD"),
+                });
+              }}
             />
           </Box>
           <Box>
@@ -114,10 +121,10 @@ export default function ViewAddAdminMlai({ params, paslon, }: {params: any, pasl
               label="Klik Icon Waktu"
               required ref={ref}
               rightSection={pickerControl}
-              onChange={(val: any) =>
-                setDataMl({
-                  ...dataMl,
-                  timeContent: val
+              onChange={(val) =>
+                setDataMlAi({
+                  ...isDataMlAi,
+                  timeContent: String(val.target.value)
                 })
               } />
           </Box>
@@ -201,8 +208,18 @@ export default function ViewAddAdminMlai({ params, paslon, }: {params: any, pasl
         </Box>
       </Stack>
       <Group justify='flex-end' pt={20}>
-        <Button color={"gray"} w={200}>SUBMIT</Button>
+        <Button color={"gray"} w={200} onClick={() => validationData()}>SUBMIT</Button>
       </Group>
+      <Modal
+        size={"md"}
+        opened={valOpenModal}
+        onClose={() => { setOpenModal(false) }}
+        centered
+        withCloseButton={false}
+        closeOnClickOutside={false}
+      >
+       <ModalAddMlAi dataMlAi={isDataMlAi} textContent={editor?.getHTML()}/>
+      </Modal>
     </>
   );
 }
