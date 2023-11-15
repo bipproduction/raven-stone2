@@ -1,6 +1,6 @@
 "use client"
 import { ButtonBack, WARNA } from '@/modules/_global';
-import { ActionIcon, Box, Button, Group, Select, SimpleGrid, Stack, Text, TextInput } from '@mantine/core';
+import { ActionIcon, Box, Button, Group, Modal, Select, SimpleGrid, Stack, Text, TextInput } from '@mantine/core';
 import { DateInput, TimeInput } from '@mantine/dates';
 import React, { useEffect, useRef, useState } from 'react';
 import { AiOutlineClockCircle } from 'react-icons/ai';
@@ -16,36 +16,56 @@ import { Color } from '@tiptap/extension-color';
 import TextStyle from '@tiptap/extension-text-style';
 import { CiPickerEmpty } from 'react-icons/ci';
 import { useRouter } from 'next/navigation';
+import moment from 'moment';
+import toast from 'react-simple-toasts';
+import { useAtom } from 'jotai';
+import { isModalJokowi } from '../val/modal_jokowi';
+import ModalEditJokowiEffect from '../component/modal_edit_jokowi_effect';
 
-export default function ViewEditAdminJokowi() {
-    const ref = useRef<HTMLInputElement>(null);
-    const router = useRouter();
-  
-    const content = ''
-  
-    const pickerControl = (
-      <ActionIcon variant="subtle" color="gray" onClick={() => ref.current?.showPicker()}>
-        <AiOutlineClockCircle style={{ width: "70%", height: "70%" }} />
-      </ActionIcon>
-    );
-  
-    const editor = useEditor({
-      extensions: [
-        StarterKit,
-        Underline,
-        Link,
-        Superscript,
-        SubScript,
-        Highlight,
-        TextStyle,
-        Color,
-        TextAlign.configure({ types: ['heading', 'paragraph'] }),
-      ],
-      content,
-    });
+export default function ViewEditAdminJokowi({ data }: { data: any }) {
+  const ref = useRef<HTMLInputElement>(null);
+  const router = useRouter();
+  const [dataJokowi, setDataJokowi] = useState({
+    id: data.id,
+    dateContent: moment(data.dateContent).format('YYYY-MM-DD'),
+    timeContent: moment.utc(data.timeContent).format('HH:mm'),
+    content: data.content
+  })
+  const [valOpenModal, setOpenModal] = useAtom(isModalJokowi)
+
+  const content = ''
+
+  const pickerControl = (
+    <ActionIcon variant="subtle" color="gray" onClick={() => ref.current?.showPicker()}>
+      <AiOutlineClockCircle style={{ width: "70%", height: "70%" }} />
+    </ActionIcon>
+  );
+
+  const editor = useEditor({
+    extensions: [
+      StarterKit,
+      Underline,
+      Link,
+      Superscript,
+      SubScript,
+      Highlight,
+      TextStyle,
+      Color,
+      TextAlign.configure({ types: ['heading', 'paragraph'] }),
+    ],
+    content: dataJokowi.content
+  });
+
+  function validasiUser() {
+    if (Object.values(dataJokowi).includes(""))
+      return toast("The form cannot be empty", { theme: "dark" });
+    setOpenModal(true);
+  }
+
+
   return (
     <>
-          <Stack>
+      <Stack>
         <ButtonBack />
         <Group pt={30}>
           <Text fw={"bold"}>EDIT JOKOWI EFFECT</Text>
@@ -58,6 +78,13 @@ export default function ViewEditAdminJokowi() {
             <DateInput valueFormat="DD-MM-YYYY" required
               label={"Tanggal"}
               placeholder="Pilih Tanggal"
+              onChange={(val: any) =>
+                setDataJokowi({
+                  ...dataJokowi,
+                  dateContent: moment(val).format('YYYY-MM-DD'),
+                })
+              }
+              defaultValue={new Date(dataJokowi.dateContent)}
             />
           </Box>
           <Box>
@@ -65,6 +92,13 @@ export default function ViewEditAdminJokowi() {
               label="Klik Icon Waktu"
               required ref={ref}
               rightSection={pickerControl}
+              onChange={(val: any) =>
+                setDataJokowi({
+                  ...dataJokowi,
+                  timeContent: String(val.target.value)
+                })
+              }
+              defaultValue={dataJokowi.timeContent}
             />
           </Box>
         </SimpleGrid>
@@ -147,8 +181,18 @@ export default function ViewEditAdminJokowi() {
         </Box>
       </Stack>
       <Group justify='flex-end' pt={20}>
-        <Button color={"gray"} w={200}>EDIT</Button>
+        <Button color={"gray"} w={200} onClick={() => validasiUser()}>EDIT</Button>
       </Group>
+      <Modal
+        size={"md"}
+        opened={valOpenModal}
+        onClose={() => { setOpenModal(false) }}
+        centered
+        withCloseButton={false}
+        closeOnClickOutside={false}
+      >
+        <ModalEditJokowiEffect dataJokowi={dataJokowi} textContent={editor?.getHTML()} />
+      </Modal>
     </>
   );
 }

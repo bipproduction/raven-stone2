@@ -41,7 +41,7 @@ export default function DetailDataJokowi({ v, i, onClick }: { v: any; i: any, on
                                 color="green"
                                 size="xl"
                                 aria-label="Edit"
-                                onClick={() => router.push(`/dashboard-admin/jokowi-effect/edit/221`)}
+                                onClick={() => router.push(`/dashboard-admin/jokowi-effect/edit/${v.id}`)}
                             >
                                 <CiEdit size={25} />
                             </ActionIcon>
