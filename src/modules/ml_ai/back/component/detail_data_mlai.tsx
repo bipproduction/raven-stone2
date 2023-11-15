@@ -43,7 +43,7 @@ export default function DetailDataMLAI({ v, i, onClick }: { v: any; i: any, onCl
                                 color="green"
                                 size="xl"
                                 aria-label="Edit"
-                                onClick={() => router.push(`/dashboard-admin/ml-ai/edit/221`)}
+                                onClick={() => router.push(`/dashboard-admin/ml-ai/edit/${v.id}`)}
                             >
                                 <CiEdit size={25} />
                             </ActionIcon>

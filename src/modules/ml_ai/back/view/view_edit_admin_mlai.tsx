@@ -1,6 +1,6 @@
 "use client"
 import { ButtonBack, WARNA } from '@/modules/_global';
-import { ActionIcon, Box, Button, Group, Select, SimpleGrid, Stack, Text, TextInput } from '@mantine/core';
+import { ActionIcon, Box, Button, Group, Modal, Select, SimpleGrid, Stack, Text, TextInput } from '@mantine/core';
 import { DateInput, TimeInput } from '@mantine/dates';
 import React, { useEffect, useRef, useState } from 'react';
 import { AiOutlineClockCircle } from 'react-icons/ai';
@@ -18,12 +18,21 @@ import { CiPickerEmpty } from 'react-icons/ci';
 import { useRouter } from 'next/navigation';
 import toast from 'react-simple-toasts';
 import moment from 'moment';
+import { useAtom } from 'jotai';
+import { isModalMlai } from '../val/modal_mlai';
+import ModalEditMlAi from '../component/modal_edit_ml_ai';
 
-const content = ''
 
-export default function ViewEditAdminMlai({ params, paslon, }: { params: any, paslon: any, }) {
+export default function ViewEditAdminMlai({ data, paslon, }: { data: any, paslon: any, }) {
   const [dataPaslon, setDataPaslon] = useState(paslon)
-  const [isPaslon, setPaslon] = useState<any>(params.idPaslon || null)
+  const [valOpenModal, setOpenModal] = useAtom(isModalMlai)
+  const [dataMl, setDataMl] = useState({
+    id: data.id,
+    idPaslon: data.idPaslon,
+    dateContent: moment(data.dateContent).format('YYYY-MM-DD'),
+    timeContent: moment.utc(data.timeContent).format('HH:mm'),
+    content: data.content
+  })
   const ref = useRef<HTMLInputElement>(null);
   const router = useRouter();
 
@@ -46,8 +55,17 @@ export default function ViewEditAdminMlai({ params, paslon, }: { params: any, pa
       Color,
       TextAlign.configure({ types: ['heading', 'paragraph'] }),
     ],
-    content,
+    content: dataMl.content
   });
+
+
+  function validasiUser() {
+    if (Object.values(dataMl).includes(""))
+      return toast("The form cannot be empty", { theme: "dark" });
+    setOpenModal(true);
+  }
+
+
   return (
     <>
       <Stack>
@@ -63,24 +81,45 @@ export default function ViewEditAdminMlai({ params, paslon, }: { params: any, pa
             <Select
               label={"Paslon"}
               required
-              value={isPaslon}
+              value={dataMl.idPaslon}
               data={dataPaslon.map((pro: any) => ({
                 value: String(pro.id),
                 label: pro.name
               }))}
+              onChange={(val: any) =>
+                setDataMl({
+                  ...dataMl,
+                  idPaslon: val
+                })
+              }
             />
           </Box>
           <Box>
             <DateInput valueFormat="DD-MM-YYYY" required
               label={"Tanggal"}
               placeholder="Pilih Tanggal"
+              onChange={(val: any) =>
+                setDataMl({
+                  ...dataMl,
+                  dateContent: moment(val).format('YYYY-MM-DD'),
+                })
+              }
+              defaultValue={new Date(dataMl.dateContent)}
             />
           </Box>
           <Box>
             <TimeInput
               label="Klik Icon Waktu"
               required ref={ref}
-              rightSection={pickerControl} />
+              rightSection={pickerControl} 
+              onChange={(val: any) =>
+                setDataMl({
+                  ...dataMl,
+                  timeContent: String(val.target.value)
+                })
+              }
+              defaultValue={dataMl.timeContent}
+              />
           </Box>
         </SimpleGrid>
         <Box pt={30}>
@@ -162,8 +201,18 @@ export default function ViewEditAdminMlai({ params, paslon, }: { params: any, pa
         </Box>
       </Stack>
       <Group justify='flex-end' pt={20}>
-        <Button color={"gray"} w={200}>EDIT</Button>
+        <Button color={"gray"} w={200} onClick={()=> validasiUser()}>EDIT</Button>
       </Group>
+      <Modal
+        size={"md"}
+        opened={valOpenModal}
+        onClose={() => { setOpenModal(false) }}
+        centered
+        withCloseButton={false}
+        closeOnClickOutside={false}
+      >
+        <ModalEditMlAi dataMlAi={dataMl} textContent={editor?.getHTML()}/>
+      </Modal>
     </>
   );
 }

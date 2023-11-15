@@ -10,6 +10,7 @@ import { HiDotsHorizontal } from "react-icons/hi"
 import { useAtom } from 'jotai';
 import { _valReadIdMlai } from '../val/val_mlai';
 import Wrapper from '../component/wrapper_push_id';
+import Head from 'next/head';
 
 
 export default function ViewMlAi({ data, paslon, cpaslon }: { data: any, paslon: any, cpaslon: any }) {
