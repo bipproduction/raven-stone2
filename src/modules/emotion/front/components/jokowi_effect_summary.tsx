@@ -19,7 +19,7 @@ const data_jokowi = [
  * Fungsi untuk menampilkan Jokowi Effect.
  * @returns {component} menampilakn Jokowi Effect.
  */
-export default function JokowiEffectSummary() {
+export default function JokowiEffectSummary({ emotion, locked }: { emotion: any, locked: any }) {
   const router = useRouter()
   return (
     <>
@@ -76,13 +76,13 @@ export default function JokowiEffectSummary() {
             </Box>
           </Grid.Col>
           <Grid.Col span={{ md: 7, lg: 7 }}>
-            <EchartJokowiEffect />
+            <EchartJokowiEffect data={[]} />
           </Grid.Col>
         </Grid>
       </Stack>
       <Stack>
         <Box pt={20}>
-          <Top10JokowiEffect />
+          <Top10JokowiEffect data={emotion} dataLocked={locked} />
         </Box>
         <Box pt={20}>
           <Box style={{
