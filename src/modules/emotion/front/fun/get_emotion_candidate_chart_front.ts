@@ -53,7 +53,7 @@ export default async function funGetEmotionCandidateChartFront({ candidate, star
         const negative = _.round(((sum.unsupportive + sum.uncomfortable + sum.negative + sum.dissapproval) / totalSum) * 100, 2);
 
         return {
-            date: moment(dateStr).format("YYYY-MM-DD"),
+            date: dateStr,
             positive,
             neutral,
             negative
