@@ -35,8 +35,6 @@ export default function ViewAddAdminJokowi() {
   const ref = useRef<HTMLInputElement>(null);
   const router = useRouter();
   const [valOpenModal, setOpenModal] = useAtom(isModalJokowi)
-  // const [inputTgl, setInputTgl] = useState(new Date())
-  // const [inputWaktu, setInputWaktu] = useState("")
 
   const pickerControl = (
     <ActionIcon variant="subtle" color="gray" onClick={() => ref.current?.showPicker()}>
@@ -46,7 +44,6 @@ export default function ViewAddAdminJokowi() {
 
 
   const [isContent, setContent] = useState('')
-  // const content = ''
 
   const editor = useEditor({
     extensions: [
@@ -74,7 +71,6 @@ export default function ViewAddAdminJokowi() {
     setOpenModal(true);
 
   }
-// console.log( isDataJokowi)
   return (
     <>
       <Stack>
