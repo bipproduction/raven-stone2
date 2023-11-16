@@ -1,0 +1,32 @@
+{
+  "fields": [
+    {
+      "name": "Tahun",
+      "type": "year",
+      "format": "default"
+    },
+    {
+      "name": "Survei ke-",
+      "type": "integer",
+      "format": "default"
+    },
+    {
+      "name": "Kepuasan Masyarakat",
+      "type": "number",
+      "format": "default"
+    },
+    {
+      "name": "Penilaian Perekonomian",
+      "type": "string",
+      "format": "default"
+    },
+    {
+      "name": "Penilaian Penegakan Hukum",
+      "type": "string",
+      "format": "default"
+    }
+  ],
+  "missingValues": [
+    ""
+  ]
+}

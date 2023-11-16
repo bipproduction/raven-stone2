@@ -1,0 +1,3162 @@
+[
+  {
+    "id": 1,
+    "prov_id": 2,
+    "kab_id": "2_1",
+    "prov_name": "Aceh",
+    "kab_name": "Aceh Barat Daya",
+    "emotion": 2
+  },
+  {
+    "id": 2,
+    "prov_id": 2,
+    "kab_id": "2_2",
+    "prov_name": "Aceh",
+    "kab_name": "Aceh Barat",
+    "emotion": 0
+  },
+  {
+    "id": 3,
+    "prov_id": 2,
+    "kab_id": "2_3",
+    "prov_name": "Aceh",
+    "kab_name": "Aceh Besar",
+    "emotion": 0
+  },
+  {
+    "id": 4,
+    "prov_id": 2,
+    "kab_id": "2_4",
+    "prov_name": "Aceh",
+    "kab_name": "Aceh Jaya",
+    "emotion": 1
+  },
+  {
+    "id": 5,
+    "prov_id": 2,
+    "kab_id": "2_5",
+    "prov_name": "Aceh",
+    "kab_name": "Aceh Selatan",
+    "emotion": 1
+  },
+  {
+    "id": 6,
+    "prov_id": 2,
+    "kab_id": "2_6",
+    "prov_name": "Aceh",
+    "kab_name": "Aceh Singkil",
+    "emotion": 0
+  },
+  {
+    "id": 7,
+    "prov_id": 2,
+    "kab_id": "2_7",
+    "prov_name": "Aceh",
+    "kab_name": "Aceh Tamiang",
+    "emotion": 1
+  },
+  {
+    "id": 8,
+    "prov_id": 2,
+    "kab_id": "2_8",
+    "prov_name": "Aceh",
+    "kab_name": "Aceh Tengah",
+    "emotion": 0
+  },
+  {
+    "id": 9,
+    "prov_id": 2,
+    "kab_id": "2_9",
+    "prov_name": "Aceh",
+    "kab_name": "Aceh Tenggara",
+    "emotion": 2
+  },
+  {
+    "id": 10,
+    "prov_id": 2,
+    "kab_id": "2_10",
+    "prov_name": "Aceh",
+    "kab_name": "Aceh Timur",
+    "emotion": 0
+  },
+  {
+    "id": 11,
+    "prov_id": 2,
+    "kab_id": "2_11",
+    "prov_name": "Aceh",
+    "kab_name": "Aceh Utara",
+    "emotion": 0
+  },
+  {
+    "id": 12,
+    "prov_id": 2,
+    "kab_id": "2_12",
+    "prov_name": "Aceh",
+    "kab_name": "Bener Meriah",
+    "emotion": 2
+  },
+  {
+    "id": 13,
+    "prov_id": 2,
+    "kab_id": "2_13",
+    "prov_name": "Aceh",
+    "kab_name": "Bireuen",
+    "emotion": 1
+  },
+  {
+    "id": 14,
+    "prov_id": 2,
+    "kab_id": "2_14",
+    "prov_name": "Aceh",
+    "kab_name": "Gayo Lues",
+    "emotion": 2
+  },
+  {
+    "id": 15,
+    "prov_id": 2,
+    "kab_id": "2_15",
+    "prov_name": "Aceh",
+    "kab_name": "Nagan Raya",
+    "emotion": 2
+  },
+  {
+    "id": 16,
+    "prov_id": 2,
+    "kab_id": "2_16",
+    "prov_name": "Aceh",
+    "kab_name": "Pidie Jaya",
+    "emotion": 0
+  },
+  {
+    "id": 17,
+    "prov_id": 2,
+    "kab_id": "2_17",
+    "prov_name": "Aceh",
+    "kab_name": "Pidie",
+    "emotion": 1
+  },
+  {
+    "id": 18,
+    "prov_id": 2,
+    "kab_id": "2_18",
+    "prov_name": "Aceh",
+    "kab_name": "Simeulue",
+    "emotion": 1
+  },
+  {
+    "id": 19,
+    "prov_id": 3,
+    "kab_id": "3_1",
+    "prov_name": "Bali",
+    "kab_name": "Badung",
+    "emotion": 0
+  },
+  {
+    "id": 20,
+    "prov_id": 3,
+    "kab_id": "3_2",
+    "prov_name": "Bali",
+    "kab_name": "Bangli",
+    "emotion": 0
+  },
+  {
+    "id": 21,
+    "prov_id": 3,
+    "kab_id": "3_3",
+    "prov_name": "Bali",
+    "kab_name": "Buleleng",
+    "emotion": 1
+  },
+  {
+    "id": 22,
+    "prov_id": 3,
+    "kab_id": "3_4",
+    "prov_name": "Bali",
+    "kab_name": "Gianyar",
+    "emotion": 2
+  },
+  {
+    "id": 23,
+    "prov_id": 3,
+    "kab_id": "3_5",
+    "prov_name": "Bali",
+    "kab_name": "Jembrana",
+    "emotion": 2
+  },
+  {
+    "id": 24,
+    "prov_id": 3,
+    "kab_id": "3_6",
+    "prov_name": "Bali",
+    "kab_name": "Karangasem",
+    "emotion": 2
+  },
+  {
+    "id": 25,
+    "prov_id": 3,
+    "kab_id": "3_7",
+    "prov_name": "Bali",
+    "kab_name": "Klungkung",
+    "emotion": 2
+  },
+  {
+    "id": 26,
+    "prov_id": 3,
+    "kab_id": "3_8",
+    "prov_name": "Bali",
+    "kab_name": "Tabanan",
+    "emotion": 1
+  },
+  {
+    "id": 27,
+    "prov_id": 5,
+    "kab_id": "5_1",
+    "prov_name": "Banten",
+    "kab_name": "Lebak",
+    "emotion": 1
+  },
+  {
+    "id": 28,
+    "prov_id": 5,
+    "kab_id": "5_2",
+    "prov_name": "Banten",
+    "kab_name": "Pandeglang",
+    "emotion": 0
+  },
+  {
+    "id": 29,
+    "prov_id": 5,
+    "kab_id": "5_3",
+    "prov_name": "Banten",
+    "kab_name": "Serang",
+    "emotion": 2
+  },
+  {
+    "id": 30,
+    "prov_id": 5,
+    "kab_id": "5_4",
+    "prov_name": "Banten",
+    "kab_name": "Tangerang",
+    "emotion": 2
+  },
+  {
+    "id": 31,
+    "prov_id": 6,
+    "kab_id": "6_1",
+    "prov_name": "Bengkulu",
+    "kab_name": "Bengkulu Selatan",
+    "emotion": 1
+  },
+  {
+    "id": 32,
+    "prov_id": 6,
+    "kab_id": "6_2",
+    "prov_name": "Bengkulu",
+    "kab_name": "Bengkulu Tengah",
+    "emotion": 1
+  },
+  {
+    "id": 33,
+    "prov_id": 6,
+    "kab_id": "6_3",
+    "prov_name": "Bengkulu",
+    "kab_name": "Bengkulu Utara",
+    "emotion": 2
+  },
+  {
+    "id": 34,
+    "prov_id": 6,
+    "kab_id": "6_4",
+    "prov_name": "Bengkulu",
+    "kab_name": "Kaur",
+    "emotion": 1
+  },
+  {
+    "id": 35,
+    "prov_id": 6,
+    "kab_id": "6_5",
+    "prov_name": "Bengkulu",
+    "kab_name": "Kepahiang",
+    "emotion": 0
+  },
+  {
+    "id": 36,
+    "prov_id": 6,
+    "kab_id": "6_6",
+    "prov_name": "Bengkulu",
+    "kab_name": "Lebong",
+    "emotion": 2
+  },
+  {
+    "id": 37,
+    "prov_id": 6,
+    "kab_id": "6_7",
+    "prov_name": "Bengkulu",
+    "kab_name": "Mukomuko",
+    "emotion": 1
+  },
+  {
+    "id": 38,
+    "prov_id": 6,
+    "kab_id": "6_8",
+    "prov_name": "Bengkulu",
+    "kab_name": "Rejang Lebong",
+    "emotion": 1
+  },
+  {
+    "id": 39,
+    "prov_id": 6,
+    "kab_id": "6_9",
+    "prov_name": "Bengkulu",
+    "kab_name": "Seluma",
+    "emotion": 1
+  },
+  {
+    "id": 40,
+    "prov_id": 7,
+    "kab_id": "7_1",
+    "prov_name": "Jawa Tengah",
+    "kab_name": "Banjarnegara",
+    "emotion": 1
+  },
+  {
+    "id": 41,
+    "prov_id": 7,
+    "kab_id": "7_2",
+    "prov_name": "Jawa Tengah",
+    "kab_name": "Banyumas",
+    "emotion": 1
+  },
+  {
+    "id": 42,
+    "prov_id": 7,
+    "kab_id": "7_3",
+    "prov_name": "Jawa Tengah",
+    "kab_name": "Batang",
+    "emotion": 2
+  },
+  {
+    "id": 43,
+    "prov_id": 7,
+    "kab_id": "7_4",
+    "prov_name": "Jawa Tengah",
+    "kab_name": "Blora",
+    "emotion": 2
+  },
+  {
+    "id": 44,
+    "prov_id": 7,
+    "kab_id": "7_5",
+    "prov_name": "Jawa Tengah",
+    "kab_name": "Boyolali",
+    "emotion": 1
+  },
+  {
+    "id": 45,
+    "prov_id": 7,
+    "kab_id": "7_6",
+    "prov_name": "Jawa Tengah",
+    "kab_name": "Brebes",
+    "emotion": 0
+  },
+  {
+    "id": 46,
+    "prov_id": 7,
+    "kab_id": "7_7",
+    "prov_name": "Jawa Tengah",
+    "kab_name": "Cilacap",
+    "emotion": 1
+  },
+  {
+    "id": 47,
+    "prov_id": 7,
+    "kab_id": "7_8",
+    "prov_name": "Jawa Tengah",
+    "kab_name": "Demak",
+    "emotion": 1
+  },
+  {
+    "id": 48,
+    "prov_id": 7,
+    "kab_id": "7_9",
+    "prov_name": "Jawa Tengah",
+    "kab_name": "Grobogan",
+    "emotion": 1
+  },
+  {
+    "id": 49,
+    "prov_id": 7,
+    "kab_id": "7_10",
+    "prov_name": "Jawa Tengah",
+    "kab_name": "Jepara",
+    "emotion": 0
+  },
+  {
+    "id": 50,
+    "prov_id": 7,
+    "kab_id": "7_11",
+    "prov_name": "Jawa Tengah",
+    "kab_name": "Karanganyar",
+    "emotion": 2
+  },
+  {
+    "id": 51,
+    "prov_id": 7,
+    "kab_id": "7_12",
+    "prov_name": "Jawa Tengah",
+    "kab_name": "Kebumen",
+    "emotion": 2
+  },
+  {
+    "id": 52,
+    "prov_id": 7,
+    "kab_id": "7_13",
+    "prov_name": "Jawa Tengah",
+    "kab_name": "Kendal",
+    "emotion": 2
+  },
+  {
+    "id": 53,
+    "prov_id": 7,
+    "kab_id": "7_14",
+    "prov_name": "Jawa Tengah",
+    "kab_name": "Klaten",
+    "emotion": 0
+  },
+  {
+    "id": 54,
+    "prov_id": 7,
+    "kab_id": "7_15",
+    "prov_name": "Jawa Tengah",
+    "kab_name": "Kudus",
+    "emotion": 2
+  },
+  {
+    "id": 55,
+    "prov_id": 7,
+    "kab_id": "7_16",
+    "prov_name": "Jawa Tengah",
+    "kab_name": "Magelang",
+    "emotion": 1
+  },
+  {
+    "id": 56,
+    "prov_id": 7,
+    "kab_id": "7_17",
+    "prov_name": "Jawa Tengah",
+    "kab_name": "Pati",
+    "emotion": 2
+  },
+  {
+    "id": 57,
+    "prov_id": 7,
+    "kab_id": "7_18",
+    "prov_name": "Jawa Tengah",
+    "kab_name": "Pekalongan",
+    "emotion": 2
+  },
+  {
+    "id": 58,
+    "prov_id": 7,
+    "kab_id": "7_19",
+    "prov_name": "Jawa Tengah",
+    "kab_name": "Pemalang",
+    "emotion": 1
+  },
+  {
+    "id": 59,
+    "prov_id": 7,
+    "kab_id": "7_20",
+    "prov_name": "Jawa Tengah",
+    "kab_name": "Purbalingga",
+    "emotion": 0
+  },
+  {
+    "id": 60,
+    "prov_id": 7,
+    "kab_id": "7_21",
+    "prov_name": "Jawa Tengah",
+    "kab_name": "Purworejo",
+    "emotion": 0
+  },
+  {
+    "id": 61,
+    "prov_id": 7,
+    "kab_id": "7_22",
+    "prov_name": "Jawa Tengah",
+    "kab_name": "Rembang",
+    "emotion": 2
+  },
+  {
+    "id": 62,
+    "prov_id": 7,
+    "kab_id": "7_23",
+    "prov_name": "Jawa Tengah",
+    "kab_name": "Semarang",
+    "emotion": 0
+  },
+  {
+    "id": 63,
+    "prov_id": 7,
+    "kab_id": "7_24",
+    "prov_name": "Jawa Tengah",
+    "kab_name": "Sragen",
+    "emotion": 2
+  },
+  {
+    "id": 64,
+    "prov_id": 7,
+    "kab_id": "7_25",
+    "prov_name": "Jawa Tengah",
+    "kab_name": "Sukoharjo",
+    "emotion": 0
+  },
+  {
+    "id": 65,
+    "prov_id": 7,
+    "kab_id": "7_26",
+    "prov_name": "Jawa Tengah",
+    "kab_name": "Tegal",
+    "emotion": 1
+  },
+  {
+    "id": 66,
+    "prov_id": 7,
+    "kab_id": "7_27",
+    "prov_name": "Jawa Tengah",
+    "kab_name": "Temanggung",
+    "emotion": 1
+  },
+  {
+    "id": 67,
+    "prov_id": 7,
+    "kab_id": "7_28",
+    "prov_name": "Jawa Tengah",
+    "kab_name": "Wonogiri",
+    "emotion": 1
+  },
+  {
+    "id": 68,
+    "prov_id": 7,
+    "kab_id": "7_29",
+    "prov_name": "Jawa Tengah",
+    "kab_name": "Wonosobo",
+    "emotion": 2
+  },
+  {
+    "id": 69,
+    "prov_id": 8,
+    "kab_id": "8_1",
+    "prov_name": "Kalimantan Tengah",
+    "kab_name": "Barito Selatan",
+    "emotion": 0
+  },
+  {
+    "id": 70,
+    "prov_id": 8,
+    "kab_id": "8_2",
+    "prov_name": "Kalimantan Tengah",
+    "kab_name": "Barito Timur",
+    "emotion": 0
+  },
+  {
+    "id": 71,
+    "prov_id": 8,
+    "kab_id": "8_3",
+    "prov_name": "Kalimantan Tengah",
+    "kab_name": "Barito Utara",
+    "emotion": 0
+  },
+  {
+    "id": 72,
+    "prov_id": 8,
+    "kab_id": "8_4",
+    "prov_name": "Kalimantan Tengah",
+    "kab_name": "Gunung Mas",
+    "emotion": 2
+  },
+  {
+    "id": 73,
+    "prov_id": 8,
+    "kab_id": "8_5",
+    "prov_name": "Kalimantan Tengah",
+    "kab_name": "Kapuas",
+    "emotion": 0
+  },
+  {
+    "id": 74,
+    "prov_id": 8,
+    "kab_id": "8_6",
+    "prov_name": "Kalimantan Tengah",
+    "kab_name": "Katingan",
+    "emotion": 0
+  },
+  {
+    "id": 75,
+    "prov_id": 8,
+    "kab_id": "8_7",
+    "prov_name": "Kalimantan Tengah",
+    "kab_name": "Kotawaringin Barat",
+    "emotion": 2
+  },
+  {
+    "id": 76,
+    "prov_id": 8,
+    "kab_id": "8_8",
+    "prov_name": "Kalimantan Tengah",
+    "kab_name": "Kotawaringin Timur",
+    "emotion": 0
+  },
+  {
+    "id": 77,
+    "prov_id": 8,
+    "kab_id": "8_9",
+    "prov_name": "Kalimantan Tengah",
+    "kab_name": "Lamandau",
+    "emotion": 0
+  },
+  {
+    "id": 78,
+    "prov_id": 8,
+    "kab_id": "8_10",
+    "prov_name": "Kalimantan Tengah",
+    "kab_name": "Murung Raya",
+    "emotion": 2
+  },
+  {
+    "id": 79,
+    "prov_id": 8,
+    "kab_id": "8_11",
+    "prov_name": "Kalimantan Tengah",
+    "kab_name": "Pulang Pisau",
+    "emotion": 0
+  },
+  {
+    "id": 80,
+    "prov_id": 8,
+    "kab_id": "8_12",
+    "prov_name": "Kalimantan Tengah",
+    "kab_name": "Seruyan",
+    "emotion": 0
+  },
+  {
+    "id": 81,
+    "prov_id": 8,
+    "kab_id": "8_13",
+    "prov_name": "Kalimantan Tengah",
+    "kab_name": "Sukamara",
+    "emotion": 0
+  },
+  {
+    "id": 82,
+    "prov_id": 9,
+    "kab_id": "9_1",
+    "prov_name": "Sulawesi Tengah",
+    "kab_name": "Banggai",
+    "emotion": 0
+  },
+  {
+    "id": 83,
+    "prov_id": 9,
+    "kab_id": "9_2",
+    "prov_name": "Sulawesi Tengah",
+    "kab_name": "Banggai Kepulauan",
+    "emotion": 2
+  },
+  {
+    "id": 84,
+    "prov_id": 9,
+    "kab_id": "9_3",
+    "prov_name": "Sulawesi Tengah",
+    "kab_name": "Banggai Laut",
+    "emotion": 1
+  },
+  {
+    "id": 85,
+    "prov_id": 9,
+    "kab_id": "9_4",
+    "prov_name": "Sulawesi Tengah",
+    "kab_name": "Buol",
+    "emotion": 0
+  },
+  {
+    "id": 86,
+    "prov_id": 9,
+    "kab_id": "9_5",
+    "prov_name": "Sulawesi Tengah",
+    "kab_name": "Donggala",
+    "emotion": 2
+  },
+  {
+    "id": 87,
+    "prov_id": 9,
+    "kab_id": "9_6",
+    "prov_name": "Sulawesi Tengah",
+    "kab_name": "Morowali",
+    "emotion": 2
+  },
+  {
+    "id": 88,
+    "prov_id": 9,
+    "kab_id": "9_7",
+    "prov_name": "Sulawesi Tengah",
+    "kab_name": "Morowali Utara",
+    "emotion": 0
+  },
+  {
+    "id": 89,
+    "prov_id": 9,
+    "kab_id": "9_8",
+    "prov_name": "Sulawesi Tengah",
+    "kab_name": "Parigi Moutong",
+    "emotion": 0
+  },
+  {
+    "id": 90,
+    "prov_id": 9,
+    "kab_id": "9_9",
+    "prov_name": "Sulawesi Tengah",
+    "kab_name": "Poso",
+    "emotion": 1
+  },
+  {
+    "id": 91,
+    "prov_id": 9,
+    "kab_id": "9_10",
+    "prov_name": "Sulawesi Tengah",
+    "kab_name": "Sigi",
+    "emotion": 1
+  },
+  {
+    "id": 92,
+    "prov_id": 9,
+    "kab_id": "9_11",
+    "prov_name": "Sulawesi Tengah",
+    "kab_name": "Tojo Una-Una",
+    "emotion": 1
+  },
+  {
+    "id": 93,
+    "prov_id": 9,
+    "kab_id": "9_12",
+    "prov_name": "Sulawesi Tengah",
+    "kab_name": "Toli-Toli",
+    "emotion": 0
+  },
+  {
+    "id": 94,
+    "prov_id": 10,
+    "kab_id": "10_1",
+    "prov_name": "Jawa Timur",
+    "kab_name": "Bangkalan",
+    "emotion": 1
+  },
+  {
+    "id": 95,
+    "prov_id": 10,
+    "kab_id": "10_2",
+    "prov_name": "Jawa Timur",
+    "kab_name": "Banyuwangi",
+    "emotion": 0
+  },
+  {
+    "id": 96,
+    "prov_id": 10,
+    "kab_id": "10_3",
+    "prov_name": "Jawa Timur",
+    "kab_name": "Blitar",
+    "emotion": 1
+  },
+  {
+    "id": 97,
+    "prov_id": 10,
+    "kab_id": "10_4",
+    "prov_name": "Jawa Timur",
+    "kab_name": "Bojonegoro",
+    "emotion": 1
+  },
+  {
+    "id": 98,
+    "prov_id": 10,
+    "kab_id": "10_5",
+    "prov_name": "Jawa Timur",
+    "kab_name": "Bondowoso",
+    "emotion": 2
+  },
+  {
+    "id": 99,
+    "prov_id": 10,
+    "kab_id": "10_6",
+    "prov_name": "Jawa Timur",
+    "kab_name": "Gresik",
+    "emotion": 2
+  },
+  {
+    "id": 100,
+    "prov_id": 10,
+    "kab_id": "10_7",
+    "prov_name": "Jawa Timur",
+    "kab_name": "Jember",
+    "emotion": 0
+  },
+  {
+    "id": 101,
+    "prov_id": 10,
+    "kab_id": "10_8",
+    "prov_name": "Jawa Timur",
+    "kab_name": "Jombang",
+    "emotion": 1
+  },
+  {
+    "id": 102,
+    "prov_id": 10,
+    "kab_id": "10_9",
+    "prov_name": "Jawa Timur",
+    "kab_name": "Kediri",
+    "emotion": 1
+  },
+  {
+    "id": 103,
+    "prov_id": 10,
+    "kab_id": "10_10",
+    "prov_name": "Jawa Timur",
+    "kab_name": "Lamongan",
+    "emotion": 2
+  },
+  {
+    "id": 104,
+    "prov_id": 10,
+    "kab_id": "10_11",
+    "prov_name": "Jawa Timur",
+    "kab_name": "Lumajang",
+    "emotion": 2
+  },
+  {
+    "id": 105,
+    "prov_id": 10,
+    "kab_id": "10_12",
+    "prov_name": "Jawa Timur",
+    "kab_name": "Madiun",
+    "emotion": 1
+  },
+  {
+    "id": 106,
+    "prov_id": 10,
+    "kab_id": "10_13",
+    "prov_name": "Jawa Timur",
+    "kab_name": "Magetan",
+    "emotion": 2
+  },
+  {
+    "id": 107,
+    "prov_id": 10,
+    "kab_id": "10_14",
+    "prov_name": "Jawa Timur",
+    "kab_name": "Malang",
+    "emotion": 1
+  },
+  {
+    "id": 108,
+    "prov_id": 10,
+    "kab_id": "10_15",
+    "prov_name": "Jawa Timur",
+    "kab_name": "Mojokerto",
+    "emotion": 0
+  },
+  {
+    "id": 109,
+    "prov_id": 10,
+    "kab_id": "10_16",
+    "prov_name": "Jawa Timur",
+    "kab_name": "Nganjuk",
+    "emotion": 0
+  },
+  {
+    "id": 110,
+    "prov_id": 10,
+    "kab_id": "10_17",
+    "prov_name": "Jawa Timur",
+    "kab_name": "Ngawi",
+    "emotion": 1
+  },
+  {
+    "id": 111,
+    "prov_id": 10,
+    "kab_id": "10_18",
+    "prov_name": "Jawa Timur",
+    "kab_name": "Pacitan",
+    "emotion": 1
+  },
+  {
+    "id": 112,
+    "prov_id": 10,
+    "kab_id": "10_19",
+    "prov_name": "Jawa Timur",
+    "kab_name": "Pamekasan",
+    "emotion": 2
+  },
+  {
+    "id": 113,
+    "prov_id": 10,
+    "kab_id": "10_20",
+    "prov_name": "Jawa Timur",
+    "kab_name": "Pasuruan",
+    "emotion": 0
+  },
+  {
+    "id": 114,
+    "prov_id": 10,
+    "kab_id": "10_21",
+    "prov_name": "Jawa Timur",
+    "kab_name": "Ponorogo",
+    "emotion": 0
+  },
+  {
+    "id": 115,
+    "prov_id": 10,
+    "kab_id": "10_22",
+    "prov_name": "Jawa Timur",
+    "kab_name": "Probolinggo",
+    "emotion": 2
+  },
+  {
+    "id": 116,
+    "prov_id": 10,
+    "kab_id": "10_23",
+    "prov_name": "Jawa Timur",
+    "kab_name": "Sampang",
+    "emotion": 1
+  },
+  {
+    "id": 117,
+    "prov_id": 10,
+    "kab_id": "10_24",
+    "prov_name": "Jawa Timur",
+    "kab_name": "Sidoarjo",
+    "emotion": 0
+  },
+  {
+    "id": 118,
+    "prov_id": 10,
+    "kab_id": "10_25",
+    "prov_name": "Jawa Timur",
+    "kab_name": "Situbondo",
+    "emotion": 0
+  },
+  {
+    "id": 119,
+    "prov_id": 10,
+    "kab_id": "10_26",
+    "prov_name": "Jawa Timur",
+    "kab_name": "Sumenep",
+    "emotion": 0
+  },
+  {
+    "id": 120,
+    "prov_id": 10,
+    "kab_id": "10_27",
+    "prov_name": "Jawa Timur",
+    "kab_name": "Trenggalek",
+    "emotion": 1
+  },
+  {
+    "id": 121,
+    "prov_id": 10,
+    "kab_id": "10_28",
+    "prov_name": "Jawa Timur",
+    "kab_name": "Tuban",
+    "emotion": 2
+  },
+  {
+    "id": 122,
+    "prov_id": 10,
+    "kab_id": "10_29",
+    "prov_name": "Jawa Timur",
+    "kab_name": "Tulungagung",
+    "emotion": 2
+  },
+  {
+    "id": 123,
+    "prov_id": 11,
+    "kab_id": "11_1",
+    "prov_name": "Kalimantan Timur",
+    "kab_name": "Berau",
+    "emotion": 1
+  },
+  {
+    "id": 124,
+    "prov_id": 11,
+    "kab_id": "11_2",
+    "prov_name": "Kalimantan Timur",
+    "kab_name": "Kutai Barat",
+    "emotion": 2
+  },
+  {
+    "id": 125,
+    "prov_id": 11,
+    "kab_id": "11_3",
+    "prov_name": "Kalimantan Timur",
+    "kab_name": "Kutai Kartanegara",
+    "emotion": 2
+  },
+  {
+    "id": 126,
+    "prov_id": 11,
+    "kab_id": "11_4",
+    "prov_name": "Kalimantan Timur",
+    "kab_name": "Kutai Timur",
+    "emotion": 2
+  },
+  {
+    "id": 127,
+    "prov_id": 11,
+    "kab_id": "11_5",
+    "prov_name": "Kalimantan Timur",
+    "kab_name": "Mahakam Ulu",
+    "emotion": 2
+  },
+  {
+    "id": 128,
+    "prov_id": 11,
+    "kab_id": "11_6",
+    "prov_name": "Kalimantan Timur",
+    "kab_name": "Paser",
+    "emotion": 0
+  },
+  {
+    "id": 129,
+    "prov_id": 11,
+    "kab_id": "11_7",
+    "prov_name": "Kalimantan Timur",
+    "kab_name": "Penajam Paser Utara",
+    "emotion": 2
+  },
+  {
+    "id": 130,
+    "prov_id": 12,
+    "kab_id": "12_1",
+    "prov_name": "Nusa Tenggara Timur",
+    "kab_name": "Alor",
+    "emotion": 0
+  },
+  {
+    "id": 131,
+    "prov_id": 12,
+    "kab_id": "12_2",
+    "prov_name": "Nusa Tenggara Timur",
+    "kab_name": "Belu",
+    "emotion": 0
+  },
+  {
+    "id": 132,
+    "prov_id": 12,
+    "kab_id": "12_3",
+    "prov_name": "Nusa Tenggara Timur",
+    "kab_name": "Ende",
+    "emotion": 1
+  },
+  {
+    "id": 133,
+    "prov_id": 12,
+    "kab_id": "12_4",
+    "prov_name": "Nusa Tenggara Timur",
+    "kab_name": "Flores Timur",
+    "emotion": 0
+  },
+  {
+    "id": 134,
+    "prov_id": 12,
+    "kab_id": "12_5",
+    "prov_name": "Nusa Tenggara Timur",
+    "kab_name": "Kupang",
+    "emotion": 2
+  },
+  {
+    "id": 135,
+    "prov_id": 12,
+    "kab_id": "12_6",
+    "prov_name": "Nusa Tenggara Timur",
+    "kab_name": "Lembata",
+    "emotion": 2
+  },
+  {
+    "id": 136,
+    "prov_id": 12,
+    "kab_id": "12_7",
+    "prov_name": "Nusa Tenggara Timur",
+    "kab_name": "Malaka",
+    "emotion": 2
+  },
+  {
+    "id": 137,
+    "prov_id": 12,
+    "kab_id": "12_8",
+    "prov_name": "Nusa Tenggara Timur",
+    "kab_name": "Manggarai Barat",
+    "emotion": 2
+  },
+  {
+    "id": 138,
+    "prov_id": 12,
+    "kab_id": "12_9",
+    "prov_name": "Nusa Tenggara Timur",
+    "kab_name": "Manggarai Timur",
+    "emotion": 2
+  },
+  {
+    "id": 139,
+    "prov_id": 12,
+    "kab_id": "12_10",
+    "prov_name": "Nusa Tenggara Timur",
+    "kab_name": "Manggarai",
+    "emotion": 0
+  },
+  {
+    "id": 140,
+    "prov_id": 12,
+    "kab_id": "12_11",
+    "prov_name": "Nusa Tenggara Timur",
+    "kab_name": "Nagekeo",
+    "emotion": 0
+  },
+  {
+    "id": 141,
+    "prov_id": 12,
+    "kab_id": "12_12",
+    "prov_name": "Nusa Tenggara Timur",
+    "kab_name": "Ngada",
+    "emotion": 2
+  },
+  {
+    "id": 142,
+    "prov_id": 12,
+    "kab_id": "12_13",
+    "prov_name": "Nusa Tenggara Timur",
+    "kab_name": "Rote Ndao",
+    "emotion": 1
+  },
+  {
+    "id": 143,
+    "prov_id": 12,
+    "kab_id": "12_14",
+    "prov_name": "Nusa Tenggara Timur",
+    "kab_name": "Sabu Raijua",
+    "emotion": 0
+  },
+  {
+    "id": 144,
+    "prov_id": 12,
+    "kab_id": "12_15",
+    "prov_name": "Nusa Tenggara Timur",
+    "kab_name": "Sikka",
+    "emotion": 1
+  },
+  {
+    "id": 145,
+    "prov_id": 12,
+    "kab_id": "12_16",
+    "prov_name": "Nusa Tenggara Timur",
+    "kab_name": "Sumba Barat Daya",
+    "emotion": 0
+  },
+  {
+    "id": 146,
+    "prov_id": 12,
+    "kab_id": "12_17",
+    "prov_name": "Nusa Tenggara Timur",
+    "kab_name": "Sumba Barat",
+    "emotion": 2
+  },
+  {
+    "id": 147,
+    "prov_id": 12,
+    "kab_id": "12_18",
+    "prov_name": "Nusa Tenggara Timur",
+    "kab_name": "Sumba Tengah",
+    "emotion": 0
+  },
+  {
+    "id": 148,
+    "prov_id": 12,
+    "kab_id": "12_19",
+    "prov_name": "Nusa Tenggara Timur",
+    "kab_name": "Sumba Timur",
+    "emotion": 1
+  },
+  {
+    "id": 149,
+    "prov_id": 12,
+    "kab_id": "12_20",
+    "prov_name": "Nusa Tenggara Timur",
+    "kab_name": "Timor Tengah Selatan",
+    "emotion": 2
+  },
+  {
+    "id": 150,
+    "prov_id": 12,
+    "kab_id": "12_21",
+    "prov_name": "Nusa Tenggara Timur",
+    "kab_name": "Timor Tengah Utara",
+    "emotion": 1
+  },
+  {
+    "id": 151,
+    "prov_id": 13,
+    "kab_id": "13_1",
+    "prov_name": "Gorontalo",
+    "kab_name": "Boalemo",
+    "emotion": 2
+  },
+  {
+    "id": 152,
+    "prov_id": 13,
+    "kab_id": "13_2",
+    "prov_name": "Gorontalo",
+    "kab_name": "Bone Bolango",
+    "emotion": 0
+  },
+  {
+    "id": 153,
+    "prov_id": 13,
+    "kab_id": "13_3",
+    "prov_name": "Gorontalo",
+    "kab_name": "Gorontalo Utara",
+    "emotion": 1
+  },
+  {
+    "id": 154,
+    "prov_id": 13,
+    "kab_id": "13_4",
+    "prov_name": "Gorontalo",
+    "kab_name": "Gorontalo",
+    "emotion": 1
+  },
+  {
+    "id": 155,
+    "prov_id": 13,
+    "kab_id": "13_5",
+    "prov_name": "Gorontalo",
+    "kab_name": "Pohuwato",
+    "emotion": 1
+  },
+  {
+    "id": 156,
+    "prov_id": 15,
+    "kab_id": "15_1",
+    "prov_name": "Jambi",
+    "kab_name": "Batanghari",
+    "emotion": 1
+  },
+  {
+    "id": 157,
+    "prov_id": 15,
+    "kab_id": "15_2",
+    "prov_name": "Jambi",
+    "kab_name": "Bungo",
+    "emotion": 0
+  },
+  {
+    "id": 158,
+    "prov_id": 15,
+    "kab_id": "15_3",
+    "prov_name": "Jambi",
+    "kab_name": "Kerinci",
+    "emotion": 1
+  },
+  {
+    "id": 159,
+    "prov_id": 15,
+    "kab_id": "15_4",
+    "prov_name": "Jambi",
+    "kab_name": "Merangin",
+    "emotion": 1
+  },
+  {
+    "id": 160,
+    "prov_id": 15,
+    "kab_id": "15_5",
+    "prov_name": "Jambi",
+    "kab_name": "Muaro Jambi",
+    "emotion": 0
+  },
+  {
+    "id": 161,
+    "prov_id": 15,
+    "kab_id": "15_6",
+    "prov_name": "Jambi",
+    "kab_name": "Sarolangun",
+    "emotion": 2
+  },
+  {
+    "id": 162,
+    "prov_id": 15,
+    "kab_id": "15_7",
+    "prov_name": "Jambi",
+    "kab_name": "Tanjung Jabung Barat",
+    "emotion": 1
+  },
+  {
+    "id": 163,
+    "prov_id": 15,
+    "kab_id": "15_8",
+    "prov_name": "Jambi",
+    "kab_name": "Tanjung Jabung Timur",
+    "emotion": 2
+  },
+  {
+    "id": 164,
+    "prov_id": 15,
+    "kab_id": "15_9",
+    "prov_name": "Jambi",
+    "kab_name": "Tebo",
+    "emotion": 0
+  },
+  {
+    "id": 165,
+    "prov_id": 16,
+    "kab_id": "16_1",
+    "prov_name": "Lampung",
+    "kab_name": "Lampung Barat",
+    "emotion": 0
+  },
+  {
+    "id": 166,
+    "prov_id": 16,
+    "kab_id": "16_2",
+    "prov_name": "Lampung",
+    "kab_name": "Lampung Selatan",
+    "emotion": 2
+  },
+  {
+    "id": 167,
+    "prov_id": 16,
+    "kab_id": "16_3",
+    "prov_name": "Lampung",
+    "kab_name": "Lampung Tengah",
+    "emotion": 0
+  },
+  {
+    "id": 168,
+    "prov_id": 16,
+    "kab_id": "16_4",
+    "prov_name": "Lampung",
+    "kab_name": "Lampung Timur",
+    "emotion": 2
+  },
+  {
+    "id": 169,
+    "prov_id": 16,
+    "kab_id": "16_5",
+    "prov_name": "Lampung",
+    "kab_name": "Lampung Utara",
+    "emotion": 1
+  },
+  {
+    "id": 170,
+    "prov_id": 16,
+    "kab_id": "16_6",
+    "prov_name": "Lampung",
+    "kab_name": "Mesuji",
+    "emotion": 0
+  },
+  {
+    "id": 171,
+    "prov_id": 16,
+    "kab_id": "16_7",
+    "prov_name": "Lampung",
+    "kab_name": "Pesawaran",
+    "emotion": 1
+  },
+  {
+    "id": 172,
+    "prov_id": 16,
+    "kab_id": "16_8",
+    "prov_name": "Lampung",
+    "kab_name": "Pesisir Barat",
+    "emotion": 1
+  },
+  {
+    "id": 173,
+    "prov_id": 16,
+    "kab_id": "16_9",
+    "prov_name": "Lampung",
+    "kab_name": "Pringsewu",
+    "emotion": 0
+  },
+  {
+    "id": 174,
+    "prov_id": 16,
+    "kab_id": "16_10",
+    "prov_name": "Lampung",
+    "kab_name": "Tanggamus",
+    "emotion": 2
+  },
+  {
+    "id": 175,
+    "prov_id": 16,
+    "kab_id": "16_11",
+    "prov_name": "Lampung",
+    "kab_name": "Tulang Bawang Barat",
+    "emotion": 0
+  },
+  {
+    "id": 176,
+    "prov_id": 16,
+    "kab_id": "16_12",
+    "prov_name": "Lampung",
+    "kab_name": "Tulang Bawang",
+    "emotion": 2
+  },
+  {
+    "id": 177,
+    "prov_id": 16,
+    "kab_id": "16_13",
+    "prov_name": "Lampung",
+    "kab_name": "Way Kanan",
+    "emotion": 2
+  },
+  {
+    "id": 178,
+    "prov_id": 17,
+    "kab_id": "17_1",
+    "prov_name": "Maluku",
+    "kab_name": "Buru Selatan",
+    "emotion": 1
+  },
+  {
+    "id": 179,
+    "prov_id": 17,
+    "kab_id": "17_2",
+    "prov_name": "Maluku",
+    "kab_name": "Buru",
+    "emotion": 0
+  },
+  {
+    "id": 180,
+    "prov_id": 17,
+    "kab_id": "17_3",
+    "prov_name": "Maluku",
+    "kab_name": "Kepulauan Aru",
+    "emotion": 1
+  },
+  {
+    "id": 181,
+    "prov_id": 17,
+    "kab_id": "17_4",
+    "prov_name": "Maluku",
+    "kab_name": "Maluku Barat Daya",
+    "emotion": 0
+  },
+  {
+    "id": 182,
+    "prov_id": 17,
+    "kab_id": "17_5",
+    "prov_name": "Maluku",
+    "kab_name": "Maluku Tengah",
+    "emotion": 1
+  },
+  {
+    "id": 183,
+    "prov_id": 17,
+    "kab_id": "17_6",
+    "prov_name": "Maluku",
+    "kab_name": "Maluku Tenggara Barat",
+    "emotion": 2
+  },
+  {
+    "id": 184,
+    "prov_id": 17,
+    "kab_id": "17_7",
+    "prov_name": "Maluku",
+    "kab_name": "Maluku Tenggara",
+    "emotion": 1
+  },
+  {
+    "id": 185,
+    "prov_id": 17,
+    "kab_id": "17_8",
+    "prov_name": "Maluku",
+    "kab_name": "Seram Bagian Barat",
+    "emotion": 1
+  },
+  {
+    "id": 186,
+    "prov_id": 17,
+    "kab_id": "17_9",
+    "prov_name": "Maluku",
+    "kab_name": "Seram Bagian Timur",
+    "emotion": 0
+  },
+  {
+    "id": 187,
+    "prov_id": 18,
+    "kab_id": "18_1",
+    "prov_name": "Kalimantan Utara",
+    "kab_name": "Bulungan",
+    "emotion": 2
+  },
+  {
+    "id": 188,
+    "prov_id": 18,
+    "kab_id": "18_2",
+    "prov_name": "Kalimantan Utara",
+    "kab_name": "Malinau",
+    "emotion": 1
+  },
+  {
+    "id": 189,
+    "prov_id": 18,
+    "kab_id": "18_3",
+    "prov_name": "Kalimantan Utara",
+    "kab_name": "Nunukan",
+    "emotion": 1
+  },
+  {
+    "id": 190,
+    "prov_id": 18,
+    "kab_id": "18_4",
+    "prov_name": "Kalimantan Utara",
+    "kab_name": "Tana Tidung",
+    "emotion": 2
+  },
+  {
+    "id": 191,
+    "prov_id": 19,
+    "kab_id": "19_1",
+    "prov_name": "Maluku Utara",
+    "kab_name": "Halmahera Barat",
+    "emotion": 1
+  },
+  {
+    "id": 192,
+    "prov_id": 19,
+    "kab_id": "19_2",
+    "prov_name": "Maluku Utara",
+    "kab_name": "Halmahera Selatan",
+    "emotion": 2
+  },
+  {
+    "id": 193,
+    "prov_id": 19,
+    "kab_id": "19_3",
+    "prov_name": "Maluku Utara",
+    "kab_name": "Halmahera Tengah",
+    "emotion": 1
+  },
+  {
+    "id": 194,
+    "prov_id": 19,
+    "kab_id": "19_4",
+    "prov_name": "Maluku Utara",
+    "kab_name": "Halmahera Timur",
+    "emotion": 1
+  },
+  {
+    "id": 195,
+    "prov_id": 19,
+    "kab_id": "19_5",
+    "prov_name": "Maluku Utara",
+    "kab_name": "Halmahera Utara",
+    "emotion": 2
+  },
+  {
+    "id": 196,
+    "prov_id": 19,
+    "kab_id": "19_6",
+    "prov_name": "Maluku Utara",
+    "kab_name": "Kepulauan Sula",
+    "emotion": 0
+  },
+  {
+    "id": 197,
+    "prov_id": 19,
+    "kab_id": "19_7",
+    "prov_name": "Maluku Utara",
+    "kab_name": "Pulau Morotai",
+    "emotion": 0
+  },
+  {
+    "id": 198,
+    "prov_id": 19,
+    "kab_id": "19_8",
+    "prov_name": "Maluku Utara",
+    "kab_name": "Pulau Taliabu",
+    "emotion": 1
+  },
+  {
+    "id": 199,
+    "prov_id": 20,
+    "kab_id": "20_1",
+    "prov_name": "Sulawesi Utara",
+    "kab_name": "Bolaang Mongondow",
+    "emotion": 0
+  },
+  {
+    "id": 200,
+    "prov_id": 20,
+    "kab_id": "20_2",
+    "prov_name": "Sulawesi Utara",
+    "kab_name": "Bolaang Mongondow Selatan",
+    "emotion": 0
+  },
+  {
+    "id": 201,
+    "prov_id": 20,
+    "kab_id": "20_3",
+    "prov_name": "Sulawesi Utara",
+    "kab_name": "Bolaang Mongondow Timur",
+    "emotion": 2
+  },
+  {
+    "id": 202,
+    "prov_id": 20,
+    "kab_id": "20_4",
+    "prov_name": "Sulawesi Utara",
+    "kab_name": "Bolaang Mongondow Utara",
+    "emotion": 2
+  },
+  {
+    "id": 203,
+    "prov_id": 20,
+    "kab_id": "20_5",
+    "prov_name": "Sulawesi Utara",
+    "kab_name": "Kepulauan Sangihe",
+    "emotion": 1
+  },
+  {
+    "id": 204,
+    "prov_id": 20,
+    "kab_id": "20_6",
+    "prov_name": "Sulawesi Utara",
+    "kab_name": "Kepulauan Siau Tagulandang Biaro",
+    "emotion": 2
+  },
+  {
+    "id": 205,
+    "prov_id": 20,
+    "kab_id": "20_7",
+    "prov_name": "Sulawesi Utara",
+    "kab_name": "Kepulauan Talaud",
+    "emotion": 1
+  },
+  {
+    "id": 206,
+    "prov_id": 20,
+    "kab_id": "20_8",
+    "prov_name": "Sulawesi Utara",
+    "kab_name": "Minahasa",
+    "emotion": 0
+  },
+  {
+    "id": 207,
+    "prov_id": 20,
+    "kab_id": "20_9",
+    "prov_name": "Sulawesi Utara",
+    "kab_name": "Minahasa Selatan",
+    "emotion": 1
+  },
+  {
+    "id": 208,
+    "prov_id": 20,
+    "kab_id": "20_10",
+    "prov_name": "Sulawesi Utara",
+    "kab_name": "Minahasa Tenggara",
+    "emotion": 0
+  },
+  {
+    "id": 209,
+    "prov_id": 20,
+    "kab_id": "20_11",
+    "prov_name": "Sulawesi Utara",
+    "kab_name": "Minahasa Utara",
+    "emotion": 2
+  },
+  {
+    "id": 210,
+    "prov_id": 21,
+    "kab_id": "21_1",
+    "prov_name": "Sumatera Utara",
+    "kab_name": "Asahan",
+    "emotion": 2
+  },
+  {
+    "id": 211,
+    "prov_id": 21,
+    "kab_id": "21_2",
+    "prov_name": "Sumatera Utara",
+    "kab_name": "Batubara",
+    "emotion": 2
+  },
+  {
+    "id": 212,
+    "prov_id": 21,
+    "kab_id": "21_3",
+    "prov_name": "Sumatera Utara",
+    "kab_name": "Dairi",
+    "emotion": 2
+  },
+  {
+    "id": 213,
+    "prov_id": 21,
+    "kab_id": "21_4",
+    "prov_name": "Sumatera Utara",
+    "kab_name": "Deli Serdang",
+    "emotion": 1
+  },
+  {
+    "id": 214,
+    "prov_id": 21,
+    "kab_id": "21_5",
+    "prov_name": "Sumatera Utara",
+    "kab_name": "Humbang Hasundutan",
+    "emotion": 1
+  },
+  {
+    "id": 215,
+    "prov_id": 21,
+    "kab_id": "21_6",
+    "prov_name": "Sumatera Utara",
+    "kab_name": "Karo",
+    "emotion": 2
+  },
+  {
+    "id": 216,
+    "prov_id": 21,
+    "kab_id": "21_7",
+    "prov_name": "Sumatera Utara",
+    "kab_name": "Labuhanbatu Selatan",
+    "emotion": 0
+  },
+  {
+    "id": 217,
+    "prov_id": 21,
+    "kab_id": "21_8",
+    "prov_name": "Sumatera Utara",
+    "kab_name": "Labuhanbatu Utara",
+    "emotion": 1
+  },
+  {
+    "id": 218,
+    "prov_id": 21,
+    "kab_id": "21_9",
+    "prov_name": "Sumatera Utara",
+    "kab_name": "Labuhanbatu",
+    "emotion": 1
+  },
+  {
+    "id": 219,
+    "prov_id": 21,
+    "kab_id": "21_10",
+    "prov_name": "Sumatera Utara",
+    "kab_name": "Langkat",
+    "emotion": 0
+  },
+  {
+    "id": 220,
+    "prov_id": 21,
+    "kab_id": "21_11",
+    "prov_name": "Sumatera Utara",
+    "kab_name": "Mandailing Natal",
+    "emotion": 0
+  },
+  {
+    "id": 221,
+    "prov_id": 21,
+    "kab_id": "21_12",
+    "prov_name": "Sumatera Utara",
+    "kab_name": "Nias Barat",
+    "emotion": 2
+  },
+  {
+    "id": 222,
+    "prov_id": 21,
+    "kab_id": "21_13",
+    "prov_name": "Sumatera Utara",
+    "kab_name": "Nias Selatan",
+    "emotion": 1
+  },
+  {
+    "id": 223,
+    "prov_id": 21,
+    "kab_id": "21_14",
+    "prov_name": "Sumatera Utara",
+    "kab_name": "Nias Utara",
+    "emotion": 1
+  },
+  {
+    "id": 224,
+    "prov_id": 21,
+    "kab_id": "21_15",
+    "prov_name": "Sumatera Utara",
+    "kab_name": "Nias",
+    "emotion": 0
+  },
+  {
+    "id": 225,
+    "prov_id": 21,
+    "kab_id": "21_16",
+    "prov_name": "Sumatera Utara",
+    "kab_name": "Padang Lawas Utara",
+    "emotion": 2
+  },
+  {
+    "id": 226,
+    "prov_id": 21,
+    "kab_id": "21_17",
+    "prov_name": "Sumatera Utara",
+    "kab_name": "Padang Lawas",
+    "emotion": 1
+  },
+  {
+    "id": 227,
+    "prov_id": 21,
+    "kab_id": "21_18",
+    "prov_name": "Sumatera Utara",
+    "kab_name": "Pakpak Bharat",
+    "emotion": 1
+  },
+  {
+    "id": 228,
+    "prov_id": 21,
+    "kab_id": "21_19",
+    "prov_name": "Sumatera Utara",
+    "kab_name": "Samosir",
+    "emotion": 1
+  },
+  {
+    "id": 229,
+    "prov_id": 21,
+    "kab_id": "21_20",
+    "prov_name": "Sumatera Utara",
+    "kab_name": "Serdang Bedagai",
+    "emotion": 0
+  },
+  {
+    "id": 230,
+    "prov_id": 21,
+    "kab_id": "21_21",
+    "prov_name": "Sumatera Utara",
+    "kab_name": "Simalungun",
+    "emotion": 2
+  },
+  {
+    "id": 231,
+    "prov_id": 21,
+    "kab_id": "21_22",
+    "prov_name": "Sumatera Utara",
+    "kab_name": "Tapanuli Selatan",
+    "emotion": 0
+  },
+  {
+    "id": 232,
+    "prov_id": 21,
+    "kab_id": "21_23",
+    "prov_name": "Sumatera Utara",
+    "kab_name": "Tapanuli Tengah",
+    "emotion": 1
+  },
+  {
+    "id": 233,
+    "prov_id": 21,
+    "kab_id": "21_24",
+    "prov_name": "Sumatera Utara",
+    "kab_name": "Tapanuli Utara",
+    "emotion": 2
+  },
+  {
+    "id": 234,
+    "prov_id": 21,
+    "kab_id": "21_25",
+    "prov_name": "Sumatera Utara",
+    "kab_name": "Toba Samosir",
+    "emotion": 2
+  },
+  {
+    "id": 235,
+    "prov_id": 22,
+    "kab_id": "22_1",
+    "prov_name": "Papua",
+    "kab_name": "Biak Numfor",
+    "emotion": 1
+  },
+  {
+    "id": 236,
+    "prov_id": 22,
+    "kab_id": "22_2",
+    "prov_name": "Papua",
+    "kab_name": "Jayapura",
+    "emotion": 0
+  },
+  {
+    "id": 237,
+    "prov_id": 22,
+    "kab_id": "22_3",
+    "prov_name": "Papua",
+    "kab_name": "Keerom",
+    "emotion": 1
+  },
+  {
+    "id": 238,
+    "prov_id": 22,
+    "kab_id": "22_4",
+    "prov_name": "Papua",
+    "kab_name": "Kepulauan Yapen",
+    "emotion": 2
+  },
+  {
+    "id": 239,
+    "prov_id": 22,
+    "kab_id": "22_5",
+    "prov_name": "Papua",
+    "kab_name": "Mamberamo Raya",
+    "emotion": 2
+  },
+  {
+    "id": 240,
+    "prov_id": 22,
+    "kab_id": "22_6",
+    "prov_name": "Papua",
+    "kab_name": "Sarmi",
+    "emotion": 1
+  },
+  {
+    "id": 241,
+    "prov_id": 22,
+    "kab_id": "22_7",
+    "prov_name": "Papua",
+    "kab_name": "Supiori",
+    "emotion": 2
+  },
+  {
+    "id": 242,
+    "prov_id": 22,
+    "kab_id": "22_8",
+    "prov_name": "Papua",
+    "kab_name": "Waropen",
+    "emotion": 1
+  },
+  {
+    "id": 243,
+    "prov_id": 23,
+    "kab_id": "23_1",
+    "prov_name": "Riau",
+    "kab_name": "Bengkalis",
+    "emotion": 2
+  },
+  {
+    "id": 244,
+    "prov_id": 23,
+    "kab_id": "23_2",
+    "prov_name": "Riau",
+    "kab_name": "Indragiri Hilir",
+    "emotion": 2
+  },
+  {
+    "id": 245,
+    "prov_id": 23,
+    "kab_id": "23_3",
+    "prov_name": "Riau",
+    "kab_name": "Indragiri Hulu",
+    "emotion": 1
+  },
+  {
+    "id": 246,
+    "prov_id": 23,
+    "kab_id": "23_4",
+    "prov_name": "Riau",
+    "kab_name": "Kampar",
+    "emotion": 0
+  },
+  {
+    "id": 247,
+    "prov_id": 23,
+    "kab_id": "23_5",
+    "prov_name": "Riau",
+    "kab_name": "Kepulauan Meranti",
+    "emotion": 1
+  },
+  {
+    "id": 248,
+    "prov_id": 23,
+    "kab_id": "23_6",
+    "prov_name": "Riau",
+    "kab_name": "Kuantan Singingi",
+    "emotion": 2
+  },
+  {
+    "id": 249,
+    "prov_id": 23,
+    "kab_id": "23_7",
+    "prov_name": "Riau",
+    "kab_name": "Pelalawan",
+    "emotion": 0
+  },
+  {
+    "id": 250,
+    "prov_id": 23,
+    "kab_id": "23_8",
+    "prov_name": "Riau",
+    "kab_name": "Rokan Hilir",
+    "emotion": 0
+  },
+  {
+    "id": 251,
+    "prov_id": 23,
+    "kab_id": "23_9",
+    "prov_name": "Riau",
+    "kab_name": "Rokan Hulu",
+    "emotion": 0
+  },
+  {
+    "id": 252,
+    "prov_id": 23,
+    "kab_id": "23_10",
+    "prov_name": "Riau",
+    "kab_name": "Siak",
+    "emotion": 0
+  },
+  {
+    "id": 253,
+    "prov_id": 25,
+    "kab_id": "25_1",
+    "prov_name": "Sulawesi Tenggara",
+    "kab_name": "Bombana",
+    "emotion": 0
+  },
+  {
+    "id": 254,
+    "prov_id": 25,
+    "kab_id": "25_2",
+    "prov_name": "Sulawesi Tenggara",
+    "kab_name": "Buton",
+    "emotion": 0
+  },
+  {
+    "id": 255,
+    "prov_id": 25,
+    "kab_id": "25_3",
+    "prov_name": "Sulawesi Tenggara",
+    "kab_name": "Buton Selatan",
+    "emotion": 1
+  },
+  {
+    "id": 256,
+    "prov_id": 25,
+    "kab_id": "25_4",
+    "prov_name": "Sulawesi Tenggara",
+    "kab_name": "Buton Tengah",
+    "emotion": 0
+  },
+  {
+    "id": 257,
+    "prov_id": 25,
+    "kab_id": "25_5",
+    "prov_name": "Sulawesi Tenggara",
+    "kab_name": "Buton Utara",
+    "emotion": 0
+  },
+  {
+    "id": 258,
+    "prov_id": 25,
+    "kab_id": "25_6",
+    "prov_name": "Sulawesi Tenggara",
+    "kab_name": "Kolaka",
+    "emotion": 1
+  },
+  {
+    "id": 259,
+    "prov_id": 25,
+    "kab_id": "25_7",
+    "prov_name": "Sulawesi Tenggara",
+    "kab_name": "Kolaka Timur",
+    "emotion": 1
+  },
+  {
+    "id": 260,
+    "prov_id": 25,
+    "kab_id": "25_8",
+    "prov_name": "Sulawesi Tenggara",
+    "kab_name": "Kolaka Utara",
+    "emotion": 1
+  },
+  {
+    "id": 261,
+    "prov_id": 25,
+    "kab_id": "25_9",
+    "prov_name": "Sulawesi Tenggara",
+    "kab_name": "Konawe Kepulauan",
+    "emotion": 0
+  },
+  {
+    "id": 262,
+    "prov_id": 25,
+    "kab_id": "25_10",
+    "prov_name": "Sulawesi Tenggara",
+    "kab_name": "Konawe Selatan",
+    "emotion": 1
+  },
+  {
+    "id": 263,
+    "prov_id": 25,
+    "kab_id": "25_11",
+    "prov_name": "Sulawesi Tenggara",
+    "kab_name": "Konawe Utara",
+    "emotion": 2
+  },
+  {
+    "id": 264,
+    "prov_id": 25,
+    "kab_id": "25_12",
+    "prov_name": "Sulawesi Tenggara",
+    "kab_name": "Konawe",
+    "emotion": 1
+  },
+  {
+    "id": 265,
+    "prov_id": 25,
+    "kab_id": "25_13",
+    "prov_name": "Sulawesi Tenggara",
+    "kab_name": "Muna",
+    "emotion": 0
+  },
+  {
+    "id": 266,
+    "prov_id": 25,
+    "kab_id": "25_14",
+    "prov_name": "Sulawesi Tenggara",
+    "kab_name": "Muna Barat",
+    "emotion": 1
+  },
+  {
+    "id": 267,
+    "prov_id": 25,
+    "kab_id": "25_15",
+    "prov_name": "Sulawesi Tenggara",
+    "kab_name": "Wakatobi",
+    "emotion": 1
+  },
+  {
+    "id": 268,
+    "prov_id": 26,
+    "kab_id": "26_1",
+    "prov_name": "Kalimantan Selatan",
+    "kab_name": "Balangan",
+    "emotion": 0
+  },
+  {
+    "id": 269,
+    "prov_id": 26,
+    "kab_id": "26_2",
+    "prov_name": "Kalimantan Selatan",
+    "kab_name": "Banjar",
+    "emotion": 2
+  },
+  {
+    "id": 270,
+    "prov_id": 26,
+    "kab_id": "26_3",
+    "prov_name": "Kalimantan Selatan",
+    "kab_name": "Barito Kuala",
+    "emotion": 1
+  },
+  {
+    "id": 271,
+    "prov_id": 26,
+    "kab_id": "26_4",
+    "prov_name": "Kalimantan Selatan",
+    "kab_name": "Hulu Sungai Selatan",
+    "emotion": 1
+  },
+  {
+    "id": 272,
+    "prov_id": 26,
+    "kab_id": "26_5",
+    "prov_name": "Kalimantan Selatan",
+    "kab_name": "Hulu Sungai Tengah",
+    "emotion": 2
+  },
+  {
+    "id": 273,
+    "prov_id": 26,
+    "kab_id": "26_6",
+    "prov_name": "Kalimantan Selatan",
+    "kab_name": "Hulu Sungai Utara",
+    "emotion": 1
+  },
+  {
+    "id": 274,
+    "prov_id": 26,
+    "kab_id": "26_7",
+    "prov_name": "Kalimantan Selatan",
+    "kab_name": "Kotabaru",
+    "emotion": 0
+  },
+  {
+    "id": 275,
+    "prov_id": 26,
+    "kab_id": "26_8",
+    "prov_name": "Kalimantan Selatan",
+    "kab_name": "Tabalong",
+    "emotion": 1
+  },
+  {
+    "id": 276,
+    "prov_id": 26,
+    "kab_id": "26_9",
+    "prov_name": "Kalimantan Selatan",
+    "kab_name": "Tanah Bumbu",
+    "emotion": 0
+  },
+  {
+    "id": 277,
+    "prov_id": 26,
+    "kab_id": "26_10",
+    "prov_name": "Kalimantan Selatan",
+    "kab_name": "Tanah Laut",
+    "emotion": 0
+  },
+  {
+    "id": 278,
+    "prov_id": 26,
+    "kab_id": "26_11",
+    "prov_name": "Kalimantan Selatan",
+    "kab_name": "Tapin",
+    "emotion": 2
+  },
+  {
+    "id": 279,
+    "prov_id": 27,
+    "kab_id": "27_1",
+    "prov_name": "Sulawesi Selatan",
+    "kab_name": "Bantaeng",
+    "emotion": 1
+  },
+  {
+    "id": 280,
+    "prov_id": 27,
+    "kab_id": "27_2",
+    "prov_name": "Sulawesi Selatan",
+    "kab_name": "Barru",
+    "emotion": 0
+  },
+  {
+    "id": 281,
+    "prov_id": 27,
+    "kab_id": "27_3",
+    "prov_name": "Sulawesi Selatan",
+    "kab_name": "Bone",
+    "emotion": 0
+  },
+  {
+    "id": 282,
+    "prov_id": 27,
+    "kab_id": "27_4",
+    "prov_name": "Sulawesi Selatan",
+    "kab_name": "Bulukumba",
+    "emotion": 1
+  },
+  {
+    "id": 283,
+    "prov_id": 27,
+    "kab_id": "27_5",
+    "prov_name": "Sulawesi Selatan",
+    "kab_name": "Enrekang",
+    "emotion": 1
+  },
+  {
+    "id": 284,
+    "prov_id": 27,
+    "kab_id": "27_6",
+    "prov_name": "Sulawesi Selatan",
+    "kab_name": "Gowa",
+    "emotion": 0
+  },
+  {
+    "id": 285,
+    "prov_id": 27,
+    "kab_id": "27_7",
+    "prov_name": "Sulawesi Selatan",
+    "kab_name": "Jeneponto",
+    "emotion": 2
+  },
+  {
+    "id": 286,
+    "prov_id": 27,
+    "kab_id": "27_8",
+    "prov_name": "Sulawesi Selatan",
+    "kab_name": "Kepulauan Selayar",
+    "emotion": 1
+  },
+  {
+    "id": 287,
+    "prov_id": 27,
+    "kab_id": "27_9",
+    "prov_name": "Sulawesi Selatan",
+    "kab_name": "Luwu",
+    "emotion": 2
+  },
+  {
+    "id": 288,
+    "prov_id": 27,
+    "kab_id": "27_10",
+    "prov_name": "Sulawesi Selatan",
+    "kab_name": "Luwu Timur",
+    "emotion": 0
+  },
+  {
+    "id": 289,
+    "prov_id": 27,
+    "kab_id": "27_11",
+    "prov_name": "Sulawesi Selatan",
+    "kab_name": "Luwu Utara",
+    "emotion": 1
+  },
+  {
+    "id": 290,
+    "prov_id": 27,
+    "kab_id": "27_12",
+    "prov_name": "Sulawesi Selatan",
+    "kab_name": "Maros",
+    "emotion": 1
+  },
+  {
+    "id": 291,
+    "prov_id": 27,
+    "kab_id": "27_13",
+    "prov_name": "Sulawesi Selatan",
+    "kab_name": "Pangkajene dan Kepulauan",
+    "emotion": 2
+  },
+  {
+    "id": 292,
+    "prov_id": 27,
+    "kab_id": "27_14",
+    "prov_name": "Sulawesi Selatan",
+    "kab_name": "Pinrang",
+    "emotion": 1
+  },
+  {
+    "id": 293,
+    "prov_id": 27,
+    "kab_id": "27_15",
+    "prov_name": "Sulawesi Selatan",
+    "kab_name": "Sidenreng Rappang",
+    "emotion": 0
+  },
+  {
+    "id": 294,
+    "prov_id": 27,
+    "kab_id": "27_16",
+    "prov_name": "Sulawesi Selatan",
+    "kab_name": "Sinjai",
+    "emotion": 1
+  },
+  {
+    "id": 295,
+    "prov_id": 27,
+    "kab_id": "27_17",
+    "prov_name": "Sulawesi Selatan",
+    "kab_name": "Soppeng",
+    "emotion": 2
+  },
+  {
+    "id": 296,
+    "prov_id": 27,
+    "kab_id": "27_18",
+    "prov_name": "Sulawesi Selatan",
+    "kab_name": "Takalar",
+    "emotion": 0
+  },
+  {
+    "id": 297,
+    "prov_id": 27,
+    "kab_id": "27_19",
+    "prov_name": "Sulawesi Selatan",
+    "kab_name": "Tana Toraja",
+    "emotion": 0
+  },
+  {
+    "id": 298,
+    "prov_id": 27,
+    "kab_id": "27_20",
+    "prov_name": "Sulawesi Selatan",
+    "kab_name": "Toraja Utara",
+    "emotion": 1
+  },
+  {
+    "id": 299,
+    "prov_id": 27,
+    "kab_id": "27_21",
+    "prov_name": "Sulawesi Selatan",
+    "kab_name": "Wajo",
+    "emotion": 1
+  },
+  {
+    "id": 300,
+    "prov_id": 28,
+    "kab_id": "28_1",
+    "prov_name": "Sumatera Selatan",
+    "kab_name": "Banyuasin",
+    "emotion": 0
+  },
+  {
+    "id": 301,
+    "prov_id": 28,
+    "kab_id": "28_2",
+    "prov_name": "Sumatera Selatan",
+    "kab_name": "Empat Lawang",
+    "emotion": 1
+  },
+  {
+    "id": 302,
+    "prov_id": 28,
+    "kab_id": "28_3",
+    "prov_name": "Sumatera Selatan",
+    "kab_name": "Lahat",
+    "emotion": 2
+  },
+  {
+    "id": 303,
+    "prov_id": 28,
+    "kab_id": "28_4",
+    "prov_name": "Sumatera Selatan",
+    "kab_name": "Muara Enim",
+    "emotion": 0
+  },
+  {
+    "id": 304,
+    "prov_id": 28,
+    "kab_id": "28_5",
+    "prov_name": "Sumatera Selatan",
+    "kab_name": "Musi Banyuasin",
+    "emotion": 0
+  },
+  {
+    "id": 305,
+    "prov_id": 28,
+    "kab_id": "28_6",
+    "prov_name": "Sumatera Selatan",
+    "kab_name": "Musi Rawas",
+    "emotion": 0
+  },
+  {
+    "id": 306,
+    "prov_id": 28,
+    "kab_id": "28_7",
+    "prov_name": "Sumatera Selatan",
+    "kab_name": "Musi Rawas Utara",
+    "emotion": 1
+  },
+  {
+    "id": 307,
+    "prov_id": 28,
+    "kab_id": "28_8",
+    "prov_name": "Sumatera Selatan",
+    "kab_name": "Ogan Ilir",
+    "emotion": 2
+  },
+  {
+    "id": 308,
+    "prov_id": 28,
+    "kab_id": "28_9",
+    "prov_name": "Sumatera Selatan",
+    "kab_name": "Ogan Komering Ilir",
+    "emotion": 2
+  },
+  {
+    "id": 309,
+    "prov_id": 28,
+    "kab_id": "28_10",
+    "prov_name": "Sumatera Selatan",
+    "kab_name": "Ogan Komering Ulu Selatan",
+    "emotion": 0
+  },
+  {
+    "id": 310,
+    "prov_id": 28,
+    "kab_id": "28_11",
+    "prov_name": "Sumatera Selatan",
+    "kab_name": "Ogan Komering Ulu Timur",
+    "emotion": 2
+  },
+  {
+    "id": 311,
+    "prov_id": 28,
+    "kab_id": "28_12",
+    "prov_name": "Sumatera Selatan",
+    "kab_name": "Ogan Komering Ulu",
+    "emotion": 0
+  },
+  {
+    "id": 312,
+    "prov_id": 28,
+    "kab_id": "28_13",
+    "prov_name": "Sumatera Selatan",
+    "kab_name": "Penukal Abab Lematang Ilir",
+    "emotion": 0
+  },
+  {
+    "id": 313,
+    "prov_id": 29,
+    "kab_id": "29_1",
+    "prov_name": "Jawa Barat",
+    "kab_name": "Bandung Barat",
+    "emotion": 2
+  },
+  {
+    "id": 314,
+    "prov_id": 29,
+    "kab_id": "29_2",
+    "prov_name": "Jawa Barat",
+    "kab_name": "Bandung",
+    "emotion": 2
+  },
+  {
+    "id": 315,
+    "prov_id": 29,
+    "kab_id": "29_3",
+    "prov_name": "Jawa Barat",
+    "kab_name": "Bekasi",
+    "emotion": 2
+  },
+  {
+    "id": 316,
+    "prov_id": 29,
+    "kab_id": "29_4",
+    "prov_name": "Jawa Barat",
+    "kab_name": "Bogor",
+    "emotion": 2
+  },
+  {
+    "id": 317,
+    "prov_id": 29,
+    "kab_id": "29_5",
+    "prov_name": "Jawa Barat",
+    "kab_name": "Ciamis",
+    "emotion": 2
+  },
+  {
+    "id": 318,
+    "prov_id": 29,
+    "kab_id": "29_6",
+    "prov_name": "Jawa Barat",
+    "kab_name": "Cianjur",
+    "emotion": 2
+  },
+  {
+    "id": 319,
+    "prov_id": 29,
+    "kab_id": "29_7",
+    "prov_name": "Jawa Barat",
+    "kab_name": "Cirebon",
+    "emotion": 1
+  },
+  {
+    "id": 320,
+    "prov_id": 29,
+    "kab_id": "29_8",
+    "prov_name": "Jawa Barat",
+    "kab_name": "Garut",
+    "emotion": 0
+  },
+  {
+    "id": 321,
+    "prov_id": 29,
+    "kab_id": "29_9",
+    "prov_name": "Jawa Barat",
+    "kab_name": "Indramayu",
+    "emotion": 0
+  },
+  {
+    "id": 322,
+    "prov_id": 29,
+    "kab_id": "29_10",
+    "prov_name": "Jawa Barat",
+    "kab_name": "Karawang",
+    "emotion": 0
+  },
+  {
+    "id": 323,
+    "prov_id": 29,
+    "kab_id": "29_11",
+    "prov_name": "Jawa Barat",
+    "kab_name": "Kuningan",
+    "emotion": 0
+  },
+  {
+    "id": 324,
+    "prov_id": 29,
+    "kab_id": "29_12",
+    "prov_name": "Jawa Barat",
+    "kab_name": "Majalengka",
+    "emotion": 2
+  },
+  {
+    "id": 325,
+    "prov_id": 29,
+    "kab_id": "29_13",
+    "prov_name": "Jawa Barat",
+    "kab_name": "Pangandaran",
+    "emotion": 2
+  },
+  {
+    "id": 326,
+    "prov_id": 29,
+    "kab_id": "29_14",
+    "prov_name": "Jawa Barat",
+    "kab_name": "Purwakarta",
+    "emotion": 1
+  },
+  {
+    "id": 327,
+    "prov_id": 29,
+    "kab_id": "29_15",
+    "prov_name": "Jawa Barat",
+    "kab_name": "Subang",
+    "emotion": 1
+  },
+  {
+    "id": 328,
+    "prov_id": 29,
+    "kab_id": "29_16",
+    "prov_name": "Jawa Barat",
+    "kab_name": "Sukabumi",
+    "emotion": 2
+  },
+  {
+    "id": 329,
+    "prov_id": 29,
+    "kab_id": "29_17",
+    "prov_name": "Jawa Barat",
+    "kab_name": "Sumedang",
+    "emotion": 2
+  },
+  {
+    "id": 330,
+    "prov_id": 29,
+    "kab_id": "29_18",
+    "prov_name": "Jawa Barat",
+    "kab_name": "Tasikmalaya",
+    "emotion": 2
+  },
+  {
+    "id": 331,
+    "prov_id": 30,
+    "kab_id": "30_1",
+    "prov_name": "Kalimantan Barat",
+    "kab_name": "Bengkayang",
+    "emotion": 2
+  },
+  {
+    "id": 332,
+    "prov_id": 30,
+    "kab_id": "30_2",
+    "prov_name": "Kalimantan Barat",
+    "kab_name": "Kapuas Hulu",
+    "emotion": 1
+  },
+  {
+    "id": 333,
+    "prov_id": 30,
+    "kab_id": "30_3",
+    "prov_name": "Kalimantan Barat",
+    "kab_name": "Kayong Utara",
+    "emotion": 1
+  },
+  {
+    "id": 334,
+    "prov_id": 30,
+    "kab_id": "30_4",
+    "prov_name": "Kalimantan Barat",
+    "kab_name": "Ketapang",
+    "emotion": 0
+  },
+  {
+    "id": 335,
+    "prov_id": 30,
+    "kab_id": "30_5",
+    "prov_name": "Kalimantan Barat",
+    "kab_name": "Kubu Raya",
+    "emotion": 0
+  },
+  {
+    "id": 336,
+    "prov_id": 30,
+    "kab_id": "30_6",
+    "prov_name": "Kalimantan Barat",
+    "kab_name": "Landak",
+    "emotion": 1
+  },
+  {
+    "id": 337,
+    "prov_id": 30,
+    "kab_id": "30_7",
+    "prov_name": "Kalimantan Barat",
+    "kab_name": "Melawi",
+    "emotion": 0
+  },
+  {
+    "id": 338,
+    "prov_id": 30,
+    "kab_id": "30_8",
+    "prov_name": "Kalimantan Barat",
+    "kab_name": "Mempawah",
+    "emotion": 2
+  },
+  {
+    "id": 339,
+    "prov_id": 30,
+    "kab_id": "30_9",
+    "prov_name": "Kalimantan Barat",
+    "kab_name": "Sambas",
+    "emotion": 1
+  },
+  {
+    "id": 340,
+    "prov_id": 30,
+    "kab_id": "30_10",
+    "prov_name": "Kalimantan Barat",
+    "kab_name": "Sanggau",
+    "emotion": 2
+  },
+  {
+    "id": 341,
+    "prov_id": 30,
+    "kab_id": "30_11",
+    "prov_name": "Kalimantan Barat",
+    "kab_name": "Sekadau",
+    "emotion": 0
+  },
+  {
+    "id": 342,
+    "prov_id": 30,
+    "kab_id": "30_12",
+    "prov_name": "Kalimantan Barat",
+    "kab_name": "Sintang",
+    "emotion": 1
+  },
+  {
+    "id": 343,
+    "prov_id": 31,
+    "kab_id": "31_1",
+    "prov_name": "Nusa Tenggara Barat",
+    "kab_name": "Bima",
+    "emotion": 1
+  },
+  {
+    "id": 344,
+    "prov_id": 31,
+    "kab_id": "31_2",
+    "prov_name": "Nusa Tenggara Barat",
+    "kab_name": "Dompu",
+    "emotion": 0
+  },
+  {
+    "id": 345,
+    "prov_id": 31,
+    "kab_id": "31_3",
+    "prov_name": "Nusa Tenggara Barat",
+    "kab_name": "Lombok Barat",
+    "emotion": 0
+  },
+  {
+    "id": 346,
+    "prov_id": 31,
+    "kab_id": "31_4",
+    "prov_name": "Nusa Tenggara Barat",
+    "kab_name": "Lombok Tengah",
+    "emotion": 0
+  },
+  {
+    "id": 347,
+    "prov_id": 31,
+    "kab_id": "31_5",
+    "prov_name": "Nusa Tenggara Barat",
+    "kab_name": "Lombok Timur",
+    "emotion": 1
+  },
+  {
+    "id": 348,
+    "prov_id": 31,
+    "kab_id": "31_6",
+    "prov_name": "Nusa Tenggara Barat",
+    "kab_name": "Lombok Utara",
+    "emotion": 0
+  },
+  {
+    "id": 349,
+    "prov_id": 31,
+    "kab_id": "31_7",
+    "prov_name": "Nusa Tenggara Barat",
+    "kab_name": "Sumbawa Barat",
+    "emotion": 1
+  },
+  {
+    "id": 350,
+    "prov_id": 31,
+    "kab_id": "31_8",
+    "prov_name": "Nusa Tenggara Barat",
+    "kab_name": "Sumbawa",
+    "emotion": 2
+  },
+  {
+    "id": 351,
+    "prov_id": 32,
+    "kab_id": "32_1",
+    "prov_name": "Papua Barat",
+    "kab_name": "Fakfak",
+    "emotion": 0
+  },
+  {
+    "id": 352,
+    "prov_id": 32,
+    "kab_id": "32_2",
+    "prov_name": "Papua Barat",
+    "kab_name": "Kaimana",
+    "emotion": 2
+  },
+  {
+    "id": 353,
+    "prov_id": 32,
+    "kab_id": "32_3",
+    "prov_name": "Papua Barat",
+    "kab_name": "Manokwari",
+    "emotion": 1
+  },
+  {
+    "id": 354,
+    "prov_id": 32,
+    "kab_id": "32_4",
+    "prov_name": "Papua Barat",
+    "kab_name": "Manokwari Selatan",
+    "emotion": 0
+  },
+  {
+    "id": 355,
+    "prov_id": 32,
+    "kab_id": "32_5",
+    "prov_name": "Papua Barat",
+    "kab_name": "Pegunungan Arfak",
+    "emotion": 0
+  },
+  {
+    "id": 356,
+    "prov_id": 32,
+    "kab_id": "32_6",
+    "prov_name": "Papua Barat",
+    "kab_name": "Teluk Bintuni",
+    "emotion": 1
+  },
+  {
+    "id": 357,
+    "prov_id": 32,
+    "kab_id": "32_7",
+    "prov_name": "Papua Barat",
+    "kab_name": "Teluk Wondama",
+    "emotion": 0
+  },
+  {
+    "id": 358,
+    "prov_id": 33,
+    "kab_id": "33_1",
+    "prov_name": "Sulawesi Barat",
+    "kab_name": "Majene",
+    "emotion": 2
+  },
+  {
+    "id": 359,
+    "prov_id": 33,
+    "kab_id": "33_2",
+    "prov_name": "Sulawesi Barat",
+    "kab_name": "Mamasa",
+    "emotion": 2
+  },
+  {
+    "id": 360,
+    "prov_id": 33,
+    "kab_id": "33_3",
+    "prov_name": "Sulawesi Barat",
+    "kab_name": "Mamuju",
+    "emotion": 1
+  },
+  {
+    "id": 361,
+    "prov_id": 33,
+    "kab_id": "33_4",
+    "prov_name": "Sulawesi Barat",
+    "kab_name": "Mamuju Tengah",
+    "emotion": 1
+  },
+  {
+    "id": 362,
+    "prov_id": 33,
+    "kab_id": "33_5",
+    "prov_name": "Sulawesi Barat",
+    "kab_name": "Mamuju Utara",
+    "emotion": 1
+  },
+  {
+    "id": 363,
+    "prov_id": 33,
+    "kab_id": "33_6",
+    "prov_name": "Sulawesi Barat",
+    "kab_name": "Polewali Mandar",
+    "emotion": 2
+  },
+  {
+    "id": 364,
+    "prov_id": 34,
+    "kab_id": "34_1",
+    "prov_name": "Sumatera Barat",
+    "kab_name": "Agam",
+    "emotion": 2
+  },
+  {
+    "id": 365,
+    "prov_id": 34,
+    "kab_id": "34_2",
+    "prov_name": "Sumatera Barat",
+    "kab_name": "Dharmasraya",
+    "emotion": 0
+  },
+  {
+    "id": 366,
+    "prov_id": 34,
+    "kab_id": "34_3",
+    "prov_name": "Sumatera Barat",
+    "kab_name": "Kepulauan Mentawai",
+    "emotion": 1
+  },
+  {
+    "id": 367,
+    "prov_id": 34,
+    "kab_id": "34_4",
+    "prov_name": "Sumatera Barat",
+    "kab_name": "Lima Puluh Kota",
+    "emotion": 2
+  },
+  {
+    "id": 368,
+    "prov_id": 34,
+    "kab_id": "34_5",
+    "prov_name": "Sumatera Barat",
+    "kab_name": "Padang Pariaman",
+    "emotion": 1
+  },
+  {
+    "id": 369,
+    "prov_id": 34,
+    "kab_id": "34_6",
+    "prov_name": "Sumatera Barat",
+    "kab_name": "Pasaman Barat",
+    "emotion": 1
+  },
+  {
+    "id": 370,
+    "prov_id": 34,
+    "kab_id": "34_7",
+    "prov_name": "Sumatera Barat",
+    "kab_name": "Pasaman",
+    "emotion": 2
+  },
+  {
+    "id": 371,
+    "prov_id": 34,
+    "kab_id": "34_8",
+    "prov_name": "Sumatera Barat",
+    "kab_name": "Pesisir Selatan",
+    "emotion": 2
+  },
+  {
+    "id": 372,
+    "prov_id": 34,
+    "kab_id": "34_9",
+    "prov_name": "Sumatera Barat",
+    "kab_name": "Sijunjung",
+    "emotion": 1
+  },
+  {
+    "id": 373,
+    "prov_id": 34,
+    "kab_id": "34_10",
+    "prov_name": "Sumatera Barat",
+    "kab_name": "Solok Selatan",
+    "emotion": 0
+  },
+  {
+    "id": 374,
+    "prov_id": 34,
+    "kab_id": "34_11",
+    "prov_name": "Sumatera Barat",
+    "kab_name": "Solok",
+    "emotion": 0
+  },
+  {
+    "id": 375,
+    "prov_id": 34,
+    "kab_id": "34_12",
+    "prov_name": "Sumatera Barat",
+    "kab_name": "Tanah Datar",
+    "emotion": 0
+  },
+  {
+    "id": 376,
+    "prov_id": 36,
+    "kab_id": "36_1",
+    "prov_name": "Papua Selatan",
+    "kab_name": "Asmat",
+    "emotion": 0
+  },
+  {
+    "id": 377,
+    "prov_id": 36,
+    "kab_id": "36_2",
+    "prov_name": "Papua Selatan",
+    "kab_name": "Boven Digoel",
+    "emotion": 0
+  },
+  {
+    "id": 378,
+    "prov_id": 36,
+    "kab_id": "36_3",
+    "prov_name": "Papua Selatan",
+    "kab_name": "Mappi",
+    "emotion": 0
+  },
+  {
+    "id": 379,
+    "prov_id": 36,
+    "kab_id": "36_4",
+    "prov_name": "Papua Selatan",
+    "kab_name": "Merauke",
+    "emotion": 2
+  },
+  {
+    "id": 380,
+    "prov_id": 37,
+    "kab_id": "37_1",
+    "prov_name": "Papua Tengah",
+    "kab_name": "Deiyai",
+    "emotion": 0
+  },
+  {
+    "id": 381,
+    "prov_id": 37,
+    "kab_id": "37_2",
+    "prov_name": "Papua Tengah",
+    "kab_name": "Dogiyai",
+    "emotion": 1
+  },
+  {
+    "id": 382,
+    "prov_id": 37,
+    "kab_id": "37_3",
+    "prov_name": "Papua Tengah",
+    "kab_name": "Intan Jaya",
+    "emotion": 1
+  },
+  {
+    "id": 383,
+    "prov_id": 37,
+    "kab_id": "37_4",
+    "prov_name": "Papua Tengah",
+    "kab_name": "Mimika",
+    "emotion": 0
+  },
+  {
+    "id": 384,
+    "prov_id": 37,
+    "kab_id": "37_5",
+    "prov_name": "Papua Tengah",
+    "kab_name": "Nabire",
+    "emotion": 0
+  },
+  {
+    "id": 385,
+    "prov_id": 37,
+    "kab_id": "37_6",
+    "prov_name": "Papua Tengah",
+    "kab_name": "Paniai",
+    "emotion": 1
+  },
+  {
+    "id": 386,
+    "prov_id": 37,
+    "kab_id": "37_7",
+    "prov_name": "Papua Tengah",
+    "kab_name": "Puncak Jaya",
+    "emotion": 0
+  },
+  {
+    "id": 387,
+    "prov_id": 37,
+    "kab_id": "37_8",
+    "prov_name": "Papua Tengah",
+    "kab_name": "Puncak",
+    "emotion": 0
+  },
+  {
+    "id": 388,
+    "prov_id": 38,
+    "kab_id": "38_1",
+    "prov_name": "Papua Pegunungan",
+    "kab_name": "Jayawijaya",
+    "emotion": 0
+  },
+  {
+    "id": 389,
+    "prov_id": 38,
+    "kab_id": "38_2",
+    "prov_name": "Papua Pegunungan",
+    "kab_name": "Lanny Jaya",
+    "emotion": 2
+  },
+  {
+    "id": 390,
+    "prov_id": 38,
+    "kab_id": "38_3",
+    "prov_name": "Papua Pegunungan",
+    "kab_name": "Mamberamo Tengah",
+    "emotion": 1
+  },
+  {
+    "id": 391,
+    "prov_id": 38,
+    "kab_id": "38_4",
+    "prov_name": "Papua Pegunungan",
+    "kab_name": "Nduga",
+    "emotion": 0
+  },
+  {
+    "id": 392,
+    "prov_id": 38,
+    "kab_id": "38_5",
+    "prov_name": "Papua Pegunungan",
+    "kab_name": "Pegunungan Bintang",
+    "emotion": 1
+  },
+  {
+    "id": 393,
+    "prov_id": 38,
+    "kab_id": "38_6",
+    "prov_name": "Papua Pegunungan",
+    "kab_name": "Tolikara",
+    "emotion": 1
+  },
+  {
+    "id": 394,
+    "prov_id": 38,
+    "kab_id": "38_7",
+    "prov_name": "Papua Pegunungan",
+    "kab_name": "Yahukimo",
+    "emotion": 2
+  },
+  {
+    "id": 395,
+    "prov_id": 38,
+    "kab_id": "38_8",
+    "prov_name": "Papua Pegunungan",
+    "kab_name": "Yalimo",
+    "emotion": 2
+  }
+]

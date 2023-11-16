@@ -1,0 +1,55 @@
+{
+  "columns": [
+    {
+      "field": "Tahun",
+      "title": "Tahun",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 87
+    },
+    {
+      "field": " Survei ke-",
+      "title": " Survei ke-",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 127
+    },
+    {
+      "field": " Kepuasan Masyarakat",
+      "title": " Kepuasan Masyarakat",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 202
+    },
+    {
+      "field": " Penilaian Perekonomian",
+      "title": " Penilaian Perekonomian",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "string",
+      "headerSort": true,
+      "width": 214
+    },
+    {
+      "field": " Penilaian Penegakan Hukum",
+      "title": " Penilaian Penegakan Hukum",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "string",
+      "headerSort": true,
+      "width": 451
+    }
+  ],
+  "sort": [
+    {
+      "column": " Kepuasan Masyarakat",
+      "dir": "desc"
+    }
+  ]
+}

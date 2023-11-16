@@ -1,0 +1,192 @@
+[
+  {
+    "id": 1,
+    "name": "Aceh",
+    "emotion": 0
+  },
+  {
+    "id": 2,
+    "name": "Bali",
+    "emotion": 0
+  },
+  {
+    "id": 3,
+    "name": "Kapulauan Bangka Belitung",
+    "emotion": 2
+  },
+  {
+    "id": 4,
+    "name": "Banten",
+    "emotion": 0
+  },
+  {
+    "id": 5,
+    "name": "Bengkulu",
+    "emotion": 2
+  },
+  {
+    "id": 6,
+    "name": "Jawa Tengah",
+    "emotion": 2
+  },
+  {
+    "id": 7,
+    "name": "Kalimantan Tengah",
+    "emotion": 1
+  },
+  {
+    "id": 8,
+    "name": "Sulawesi Tengah",
+    "emotion": 1
+  },
+  {
+    "id": 9,
+    "name": "Jawa Timur",
+    "emotion": 0
+  },
+  {
+    "id": 10,
+    "name": "Kalimantan Timur",
+    "emotion": 2
+  },
+  {
+    "id": 11,
+    "name": "Nusa Tenggara Timur",
+    "emotion": 0
+  },
+  {
+    "id": 12,
+    "name": "Gorontalo",
+    "emotion": 0
+  },
+  {
+    "id": 13,
+    "name": "DKI Jakarta",
+    "emotion": 1
+  },
+  {
+    "id": 14,
+    "name": "Jambi",
+    "emotion": 0
+  },
+  {
+    "id": 15,
+    "name": "Lampung",
+    "emotion": 2
+  },
+  {
+    "id": 16,
+    "name": "Maluku",
+    "emotion": 1
+  },
+  {
+    "id": 17,
+    "name": "Kalimantan Utara",
+    "emotion": 2
+  },
+  {
+    "id": 18,
+    "name": "Maluku Utara",
+    "emotion": 1
+  },
+  {
+    "id": 19,
+    "name": "Sulawesi Utara",
+    "emotion": 1
+  },
+  {
+    "id": 20,
+    "name": "Sumatera Utara",
+    "emotion": 0
+  },
+  {
+    "id": 21,
+    "name": "Papua",
+    "emotion": 2
+  },
+  {
+    "id": 22,
+    "name": "Riau",
+    "emotion": 2
+  },
+  {
+    "id": 23,
+    "name": "Kapulauan Riau",
+    "emotion": 0
+  },
+  {
+    "id": 24,
+    "name": "Sulawesi Tenggara",
+    "emotion": 2
+  },
+  {
+    "id": 25,
+    "name": "Kalimantan Selatan",
+    "emotion": 2
+  },
+  {
+    "id": 26,
+    "name": "Sulawesi Selatan",
+    "emotion": 2
+  },
+  {
+    "id": 27,
+    "name": "Sumatera Selatan",
+    "emotion": 0
+  },
+  {
+    "id": 28,
+    "name": "Jawa Barat",
+    "emotion": 1
+  },
+  {
+    "id": 29,
+    "name": "Kalimantan Barat",
+    "emotion": 0
+  },
+  {
+    "id": 30,
+    "name": "Nusa Tenggara Barat",
+    "emotion": 2
+  },
+  {
+    "id": 31,
+    "name": "Papua Barat",
+    "emotion": 0
+  },
+  {
+    "id": 32,
+    "name": "Sulawesi Barat",
+    "emotion": 2
+  },
+  {
+    "id": 33,
+    "name": "Sumatera Barat",
+    "emotion": 0
+  },
+  {
+    "id": 34,
+    "name": "Daerah Istimewa Yogyakarta",
+    "emotion": 2
+  },
+  {
+    "id": 35,
+    "name": "Papua Selatan",
+    "emotion": 0
+  },
+  {
+    "id": 36,
+    "name": "Papua Tengah",
+    "emotion": 1
+  },
+  {
+    "id": 37,
+    "name": "Papua Pegunungan",
+    "emotion": 1
+  },
+  {
+    "id": 38,
+    "name": "Papua  Barat Daya",
+    "emotion": 0
+  }
+]
