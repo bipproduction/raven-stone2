@@ -1,39 +1,20 @@
 'use server'
 
 import { prisma } from "@/modules/_global"
-import moment from "moment";
-import _, { ceil } from "lodash"
+import _ from "lodash"
+import moment from "moment"
 
-export default async function funGetEmotionJokowiEffectAreaFront() {
+export default async function funGetEmotionPersenJokowiFront(){
     const jamNow = new Date().getHours() + 1 + ':00:00'
     const IniisoDateTime = new Date(new Date('1970-01-01 ' + jamNow).getTime() - (new Date('1970-01-01 ' + jamNow).getTimezoneOffset() * 60000)).toISOString()
 
     const data = await prisma.candidateEmotion.findMany({
-        where: {
-            idCandidate: 7,
+        where:{
+            idCandidate:7,
             dateEmotion: new Date(),
             timeEmotion: {
                 lt: IniisoDateTime
             }
-        },
-        orderBy: {
-            timeEmotion: 'desc'
-        },
-        select: {
-            timeEmotion: true
-        }
-    })
-
-    const findJam = _.map(_.groupBy(data, "timeEmotion"), (v: any) => ({
-        timeEmotionFormat: moment.utc(v[0].timeEmotion).format('HH:mm'),
-        timeEmotion: v[0].timeEmotion
-    }))
-
-    const dataFilter = await prisma.candidateEmotion.findMany({
-        where: {
-            idCandidate: 7,
-            dateEmotion: new Date(),
-            timeEmotion: findJam[0]?.timeEmotion
         },
         orderBy: {
             timeEmotion: 'desc'
@@ -57,9 +38,7 @@ export default async function funGetEmotionJokowiEffectAreaFront() {
         }
     })
 
-
-
-    const formatProvinsi = dataFilter.map((v: any) => ({
+    const formatProvinsi = data.map((v: any) => ({
         ..._.omit(v, ["AreaProvinsi"]),
         name: v.AreaProvinsi.name
     }))
@@ -76,27 +55,17 @@ export default async function funGetEmotionJokowiEffectAreaFront() {
         uncomfortable: _.sumBy(v, 'uncomfortable'),
         undecided: _.sumBy(v, 'undecided'),
         unsupportive: _.sumBy(v, 'unsupportive'),
+        total : _.sum([
+            _.sumBy(v, 'confidence'),
+            _.sumBy(v, 'dissapproval'),
+            _.sumBy(v, 'negative'),
+            _.sumBy(v, 'positive'),
+            _.sumBy(v, 'supportive'),
+            _.sumBy(v, 'uncomfortable'),
+            _.sumBy(v, 'undecided'),
+            _.sumBy(v, 'unsupportive'),
+          ])
     }))
 
-    const sortData = _.orderBy(dataAkhir, "confidence", 'desc').map((v, i) => ({
-        confidence: v.confidence,
-        dissapproval: v.dissapproval,
-        negative: v.negative,
-        positive: v.positive,
-        supportive: v.supportive,
-        uncomfortable: v.uncomfortable,
-        undecided: v.undecided,
-        unsupportive: v.unsupportive,
-        name: v.name,
-        timeEmotion: v.timeEmotion,
-        idProvinsi: v.idProvinsi,
-    }))
-
-    const allData = {
-        data: sortData,
-        nPage: ceil(sortData.length / 10)
-    }
-
-
-    return allData
+    return dataAkhir
 }

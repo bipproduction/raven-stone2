@@ -10,6 +10,8 @@ import { HiDotsHorizontal } from "react-icons/hi"
 import { useAtom } from 'jotai';
 import { _valReadIdEffect } from '../val/val_jokowi_effect';
 import WrapperEffect from '../component/wrapper_push_read_effect';
+import _ from "lodash"
+import { useShallowEffect } from '@mantine/hooks';
 
 
 
@@ -17,12 +19,64 @@ import WrapperEffect from '../component/wrapper_push_read_effect';
  * Fungsi untuk menampilkan Jokowi Effect.
  * @returns {component} menampilakn Jokowi Effect.
  */
-export default function ViewJokowiEffect({ effect, emotion, locked }: { effect: any, emotion: any, locked: any }) {
+export default function ViewJokowiEffect({ effect, emotion, locked, persen, emotionChart }: { effect: any, emotion: any, locked: any, persen: any, emotionChart: any }) {
   const [dataEffect, setDataEffect] = useState(effect.data)
   const [dataJamEffect, setDataJamEffect] = useState(effect.dataJam)
   const [isDate, setDate] = useState<any>(new Date())
   const [isBTime, setBTime] = useState(effect.isJam)
   const [valRead, setRead] = useAtom(_valReadIdEffect)
+  const [presentase, setPresentase] = useState({
+    positive: 0,
+    neutral: 0,
+    negative: 0,
+  });
+
+
+  useShallowEffect(() => {
+    const total = _.reduce(
+      persen,
+      (result, value) => {
+        return {
+          confidence: result.confidence + value.confidence,
+          supportive: result.supportive + value.supportive,
+          positive: result.positive + value.positive,
+          undecided: result.undecided + value.undecided,
+          unsupportive: result.unsupportive + value.unsupportive,
+          uncomfortable: result.uncomfortable + value.uncomfortable,
+          negative: result.negative + value.negative,
+          dissapproval: result.dissapproval + value.dissapproval,
+          value: result.value + value.total,
+        };
+      },
+      {
+        confidence: 0,
+        supportive: 0,
+        positive: 0,
+        undecided: 0,
+        unsupportive: 0,
+        uncomfortable: 0,
+        negative: 0,
+        dissapproval: 0,
+        value: 0,
+      }
+    );
+
+    const positive = total.confidence + total.supportive + total.positive;
+    const neutral = total.undecided;
+    const negative = total.unsupportive + total.uncomfortable + total.negative + total.dissapproval;
+    const totalEmotions = total.value;
+
+    const result = {
+      positive: Number(((positive / totalEmotions) * 100).toFixed(2)),
+      neutral: Number(((neutral / totalEmotions) * 100).toFixed(2)),
+      negative: Number(((negative / totalEmotions) * 100).toFixed(2)),
+    }
+
+    if (!_.isEmpty(persen)) {
+      setPresentase(result);
+    }
+  }, [persen]);
+
 
   async function chooseDate(value: any) {
     setDate(value)
@@ -64,7 +118,7 @@ export default function ViewJokowiEffect({ effect, emotion, locked }: { effect: 
                     borderRadius: 5
                   }}>
                     <Text ml={5} fz={13} c={"white"}>POSITIVE</Text>
-                    <Text ta={'center'} fw={'bold'} c={"white"} fz={24}>57.76%</Text>
+                    <Text ta={'center'} fw={'bold'} c={"white"} fz={24}>{presentase.positive}%</Text>
                   </Box>
                 </Box>
                 <Box>
@@ -75,7 +129,7 @@ export default function ViewJokowiEffect({ effect, emotion, locked }: { effect: 
                     borderRadius: 5
                   }}>
                     <Text ml={5} fz={13} c={WARNA.hijau}>NEUTRAL</Text>
-                    <Text ta={'center'} fw={'bold'} c={WARNA.hijau} fz={24}>57.76%</Text>
+                    <Text ta={'center'} fw={'bold'} c={WARNA.hijau} fz={24}>{presentase.neutral}%</Text>
                   </Box>
                 </Box>
                 <Box>
@@ -86,14 +140,14 @@ export default function ViewJokowiEffect({ effect, emotion, locked }: { effect: 
                     borderRadius: 5
                   }}>
                     <Text ml={5} fz={13} c={"white"}>NEGATIVE</Text>
-                    <Text ta={'center'} fw={'bold'} c={"white"} fz={24}>57.76%</Text>
+                    <Text ta={'center'} fw={'bold'} c={"white"} fz={24}>{presentase.negative}%</Text>
                   </Box>
                 </Box>
               </SimpleGrid>
             </Box>
           </Grid.Col>
           <Grid.Col span={{ md: 7, lg: 7 }}>
-            <EchartJokowiEffect />
+            <EchartJokowiEffect data={emotionChart} />
           </Grid.Col>
         </Grid>
       </Stack>

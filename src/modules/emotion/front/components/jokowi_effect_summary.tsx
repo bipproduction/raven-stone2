@@ -76,7 +76,7 @@ export default function JokowiEffectSummary({ emotion, locked }: { emotion: any,
             </Box>
           </Grid.Col>
           <Grid.Col span={{ md: 7, lg: 7 }}>
-            <EchartJokowiEffect />
+            <EchartJokowiEffect data={[]} />
           </Grid.Col>
         </Grid>
       </Stack>
