@@ -4,7 +4,7 @@ import { ViewJokowiEffect, funGetEffectFront } from "@/modules/jokowi_effect";
 
 export default async function Page() {
     const dEffect = await funGetEffectFront({ isDate: new Date() })
-    const dEmotion = await funGetEmotionJokowiEffectAreaFront({ page: 1 })
+    const dEmotion = await funGetEmotionJokowiEffectAreaFront()
     const dLocked = await funGetAllAudienceFront()
 
     return (

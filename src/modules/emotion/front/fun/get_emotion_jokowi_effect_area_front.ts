@@ -4,10 +4,9 @@ import { prisma } from "@/modules/_global"
 import moment from "moment";
 import _, { ceil } from "lodash"
 
-export default async function funGetEmotionJokowiEffectAreaFront({ page }: { page: number }) {
+export default async function funGetEmotionJokowiEffectAreaFront() {
     const jamNow = new Date().getHours() + 1 + ':00:00'
     const IniisoDateTime = new Date(new Date('1970-01-01 ' + jamNow).getTime() - (new Date('1970-01-01 ' + jamNow).getTimezoneOffset() * 60000)).toISOString()
-    const skip = _.toNumber(page) * 10 - 10
 
     const data = await prisma.candidateEmotion.findMany({
         where: {
@@ -34,7 +33,7 @@ export default async function funGetEmotionJokowiEffectAreaFront({ page }: { pag
         where: {
             idCandidate: 7,
             dateEmotion: new Date(),
-            timeEmotion: findJam[0].timeEmotion
+            timeEmotion: findJam[0]?.timeEmotion
         },
         orderBy: {
             timeEmotion: 'desc'
@@ -92,10 +91,6 @@ export default async function funGetEmotionJokowiEffectAreaFront({ page }: { pag
         timeEmotion: v.timeEmotion,
         idProvinsi: v.idProvinsi,
     }))
-
-    // const start = (10 * page) - 10;
-    // const end = start + 10;
-    // const ls = _.slice(sortData, start, end);
 
     const allData = {
         data: sortData,
