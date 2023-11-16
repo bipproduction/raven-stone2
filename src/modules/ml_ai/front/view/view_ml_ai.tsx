@@ -11,6 +11,7 @@ import { useAtom } from 'jotai';
 import { _valReadIdMlai } from '../val/val_mlai';
 import Wrapper from '../component/wrapper_push_id';
 import Head from 'next/head';
+import TextAnimation from 'react-typing-dynamics';
 
 
 export default function ViewMlAi({ data, paslon, cpaslon }: { data: any, paslon: any, cpaslon: any }) {
@@ -52,6 +53,13 @@ export default function ViewMlAi({ data, paslon, cpaslon }: { data: any, paslon:
         setDataJamMlai(dataDB.dataJam)
         setBTime(dataDB.isJam)
     }
+
+    function RubahHTML(c: any) {
+        return {
+            __html: c
+        }
+    }
+
 
     return (
         <>
@@ -145,23 +153,28 @@ export default function ViewMlAi({ data, paslon, cpaslon }: { data: any, paslon:
                                 <Box pt={20} key={item.id}>
                                     <Text c={"#089A31"} fz={20} fw={"bold"}>STRENGTH ANALYSIS IMPROVEMENT</Text>
                                     <Box pt={10}>
+
                                         <ScrollArea h={"100%"} w={"100%"}>
                                             {
                                                 valRead.includes(item.id) ? (
                                                     <>
-                                                        <Text style={{ fontSize: '16', color: "white" }} >{item.content}</Text>
+                                                        <Text style={{ fontSize: '16', color: "white" }} dangerouslySetInnerHTML={RubahHTML(item.content)} />
                                                     </>
                                                 ) : (
                                                     <>
                                                         <Wrapper id={item.id}>
-                                                            <TypeAnimation
-                                                                sequence={[
-                                                                    item.content,
-                                                                    1000,
-                                                                ]}
-                                                                speed={99}
-                                                                style={{ fontSize: '16', color: "white" }}
-                                                            />
+                                                            <Stack c={"white"}>
+                                                                <TextAnimation
+                                                                    phrases={[...item.content.split('\n')]}
+                                                                    typingSpeed={0}
+                                                                    backspaceDelay={0}
+                                                                    eraseDelay={0}
+                                                                    timeComplete={0}
+                                                                    errorProbability={0}
+                                                                    eraseOnComplete={false}
+                                                                    isSecure={false}
+                                                                />
+                                                            </Stack>
                                                         </Wrapper>
                                                     </>
                                                 )

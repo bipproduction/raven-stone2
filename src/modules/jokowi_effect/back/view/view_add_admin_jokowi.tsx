@@ -23,9 +23,15 @@ import toast from 'react-simple-toasts';
 import { useAtom } from 'jotai';
 import { isModalJokowi } from '../val/modal_jokowi';
 import ModalAddJokowiEffect from '../component/modal_add_jokowi_effect';
+import { useShallowEffect } from '@mantine/hooks';
 
 
 export default function ViewAddAdminJokowi() {
+  const is_client = useState(false)
+
+  useShallowEffect(() => {
+    if (window) is_client[1](true)
+  }, [])
   const ref = useRef<HTMLInputElement>(null);
   const router = useRouter();
   const [valOpenModal, setOpenModal] = useAtom(isModalJokowi)

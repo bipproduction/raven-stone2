@@ -8,6 +8,7 @@ import moment from "moment";
 import { FaRegEdit } from "react-icons/fa";
 import { LuClipboardEdit } from "react-icons/lu";
 import { useRouter } from "next/navigation";
+import TextAnimation from "react-typing-dynamics";
 
 export default function DetailDataMLAI({ v, i, onClick }: { v: any; i: any, onClick: (val: any) => void }) {
     const formatDate = moment.utc(v.timeContent).format('HH:mm');
@@ -78,7 +79,18 @@ export default function DetailDataMLAI({ v, i, onClick }: { v: any; i: any, onCl
                                 <Text c={"white"} fw={"bold"} fz={20} mb={10}>
                                     Content
                                 </Text>
-                                <Text c={"white"}>{v.content}</Text>
+                                <Stack c={"white"}>
+                                    <TextAnimation
+                                        phrases={[...v.content.split('\n')]}
+                                        typingSpeed={0}
+                                        backspaceDelay={0}
+                                        eraseDelay={0}
+                                        timeComplete={0}
+                                        errorProbability={0}
+                                        eraseOnComplete={false}
+                                        isSecure={false}
+                                    />
+                                </Stack>
                             </Box>
                         </Collapse>
                     </Table.Td>

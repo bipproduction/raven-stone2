@@ -1,3 +1,4 @@
+"use client"
 import { Alert, Box, Button, Group, Text } from '@mantine/core';
 import { useRouter } from 'next/navigation';
 import React from 'react';

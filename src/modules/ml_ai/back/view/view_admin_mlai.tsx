@@ -9,6 +9,7 @@ import TableDataMLAI from "../component/table_data_mlai";
 import papa from "papaparse"
 import { DateInput } from "@mantine/dates";
 import moment from "moment";
+import { useShallowEffect } from "@mantine/hooks";
 
 export default function ViewAdminMLAI({ params, paslon, datatable, datadownload }: { params: any, paslon: any, datatable: any, datadownload: any }) {
     const router = useRouter();
@@ -28,6 +29,12 @@ export default function ViewAdminMLAI({ params, paslon, datatable, datadownload 
     useEffect(() => {
         setPaslon(params.idPaslon == 0 ? null : params.idPaslon)
     }, [params])
+
+    const is_client = useState(false)
+
+    useShallowEffect(() => {
+      if (window) is_client[1](true)
+    }, [])
 
     return (
         <>

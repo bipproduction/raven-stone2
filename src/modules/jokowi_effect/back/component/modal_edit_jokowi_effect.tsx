@@ -1,3 +1,4 @@
+"use client"
 import { Alert, Box, Button, Group, Text } from '@mantine/core';
 import { useAtom } from 'jotai';
 import { useRouter } from 'next/navigation';

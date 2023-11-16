@@ -2,7 +2,7 @@
 import { ActionIcon, Box, Button, Grid, Group, Image, Menu, ScrollArea, SimpleGrid, Stack, Text } from '@mantine/core';
 import { DateInput } from '@mantine/dates';
 import React, { useState } from 'react';
-import { TypeAnimation } from 'react-type-animation';
+// import { TypeAnimation } from 'react-type-animation';
 import { funGetEffectFront } from '../..';
 import { PageSubTitle, WARNA } from '@/modules/_global';
 import { EchartJokowiEffect, Top10JokowiEffect } from '@/modules/emotion';
@@ -10,8 +10,12 @@ import { HiDotsHorizontal } from "react-icons/hi"
 import { useAtom } from 'jotai';
 import { _valReadIdEffect } from '../val/val_jokowi_effect';
 import WrapperEffect from '../component/wrapper_push_read_effect';
-import _ from "lodash"
+import { TypeAnimation } from 'react-type-animation';
+import parse from "html-react-parser"
+import HTMLReactParser from 'html-react-parser';
 import { useShallowEffect } from '@mantine/hooks';
+import TextAnimation from 'react-typing-dynamics';
+import _ from "lodash"
 
 
 
@@ -91,6 +95,19 @@ export default function ViewJokowiEffect({ effect, emotion, locked, persen, emot
     const data = await funGetEffectFront({ isDate: isDate, isTime: value })
     setDataEffect(data.data)
   }
+
+  const is_client = useState(false)
+
+  useShallowEffect(() => {
+    if (window) is_client[1](true)
+  }, [])
+
+  function RubahHTML(c: any) {
+    return {
+      __html: c
+    }
+  }
+
 
   return (
     <>
@@ -227,19 +244,23 @@ export default function ViewJokowiEffect({ effect, emotion, locked, persen, emot
                     {
                       valRead.includes(item.id) ? (
                         <>
-                          <Text style={{ fontSize: '16', color: "white" }} >{item.content}</Text>
+                          <Text style={{ fontSize: '16', color: "white" }} dangerouslySetInnerHTML={RubahHTML(item.content)} />
                         </>
                       ) : (
                         <>
-                          <WrapperEffect id={item.id}>
-                            <TypeAnimation
-                              sequence={[
-                                item.content,
-                                1000,
-                              ]}
-                              speed={99}
-                              style={{ fontSize: '16', color: "white" }}
-                            />
+                          <WrapperEffect id={item.id} >
+                            <Stack c={"white"}>
+                              <TextAnimation
+                                phrases={[...item.content.split('\n')]}
+                                typingSpeed={0}
+                                backspaceDelay={0}
+                                eraseDelay={0}
+                                timeComplete={0}
+                                errorProbability={0}
+                                eraseOnComplete={false}
+                                isSecure={false}
+                              />
+                            </Stack>
                           </WrapperEffect>
                         </>
                       )
