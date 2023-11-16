@@ -11,14 +11,10 @@ export default function ModalEditJokowiEffect({dataJokowi, textContent}: {dataJo
   const [valOpenModal, setOpenModal] = useAtom(isModalJokowi)
   const router= useRouter()
 
-  // console.log(dataJokowi)
-
 
   async function editJokowi() {
     const res = await funUpdateJokowiEffect({ data: dataJokowi, textContent: textContent });
-    // await funLogUser({act:"ADD", desc:`User Add Data Setting User With User ID  ${id}`})
     toast("Success", {theme: "dark"});
-    // router.push("/dashboard-admin/jokowi-effect")
     setOpenModal(false);
   }
 

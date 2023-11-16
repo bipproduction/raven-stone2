@@ -12,7 +12,6 @@ export default function ModalAddMlAi({dataMlAi, textContent}: {dataMlAi: any, te
     const res = await funAddMlAi({ data: dataMlAi, textContent: textContent });
     toast("Success", {theme: "dark"});
     setOpenModal(false);
-    // console.log(dataMlAi, textContent)
   }
   return (
     <>

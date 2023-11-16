@@ -11,6 +11,7 @@ import moment from 'moment';
 import toast from 'react-simple-toasts';
 import { HiDotsHorizontal } from 'react-icons/hi';
 import { funGetEmotionCandidateChartFront } from '../..';
+import * as echarts from 'echarts';
 
 
 /**
@@ -63,19 +64,19 @@ export default function EchartJokowiEffect({ data }: { data: any }) {
                     }
                 }
             },
-            // grid: {
-            //     left: '3%',
-            //     right: '4%',
-            //     bottom: '3%',
-            //     containLabel: true
-            // },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
             xAxis: [
                 {
                     type: 'category',
                     boundaryGap: false,
                     data: !dataChart
                         ? []
-                        : dataChart!.map((v: any) => v.date),
+                        : dataChart!.map((v: any) => moment(v.date).format('DD-MM-YYYY')),
                     axisLabel: {
                         color: "white",
                         rotate: 30
@@ -87,6 +88,12 @@ export default function EchartJokowiEffect({ data }: { data: any }) {
                     type: 'value',
                     show: true,
                     max: "100",
+                    splitLine: {
+                        lineStyle: {
+                            color: "gray",
+                            opacity: 0.5
+                        }
+                    },
                     axisLabel: {
                         formatter: `{value}% `,
                         color: "white"
@@ -97,62 +104,74 @@ export default function EchartJokowiEffect({ data }: { data: any }) {
                 {
                     name: 'Positive',
                     type: 'line',
-                    sampling: "lttb",
-                    smooth: true,
-                    lineStyle: {
-                        width: 0
-                    },
                     showSymbol: false,
-                    areaStyle: {
-                        opacity: 0.5,
-                        color: WARNA.hijau
-                    },
-                    emphasis: {
-                        focus: 'series'
-                    },
                     data: !dataChart
                         ? []
                         : dataChart!.map((v: any) => v.positive),
+                    stack: 'z',
+                    color: 'green',
+                    areaStyle: {
+                        opacity: 1,
+                        color: new echarts.graphic.LinearGradient(1, 1, 1, 0, [
+                            {
+                                offset: 0,
+                                color: 'rgb(35,13,55)'
+                            },
+                            {
+                                offset: 1,
+                                color: 'rgba(8,106,24,1)'
+                            }
+                        ])
+                    },
+                    smooth: true,
                 },
                 {
                     name: 'Neutral',
                     type: 'line',
-                    sampling: "lttb",
                     smooth: true,
-                    lineStyle: {
-                        width: 0
-                    },
                     showSymbol: false,
-                    areaStyle: {
-                        opacity: 0.5,
-                        color: "white"
-                    },
-                    emphasis: {
-                        focus: 'series'
-                    },
                     data: !dataChart
                         ? []
                         : dataChart!.map((v: any) => v.neutral),
+                    color: "white",
+                    stack: 'x',
+                    areaStyle: {
+                        opacity: 1,
+                        color: new echarts.graphic.LinearGradient(1, 1, 1, 0, [
+                            {
+                                offset: 0,
+                                color: 'rgb(35,13,55)'
+                            },
+                            {
+                                offset: 1,
+                                color: 'rgba(255,255,255,1)'
+                            }
+                        ])
+                    }
                 },
                 {
                     name: 'Negative',
                     type: 'line',
-                    sampling: "lttb",
                     smooth: true,
-                    lineStyle: {
-                        width: 0
-                    },
                     showSymbol: false,
-                    areaStyle: {
-                        opacity: 0.5,
-                        color: WARNA.merah
-                    },
-                    emphasis: {
-                        focus: 'series'
-                    },
                     data: !dataChart
                         ? []
                         : dataChart!.map((v: any) => v.negative),
+                    color: "red",
+                    stack: 'y',
+                    areaStyle: {
+                        opacity: 1,
+                        color: new echarts.graphic.LinearGradient(1, 1, 1, 0, [
+                            {
+                                offset: 0,
+                                color: 'rgb(35,13,55)'
+                            },
+                            {
+                                offset: 1,
+                                color: 'rgba(124,3,13,1)'
+                            }
+                        ])
+                    }
                 },
 
             ]
@@ -225,8 +244,11 @@ export default function EchartJokowiEffect({ data }: { data: any }) {
                         </Menu>
                     </Group>
                 </Group>
-                <EChartsReact style={{ height: 250 }} option={options} />
-            </Box >
+                <EChartsReact style={{ 
+                    height: 300, width: "auto"
+                 }} option={options} />
+            </Box>
+
         </>
     )
 }
