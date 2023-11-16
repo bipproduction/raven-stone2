@@ -12,6 +12,7 @@ import provi from './../../../public/asset-data/prov.json'
 import FlipMove from "react-flip-move";
 import notif from './../../../public/asset-data/notif_kab.json'
 import toast from "react-simple-toasts";
+import { useRouter } from "next/navigation";
 
 export const roboto_mono = Michroma({
     weight: "400",
@@ -151,6 +152,7 @@ export default function Page() {
     // const [list_media, set_list_media] = useState<any[]>([])
     const [list_kab, set_list_kab] = useState<any[]>(kabu)
     const [list_notif, set_list_notif] = useState<any[]>([])
+    const router = useRouter()
 
     useShallowEffect(() => {
         let dd = (localStorage.getItem('list_notif') ?? JSON.stringify(_.take(notif, 2)))
@@ -231,52 +233,14 @@ export default function Page() {
         return () => clearInterval(inter)
     }, [])
 
-
-
-    // const interval = useInterval(() => {
-    //     load_provice()
-    // }, 3000)
-
-    // const interval_media = useInterval(() => {
-    //     load_media()
-    // }, 4000)
-
-    // function load_provice() {
-    //     set_list_prov(_.shuffle(list_province.map((v, k) => ({
-    //         title: v,
-    //         emotion: _.random(0, 2),
-    //         id: k + 1
-    //     }))))
-    // }
-
-    // function load_media() {
-    //     set_list_media(_.shuffle(list_media_listener))
-    // }
-
-    // useShallowEffect(() => {
-    //     interval_media.start()
-    //     return interval_media.stop
-    // }, [list_media])
-
-    // useShallowEffect(() => {
-    //     interval.start()
-    //     return interval.stop
-    // }, [list_prov])
-
-    // useShallowEffect(() => {
-    //     load_provice()
-    //     load_media()
-    // }, [])
-
     const view = useViewportSize()
 
     return <BackgroundImage src="/assets-img/bg_dashbaoard.png" h={"100vh"} className={roboto_mono.className} pos={"fixed"} >
         <Stack c={"white"} gap={"md"} p={0} >
-            {/* {JSON.stringify(list_kab)} */}
             <Box h={"5vh"} >
                 <Flex justify={"space-between"} p={"md"} pos={"relative"}>
                     <Image src={'/assets-img/logo_raven.png'} alt="" width={50} height={50} />
-                    <Avatar radius={100} bg={"red"}>
+                    <Avatar radius={100} bg={"red"} onClick={router.back}>
                         <CloseButton radius={100} />
                     </Avatar>
                 </Flex>
