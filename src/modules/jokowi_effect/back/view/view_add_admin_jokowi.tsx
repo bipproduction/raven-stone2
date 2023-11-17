@@ -17,8 +17,6 @@ import TextStyle from '@tiptap/extension-text-style';
 import { CiPickerEmpty } from 'react-icons/ci';
 import { useRouter } from 'next/navigation';
 import moment from 'moment';
-import { time } from 'console';
-import { cookies } from 'next/headers';
 import toast from 'react-simple-toasts';
 import { useAtom } from 'jotai';
 import { isModalJokowi } from '../val/modal_jokowi';
@@ -35,6 +33,7 @@ export default function ViewAddAdminJokowi() {
   const ref = useRef<HTMLInputElement>(null);
   const router = useRouter();
   const [valOpenModal, setOpenModal] = useAtom(isModalJokowi)
+  const regexForStripHTML = /<([^</> ]+)[^<>]*?>[^<>]*?<\/\1> */gi;
 
   const pickerControl = (
     <ActionIcon variant="subtle" color="gray" onClick={() => ref.current?.showPicker()}>
@@ -66,10 +65,9 @@ export default function ViewAddAdminJokowi() {
   })
 
   function validationData() {
-    if (Object.values(isDataJokowi).includes(""))
+    if (Object.values(isDataJokowi).includes("") || editor?.getHTML().replaceAll(regexForStripHTML, '') == '')
       return toast("The form cannot be empty", { theme: "dark" });
     setOpenModal(true);
-
   }
   return (
     <>
@@ -96,7 +94,7 @@ export default function ViewAddAdminJokowi() {
           </Box>
           <Box>
             <TimeInput
-              label="Klik Icon Waktu"
+              label="Jam"
               required ref={ref}
               rightSection={pickerControl}
               onChange={(val) => {
@@ -197,7 +195,7 @@ export default function ViewAddAdminJokowi() {
         withCloseButton={false}
         closeOnClickOutside={false}
       >
-       <ModalAddJokowiEffect dataJokowi={isDataJokowi} textContent={editor?.getHTML()} />
+        <ModalAddJokowiEffect dataJokowi={isDataJokowi} textContent={editor?.getHTML()} />
       </Modal>
     </>
   );
