@@ -2,23 +2,26 @@
 
 import { Box, Group, ScrollArea, Select, Table, Text } from "@mantine/core";
 import { useEffect, useState } from "react";
-import { funGetEmotionCandidateDateArea } from "../..";
+import { funDownloadEmotionCandidateByDate, funGetEmotionCandidateDateArea } from "../..";
 
-export default function TableDataEmotionCandidate({ param, title, data, th, datajam }: { param: any, title: string, data: any, th: any, datajam: any }) {
+export default function TableDataEmotionCandidate({ param, title, data, th, datajam, onLoad }: { param: any, title: string, data: any, th: any, datajam: any, onLoad: (val: any) => void }) {
     const [isData, setData] = useState(data)
     const [dataJam, setDataJam] = useState(datajam)
-    const [isJam, setJam] = useState((dataJam.length > 0) ? dataJam[0].timeEmotion : null)
+    const [isJam, setJam] = useState((datajam.length > 0) ? datajam[0].timeEmotion : null)
 
     async function getLoad(valJam: any) {
         setJam(valJam)
         param['jam'] = valJam
         const dataDB = await funGetEmotionCandidateDateArea({ find: param })
         setData(dataDB.data)
+        const dataDownload = await funDownloadEmotionCandidateByDate({ find: param })
+        onLoad(dataDownload)
     }
 
     useEffect(() => {
         setData(data)
-    }, [data])
+        setJam((datajam.length > 0) ? datajam[0].timeEmotion : null)
+    }, [data, datajam])
 
     return (
         <>
