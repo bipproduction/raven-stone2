@@ -4,7 +4,7 @@ import { useShallowEffect } from '@mantine/hooks'
 import React, { useEffect, useState } from 'react'
 import { EChartsOption, color } from "echarts";
 import EChartsReact from "echarts-for-react";
-import { ActionIcon, Box, Button, Divider, Group, Menu, Stack, Title } from '@mantine/core';
+import { ActionIcon, Box, Button, Divider, Group, Menu, Popover, Stack, Text, Title } from '@mantine/core';
 import { WARNA } from '@/modules/_global';
 import { DatePicker } from '@mantine/dates';
 import moment from 'moment';
@@ -37,7 +37,7 @@ export default function EchartJokowiEffect({ data }: { data: any }) {
             startDate = moment(new Date()).subtract(1, "months").format("YYYY-MM-DD")
         } else if (time == 'week') {
             startDate = moment(new Date()).subtract(7, "days").format("YYYY-MM-DD");
-        }else if(time=='custom'){
+        } else if (time == 'custom') {
             startDate = newDateStart
             endDate = newDateEnd
         }
@@ -45,7 +45,7 @@ export default function EchartJokowiEffect({ data }: { data: any }) {
         const loadChart = await funGetEmotionCandidateChartFront({ candidate: 7, startDate: startDate, endDate: endDate })
         setListData(loadChart)
 
-        if(time == 'custom') setPopDate(false)
+        if (time == 'custom') setPopDate(false)
     }
 
     useEffect(() => {
@@ -112,6 +112,7 @@ export default function EchartJokowiEffect({ data }: { data: any }) {
                     color: 'green',
                     areaStyle: {
                         opacity: 1,
+                        // color: "#076918"
                         color: new echarts.graphic.LinearGradient(1, 1, 1, 0, [
                             {
                                 offset: 0,
@@ -137,6 +138,7 @@ export default function EchartJokowiEffect({ data }: { data: any }) {
                     stack: 'x',
                     areaStyle: {
                         opacity: 1,
+                        // color: "#FFFFFF"
                         color: new echarts.graphic.LinearGradient(1, 1, 1, 0, [
                             {
                                 offset: 0,
@@ -161,6 +163,7 @@ export default function EchartJokowiEffect({ data }: { data: any }) {
                     stack: 'y',
                     areaStyle: {
                         opacity: 1,
+                        // color: "#A71211"
                         color: new echarts.graphic.LinearGradient(1, 1, 1, 0, [
                             {
                                 offset: 0,
@@ -190,10 +193,9 @@ export default function EchartJokowiEffect({ data }: { data: any }) {
                         <Divider orientation="vertical" />
                         <Menu opened={showPopDate} position='bottom-end'>
                             <Menu.Target>
-                                <Button variant='subtle' c={"white"} onClick={() => setPopDate(true)}>Custom</Button>
+                                <Button variant={(isButton == 'custom') ? 'filled' : 'subtle'} c={"white"} onClick={() => setPopDate(true)}>Custom</Button>
                             </Menu.Target>
-                            <Menu.Dropdown>
-                                <Menu.Item>
+                            <Menu.Dropdown p={20}>
                                     <DatePicker
                                         type="range"
                                         value={value}
@@ -218,7 +220,7 @@ export default function EchartJokowiEffect({ data }: { data: any }) {
                                         }
                                     />
                                     <Group justify="space-between" mt={10} >
-                                        <Box
+                                        <Button
                                             onClick={() => setPopDate(false)}
                                             w={100}
                                             p={10}
@@ -228,10 +230,10 @@ export default function EchartJokowiEffect({ data }: { data: any }) {
                                             }}
                                         >
                                             CANCEL
-                                        </Box>
+                                        </Button>
                                         {okButton && (
                                             <Button
-                                                onClick={()=>{onChooseTime('custom')}}
+                                                onClick={() => { onChooseTime('custom') }}
                                                 w={100}
                                                 variant="filled"
                                             >
@@ -239,14 +241,13 @@ export default function EchartJokowiEffect({ data }: { data: any }) {
                                             </Button>
                                         )}
                                     </Group>
-                                </Menu.Item>
                             </Menu.Dropdown>
                         </Menu>
                     </Group>
                 </Group>
-                <EChartsReact style={{ 
+                <EChartsReact style={{
                     height: 300, width: "auto"
-                 }} option={options} />
+                }} option={options} />
             </Box>
 
         </>

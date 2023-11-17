@@ -1,5 +1,4 @@
 'use client'
-
 import { COLOR_EMOTION } from '@/modules/_global';
 import { Box, Group, Pagination, ScrollArea, Table } from '@mantine/core';
 import React, { useState } from 'react';
@@ -55,7 +54,7 @@ export default function Top10JokowiEffect({ data, dataLocked }: { data: any, dat
               {isData.map((v: any, i: any) => (
                 <Table.Tr key={i}>
                   <Table.Td>{noAwal++}</Table.Td>
-                  <Table.Td>{v.name}</Table.Td>
+                  <Table.Td >{v.name}</Table.Td>
                   <Table.Td align='right' c={"white"}>{
                     Intl.NumberFormat("id-ID").format(Number(
                       dataLocked.filter((i: any) => i.idProvinsi === v.idProvinsi)[0].value
