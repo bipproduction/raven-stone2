@@ -89,7 +89,7 @@ export default function ViewEditAdminJokowi({ data }: { data: any }) {
           </Box>
           <Box>
             <TimeInput
-              label="Klik Icon Waktu"
+              label="Jam"
               required ref={ref}
               rightSection={pickerControl}
               onChange={(val: any) =>

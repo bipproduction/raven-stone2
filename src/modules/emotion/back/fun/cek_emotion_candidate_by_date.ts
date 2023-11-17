@@ -2,10 +2,11 @@
 
 import { prisma } from "@/modules/_global"
 
-export default async function funCekEmotionCandidate({ date }: { date: any }) {
+export default async function funCekEmotionCandidate({ date, candidate }: { date: any, candidate: any }) {
     const data = await prisma.candidateEmotion.count({
         where: {
-            dateEmotion: date
+            dateEmotion: date,
+            idCandidate: Number(candidate)
         }
     })
 

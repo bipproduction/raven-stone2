@@ -118,7 +118,7 @@ export default function ViewAddAdminMlai({ params, paslon, }: {params: any, pasl
           </Box>
           <Box>
             <TimeInput
-              label="Klik Icon Waktu"
+              label="Jam"
               required ref={ref}
               rightSection={pickerControl}
               onChange={(val) =>

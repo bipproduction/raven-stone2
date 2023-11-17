@@ -17,6 +17,7 @@ export default function ViewAdminEmotionCandidate({ param, provinsi, candidate, 
 
     const [dataProvinsi, setDataProvinsi] = useState(provinsi)
     const [dataCandidate, setDataCandidate] = useState(candidate)
+    const [dataDownload, setDataDownload] = useState(datadownload)
     const [isProvinsi, setProvinsi] = useState<any>(param.idProvinsi || null)
     const [isCandidate, setCandidate] = useState<any>(param.idCandidate || null)
     const [isDate, setDate] = useState<any>(param.date)
@@ -27,7 +28,8 @@ export default function ViewAdminEmotionCandidate({ param, provinsi, candidate, 
     useEffect(() => {
         setProvinsi((param.idProvinsi == 0) ? null : param.idProvinsi)
         setDate((param.date == null) ? new Date() : new Date(param.date))
-    }, [param])
+        setDataDownload(datadownload)
+    }, [param, datadownload])
 
 
 
@@ -115,14 +117,14 @@ export default function ViewAdminEmotionCandidate({ param, provinsi, candidate, 
                                         cursor: "pointer",
                                     }}
                                     onClick={() => {
-                                        const dataJson = datadownload.data
+                                        const dataJson = dataDownload.data
 
                                         const jsonData = papa.unparse(dataJson)
                                         const jsonDataUrl = "data:text/csv;charset=utf-8," + encodeURIComponent(jsonData)
 
                                         const jsonDwnloadLink = document.createElement("a")
                                         jsonDwnloadLink.href = jsonDataUrl
-                                        jsonDwnloadLink.download = datadownload.title + ".csv"
+                                        jsonDwnloadLink.download = dataDownload.title + ".csv"
                                         jsonDwnloadLink.click()
                                     }}
                                 >
@@ -154,7 +156,16 @@ export default function ViewAdminEmotionCandidate({ param, provinsi, candidate, 
             </Box>
             {!_.isNull(datatable.title) && (
                 <Box pt={20}>
-                    <TableDataEmotionCandidate param={param} title={datatable.title} data={datatable.data} th={datatable.th} datajam={datatable.jam} />
+                    <TableDataEmotionCandidate
+                        param={param}
+                        title={datatable.title}
+                        data={datatable.data}
+                        th={datatable.th}
+                        datajam={datatable.jam}
+                        onLoad={(val) => {
+                            setDataDownload(val)
+                        }}
+                    />
                 </Box>
             )}
         </>
