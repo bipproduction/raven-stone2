@@ -245,6 +245,7 @@ export default function ViewJokowiEffect({ effect, emotion, locked, persen, emot
                       valRead.includes(item.id) ? (
                         <>
                           <Text style={{ fontSize: '16', color: "white" }} dangerouslySetInnerHTML={RubahHTML(item.content)} />
+                          {/* <Text style={{ fontSize: '16', color: "white" }}>{parse(item.content)}</Text> */}
                         </>
                       ) : (
                         <>
