@@ -8,13 +8,13 @@ import funCopyEmotionCandidate from "../fun/copy_emotion_candidate"
 import { useState } from "react"
 import { funLogUser } from "@/modules/user"
 
-export default function ModalCopyEmotionCandidate({ from, to, onSuccess }: { from: any, to: any, onSuccess: (val: any) => void }) {
+export default function ModalCopyEmotionCandidate({ from, to, candidate, onSuccess }: { from: any, to: any, candidate: any, onSuccess: (val: any) => void }) {
     const [openModal, setOpenModal] = useAtom(isModalEmotionPaslon)
     const [isLoading, setLoading] = useState(false)
 
     async function onUpload() {
         setLoading(true)
-        await funCopyEmotionCandidate({ dateFrom: from, dateTo: to })
+        await funCopyEmotionCandidate({ dateFrom: from, dateTo: to, candidate: candidate })
         await funLogUser({ act: "COPY DATA", desc: `User Copy Data, Emotion Candidate From: ${from} To: ${to} ` })
         setLoading(false)
         toast('Success', { theme: 'dark' })

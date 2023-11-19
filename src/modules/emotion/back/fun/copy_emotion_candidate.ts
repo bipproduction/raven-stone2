@@ -3,12 +3,13 @@
 import { prisma } from "@/modules/_global"
 import _ from "lodash"
 
-export default async function funCopyEmotionCandidate({ dateFrom, dateTo }: { dateFrom: any, dateTo: any }) {
+export default async function funCopyEmotionCandidate({ dateFrom, dateTo, candidate }: { dateFrom: any, dateTo: any, candidate: any }) {
 
 
     const data = await prisma.candidateEmotion.findMany({
         where: {
-            dateEmotion: dateFrom
+            dateEmotion: dateFrom,
+            idCandidate: Number(candidate)
         },
         select: {
             timeEmotion: true,

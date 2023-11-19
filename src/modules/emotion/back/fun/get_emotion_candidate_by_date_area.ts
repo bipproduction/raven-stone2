@@ -34,7 +34,7 @@ export default async function funGetEmotionCandidateDateArea({ find }: { find: a
             timeEmotion: true
         },
         orderBy: {
-            id: 'desc'
+            timeEmotion: 'desc'
         }
     });
 
@@ -49,7 +49,7 @@ export default async function funGetEmotionCandidateDateArea({ find }: { find: a
     }))
 
     if (dataJamFix.length > 0) {
-        if (find.jam != null) {
+        if (find.jam != null && find.jam != undefined) {
             jamFix = find.jam
             jamFix = new Date('1970-01-01 ' + jamFix);
             isoDateTime = new Date(jamFix.getTime() - (jamFix.getTimezoneOffset() * 60000)).toISOString();
