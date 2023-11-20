@@ -84,19 +84,19 @@ const list_emotion = [
     {
         id: 1,
         name: "positive",
-        value: 56577,
+        value: '49.06 %',
         variant: "positive",
     },
     {
         id: 2,
         name: "neutrall",
-        value: 12533,
+        value: '12.88 %',
         variant: "neutrall"
     },
     {
         id: 3,
         name: "negative",
-        value: 4254,
+        value: '38.06 %',
         variant: "negative"
     }
 ]
@@ -239,7 +239,7 @@ export default function DashboardLive() {
             <Box h={"5vh"} >
                 <Flex justify={"space-between"} p={"md"} pos={"relative"}>
                     <Image src={'/assets-img/logo_raven.png'} alt="" width={50} height={50} />
-                    <Avatar radius={100} bg={"red"} onClick={router.back}>
+                    <Avatar radius={100} bg={"red"} onClick={() => router.push("/dashboard/ml-ai")}>
                         <CloseButton radius={100} />
                     </Avatar>
                 </Flex>
@@ -349,12 +349,12 @@ export default function DashboardLive() {
                                         <Image width={100} height={100} src={v.pas2_img} alt="" />
                                     </Flex>
                                     <Flex justify={"center"} align={"center"} py={"lg"} pos={"relative"}>
-                                        <TextLoop animation="inertia" >
+                                        {/* <TextLoop animation="inertia" > */}
                                             <Flex align={"center"} bg={"url(/assets-img/bg_bottom_4.png)"}>
-                                                <Text>33455</Text>
+                                                <Text>44.17 %</Text>
                                                 <MdArrowDropUp color={"green"} size={50} />
                                             </Flex>
-                                            <Flex align={"center"} bg={"url(/assets-img/bg_bottom_4.png)"}>
+                                            {/* <Flex align={"center"} bg={"url(/assets-img/bg_bottom_4.png)"}>
                                                 <Text>2345</Text>
                                                 <MdArrowDropDown color={"red"} size={50} />
                                             </Flex>
@@ -365,8 +365,8 @@ export default function DashboardLive() {
                                             <Flex align={"center"} bg={"url(/assets-img/bg_bottom_4.png)"}>
                                                 <Text>7345</Text>
                                                 <MdArrowDropDown color={"red"} size={50} />
-                                            </Flex>
-                                        </TextLoop>
+                                            </Flex> */}
+                                        {/* </TextLoop> */}
                                     </Flex>
                                 </Stack>)}
                             </Flex>

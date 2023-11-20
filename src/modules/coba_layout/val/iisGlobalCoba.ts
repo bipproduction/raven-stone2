@@ -2,4 +2,4 @@
 
 import { atom } from "jotai"
 
-export const isModalGlobalCoba = atom(false)
+export const isModalGlobalCoba = atom(true)

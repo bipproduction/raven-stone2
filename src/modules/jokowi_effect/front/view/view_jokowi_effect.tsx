@@ -111,6 +111,7 @@ export default function ViewJokowiEffect({ effect, emotion, locked, persen, emot
 
   return (
     <>
+    <Box h={"100%"}>
       <PageSubTitle text1='JOKOWI' text2='EFFECT' />
       <Stack pt={10}>
         <Grid>
@@ -168,7 +169,7 @@ export default function ViewJokowiEffect({ effect, emotion, locked, persen, emot
           </Grid.Col>
         </Grid>
       </Stack>
-      <Stack>
+      <Stack pb={60}>
         <Box pt={20}>
           <Top10JokowiEffect data={emotion} dataLocked={locked} />
         </Box>
@@ -273,6 +274,7 @@ export default function ViewJokowiEffect({ effect, emotion, locked, persen, emot
           )
         })}
       </Stack>
+    </Box>
     </>
   );
 }
