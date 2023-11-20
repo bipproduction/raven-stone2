@@ -196,51 +196,52 @@ export default function EchartJokowiEffect({ data }: { data: any }) {
                                 <Button variant={(isButton == 'custom') ? 'filled' : 'subtle'} c={"white"} onClick={() => setPopDate(true)}>Custom</Button>
                             </Menu.Target>
                             <Menu.Dropdown p={20}>
-                                    <DatePicker
-                                        type="range"
-                                        value={value}
-                                        minDate={new Date('2023-09-01')}
-                                        maxDate={new Date()}
-                                        onChange={(v) => {
-                                            if (v[0] && v[1]) {
-                                                const diferent = moment(v[1]).diff(
-                                                    moment(v[0]),
-                                                    "days"
-                                                );
+                                <DatePicker
+                                    type="range"
+                                    value={value}
+                                    minDate={new Date('2023-09-01')}
+                                    maxDate={new Date()}
+                                    onChange={(v) => {
+                                        setValue(v)
+                                        if (v[0] && v[1]) {
+                                            const diferent = moment(v[1]).diff(
+                                                moment(v[0]),
+                                                "days"
+                                            );
 
-                                                if (diferent < 8)
-                                                    return toast('Please select date more than 7 days, or user 1 week option button', { theme: 'dark' });
-                                                setNewDateStart(moment(v[0]).format("YYYY-MM-DD"))
-                                                setNewDateEnd(moment(v[1]).format("YYYY-MM-DD"))
-                                                setOkButton(true);
-                                            } else {
-                                                setOkButton(false);
-                                            }
+                                            if (diferent < 8)
+                                                return toast('Please select date more than 7 days, or user 1 week option button', { theme: 'dark' });
+                                            setNewDateStart(moment(v[0]).format("YYYY-MM-DD"))
+                                            setNewDateEnd(moment(v[1]).format("YYYY-MM-DD"))
+                                            setOkButton(true);
+                                        } else {
+                                            setOkButton(false);
                                         }
-                                        }
-                                    />
-                                    <Group justify="space-between" mt={10} >
+                                    }
+                                    }
+                                />
+                                <Group justify="space-between" mt={10} >
+                                    <Button
+                                        onClick={() => setPopDate(false)}
+                                        w={100}
+                                        p={10}
+                                        variant="outline"
+                                        style={{
+                                            backgroundColor: 'white'
+                                        }}
+                                    >
+                                        CANCEL
+                                    </Button>
+                                    {okButton && (
                                         <Button
-                                            onClick={() => setPopDate(false)}
+                                            onClick={() => { onChooseTime('custom') }}
                                             w={100}
-                                            p={10}
-                                            variant="outline"
-                                            style={{
-                                                backgroundColor: 'white'
-                                            }}
+                                            variant="filled"
                                         >
-                                            CANCEL
+                                            OK
                                         </Button>
-                                        {okButton && (
-                                            <Button
-                                                onClick={() => { onChooseTime('custom') }}
-                                                w={100}
-                                                variant="filled"
-                                            >
-                                                OK
-                                            </Button>
-                                        )}
-                                    </Group>
+                                    )}
+                                </Group>
                             </Menu.Dropdown>
                         </Menu>
                     </Group>

@@ -32,7 +32,7 @@ export default function ViewRegionalInsights({ candidate, provinsi, audience, em
         backdropFilter: `blur(10px)`,
         // opacity: 0.8,
       }}></Box>
-      <Stack>
+      <Stack h={"100vh"}>
         <PageSubTitle text1='REGIONAL' text2='INSIGHTS' />
         <Box
           style={{

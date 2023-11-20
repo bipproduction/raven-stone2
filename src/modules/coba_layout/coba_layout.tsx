@@ -53,54 +53,69 @@ export default function CobaNavbar() {
   const [disabled, { toggle: toggleDisabled }] = useDisclosure();
   const [isOpenCoba, setOpenCoba] = useAtom(isModalGlobalCoba);
 
+  console.log()
+
   return (
     <AppShell
       navbar={{ width: 300, breakpoint: "sm", collapsed: { mobile: !opened } }}
       padding="md"
-      disabled={isOpenCoba}
     >
-      <AppShell.Navbar p="md">
-        <Group justify="flex-end">
-          <ActionIcon onClick={() => setOpenCoba(true)}>
-            <AiOutlineClose />
-          </ActionIcon>
-        </Group>
-        {mobile.map((item) => {
-          return (
-            <Box key={item.id}>
-              <Tooltip label={item.label}>
-                <ActionIcon
-                  bg={item.label ? "dark" : ""}
-                  radius={100}
-                  size={32}
-                  variant="light"
-                >
-                  <item.icon size={32} color={"white"} />
-                </ActionIcon>
-              </Tooltip>
-            </Box>
-          );
-        })}
-      </AppShell.Navbar>
-      <AppShellSection>
-        <Button onClick={() => setOpenCoba(false)}>buka</Button>
-        {mobile.map((item) => {
-          return (
-            <Box key={item.id}>
-              <Tooltip label={item.label}>
-                <ActionIcon
-                  bg={item.label ? "dark" : ""}
-                  radius={100}
-                  size={32}
-                  variant="light"
-                >
-                  <item.icon size={32} color={"white"} />
-                </ActionIcon>
-              </Tooltip>
-            </Box>
-          );
-        })}
-      </AppShellSection>
+
+      {/* ini waktu buka */}
+      {
+        isOpenCoba && (
+          <AppShell.Navbar p="md">
+            <Group justify="flex-end">
+              <ActionIcon onClick={() => setOpenCoba(false)}>
+                <AiOutlineClose />
+              </ActionIcon>
+            </Group>
+            {mobile.map((item) => {
+              return (
+                <Box key={item.id} bg={"green"}>
+                  <Tooltip label={item.label}>
+                    <ActionIcon
+                      bg={item.label ? "dark" : ""}
+                      radius={100}
+                      size={32}
+                      variant="light"
+                    >
+                      <item.icon size={32} color={"white"} />
+                    </ActionIcon>
+                  </Tooltip>
+                </Box>
+              );
+            })}
+          </AppShell.Navbar>
+
+        )
+      }
+
+
+      {/* ini waktu tutup */}
+      {!isOpenCoba &&
+        (
+          <AppShell.Navbar>
+            <Button onClick={() => setOpenCoba(true)}>tutup</Button>
+            {mobile.map((item) => {
+              return (
+                <Box key={item.id} bg={"blue"}>
+                  <Tooltip label={item.label}>
+                    <ActionIcon
+                      bg={item.label ? "dark" : ""}
+                      radius={100}
+                      size={32}
+                      variant="light"
+                    >
+                      <item.icon size={32} color={"white"} />
+                    </ActionIcon>
+                  </Tooltip>
+                </Box>
+              );
+            })}
+          </AppShell.Navbar>
+
+        )}
       <AppShell.Main>
         <Text>Selamat Datang</Text>
       </AppShell.Main>
