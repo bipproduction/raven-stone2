@@ -61,93 +61,94 @@ export default function ViewLayout({ children }: { children: React.ReactNode }) 
                   }}
                   pos={"absolute"}
                 > */}
-                  <Group justify="flex-end" pr={20} pt={30}>
-                    <ActionIcon onClick={() => {
-                      setNavOpt({width: 100, breakpoint: 'sm', collapsed: { mobile: isOpenCoba } })
-                      setOpenCoba(false)
-                      }} variant='subtle' c={"white"}>
-                      <AiOutlineClose size={30}/>
-                    </ActionIcon>
-                  </Group>
-                  {DataFrontNav.map((item) => {
-                    return (
-                      <Box key={item.key} m={5} >
-                        <NavLink
-                          active
-                          label={active === item.link ? (
-                            <Box>
-                              <Title order={5} onClick={() => router.push(item.link)}>
-                                {item.label}
-                              </Title>
-                              <Grid pt={5}>
-                                <Grid.Col span={3}>
-                                  <Divider color={item.garisBawah} size="lg" />
-                                </Grid.Col>
-                              </Grid>
-                            </Box>
-                          ) : (
-                            <Box>
-                              <Text onClick={() => router.push(item.link)}>
-                                {item.label}
-                              </Text>
-
-                            </Box>
-                          )
-                          }
-                          onClick={() => {
-                            router.push(item.link);
-                          }}
-                          c={item.color}
-                          variant="subtle"
-                        />
-                      </Box>
-                    )
-                  })}
-                  <AppShell.Section >
-                    {/* {settingName.map((item) => {
-                  return ( */}
-                    <Box key="8" m={'xs'}>
+                <Group justify="flex-end" pr={20} pt={30}>
+                  <ActionIcon onClick={() => {
+                    setNavOpt({ width: 100, breakpoint: 'sm', collapsed: { mobile: isOpenCoba } })
+                    setOpenCoba(false)
+                  }} variant='subtle' c={"white"}>
+                    <AiOutlineClose size={30} />
+                  </ActionIcon>
+                </Group>
+                {DataFrontNav.map((item) => {
+                  return (
+                    <Box key={item.key} m={5} >
                       <NavLink
-                        label={<Text>SETTING</Text>}
-                        childrenOffset={28}
+                        active
+                        label={active === item.link ? (
+                          <Box>
+                            <Title order={5} onClick={() => router.push(item.link)}>
+                              {item.label}
+                            </Title>
+                            <Grid pt={5}>
+                              <Grid.Col span={3}>
+                                <Divider color={item.garisBawah} size="lg" />
+                              </Grid.Col>
+                            </Grid>
+                          </Box>
+                        ) : (
+                          <Box>
+                            <Text onClick={() => router.push(item.link)}>
+                              {item.label}
+                            </Text>
+
+                          </Box>
+                        )
+                        }
+                        onClick={() => {
+                          router.push(item.link);
+                        }}
+                        c={item.color}
+                        variant="subtle"
+                      />
+                    </Box>
+                  )
+                })}
+                <AppShell.Section >
+                  {/* {settingName.map((item) => {
+                  return ( */}
+                  <Box key="8" m={'xs'}>
+                    <NavLink
+                      label={<Text>SETTING</Text>}
+                      childrenOffset={28}
+                      c={'SETTING' ? "white" : "dark"}
+                      variant="subtle"
+                      active
+                      style={{
+                        // position: "absolute",
+                        bottom: 160,
+                        left: 0,
+                        marginTop: 50
+                      }}
+                    >
+                      <NavLink
+                        label={<Text>LOGOUT</Text>}
                         c={'SETTING' ? "white" : "dark"}
                         variant="subtle"
                         active
                         style={{
                           // position: "absolute",
-                          bottom: 160,
+                          bottom: 120,
                           left: 0,
-                          marginTop: 50
                         }}
-                      >
-                        <NavLink
-                          label={<Text>LOGOUT</Text>}
-                          c={'SETTING' ? "white" : "dark"}
-                          variant="subtle"
-                          active
-                          style={{
-                            // position: "absolute",
-                            bottom: 120,
-                            left: 0,
-                          }}
-                          pl={50}
-                          onClick={() => { setOpenModal(true) }}
-                        />
-                      </NavLink>
-                    </Box>
-                  </AppShell.Section>
+                        pl={50}
+                        onClick={() => { setOpenModal(true) }}
+                      />
+                    </NavLink>
+                  </Box>
+                </AppShell.Section>
                 {/* </Box> */}
+                <Box
+                  style={{
+                    position: "fixed",
+                    bottom: 40,
+                    zIndex: 0
+                  }}
+                >
+                  <Center pl={20} pr={20}>
+                    <Image src={"/raven1.png"} maw={200} mx="auto" alt="logo" />
+                  </Center>
+                </Box>
               </BackgroundImage>
-              <Box
-                style={{
-                  position: "fixed",
-                  bottom: 40,
-                }}
-              >
-                <Center pl={20} pr={20}>
-                  <Image src={"/raven1.png"} maw={200} mx="auto" alt="logo" />
-                </Center>
-              </Box>
             </AppShell.Navbar>
           )
         }
@@ -188,6 +189,7 @@ export default function ViewLayout({ children }: { children: React.ReactNode }) 
                 style={{
                   position: "fixed",
                   bottom: 10,
+                  zIndex: 0
                 }}
                 pb={40}
               >
@@ -200,9 +202,9 @@ export default function ViewLayout({ children }: { children: React.ReactNode }) 
               >
                 <Group justify='center'>
                   <ActionIcon onClick={() => {
-                    setNavOpt({width: 300, breakpoint: 'sm', collapsed: { mobile: isOpenCoba } })
+                    setNavOpt({ width: 300, breakpoint: 'sm', collapsed: { mobile: isOpenCoba } })
                     setOpenCoba(true)
-                    }} variant='subtle' c={"white"}>
+                  }} variant='subtle' c={"white"}>
                     <MdArrowForwardIos size={30} />
                   </ActionIcon>
                 </Group>
