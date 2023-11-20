@@ -155,6 +155,7 @@ export default function ViewLayout({ children }: { children: React.ReactNode }) 
           (
             <AppShellNavbar
               w={{ sm: 100, lg: 100 }}
+              h={"100vh"}
               bg={"#1E1B1C"}
               style={{
                 border: "none",
