@@ -184,7 +184,7 @@ export default function ViewLayout({ children }: { children: React.ReactNode }) 
 
               <AppShellSection
                 style={{
-                  position: "absolute",
+                  position: "fixed",
                   bottom: 10,
                 }}
                 pb={40}
