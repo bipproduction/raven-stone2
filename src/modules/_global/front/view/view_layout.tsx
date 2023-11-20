@@ -26,7 +26,7 @@ export default function ViewLayout({ children }: { children: React.ReactNode }) 
   const [active, setActive] = useState("");
   const [activemobile, setActivemobile] = useState("");
   const [isSmall, setIsSmall] = useAtom(sNavbarSmall)
-  const [isOpenCoba, setOpenCoba] = useAtom(isModalGlobalCoba);
+  const [isOpenCoba, setOpenCoba] = useState(true);
   const [isNavOpt, setNavOpt] = useState({ width: 300, breakpoint: 'sm', collapsed: { mobile: isOpenCoba } })
 
   useShallowEffect(() => {
@@ -48,11 +48,11 @@ export default function ViewLayout({ children }: { children: React.ReactNode }) 
             }}
               w={300}
             >
-              <BackgroundImage src="/raven.png" h={"100%"} style={{
+              <BackgroundImage src="/raven_bg.png" h={"100%"} style={{
                 backgroundPosition: "30%",
                 backgroundRepeat: "no-repeat",
               }}>
-                <Box
+                {/* <Box
                   w={"100%"}
                   h={"100vh"}
                   style={{
@@ -60,7 +60,7 @@ export default function ViewLayout({ children }: { children: React.ReactNode }) 
                       "linear-gradient(180deg, rgba(139, 212, 160, 0) 15%, #231F24 70%)",
                   }}
                   pos={"absolute"}
-                >
+                > */}
                   <Group justify="flex-end" pr={20} pt={30}>
                     <ActionIcon onClick={() => {
                       setNavOpt({width: 100, breakpoint: 'sm', collapsed: { mobile: isOpenCoba } })
@@ -136,7 +136,7 @@ export default function ViewLayout({ children }: { children: React.ReactNode }) 
                       </NavLink>
                     </Box>
                   </AppShell.Section>
-                </Box>
+                {/* </Box> */}
               </BackgroundImage>
               <Box
                 style={{
@@ -154,11 +154,12 @@ export default function ViewLayout({ children }: { children: React.ReactNode }) 
         {!isOpenCoba &&
           (
             <AppShellNavbar
-              w={{ sm: 100, lg: 100 }}
+              w={100}
               h={"100vh"}
               bg={"#1E1B1C"}
               style={{
                 border: "none",
+                backgroundSize: "100vh"
               }}
             >
               <AppShellSection pt={30}>
