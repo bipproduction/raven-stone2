@@ -7,6 +7,7 @@ import { useAtom, useAtomValue } from 'jotai';
 import { isModalLayoutUser, sNavbarSmall } from '../val/isModalLayoutUser';
 import ModalLogoutUser from '../components/modal_logout_user';
 import { WARNA } from '../..';
+import { isModalGlobalCoba } from '@/modules/coba_layout/val/iisGlobalCoba';
 
 const dataFront = [
   {
@@ -99,6 +100,7 @@ export default function ViewLayout({ children }: { children: React.ReactNode }) 
   const pathname = usePathname();
   const [active, setActive] = useState("");
   const [isSmall, setIsSmall] = useAtom(sNavbarSmall)
+  const [openMobile, setOpenMobile] = useAtom(isModalGlobalCoba)
 
   useShallowEffect(() => {
     setActive(pathname);
@@ -109,10 +111,11 @@ export default function ViewLayout({ children }: { children: React.ReactNode }) 
       <AppShell
         navbar={{ width: 300, breakpoint: 'sm', collapsed: { mobile: !opened } }}
         padding="md"
-
+        
       >
         <AppShell.Navbar bg={"#1E1B1C"} style={{
           border: "none",
+
         }}>
           <BackgroundImage src="/raven.png" h={"100%"} style={{
             backgroundPosition: "30%",

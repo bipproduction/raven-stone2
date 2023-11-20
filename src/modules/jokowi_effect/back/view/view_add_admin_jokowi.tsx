@@ -22,6 +22,7 @@ import { useAtom } from 'jotai';
 import { isModalJokowi } from '../val/modal_jokowi';
 import ModalAddJokowiEffect from '../component/modal_add_jokowi_effect';
 import { useShallowEffect } from '@mantine/hooks';
+import funCekAddJokowiEffect from '../fun/cek_add_jokowi_effect';
 
 
 export default function ViewAddAdminJokowi() {
@@ -68,6 +69,22 @@ export default function ViewAddAdminJokowi() {
     if (Object.values(isDataJokowi).includes("") || editor?.getHTML().replaceAll(regexForStripHTML, '') == '')
       return toast("The form cannot be empty", { theme: "dark" });
     setOpenModal(true);
+<!-- <<<<<<< lukman/back/nov20 -->
+  }
+
+  const [dataTanggal, setDataTanggal] = useState(null)
+  const [dataWaktu, setDataWaktu] = useState(null)
+
+  async function cekJokowi(isDate: any) {
+    const tgl = moment(isDate).format('YYYY-MM-DD')
+        const cek = await funCekAddJokowiEffect({ tanggal: new Date(tgl), waktu: "" })
+        if (cek.ada) {
+          setDataTanggal(null)
+          setDataWaktu(null)
+          return toast("Sudah Ada Data Waktu Yang Sama", {theme: "dark"})
+        }
+// =======
+// >>>>>>> join
   }
   return (
     <>
