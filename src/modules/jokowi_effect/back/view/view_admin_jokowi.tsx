@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import TableDataJokowi from "../component/table_data_jokowi";
 import papa from "papaparse"
+import { useShallowEffect } from "@mantine/hooks";
 
 export default function ViewAdminJokowi({ param, datatable, datadownload }: { param: any, datatable: any, datadownload: any }) {
     const router = useRouter()
@@ -16,6 +17,12 @@ export default function ViewAdminJokowi({ param, datatable, datadownload }: { pa
     function onProccess() {
         router.replace('/dashboard-admin/jokowi-effect?date=' + moment(isDate).format("YYYY-MM-DD"))
     }
+
+    const is_client = useState(false)
+
+    useShallowEffect(() => {
+      if (window) is_client[1](true)
+    }, [])
 
     return (
         <>

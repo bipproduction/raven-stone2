@@ -13,7 +13,7 @@ export default function ModalDeleteJokowi({ id, onSuccess }: { id: any, onSucces
 
     async function onDelete() {
         await funDelEffectById({ idData: id })
-        await funLogUser({ act: "DELETE", desc: `User Deletes Data Jokowi Effect With User ID ${id}` })
+        await funLogUser({ act: "DELETE", desc: `User Delete Data Jokowi Effect (ID : ${id})` })
         toast('Success', { theme: 'dark' })
         setOpenModal(false)
         onSuccess(true)
@@ -24,7 +24,7 @@ export default function ModalDeleteJokowi({ id, onSuccess }: { id: any, onSucces
             <Box>
                 <Alert color="gray" variant="outline">
                     <Text fw={700} ta={"center"} mb={20} mt={20}>
-                        ANDA YAKIN INGIN MENGHAPUS DATA JOKOWI EFFECT?
+                        ARE YOU SURE TO DELETE THIS JOKOWI EFFECT?
                     </Text>
                     <Group justify="space-between" pt={10}>
                         <Button

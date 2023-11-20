@@ -5,6 +5,15 @@ import { theme } from '../../theme';
 import '@mantine/core/styles.css';
 import "@mantine/dates/styles.css";
 import 'react-simple-toasts/dist/theme/dark.css'
+import '@mantine/tiptap/styles.css';
+import {Poppins} from "next/font/google"
+
+
+export const poppins = Poppins({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--poppins-default'
+});
 
 export const metadata = {
   title: 'Raven Stone',
@@ -22,7 +31,7 @@ export default function RootLayout({ children }: { children: any }) {
           content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=yes"
         />
       </head>
-      <body>
+      <body style={poppins.style}>
         <MantineProvider theme={theme}>{children}</MantineProvider>
       </body>
     </html>

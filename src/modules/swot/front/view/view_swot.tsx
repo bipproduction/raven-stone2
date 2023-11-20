@@ -26,6 +26,17 @@ export default function ViewSwot({ swot, candidate, cCandidate }: { swot: any, c
 
   return (
     <>
+      <Box style={{
+        backgroundColor: "rgba(27,11,47,0.8)",
+        zIndex: 100,
+        position: "fixed",
+        width: "100%",
+        height: "100%",
+        top: 0,
+        left: 0,
+        backdropFilter: `blur(10px)`,
+        // opacity: 0.8,
+      }}></Box>
       <Stack>
         <PageSubTitle text1='SWOT' text2='EVALUATION' />
         <Grid gutter={60}>
@@ -51,7 +62,7 @@ export default function ViewSwot({ swot, candidate, cCandidate }: { swot: any, c
           </Grid.Col>
           <Grid.Col span={{ md: 9, lg: 9 }}>
             <ScrollArea h={700}>
-              {isData.map((item:any, i:any) => {
+              {isData.map((item: any, i: any) => {
                 return (
                   <Box key={item.id}>
                     <Text fz={24} c={"#089A31"}>{item.category}</Text>

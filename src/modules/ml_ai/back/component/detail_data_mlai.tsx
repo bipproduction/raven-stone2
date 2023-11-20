@@ -2,13 +2,18 @@
 
 import { ActionIcon, Box, Center, Collapse, Group, Stack, Table, Text } from "@mantine/core";
 import { useState } from "react";
-import { CiRead, CiUnread } from "react-icons/ci";
+import { CiEdit, CiRead, CiUnread } from "react-icons/ci";
 import { MdDelete, MdEditCalendar } from "react-icons/md";
 import moment from "moment";
+import { FaRegEdit } from "react-icons/fa";
+import { LuClipboardEdit } from "react-icons/lu";
+import { useRouter } from "next/navigation";
+import TextAnimation from "react-typing-dynamics";
 
 export default function DetailDataMLAI({ v, i, onClick }: { v: any; i: any, onClick: (val: any) => void }) {
     const formatDate = moment.utc(v.timeContent).format('HH:mm');
     const open = useState(false);
+    const router = useRouter()
 
     function callBackDelete({ idDel }: { idDel: any }) {
         onClick(idDel)
@@ -34,6 +39,15 @@ export default function DetailDataMLAI({ v, i, onClick }: { v: any; i: any, onCl
                                     </ActionIcon>
                                 </Group>
                             </Stack>
+                            <ActionIcon
+                                variant="transparent"
+                                color="green"
+                                size="xl"
+                                aria-label="Edit"
+                                onClick={() => router.push(`/dashboard-admin/ml-ai/edit/${v.id}`)}
+                            >
+                                <CiEdit size={25} />
+                            </ActionIcon>
                             <ActionIcon
                                 variant="transparent"
                                 color="rgba(209, 4, 4, 1)"
@@ -65,7 +79,18 @@ export default function DetailDataMLAI({ v, i, onClick }: { v: any; i: any, onCl
                                 <Text c={"white"} fw={"bold"} fz={20} mb={10}>
                                     Content
                                 </Text>
-                                <Text c={"white"}>{v.content}</Text>
+                                <Stack c={"white"}>
+                                    <TextAnimation
+                                        phrases={[...v.content.split('\n')]}
+                                        typingSpeed={0}
+                                        backspaceDelay={0}
+                                        eraseDelay={0}
+                                        timeComplete={0}
+                                        errorProbability={0}
+                                        eraseOnComplete={false}
+                                        isSecure={false}
+                                    />
+                                </Stack>
                             </Box>
                         </Collapse>
                     </Table.Td>

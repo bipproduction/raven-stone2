@@ -2,6 +2,7 @@ import { cookies } from "next/headers"
 import _ from "lodash"
 import { redirect } from "next/navigation"
 import { funCekAkses } from "@/modules/_global"
+import { DashboardLive } from "@/modules/dashboard_live"
 
 export default async function Page(){
     const c = cookies().get("_tknRV")
@@ -12,7 +13,7 @@ export default async function Page(){
 
     return(
         <>
-            halaman real time
+            <DashboardLive/>
         </>
     )
 }

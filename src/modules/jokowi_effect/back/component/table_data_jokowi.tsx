@@ -7,10 +7,18 @@ import ModalDeleteJokowi from "./modal_delete_jokowi";
 import { useAtom } from "jotai";
 import { isModalJokowi } from "../val/modal_jokowi";
 import { funGetEffectByDate } from "../..";
+import { useRouter } from "next/navigation";
+import { useShallowEffect } from "@mantine/hooks";
 
 export default function TableDataJokowi({ title, data, searchParam }: { title: any, data: any, searchParam: any }) {
+    const is_client = useState(false)
+
+    useShallowEffect(() => {
+      if (window) is_client[1](true)
+    }, [])
     const [openModal, setOpenModal] = useAtom(isModalJokowi);
     const [dataDelete, setDataDelete] = useState(Number)
+    const router = useRouter()
 
     const [isData, setData] = useState(data)
 
@@ -41,6 +49,7 @@ export default function TableDataJokowi({ title, data, searchParam }: { title: a
                         {/* <Button bg={"gray"} onClick={() => router.push("ml-ai/add?prov=" + searchParams.get('prov') + '&city=' + searchParams.get('city'))}>
                             TAMBAH MLAI
                         </Button> */}
+                        <Button bg={"white"} c={"dark"} radius={"md"} onClick={() => router.push("/dashboard-admin/jokowi-effect/add")}>Add JOKOWI EFFECT</Button>
                     </Group>
                     <Box pt={20}>
                         <Box

@@ -15,6 +15,9 @@ export default async function funGetEffectByDate({ date }: { date: any }) {
             content: true,
             timeContent: true,
             dateContent: true
+        },
+        orderBy: {
+            timeContent: 'desc',
         }
     })
 

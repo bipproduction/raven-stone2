@@ -6,13 +6,13 @@ import { TypeAnimation } from 'react-type-animation';
 import { funGetMlaiFront } from '../..';
 import _ from 'lodash';
 import { PageSubTitle, funGetOnePaslon } from '@/modules/_global';
+import { HiDotsHorizontal } from "react-icons/hi"
+import { useAtom } from 'jotai';
+import { _valReadIdMlai } from '../val/val_mlai';
+import Wrapper from '../component/wrapper_push_id';
+import Head from 'next/head';
+import TextAnimation from 'react-typing-dynamics';
 
-const data_ml = [
-    {
-        id: 1,
-        desc: "Here are some suggestions that can be done to improve strength in Strength analysis: Prabowo Subianto is expected to be able to highlight a firm personal character in responding to various important issues today. Especially in relation to national defense. Prabowo Subianto can take a role in international issues by participating in policies. Such as how to respond and take a stance with the countries in the BRICS alliance, namely Brazil, Russia, India, China and the United States of Africa which are in the process of creating a new currency. This is very important, Indonesia's involvement in participating in the international economic recession. Prabowo Subianto is a figure with a fierce and firm persona. When carrying out activities other than politics, activities that seem relaxed can be published. Here are some suggestions that can be done to improve strength in Strength analysis. Prabowo Subianto is expected to be able to highlight a firm personal character in responding to various important issues today. Especially in relation to national defense. Prabowo Subianto can take a role in international issues by participating in policies. Such as how to respond and take a stance with the countries in the BRICS alliance, namely Brazil, Russia, India, China and the United States of Africa which are in the process of creating a new currency. This is very important, Indonesia's involvement in participating in the international economic recession. Prabowo Subianto is a figure with a fierce and firm persona. When carrying out activities other than politics, activities that seem relaxed can be published."
-    }
-]
 
 export default function ViewMlAi({ data, paslon, cpaslon }: { data: any, paslon: any, cpaslon: any }) {
     const [dataMlai, setDataMlai] = useState(data.data)
@@ -25,6 +25,7 @@ export default function ViewMlAi({ data, paslon, cpaslon }: { data: any, paslon:
     const [isImgCapres, setImgCapres] = useState(`/img/candidate/${cpaslon.imgCapres}`)
     const [isCawapres, setCawapres] = useState(cpaslon.nameCawapres.toUpperCase())
     const [isImgCawapres, setImgCawapres] = useState(`/img/candidate/${cpaslon.imgCawapres}`)
+    const [valRead, setRead] = useAtom(_valReadIdMlai)
 
     async function chooseDate(value: any) {
         setDate(value)
@@ -52,6 +53,13 @@ export default function ViewMlAi({ data, paslon, cpaslon }: { data: any, paslon:
         setDataJamMlai(dataDB.dataJam)
         setBTime(dataDB.isJam)
     }
+
+    function RubahHTML(c: any) {
+        return {
+            __html: c
+        }
+    }
+
 
     return (
         <>
@@ -89,13 +97,14 @@ export default function ViewMlAi({ data, paslon, cpaslon }: { data: any, paslon:
                                     variant="filled"
                                     placeholder="SELECT DATE"
                                     maxDate={new Date()}
+                                    minDate={new Date('2023-09-01')}
                                     value={isDate}
                                     onChange={(val) => {
                                         chooseDate(val)
                                     }}
                                 />
                                 {
-                                    dataJamMlai.map((item: any, i: any) => {
+                                    dataJamMlai.slice(0, 5).map((item: any, i: any) => {
                                         return (
                                             <div key={i}>
                                                 <Button variant={(isBTime == item.timeContent) ? 'filled' : 'subtle'} c={"white"}
@@ -110,35 +119,33 @@ export default function ViewMlAi({ data, paslon, cpaslon }: { data: any, paslon:
 
                                     })
                                 }
-                                {/* <Menu shadow="md" width={200}>
-                                    <Menu.Target>
-                                        <ActionIcon variant="subtle" color="rgba(255, 255, 255, 1)" aria-label="Settings">
-                                            <HiDotsHorizontal style={{ width: '70%', height: '70%' }} stroke={1.5} />
-                                        </ActionIcon>
-                                    </Menu.Target>
-                                    <Menu.Dropdown>
-                                        <Menu.Item bg={"#230D37"}>
-                                            <Text ta={"center"} c={"white"} fz={16}>
-                                                16.31
-                                            </Text>
-                                        </Menu.Item>
-                                        <Menu.Item bg={"#230D37"} mt={5}>
-                                            <Text ta={"center"} c={"white"} fz={16}>
-                                                18.33
-                                            </Text>
-                                        </Menu.Item>
-                                        <Menu.Item bg={"#230D37"} mt={5}>
-                                            <Text ta={"center"} c={"white"} fz={16}>
-                                                19.45
-                                            </Text>
-                                        </Menu.Item>
-                                        <Menu.Item bg={"#230D37"} mt={5}>
-                                            <Text ta={"center"} c={"white"} fz={16}>
-                                                21.23
-                                            </Text>
-                                        </Menu.Item>
-                                    </Menu.Dropdown>
-                                </Menu> */}
+                                {dataJamMlai.length > 5 &&
+                                    <Menu shadow="md" width={200}>
+                                        <Menu.Target>
+                                            <ActionIcon variant="subtle" color="rgba(255, 255, 255, 1)" aria-label="Settings">
+                                                <HiDotsHorizontal style={{ width: '70%', height: '70%' }} stroke={1.5} />
+                                            </ActionIcon>
+                                        </Menu.Target>
+                                        <Menu.Dropdown>
+                                            <ScrollArea h={300}>
+                                                {
+                                                    dataJamMlai.slice(5, dataJamMlai.length).map((item: any, i: any) => {
+                                                        return (
+                                                            <Menu.Item mb={5} bg={(isBTime == item.timeContent) ? 'blue' : "#230D37"} key={i} onClick={() => { chooseTime(item.timeContent) }}>
+                                                                <Text ta={"center"} c={"white"} fz={16}>
+                                                                    {item.timeContent}
+                                                                </Text>
+                                                            </Menu.Item>
+                                                        )
+
+                                                    })
+                                                }
+                                            </ScrollArea>
+
+                                        </Menu.Dropdown>
+                                    </Menu>
+                                }
+
                             </Group>
                         </Box>
                         {dataMlai.map((item: any) => {
@@ -146,17 +153,33 @@ export default function ViewMlAi({ data, paslon, cpaslon }: { data: any, paslon:
                                 <Box pt={20} key={item.id}>
                                     <Text c={"#089A31"} fz={20} fw={"bold"}>STRENGTH ANALYSIS IMPROVEMENT</Text>
                                     <Box pt={10}>
+
                                         <ScrollArea h={"100%"} w={"100%"}>
-                                            <TypeAnimation
-                                                sequence={[
-                                                    item.content,
-                                                    1000,
-                                                ]}
-                                                speed={70}
-                                                style={{ fontSize: '16', color: "white" }}
-                                            // repeat={Infinity}
-                                            />
-                                            {/* <Text c={"#C1C2C5"} >{item.desc}</Text> */}
+                                            {
+                                                valRead.includes(item.id) ? (
+                                                    <>
+                                                        <Text style={{ fontSize: '16', color: "white" }} dangerouslySetInnerHTML={RubahHTML(item.content)} />
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        <Wrapper id={item.id}>
+                                                            <Stack c={"white"}>
+                                                                <TextAnimation
+                                                                    phrases={[...item.content.split('\n')]}
+                                                                    typingSpeed={0}
+                                                                    backspaceDelay={0}
+                                                                    eraseDelay={0}
+                                                                    timeComplete={0}
+                                                                    errorProbability={0}
+                                                                    eraseOnComplete={false}
+                                                                    isSecure={false}
+                                                                />
+                                                            </Stack>
+                                                        </Wrapper>
+                                                    </>
+                                                )
+                                            }
+
                                         </ScrollArea>
                                     </Box>
                                 </Box>

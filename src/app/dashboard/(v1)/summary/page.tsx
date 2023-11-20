@@ -1,6 +1,6 @@
 import { ViewSummary } from "@/modules/emotion";
 
-export default function Page() {
+export default async function Page() {
     return (
         <>
         <ViewSummary/>

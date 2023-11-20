@@ -2,7 +2,7 @@
 'use client'
 
 import { ButtonBack } from "@/modules/_global";
-import { Box, Button, Center, Group, Modal, SimpleGrid, Stack, Text } from "@mantine/core";
+import { Box, Button, Center, Group, Modal, Select, SimpleGrid, Stack, Text } from "@mantine/core";
 import { DatePicker } from "@mantine/dates";
 import { useState } from "react";
 import toast from "react-simple-toasts";
@@ -11,18 +11,31 @@ import { useAtom } from "jotai";
 import { isModalEmotionPaslon } from "../val/modal_emotion";
 import funCekEmotionCandidate from "../fun/cek_emotion_candidate_by_date";
 import ModalCopyEmotionCandidate from "../component/modal_copy_emotion_candidate";
+import _ from "lodash"
 
 
-export default function ViewCopyEmotionCandidate() {
+export default function ViewCopyEmotionCandidate({ candidate }: { candidate: any }) {
     const [trueFrom, setTrueFrom] = useState<any>(null)
     const [trueTo, setTrueTo] = useState<any>(null)
     const [isFrom, setFrom] = useState(null)
     const [isTo, setTo] = useState(null)
     const [openModal, setOpenModal] = useAtom(isModalEmotionPaslon)
+    const [isCandidate, setCandidate] = useState<any>(null)
+
+
+    function chooseCandidate(can: any) {
+        setCandidate(can)
+        setFrom(null)
+        setTrueFrom(null)
+        setTo(null)
+        setTrueTo(null)
+    }
 
     async function cekFrom(isDate: any) {
+        if (_.isNull(isCandidate)) return toast('Silahkan pilih kandidat', { theme: 'dark' })
+        
         const tgl = moment(isDate).format('YYYY-MM-DD')
-        const cek = await funCekEmotionCandidate({ date: new Date(tgl) })
+        const cek = await funCekEmotionCandidate({ date: new Date(tgl), candidate: isCandidate })
         if (!cek.ada) {
             setFrom(null)
             setTrueFrom(null)
@@ -34,8 +47,10 @@ export default function ViewCopyEmotionCandidate() {
     }
 
     async function cekTo(isDate: any) {
+        if (_.isNull(isCandidate)) return toast('Silahkan pilih kandidat', { theme: 'dark' })
+
         const tgl = moment(isDate).format('YYYY-MM-DD')
-        const cek = await funCekEmotionCandidate({ date: new Date(tgl) })
+        const cek = await funCekEmotionCandidate({ date: new Date(tgl), candidate: isCandidate })
         if (cek.ada) {
             setTo(null)
             setTrueTo(null)
@@ -61,6 +76,18 @@ export default function ViewCopyEmotionCandidate() {
                 >
                     <Text fw={"bold"} c={"white"} mb={20}>COPY DATA EMOTION CANDIDATE</Text>
                     <Box>
+                        <Select
+                            placeholder="Pilih Kandidat"
+                            data={candidate.map((can: any) => ({
+                                value: String(can.id),
+                                label: can.name
+                            }))}
+                            required
+                            value={isCandidate}
+                            label={"Kandidat"}
+                            searchable
+                            onChange={(val) => { chooseCandidate(val) }}
+                        />
                         <SimpleGrid
                             cols={{ base: 1, sm: 2, lg: 2 }}
                             spacing={{ base: 10, sm: "xl" }}
@@ -127,9 +154,10 @@ export default function ViewCopyEmotionCandidate() {
                 withCloseButton={false}
                 closeOnClickOutside={false}
             >
-                <ModalCopyEmotionCandidate from={trueFrom} to={trueTo} onSuccess={(val) => {
+                <ModalCopyEmotionCandidate from={trueFrom} to={trueTo} candidate={isCandidate} onSuccess={(val) => {
                     setFrom(null)
                     setTo(null)
+                    setCandidate(null)
                 }} />
             </Modal>
         </>
