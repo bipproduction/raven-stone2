@@ -18,6 +18,9 @@ export default async function funGetMlaiPaslonDate({ paslon, date }: { paslon: a
             content: true,
             timeContent: true,
             dateContent: true
+        },
+        orderBy: {
+            timeContent: 'desc',
         }
     })
 

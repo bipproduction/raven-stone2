@@ -57,7 +57,7 @@ export default function ViewEditAdminJokowi({ data }: { data: any }) {
   });
 
   function validasiUser() {
-    if (Object.values(dataJokowi).includes(""))
+    if (Object.values(dataJokowi).includes("") || editor?.getHTML() == '<p></p>')
       return toast("The form cannot be empty", { theme: "dark" });
     setOpenModal(true);
   }

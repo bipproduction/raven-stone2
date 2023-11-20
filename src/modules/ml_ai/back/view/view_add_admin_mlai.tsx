@@ -69,7 +69,7 @@ export default function ViewAddAdminMlai({ params, paslon, }: {params: any, pasl
   })
 
   function validationData() {
-    if (Object.values(isDataMlAi).includes(""))
+    if (Object.values(isDataMlAi).includes("") || editor?.getHTML() == '<p></p>')
       return toast("The form cannot be empty", { theme: "dark" });
     setOpenModal(true);
 
@@ -90,7 +90,6 @@ export default function ViewAddAdminMlai({ params, paslon, }: {params: any, pasl
             <Select
               label={"Paslon"}
               required
-              // value={isPaslon}
               placeholder='Pilih Paslon'
               data={dataPaslon.map((pro: any) => ({
                 value: String(pro.id),

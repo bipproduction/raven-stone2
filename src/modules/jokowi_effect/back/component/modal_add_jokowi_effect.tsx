@@ -4,20 +4,23 @@ import { useRouter } from 'next/navigation';
 import React from 'react';
 import { isModalJokowi } from '../val/modal_jokowi';
 import { useAtom } from 'jotai';
-import funAddJokowiEffect from '../fun/add_jokowi_eefect';
+import funAddJokowiEffect from '../fun/add_jokowi_effect';
 import toast from 'react-simple-toasts';
+import { funLogUser } from '@/modules/user';
 
-export default function ModalAddJokowiEffect({dataJokowi, textContent}: {dataJokowi: any, textContent: any}) {
+export default function ModalAddJokowiEffect({ dataJokowi, textContent, onSuccess }: { dataJokowi: any, textContent: any, onSuccess: (val: any) => void }) {
   const router = useRouter()
   const [valOpenModal, setOpenModal] = useAtom(isModalJokowi)
 
   async function addJokowi() {
     const res = await funAddJokowiEffect({ data: dataJokowi, textContent: textContent });
-    // await funLogUser({act:"ADD", desc:`User Add Data Setting User With User ID  ${id}`})
-    toast("Success", {theme: "dark"});
+    if (!res.success) return toast("Failed! " + res.message, { theme: "dark" });
+    await funLogUser({act:"ADD", desc:`User Add Data Jokowi Effect (ID : ${res.id})`})
+    toast("Success", { theme: "dark" });
     setOpenModal(false);
-    // router.push("/dashboard-admin/jokowi-effect")
+    onSuccess(true)
   }
+
   return (
     <>
       <Box>
