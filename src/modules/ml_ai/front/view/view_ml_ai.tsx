@@ -63,7 +63,7 @@ export default function ViewMlAi({ data, paslon, cpaslon }: { data: any, paslon:
 
     return (
         <>
-            <Stack h={"100vh"}>
+            <Stack pb={60}>
                 <PageSubTitle text1='ML-AI' text2='PROMPT RECOMENDATIONS' />
                 <Grid gutter={60}>
                     <Grid.Col span={{ md: 3, lg: 3 }}>
