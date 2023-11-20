@@ -34,7 +34,6 @@ export default function ViewAddAdminJokowi() {
   const ref = useRef<HTMLInputElement>(null);
   const router = useRouter();
   const [valOpenModal, setOpenModal] = useAtom(isModalJokowi)
-  const regexForStripHTML = /<([^</> ]+)[^<>]*?>[^<>]*?<\/\1> */gi;
 
   const pickerControl = (
     <ActionIcon variant="subtle" color="gray" onClick={() => ref.current?.showPicker()}>
@@ -61,31 +60,17 @@ export default function ViewAddAdminJokowi() {
   });
 
   const [isDataJokowi, setIsDataJokowi] = useState({
-    dateContent: "",
+    dateContent: moment(new Date()).format('YYYY-MM-DD'),
     timeContent: ""
   })
 
   function validationData() {
-    if (Object.values(isDataJokowi).includes("") || editor?.getHTML().replaceAll(regexForStripHTML, '') == '')
+    if (Object.values(isDataJokowi).includes("") || editor?.getHTML() == '<p></p>')
       return toast("The form cannot be empty", { theme: "dark" });
     setOpenModal(true);
-<!-- <<<<<<< lukman/back/nov20 -->
   }
 
-  const [dataTanggal, setDataTanggal] = useState(null)
-  const [dataWaktu, setDataWaktu] = useState(null)
 
-  async function cekJokowi(isDate: any) {
-    const tgl = moment(isDate).format('YYYY-MM-DD')
-        const cek = await funCekAddJokowiEffect({ tanggal: new Date(tgl), waktu: "" })
-        if (cek.ada) {
-          setDataTanggal(null)
-          setDataWaktu(null)
-          return toast("Sudah Ada Data Waktu Yang Sama", {theme: "dark"})
-        }
-// =======
-// >>>>>>> join
-  }
   return (
     <>
       <Stack>
@@ -101,6 +86,7 @@ export default function ViewAddAdminJokowi() {
             <DateInput valueFormat="DD-MM-YYYY" required
               label={"Tanggal"}
               placeholder="Pilih Tanggal"
+              value={new Date(isDataJokowi.dateContent)}
               onChange={(e) => {
                 setIsDataJokowi({
                   ...isDataJokowi,
@@ -112,6 +98,7 @@ export default function ViewAddAdminJokowi() {
           <Box>
             <TimeInput
               label="Jam"
+              value={isDataJokowi.timeContent}
               required ref={ref}
               rightSection={pickerControl}
               onChange={(val) => {
@@ -212,7 +199,18 @@ export default function ViewAddAdminJokowi() {
         withCloseButton={false}
         closeOnClickOutside={false}
       >
-        <ModalAddJokowiEffect dataJokowi={isDataJokowi} textContent={editor?.getHTML()} />
+        <ModalAddJokowiEffect dataJokowi={isDataJokowi} textContent={editor?.getHTML()}
+          onSuccess={(val) => {
+            //TODO: RESET FORM ADD 
+            // setIsDataJokowi({
+            //   ...isDataJokowi,
+            //   timeContent: '',
+            //   dateContent: moment(new Date()).format('YYYY-MM-DD')
+            // })
+            // setContent('')
+          }
+          }
+        />
       </Modal>
     </>
   );

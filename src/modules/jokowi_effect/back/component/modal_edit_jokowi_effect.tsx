@@ -6,6 +6,7 @@ import React from 'react';
 import funUpdateJokowiEffect from '../fun/update_jokowi_effect';
 import toast from 'react-simple-toasts';
 import { isModalJokowi } from '../val/modal_jokowi';
+import { funLogUser } from '@/modules/user';
 
 export default function ModalEditJokowiEffect({dataJokowi, textContent}: {dataJokowi: any, textContent: any}) {
   const [valOpenModal, setOpenModal] = useAtom(isModalJokowi)
@@ -14,7 +15,9 @@ export default function ModalEditJokowiEffect({dataJokowi, textContent}: {dataJo
 
   async function editJokowi() {
     const res = await funUpdateJokowiEffect({ data: dataJokowi, textContent: textContent });
-    toast("Success", {theme: "dark"});
+    if (!res.success) return toast("Failed! " + res.message, { theme: "dark" });
+    await funLogUser({act:"EDIT", desc:`User Edit Data Jokowi Effect (ID : ${dataJokowi.id})`})
+    toast("Success", { theme: "dark" });
     setOpenModal(false);
   }
 
