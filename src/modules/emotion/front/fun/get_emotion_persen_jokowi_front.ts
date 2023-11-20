@@ -12,9 +12,10 @@ export default async function funGetEmotionPersenJokowiFront(){
         where:{
             idCandidate:7,
             dateEmotion: new Date(),
-            timeEmotion: {
-                lt: IniisoDateTime
-            }
+            //TODO: ini harusnya nyalaa .. tapi nanti ga pas sama persen
+            // timeEmotion: {
+            //     lt: IniisoDateTime
+            // }
         },
         orderBy: {
             timeEmotion: 'desc'

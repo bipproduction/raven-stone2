@@ -5,6 +5,9 @@ import _ from "lodash"
 import moment from "moment"
 
 export default async function funGetEmotionCandidateChartFront({ candidate, startDate, endDate }: { candidate: any, startDate: any, endDate: any }) {
+    const jamNow = new Date().getHours() + 1 + ':00:00'
+    const IniisoDateTime = new Date(new Date('1970-01-01 ' + jamNow).getTime() - (new Date('1970-01-01 ' + jamNow).getTimezoneOffset() * 60000)).toISOString()
+
     const data = await prisma.candidateEmotion.findMany({
         where: {
             idCandidate: Number(candidate),
