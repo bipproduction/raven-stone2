@@ -7,7 +7,25 @@ export default async function funAddMlAi({ data, textContent }: { data: any, tex
 
     let y = new Date('1970-01-01 ' + data.timeContent)
     let isoDateTime = new Date(y.getTime() - (y.getTimezoneOffset() * 60000)).toISOString();
-    await prisma.mlAi.create({
+
+    const cek = await prisma.mlAi.count({
+        where: {
+            isActive: true,
+            idPaslon: Number(data.idPaslon),
+            dateContent: new Date(data.dateContent),
+            timeContent: isoDateTime
+        }
+    })
+
+    if (cek > 0) {
+        return {
+            success: false,
+            message: "Sudah ada data pada tanggal " + data.dateContent + " dan jam " + data.timeContent,
+            id: ''
+        }
+    }
+
+    const insert = await prisma.mlAi.create({
         data: {
             idPaslon: Number(data.idPaslon),
             content: textContent,
@@ -16,17 +34,15 @@ export default async function funAddMlAi({ data, textContent }: { data: any, tex
         },
         select: {
             id: true,
-            idPaslon: true,
-            content: true,
-            dateContent: true,
-            timeContent: true,
         }
     })
 
     revalidatePath("/dashboard-admin/ml-ai")
+    revalidatePath("/dashboard-admin/ml-ai?paslon=" + data.idPaslon + "&date=" + data.dateContent)
 
     return {
         success: true,
-        message: "Success"
+        message: "Success",
+        id: insert.id,
     }
 }

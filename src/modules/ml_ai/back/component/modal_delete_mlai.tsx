@@ -13,7 +13,7 @@ export default function ModalDeleteMlai({ id, onSuccess }: { id: any, onSuccess:
 
     async function onDelete() {
         await funDelMlaiById({ idData: id })
-        await funLogUser({act:"DELETE", desc:`User Delete, Data ML AI With User ID ${id}`})
+        await funLogUser({ act: "DELETE", desc: `User Delete Data ML AI (ID : ${id})` })
         toast('Success', { theme: 'dark' })
         setOpenModal(false)
         onSuccess(true)
@@ -24,7 +24,7 @@ export default function ModalDeleteMlai({ id, onSuccess }: { id: any, onSuccess:
             <Box>
                 <Alert color="gray" variant="outline">
                     <Text fw={700} ta={"center"} mb={20} mt={20}>
-                        ANDA YAKIN INGIN MENGHAPUS DATA ML-AI?
+                        ARE YOU SURE TO DELETE THIS ML-AI?
                     </Text>
                     <Group justify="space-between" pt={10}>
                         <Button
