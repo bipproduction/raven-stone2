@@ -319,7 +319,7 @@ export default function DashboardLive() {
                                     borderRadius: 20
                                 }} >
                                 {list_emotion.map((v, k) => <Flex key={k} align={"center"} p={0}>
-                                    <Flex px={"lg"} direction={"column"} gap={0} p={0} >
+                                    <Flex px={"xs"} pb={10} direction={"column"} gap={0} p={0} >
                                         <Text style={{
                                             fontSize: 20,
                                             fontWeight: "bolder"
@@ -332,7 +332,7 @@ export default function DashboardLive() {
                                             }} bg={emotion_color(v.variant)}>{v.name} </Text>
                                         </Group>
                                     </Flex>
-                                    <MdArrowDropUp color={emotion_color(v.variant)} size={70} />
+                                    <MdArrowDropUp color={emotion_color(v.variant)} size={60} />
                                 </Flex>)}
                             </Group>
                         </Stack>
@@ -348,9 +348,11 @@ export default function DashboardLive() {
                                         <Image width={100} height={100} src={v.pas1_img} alt="" />
                                         <Image width={100} height={100} src={v.pas2_img} alt="" />
                                     </Flex>
-                                    <Flex justify={"center"} align={"center"} py={"lg"} pos={"relative"}>
+                                    <Flex justify={"center"} align={"center"} py={"xs"} pos={"relative"}>
                                         {/* <TextLoop animation="inertia" > */}
-                                            <Flex align={"center"} bg={"url(/assets-img/bg_bottom_4.png)"}>
+                                            <Flex align={"center"} 
+                                            // bg={"url(/assets-img/bg_bottom_4.png)"}
+                                            >
                                                 <Text>44.17 %</Text>
                                                 <MdArrowDropUp color={"green"} size={50} />
                                             </Flex>
