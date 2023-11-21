@@ -123,7 +123,7 @@ export default function ViewLayout({ children }: { children: React.ReactNode }) 
                       }}
                     >
                       <NavLink
-                        label={<Text>LOGOUT ?</Text>}
+                        label={<Text>LOGOUT</Text>}
                         c={'SETTING' ? "white" : "dark"}
                         variant="subtle"
                         active
@@ -148,13 +148,21 @@ export default function ViewLayout({ children }: { children: React.ReactNode }) 
                 </AppShell.Section>
                 {/* </Box> */}
                 <Box
-                  style={{
-                    position: "fixed",
-                    bottom: 40,
-                    zIndex: 0
-                  }}
+                // style={{
+                //   position: "absolute",
+                //   bottom: 10,
+                //   maxHeight: "100%"
+                // }}
+                // pb={40}
                 >
-                  <Center pl={20} pr={20}>
+                  <Center pl={20} pr={20}
+                    style={{
+                      position: "absolute",
+                      bottom: 10,
+                      maxHeight: "100%"
+                    }}
+                    pb={40}
+                  >
                     <Image src={"/raven1.png"} maw={200} mx="auto" alt="logo" />
                   </Center>
                 </Box>
@@ -197,9 +205,9 @@ export default function ViewLayout({ children }: { children: React.ReactNode }) 
 
               <AppShellSection
                 style={{
-                  position: "fixed",
+                  position: "absolute",
                   bottom: 10,
-                  zIndex: 0
+                  maxHeight: "100%"
                 }}
                 pb={40}
               >
