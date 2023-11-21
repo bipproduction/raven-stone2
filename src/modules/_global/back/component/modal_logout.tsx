@@ -14,7 +14,7 @@ export default function ModalLogout() {
   async function logoutYes() {
     await funLogUser({ act: 'LOGOUT', desc: 'User logout dari sistem' })
     await funLogout()
-    router.refresh()
+    router.push(`/`)
     setOpenModal(false)
     toast("Logout Success", { theme: "dark" })
   }
