@@ -123,7 +123,7 @@ export default function ViewLayout({ children }: { children: React.ReactNode }) 
                       }}
                     >
                       <NavLink
-                        label={<Text>LOGOUT ?</Text>}
+                        label={<Text>LOGOUT</Text>}
                         c={'SETTING' ? "white" : "dark"}
                         variant="subtle"
                         active
