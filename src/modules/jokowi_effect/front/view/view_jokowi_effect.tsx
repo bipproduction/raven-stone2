@@ -165,7 +165,7 @@ export default function ViewJokowiEffect({ effect, emotion, locked, persen, emot
             </Box>
           </Grid.Col>
           <Grid.Col span={{ md: 7, lg: 7 }}>
-            <EchartJokowiEffect data={emotionChart} />
+            {/* <EchartJokowiEffect data={emotionChart} /> */}
           </Grid.Col>
         </Grid>
       </Stack>
