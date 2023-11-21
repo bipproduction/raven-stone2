@@ -13,7 +13,7 @@ export default async function Layout({ children }: { children: React.ReactNode }
     // const cekAkses = await funCekAkses()
     // if (cekAkses.dashboardUser && !cekAkses.dashboardAdmin) return redirect('/dashboard/summary')
 
-    const dMenu = await funGetAccessAdmin();
+    // const dMenu = await funGetAccessAdmin();
 
     return (
         <>

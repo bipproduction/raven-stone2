@@ -1,5 +1,9 @@
+import { AddNotification } from "@/modules/dashboard_live";
+
 export default function Page(){
     return(
-        <>Add Notifikasi</>
+        <>
+        <AddNotification/>
+        </>
     )
 }
