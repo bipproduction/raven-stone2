@@ -23,7 +23,7 @@ export default function EchartJokowiEffect({ data }: { data: any }) {
     const [value, setValue] = useState<[Date | null, Date | null]>([null, null])
     const [showPopDate, setPopDate] = useState(false)
     const [listData, setListData] = useState(data)
-    const [isButton, setButton] = useState('month')
+    const [isButton, setButton] = useState('week')
     const [newDateStart, setNewDateStart] = useState(moment(new Date("2023-09-01")).format("YYYY-MM-DD"))
     const [newDateEnd, setNewDateEnd] = useState(moment(new Date()).format("YYYY-MM-DD"))
     const [okButton, setOkButton] = useState(false)

@@ -195,17 +195,16 @@ export default function LayoutAdmin({ name, menu, children }: { name: any, menu:
                     </Group>
                 </AppShell.Header>
                 <AppShell.Navbar p="md" pb={30}>
-                    {/* TODO : UNCOMMENT this */}
-                    {/* {(menu.menuEmotion.length > 0) && */}
-                    {(dataEmotion.length > 0) &&
+                    
+                    {(menu.menuEmotion.length > 0) &&
+                    // {(dataEmotion.length > 0) &&
                         <NavLink
                             label="EMOTION EDITOR"
                             childrenOffset={28}
                             fw={"bolder"}
                         >
-                            {/* TODO : UNCOMMENT this */}
-                            {/* {menu.menuEmotion.map((item: any) => { */}
-                            {dataEmotion.map((item: any) => {
+                            {menu.menuEmotion.map((item: any) => {
+                            // {dataEmotion.map((item: any) => {
                                 return (
                                     <NavLink
                                         key={item.key}
@@ -222,9 +221,9 @@ export default function LayoutAdmin({ name, menu, children }: { name: any, menu:
                             })}
                         </NavLink>
                     }
-                    {/* TODO : UNCOMMENT this */}
-                    {/* {menu.menuData1.map((item: any) => { */}
-                    {data1.map((item: any) => {
+                    
+                    {menu.menuData1.map((item: any) => {
+                    // {data1.map((item: any) => {
                         return (
                             <NavLink
                                 key={item.key}
@@ -241,17 +240,17 @@ export default function LayoutAdmin({ name, menu, children }: { name: any, menu:
                     })}
 
                     {
-                        // TODO : UNCOMMENT this
-                        // (menu.menuRegion.length > 0) &&
-                        (dataRegion.length > 0) &&
+                        
+                        (menu.menuRegion.length > 0) &&
+                        // (dataRegion.length > 0) &&
                         <NavLink
                             label="REGION VALUE EDITOR"
                             childrenOffset={28}
                             fw={"bolder"}
                         >
-                            {/* TODO : UNCOMMENT this */}
-                            {/* {menu.menuRegion.map((item: any) => { */}
-                            {dataRegion.map((item: any) => {
+                            
+                            {menu.menuRegion.map((item: any) => {
+                            // {dataRegion.map((item: any) => {
                                 return (
                                     <NavLink
                                         key={item.key}
@@ -268,9 +267,9 @@ export default function LayoutAdmin({ name, menu, children }: { name: any, menu:
                             })}
                         </NavLink>
                     }
-                    {/* TODO: UNCOMMENT this */}
-                    {/* {menu.menuData2.map((item: any) => { */}
-                    {dataDua.map((item: any) => {
+                    
+                    {menu.menuData2.map((item: any) => {
+                    // {dataDua.map((item: any) => {
                         return (
                             <NavLink
                                 key={item.key}
@@ -287,17 +286,17 @@ export default function LayoutAdmin({ name, menu, children }: { name: any, menu:
                     })}
 
                     {
-                        //TODO : UNCOMMENT this
-                        // (menu.menuDeveloper.length > 0) &&
-                        (dataDeveloper.length > 0) &&
+                        
+                        (menu.menuDeveloper.length > 0) &&
+                        // (dataDeveloper.length > 0) &&
                         <NavLink
                             label="DEVELOPER"
                             childrenOffset={28}
                             fw={"bolder"}
                         >
-                            {/* TODO : UNCOMMENT this */}
-                            {/* {menu.menuDeveloper.map((item: any) => { */}
-                            {dataDeveloper.map((item: any) => {
+                            
+                            {menu.menuDeveloper.map((item: any) => {
+                            // {dataDeveloper.map((item: any) => {
                                 return (
                                     <NavLink
                                         key={item.key}
