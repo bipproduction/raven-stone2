@@ -116,7 +116,6 @@ export default function ViewMlAi({ data, paslon, cpaslon }: { data: any, paslon:
                                                 </Button>
                                             </div>
                                         )
-
                                     })
                                 }
                                 {dataJamMlai.length > 5 &&
