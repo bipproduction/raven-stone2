@@ -5,10 +5,11 @@ import { cookies } from "next/headers"
 import { prisma } from "../.."
 import _ from "lodash"
 import { menu_data1, menu_data2, menu_developer, menu_emotion, menu_region } from "../data/menu_emotion"
+import { pwd_key_config } from "../../bin/val_global"
 
 export default async function funGetAccessAdmin() {
     const c = cookies().get("_tknRV")
-    const dataCookies = await unsealData(c!.value, { password: process.env.PWD as string })
+    const dataCookies = await unsealData(c!.value, { password: pwd_key_config as string })
 
 
     const cekDashboardAdmin = await prisma.userAccess.findMany({

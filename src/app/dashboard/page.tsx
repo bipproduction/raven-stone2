@@ -5,12 +5,11 @@ import { funCekAkses } from "@/modules/_global"
 import { DashboardLive } from "@/modules/dashboard_live"
 
 export default async function Page(){
-    // TODO: UNCOMMENT this
-    // const c = cookies().get("_tknRV")
-    // if (!c || !c.value || _.isEmpty(c.value)) return redirect('/')
+    const c = cookies().get("_tknRV")
+    if (!c || !c.value || _.isEmpty(c.value)) return redirect('/')
     
-    // const cekAkses = await funCekAkses()
-    // if(!cekAkses.dashboardUser && cekAkses.dashboardAdmin)  return redirect('/dashboard-admin/emotion-candidate')
+    const cekAkses = await funCekAkses()
+    if(!cekAkses.dashboardUser && cekAkses.dashboardAdmin)  return redirect('/dashboard-admin/emotion-candidate')
 
     return(
         <>

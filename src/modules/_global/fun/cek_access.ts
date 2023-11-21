@@ -3,10 +3,11 @@
 import { unsealData } from "iron-session"
 import { cookies } from "next/headers"
 import { prisma } from ".."
+import { pwd_key_config } from "../bin/val_global"
 
 export default async function funCekAkses() {
     const c = cookies().get("_tknRV")
-    const dataCookies = await unsealData(c!.value, { password: process.env.PWD as string })
+    const dataCookies = await unsealData(c!.value, { password: pwd_key_config as string })
 
 
     const cekDashboardUser = await prisma.userAccess.findMany({
