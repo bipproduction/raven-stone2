@@ -42,15 +42,15 @@ export default function EchartJokowiEffect({ data }: { data: any }) {
             endDate = newDateEnd
         }
 
-        const loadChart = await funGetEmotionCandidateChartFront({ candidate: 7, startDate: startDate, endDate: endDate })
-        setListData(loadChart)
+        // const loadChart = await funGetEmotionCandidateChartFront({ candidate: 7, startDate: startDate, endDate: endDate })
+        // setListData(loadChart)
 
         if (time == 'custom') setPopDate(false)
     }
 
-    useEffect(() => {
+    useShallowEffect(() => {
         loadData(listData)
-    }, [listData])
+    }, [])
 
     const loadData = (dataChart: any) => {
         const option: EChartsOption = {
