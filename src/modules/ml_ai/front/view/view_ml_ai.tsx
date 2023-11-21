@@ -154,7 +154,7 @@ export default function ViewMlAi({ data, paslon, cpaslon }: { data: any, paslon:
                                     <Text c={"#089A31"} fz={20} fw={"bold"}>STRENGTH ANALYSIS IMPROVEMENT</Text>
                                     <Box pt={10}>
 
-                                        <ScrollArea h={"100%"} w={"100%"}>
+                                        <ScrollArea h={500} w={"100%"}>
                                             {
                                                 valRead.includes(item.id) ? (
                                                     <>
