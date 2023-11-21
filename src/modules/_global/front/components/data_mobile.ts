@@ -14,7 +14,7 @@ export const DataFrontMobile = [
       link: "/dashboard/summary",
       label: "SUMMARY",
       color: "#868686",
-      garisBawah: "#868686",
+      garisBawah: "#393738",
       icon: MdStorage,
     },
     {
@@ -22,7 +22,7 @@ export const DataFrontMobile = [
       link: "/dashboard/national-popularity-metric",
       label: "NATIONAL POPULARITY METRIC",
       color: "#868686",
-      garisBawah: "#868686",
+      garisBawah: "#393738",
       icon: MdOutlineStarBorderPurple500,
     },
     {
@@ -30,7 +30,7 @@ export const DataFrontMobile = [
       link: "/dashboard/regional-insights",
       label: "REGIONAL INSIGHTS",
       color: "#868686",
-      garisBawah: "#868686",
+      garisBawah: "#393738",
       icon: MdOutlineStars,
     },
     {
@@ -38,7 +38,7 @@ export const DataFrontMobile = [
       link: "/dashboard/regional-data-pairing",
       label: "REGIONAL DATA PAIRING",
       color: "#868686",
-      garisBawah: "#868686",
+      garisBawah: "#393738",
       icon: MdJoinLeft
     },
     {
@@ -46,7 +46,7 @@ export const DataFrontMobile = [
       link: "/dashboard/swot",
       label: "SWOT EVALUATION",
       color: "#868686",
-      garisBawah: "#868686",
+      garisBawah: "#393738",
       icon: MdGrading,
     },
     {
@@ -54,7 +54,7 @@ export const DataFrontMobile = [
       link: "/dashboard/step",
       label: "STEP ASSESSMENT",
       color: "#868686",
-      garisBawah: "#868686",
+      garisBawah: "#393738",
       icon: MdFreeCancellation,
     },
     {
