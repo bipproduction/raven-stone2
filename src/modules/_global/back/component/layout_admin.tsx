@@ -81,6 +81,11 @@ export default function LayoutAdmin({ name, menu, children }: { name: any, menu:
             link: "/dashboard-admin/jokowi-effect",
             label: "JOKOWI EFFECT",
         },
+        {
+            key: "md15",
+            link: "/dashboard-admin/live",
+            label: "SETTING DASHBOARD LIVE",
+        },
     ];
 
     const dataDeveloper = [
@@ -190,13 +195,17 @@ export default function LayoutAdmin({ name, menu, children }: { name: any, menu:
                     </Group>
                 </AppShell.Header>
                 <AppShell.Navbar p="md" pb={30}>
-                    {(menu.menuEmotion.length > 0) &&
+                    {/* TODO : UNCOMMENT this */}
+                    {/* {(menu.menuEmotion.length > 0) && */}
+                    {(dataEmotion.length > 0) &&
                         <NavLink
                             label="EMOTION EDITOR"
                             childrenOffset={28}
                             fw={"bolder"}
                         >
-                            {menu.menuEmotion.map((item: any) => {
+                            {/* TODO : UNCOMMENT this */}
+                            {/* {menu.menuEmotion.map((item: any) => { */}
+                            {dataEmotion.map((item: any) => {
                                 return (
                                     <NavLink
                                         key={item.key}
@@ -213,8 +222,9 @@ export default function LayoutAdmin({ name, menu, children }: { name: any, menu:
                             })}
                         </NavLink>
                     }
-
-                    {menu.menuData1.map((item: any) => {
+                    {/* TODO : UNCOMMENT this */}
+                    {/* {menu.menuData1.map((item: any) => { */}
+                    {data1.map((item: any) => {
                         return (
                             <NavLink
                                 key={item.key}
@@ -231,13 +241,17 @@ export default function LayoutAdmin({ name, menu, children }: { name: any, menu:
                     })}
 
                     {
-                        (menu.menuRegion.length > 0) &&
+                        // TODO : UNCOMMENT this
+                        // (menu.menuRegion.length > 0) &&
+                        (dataRegion.length > 0) &&
                         <NavLink
                             label="REGION VALUE EDITOR"
                             childrenOffset={28}
                             fw={"bolder"}
                         >
-                            {menu.menuRegion.map((item: any) => {
+                            {/* TODO : UNCOMMENT this */}
+                            {/* {menu.menuRegion.map((item: any) => { */}
+                            {dataRegion.map((item: any) => {
                                 return (
                                     <NavLink
                                         key={item.key}
@@ -254,8 +268,9 @@ export default function LayoutAdmin({ name, menu, children }: { name: any, menu:
                             })}
                         </NavLink>
                     }
-
-                    {menu.menuData2.map((item: any) => {
+                    {/* TODO: UNCOMMENT this */}
+                    {/* {menu.menuData2.map((item: any) => { */}
+                    {dataDua.map((item: any) => {
                         return (
                             <NavLink
                                 key={item.key}
@@ -272,13 +287,17 @@ export default function LayoutAdmin({ name, menu, children }: { name: any, menu:
                     })}
 
                     {
-                        (menu.menuDeveloper.length > 0) &&
+                        //TODO : UNCOMMENT this
+                        // (menu.menuDeveloper.length > 0) &&
+                        (dataDeveloper.length > 0) &&
                         <NavLink
                             label="DEVELOPER"
                             childrenOffset={28}
                             fw={"bolder"}
                         >
-                            {menu.menuDeveloper.map((item: any) => {
+                            {/* TODO : UNCOMMENT this */}
+                            {/* {menu.menuDeveloper.map((item: any) => { */}
+                            {dataDeveloper.map((item: any) => {
                                 return (
                                     <NavLink
                                         key={item.key}
