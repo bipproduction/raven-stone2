@@ -114,17 +114,18 @@ model Candidate {
 }
 
 model Paslon {
-  id               Int                @id @default(autoincrement())
-  nameCapres       String
-  imgCapres        String
-  nameCawapres     String
-  imgCawapres      String
-  isActive         Boolean            @default(true)
-  createdAt        DateTime           @default(now())
-  updatedAt        DateTime           @updatedAt
-  MlAi             MlAi[]
-  PaslonEmotion    PaslonEmotion[]
-  PaslonPopularity PaslonPopularity[]
+  id                  Int                   @id @default(autoincrement())
+  nameCapres          String
+  imgCapres           String
+  nameCawapres        String
+  imgCawapres         String
+  isActive            Boolean               @default(true)
+  createdAt           DateTime              @default(now())
+  updatedAt           DateTime              @updatedAt
+  MlAi                MlAi[]
+  PaslonEmotion       PaslonEmotion[]
+  PaslonPopularity    PaslonPopularity[]
+  LiveDashboardPersen LiveDashboardPersen[]
 }
 
 model Audience {
@@ -299,4 +300,24 @@ model PaslonPopularity {
   isActive      Boolean   @default(true)
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
+}
+
+model LiveDashboardNotif {
+  id          String   @id @default(cuid())
+  description String   @db.Text
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model LiveDashboardPersen {
+  id        Int      @id @default(autoincrement())
+  Paslon    Paslon   @relation(fields: [idPaslon], references: [id])
+  idPaslon  Int
+  positive  Float
+  neutral   Float
+  negative  Float
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

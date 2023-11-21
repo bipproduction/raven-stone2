@@ -1,6 +1,7 @@
 'use server'
 
 import { prisma } from "@/modules/_global"
+import { pwd_key_config } from "@/modules/_global/bin/val_global"
 import { sealData } from "iron-session"
 import { cookies } from 'next/headers'
 
@@ -17,7 +18,7 @@ export async function funSetCookies({ user }: { user: string }) {
             cIdUser: dataUser?.id,
             cIdRoleUser: dataUser?.idUserRole
         },
-        { password: process.env.PWD as string })
+        { password: pwd_key_config as string })
 
 
     cookies().set(
