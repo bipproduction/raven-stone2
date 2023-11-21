@@ -12,6 +12,8 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { MdArrowForwardIos, MdFreeCancellation, MdGrading, MdHub, MdJoinLeft, MdLiveHelp, MdLiveTv, MdOutlineStarBorderPurple500, MdOutlineStars, MdStorage, MdVerifiedUser } from 'react-icons/md';
 import { DataFrontMobile } from '../components/data_mobile';
 import { DataFrontNav } from '../components/data_navbar';
+import { funLogUser } from '@/modules/user';
+import { funLogout } from '@/modules/auth';
 
 
 /**
@@ -121,7 +123,7 @@ export default function ViewLayout({ children }: { children: React.ReactNode }) 
                       }}
                     >
                       <NavLink
-                        label={<Text>LOGOUT</Text>}
+                        label={<Text>LOGOUT ?</Text>}
                         c={'SETTING' ? "white" : "dark"}
                         variant="subtle"
                         active
@@ -131,7 +133,15 @@ export default function ViewLayout({ children }: { children: React.ReactNode }) 
                           left: 0,
                         }}
                         pl={50}
-                        onClick={() => { setOpenModal(true) }}
+                        onClick={async () => {
+                          // setOpenModal(true) 
+                          await funLogUser({ act: 'LOGOUT', desc: 'User logout dari sistem' })
+                          const logout = await funLogout()
+                          await new Promise((r) =>
+                            setTimeout(r, 500)
+                          )
+                          router.refresh()
+                        }}
                       />
                     </NavLink>
                   </Box>
