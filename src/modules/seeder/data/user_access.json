@@ -80,6 +80,11 @@
         "idComponent": 16
     },
     {
+        "id": 30,
+        "idUserRole": 1,
+        "idComponent": 17
+    },
+    {
         "id": 17,
         "idUserRole": 2,
         "idComponent": 1
@@ -138,6 +143,11 @@
         "id": 28,
         "idUserRole": 2,
         "idComponent": 16
+    },
+    {
+        "id": 31,
+        "idUserRole": 2,
+        "idComponent": 17
     },
     {
         "id": 29,
