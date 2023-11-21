@@ -15,7 +15,7 @@ export default function ModalLogoutUser() {
   async function logoutYes() {
     await funLogUser({ act: 'LOGOUT', desc: 'User logout dari sistem' })
     await funLogout()
-    router.refresh()
+    router.push(`/`)
     setOpenModal(false)
     toast("Logout Success", { theme: "dark" })
   }
@@ -24,7 +24,7 @@ export default function ModalLogoutUser() {
       <Box>
         <Alert variant="outline" color={WARNA.ungu} >
           <Text fw={700} ta={"center"} mb={20} mt={20}>
-            ARE YOU SURE YOU WANT TO LOGOUT?
+            ARE YOU SURE YOU WANT TO LOGOUT ??
           </Text>
           <Group justify="space-between" pt={10}>
             <Button
