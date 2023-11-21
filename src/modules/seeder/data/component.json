@@ -110,5 +110,12 @@
         "menu": "User Dashboard",
         "name": "",
         "label": "User Dashboard"
+    },
+    {
+        "id": 17,
+        "keyMenu": "md16",
+        "menu": "Admin Setting Dashboard Live",
+        "name": "",
+        "label": "Admin Setting Dashboard Live"
     }
 ]

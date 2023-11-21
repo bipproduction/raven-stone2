@@ -63,6 +63,11 @@ export const menu_data2 = [
         link: "/dashboard-admin/jokowi-effect",
         label: "JOKOWI EFFECT",
     },
+    {
+        key: "md16",
+        link: "/dashboard-admin/live",
+        label: "SETTING DASHBOARD LIVE",
+    },
 ]
 
 export const menu_developer = [

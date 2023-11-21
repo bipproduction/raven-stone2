@@ -10,7 +10,7 @@ export default async function Page() {
     const dEmotionPersen = await funGetEmotionPersenJokowiFront()
     const dEmotionChart = await funGetEmotionCandidateChartFront({
         candidate: 7,
-        startDate: moment(new Date()).subtract(1, "months").format("YYYY-MM-DD"),
+        startDate: moment(new Date()).subtract(7, "days").format("YYYY-MM-DD"),
         endDate: moment(new Date()).format("YYYY-MM-DD")
     })
 
