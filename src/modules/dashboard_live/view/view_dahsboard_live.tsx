@@ -89,7 +89,7 @@ const list_emotion = [
     },
     {
         id: 2,
-        name: "neutrall",
+        name: "neutral",
         value: '12.88 %',
         variant: "neutrall"
     },
@@ -178,7 +178,7 @@ export default function DashboardLive() {
                 localStorage.setItem('list_notif', '[]')
             }
 
-        }, 10000)
+        }, 60000)
 
         return () => clearInterval(inter)
     }, [])
@@ -255,7 +255,7 @@ export default function DashboardLive() {
                             }} >
                                 <Flex gap={"md"}>
                                     <MdMap size={24} />
-                                    <Text c={"yellow"} w={"100%"}>Analize By Province</Text>
+                                    <Text c={"yellow"} w={"100%"}>Analyze By Province</Text>
                                 </Flex>
                                 <FlipMove>
                                     {list_prov.map((v, k) => <Flex justify={"left"} key={v.id} align={"center"} gap={"md"}>
@@ -271,7 +271,7 @@ export default function DashboardLive() {
                             }}>
                                 <Flex gap={"md"}>
                                     <MdPlace size={24} />
-                                    <Text c={"yellow"} w={"100%"}>Analize By District</Text>
+                                    <Text c={"yellow"} w={"100%"}>Analyze By District</Text>
                                 </Flex>
                                 <FlipMove>
                                     {list_kab.map((v, k) => <Flex justify={"left"} key={v.id} align={"center"} gap={"md"}>
@@ -337,38 +337,51 @@ export default function DashboardLive() {
                             </Group>
                         </Stack>
                         <BackgroundImage
-                            bottom={0}
-                            pos={"relative"}
+                            // bottom={0}
+                            // pos={"relative"}
                             src="/assets-img/bg_bottom_4.png" style={{
                                 borderRadius: 12,
                             }} >
-                            <Flex justify={"center"} gap={"200"} align={"end"} h={300}>
+                            <Flex justify={"center"} gap={"200"} h={365}>
                                 {list_paslon.map((v, k) => <Stack key={k} py={"lg"} gap={"lg"}>
                                     <Flex gap={"md"} justify={"center"} key={k}>
                                         <Image width={100} height={100} src={v.pas1_img} alt="" />
                                         <Image width={100} height={100} src={v.pas2_img} alt="" />
                                     </Flex>
-                                    <Flex justify={"center"} align={"center"} py={"xs"} pos={"relative"}>
-                                        {/* <TextLoop animation="inertia" > */}
-                                            <Flex align={"center"} 
-                                            // bg={"url(/assets-img/bg_bottom_4.png)"}
-                                            >
-                                                <Text>44.17 %</Text>
-                                                <MdArrowDropUp color={"green"} size={50} />
-                                            </Flex>
-                                            {/* <Flex align={"center"} bg={"url(/assets-img/bg_bottom_4.png)"}>
-                                                <Text>2345</Text>
-                                                <MdArrowDropDown color={"red"} size={50} />
-                                            </Flex>
-                                            <Flex align={"center"} bg={"url(/assets-img/bg_bottom_4.png)"}>
-                                                <Text>3345</Text>
-                                                <MdArrowDropUp color={"green"} size={50} />
-                                            </Flex>
-                                            <Flex align={"center"} bg={"url(/assets-img/bg_bottom_4.png)"}>
-                                                <Text>7345</Text>
-                                                <MdArrowDropDown color={"red"} size={50} />
-                                            </Flex> */}
-                                        {/* </TextLoop> */}
+                                    <Flex
+                                        gap="md"
+                                        justify="center"
+                                        align="center"
+                                        direction="column"
+                                        wrap="wrap"
+                                    >
+                                        <Group>
+                                            <Box>
+                                                <Text>23.45 %</Text>
+                                                <Group justify="flex-end">
+                                                    <Text bg={"#06D974"} fz={10}>positive</Text>
+                                                </Group>
+                                            </Box>
+                                            <MdArrowDropDown color={"#06D974"} size={50} />
+                                        </Group>
+                                        <Group>
+                                            <Box>
+                                                <Text>23.45 %</Text>
+                                                <Group justify="flex-end">
+                                                    <Text bg={'gray'} fz={10}>neutral</Text>
+                                                </Group>
+                                            </Box>
+                                            <MdArrowDropDown color={"gray"} size={50} />
+                                        </Group>
+                                        <Group>
+                                            <Box>
+                                                <Text>23.45 %</Text>
+                                                <Group justify="flex-end">
+                                                    <Text bg={"#E01E1E"} fz={10}>negative</Text>
+                                                </Group>
+                                            </Box>
+                                            <MdArrowDropDown color={"#E01E1E"} size={50} />
+                                        </Group>
                                     </Flex>
                                 </Stack>)}
                             </Flex>
