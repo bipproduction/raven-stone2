@@ -1,5 +1,9 @@
+import { EditPersen } from "@/modules/dashboard_live";
+
 export default function Page({ params }: { params: { paslon: string } }) {
     return (
-        <>Edit Persen live dashboard idpaslon {params.paslon}</>
+        <>
+        <EditPersen data={params.paslon}/>
+        </>
     )
 }

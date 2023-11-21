@@ -27,6 +27,9 @@ export default function EchartJokowiEffect({ data }: { data: any }) {
     const [newDateStart, setNewDateStart] = useState(moment(new Date("2023-09-01")).format("YYYY-MM-DD"))
     const [newDateEnd, setNewDateEnd] = useState(moment(new Date()).format("YYYY-MM-DD"))
     const [okButton, setOkButton] = useState(false)
+    const [isLoadingMonth, setLoadingMonth] = useState(false)
+    const [isLoadingWeek, setLoadingWeek] = useState(false)
+    const [isLoadingCustom, setLoadingCustom] = useState(false)
 
 
     async function onChooseTime(time: any) {
@@ -34,16 +37,23 @@ export default function EchartJokowiEffect({ data }: { data: any }) {
         setButton(time)
         let endDate = moment(new Date()).format('YYYY-MM-DD')
         if (time == 'month') {
+            setLoadingMonth(true)
             startDate = moment(new Date()).subtract(1, "months").format("YYYY-MM-DD")
         } else if (time == 'week') {
+            setLoadingWeek(true)
             startDate = moment(new Date()).subtract(7, "days").format("YYYY-MM-DD");
         } else if (time == 'custom') {
+            setLoadingCustom(true)
             startDate = newDateStart
             endDate = newDateEnd
         }
 
-        // const loadChart = await funGetEmotionCandidateChartFront({ candidate: 7, startDate: startDate, endDate: endDate })
-        // setListData(loadChart)
+        const loadChart = await funGetEmotionCandidateChartFront({ candidate: 7, startDate: startDate, endDate: endDate })
+        setListData(loadChart)
+        loadData(loadChart)
+        setLoadingCustom(false)
+        setLoadingMonth(false)
+        setLoadingWeek(false)
 
         if (time == 'custom') setPopDate(false)
     }
@@ -187,13 +197,13 @@ export default function EchartJokowiEffect({ data }: { data: any }) {
             <Box>
                 <Group justify='flex-end'>
                     <Group>
-                        <Button variant={(isButton == 'month') ? 'filled' : 'subtle'} c={"white"} onClick={() => onChooseTime('month')}>Month</Button>
+                        <Button loading={isLoadingMonth} variant={(isButton == 'month') ? 'filled' : 'subtle'} c={"white"} onClick={() => onChooseTime('month')}>Month</Button>
                         <Divider orientation="vertical" />
-                        <Button variant={(isButton == 'week') ? 'filled' : 'subtle'} c={"white"} onClick={() => onChooseTime('week')}>Week</Button>
+                        <Button loading={isLoadingWeek} variant={(isButton == 'week') ? 'filled' : 'subtle'} c={"white"} onClick={() => onChooseTime('week')}>Week</Button>
                         <Divider orientation="vertical" />
                         <Menu opened={showPopDate} position='bottom-end'>
                             <Menu.Target>
-                                <Button variant={(isButton == 'custom') ? 'filled' : 'subtle'} c={"white"} onClick={() => setPopDate(true)}>Custom</Button>
+                                <Button loading={isLoadingCustom} variant={(isButton == 'custom') ? 'filled' : 'subtle'} c={"white"} onClick={() => setPopDate(true)}>Custom</Button>
                             </Menu.Target>
                             <Menu.Dropdown p={20}>
                                 <DatePicker
