@@ -1,5 +1,9 @@
+import { EditNotification } from "@/modules/dashboard_live";
+
 export default function Page({ params }: { params: { id: string } }) {
     return (
-        <>Edit Notifikasi id {params.id}</>
+        <>
+            <EditNotification data={params.id} />
+        </>
     )
 }
