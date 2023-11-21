@@ -172,7 +172,15 @@ export default function LayoutAdmin({ name, menu, children }: { name: any, menu:
                                                 style={{ width: rem(14), height: rem(14) }}
                                             />
                                         }
-                                        onClick={() => {setOpenModal(true)}}
+                                        onClick={async () => {
+                                            // setOpenModal(true) 
+                                            await funLogUser({ act: 'LOGOUT', desc: 'User logout dari sistem' })
+                                            const logout = await funLogout()
+                                            await new Promise((r) =>
+                                                setTimeout(r, 500)
+                                            )
+                                            router.refresh()
+                                        }}
                                     >
                                         Logout
                                     </Menu.Item>
@@ -302,7 +310,7 @@ export default function LayoutAdmin({ name, menu, children }: { name: any, menu:
                 withCloseButton={false}
                 closeOnClickOutside={false}
             >
-                <ModalLogout/>
+                <ModalLogout />
             </Modal>
         </>
     );
