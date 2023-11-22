@@ -3,11 +3,14 @@ import { useAtom } from 'jotai';
 import React from 'react';
 import { isModalDashboardLive } from '../val/isModalDashboardLive';
 import toast from 'react-simple-toasts';
+import funAddNotification from '../fun/add_notification';
 
-export default function ModalAddNotification() {
+export default function ModalAddNotification({isData}: {isData: any}) {
   const [valOpenModal, setOpenModal] = useAtom(isModalDashboardLive)
 
   async function addNotification() {
+    const create = await funAddNotification({ data: isData})
+    if (!create.success) return toast(create.message, { theme: "dark" });
     toast("Success", { theme: "dark" });
     setOpenModal(false);
   }
