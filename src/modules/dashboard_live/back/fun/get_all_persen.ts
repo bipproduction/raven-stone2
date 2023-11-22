@@ -8,6 +8,9 @@ export default async function funGetAllPersen() {
     where: {
       isActive: true
     },
+    orderBy: {
+      idPaslon: 'asc'
+    },
     select: {
       id: true,
       idPaslon: true,
