@@ -6,13 +6,17 @@ import { isModalAudience } from "../val/modal_audience"
 import funUploadAudience from "../fun/upload_audience"
 import toast from "react-simple-toasts"
 import { funLogUser } from "@/modules/user"
+import { useState } from "react"
 
 export default function ModalUploadAudience({ data, onSuccess }: { data: any, onSuccess: (val: any) => void }) {
     const [openModal, setOpenModal] = useAtom(isModalAudience)
+    const [isLoading, setLoading] = useState(false)
 
     async function onUpload() {
+        setLoading(true)
         await funUploadAudience({ body: data })
         await funLogUser({ act: "UPLOAD", desc: `User Uploads Data Audience` })
+        setLoading(false)
         toast('Success', { theme: 'dark' })
         setOpenModal(false)
         onSuccess(true)
@@ -34,7 +38,7 @@ export default function ModalUploadAudience({ data, onSuccess }: { data: any, on
                         >
                             NO
                         </Button>
-                        <Button radius={10} color="gray.7" w={150} onClick={() => onUpload()}>
+                        <Button loading={isLoading} radius={10} color="gray.7" w={150} onClick={() => onUpload()}>
                             YES
                         </Button>
                     </Group>
