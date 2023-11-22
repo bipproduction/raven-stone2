@@ -4,7 +4,7 @@ import { useShallowEffect } from '@mantine/hooks'
 import React, { useEffect, useState } from 'react'
 import { EChartsOption, color } from "echarts";
 import EChartsReact from "echarts-for-react";
-import { ActionIcon, Box, Button, Divider, Group, Menu, Popover, Stack, Text, Title } from '@mantine/core';
+import { ActionIcon, Box, Button, Divider, Group, LoadingOverlay, Menu, Popover, Stack, Text, Title } from '@mantine/core';
 import { WARNA } from '@/modules/_global';
 import { DatePicker } from '@mantine/dates';
 import moment from 'moment';
@@ -30,6 +30,7 @@ export default function EchartJokowiEffect({ data }: { data: any }) {
     const [isLoadingMonth, setLoadingMonth] = useState(false)
     const [isLoadingWeek, setLoadingWeek] = useState(false)
     const [isLoadingCustom, setLoadingCustom] = useState(false)
+    const [loadingData, setLoadingData] = useState(false)
 
 
     async function onChooseTime(time: any) {
@@ -38,15 +39,20 @@ export default function EchartJokowiEffect({ data }: { data: any }) {
         let endDate = moment(new Date()).format('YYYY-MM-DD')
         if (time == 'month') {
             setLoadingMonth(true)
+            setLoadingData(true)
             startDate = moment(new Date()).subtract(1, "months").format("YYYY-MM-DD")
         } else if (time == 'week') {
             setLoadingWeek(true)
+            setLoadingData(true)
             startDate = moment(new Date()).subtract(7, "days").format("YYYY-MM-DD");
         } else if (time == 'custom') {
             setLoadingCustom(true)
+            setLoadingData(true)
             startDate = newDateStart
             endDate = newDateEnd
         }
+
+        if (time == 'custom') setPopDate(false)
 
         const loadChart = await funGetEmotionCandidateChartFront({ candidate: 7, startDate: startDate, endDate: endDate })
         setListData(loadChart)
@@ -54,8 +60,9 @@ export default function EchartJokowiEffect({ data }: { data: any }) {
         setLoadingCustom(false)
         setLoadingMonth(false)
         setLoadingWeek(false)
+        setLoadingData(false)
 
-        if (time == 'custom') setPopDate(false)
+        
     }
 
     useShallowEffect(() => {
@@ -197,7 +204,7 @@ export default function EchartJokowiEffect({ data }: { data: any }) {
             <Box>
                 <Group justify='flex-end'>
                     <Group>
-                        <Button loading={isLoadingMonth} variant={(isButton == 'month') ? 'filled' : 'subtle'} c={"white"} onClick={() => onChooseTime('month')}>Month</Button>
+                        <Button loading={isLoadingMonth} variant={(isButton == 'month') ? 'filled' : 'subtle'} c={"white"} onClick={() => onChooseTime('month') }>Month</Button>
                         <Divider orientation="vertical" />
                         <Button loading={isLoadingWeek} variant={(isButton == 'week') ? 'filled' : 'subtle'} c={"white"} onClick={() => onChooseTime('week')}>Week</Button>
                         <Divider orientation="vertical" />
@@ -256,9 +263,16 @@ export default function EchartJokowiEffect({ data }: { data: any }) {
                         </Menu>
                     </Group>
                 </Group>
-                <EChartsReact style={{
-                    height: 300, width: "auto"
-                }} option={options} />
+                <Box pos={"relative"}>
+                    <LoadingOverlay
+                        visible={loadingData}
+                         overlayProps={{ radius: "sm", blur: "8px",  bg: "rgba(27,11,47,0.8)" }}
+                         loaderProps={{color: "white"}}
+                    />
+                    <EChartsReact style={{
+                        height: 300, width: "auto"
+                    }} option={options} />
+                </Box>
             </Box>
 
         </>
