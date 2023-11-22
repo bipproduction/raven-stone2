@@ -10,6 +10,9 @@ export default async function funGetAllNotification() {
         select: {
             id: true,
             description: true
+        },
+        orderBy: {
+            createdAt: 'asc'
         }
     })
 
