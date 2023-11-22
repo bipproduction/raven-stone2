@@ -3,30 +3,25 @@ import { WARNA } from '@/modules/_global';
 import { ActionIcon, Box, Button, Center, Group, Modal, Stack, Table, Text } from '@mantine/core';
 import { useAtom } from 'jotai';
 import { useRouter } from 'next/navigation';
-import React from 'react';
+import React, { useState } from 'react';
 import { CiEdit } from 'react-icons/ci';
 import { MdDelete } from 'react-icons/md';
 import { isModalDashboardLive } from '../val/isModalDashboardLive';
 import ModalDeleteNotification from '../components/modal_delete_notification';
+import funGetAllNotification from '../fun/get_all_notification';
 
-const notification = [
-  {
-    id: 1,
-    notif: "Selamat Data di Bali",
-  },
-  {
-    id: 2,
-    notif: "Selamat Data di Bandung",
-  },
-  {
-    id: 3,
-    notif: "Selamat Data di malang",
-  }
-]
 
-export default function ListNotification() {
+export default function ListNotification({ data }: { data: any }) {
+  const [isDataNotif, setDataNotif] = useState<any[]>(data)
   const router = useRouter()
   const [valOpenModal, setOpenModal] = useAtom(isModalDashboardLive)
+  const [dataDelete, setDataDelete] = useState("")
+
+  async function onLoad() {
+    const dataLoad = await funGetAllNotification()
+    setDataNotif(dataLoad)
+  }
+
   return (
     <>
       <Group pb={10} justify='space-between'>
@@ -54,12 +49,12 @@ export default function ListNotification() {
               </Table.Th>
             </Table.Tr>
           </Table.Thead>
-          {notification.map((v, i) => {
+          {isDataNotif.map((v, i) => {
             return (
               <Table.Tbody key={i}>
                 <Table.Tr>
                   <Table.Td>{i + 1}</Table.Td>
-                  <Table.Td>{v.notif}</Table.Td>
+                  <Table.Td>{v.description}</Table.Td>
                   <Table.Td>
                     <Center>
                       <ActionIcon
@@ -76,7 +71,10 @@ export default function ListNotification() {
                         color="rgba(209, 4, 4, 1)"
                         size="xl"
                         aria-label="Delete"
-                        onClick={() => setOpenModal(true)}
+                        onClick={() => {
+                          setDataDelete(v.id)
+                          setOpenModal(true)
+                        }}
                       >
                         <MdDelete size={20} />
                       </ActionIcon>
@@ -96,7 +94,12 @@ export default function ListNotification() {
         withCloseButton={false}
         closeOnClickOutside={false}
       >
-        <ModalDeleteNotification/>
+        <ModalDeleteNotification
+          id={dataDelete}
+          onSuccess={(val) => {
+            onLoad()
+          }}
+        />
       </Modal>
     </>
   );

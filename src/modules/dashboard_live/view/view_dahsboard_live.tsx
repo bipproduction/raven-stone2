@@ -91,7 +91,7 @@ const list_emotion = [
         id: 2,
         name: "neutral",
         value: '12.88 %',
-        variant: "neutrall"
+        variant: "neutral"
     },
     {
         id: 3,
@@ -108,10 +108,10 @@ const list_color = {
 }
 
 function emotion_color(variant: string) {
-    return variant === get_variant("positive") ? list_color.green : variant === get_variant("neutrall") ? list_color.gray : list_color.red
+    return variant === get_variant("positive") ? list_color.green : variant === get_variant("neutral") ? list_color.gray : list_color.red
 }
 
-type type_variant = "positive" | "negative" | "neutrall"
+type type_variant = "positive" | "negative" | "neutral"
 const get_variant = function (par: type_variant) {
     return par
 }
@@ -146,7 +146,7 @@ interface MODEL_KAB {
     emotion: number
 }
 
-export default function DashboardLive() {
+export default function DashboardLive({ dataPersen, dataNotif }: { dataPersen: any, dataNotif: any }) {
     const [list_prov, set_list_prov] = useState<any[]>(provi)
     // const [list_media, set_list_media] = useState<any[]>([])
     const [list_kab, set_list_kab] = useState<any[]>(kabu)
@@ -154,21 +154,21 @@ export default function DashboardLive() {
     const router = useRouter()
 
     useShallowEffect(() => {
-        let dd = (localStorage.getItem('list_notif') ?? JSON.stringify(_.take(notif, 2)))
+        let dd = (localStorage.getItem('list_notif') ?? JSON.stringify(_.take(dataNotif, 2)))
         let ld: any[] = JSON.parse(dd)
         set_list_notif(ld)
 
         const inter = setInterval(() => {
 
             try {
-                let dat = (localStorage.getItem('list_notif') ?? JSON.stringify(_.take(notif, 2)))
+                let dat = (localStorage.getItem('list_notif') ?? JSON.stringify(_.take(dataNotif, 2)))
                 let list_data: any[] = JSON.parse(dat)
-                if (list_data.length > (notif.length - 1)) {
+                if (list_data.length > (dataNotif.length - 1)) {
                     console.log("error length notif")
                     list_data = []
                     localStorage.setItem('list_notif', '[]')
                 }
-                const target = notif[list_data.length]
+                const target = dataNotif[list_data.length]
                 list_data.unshift(target)
                 localStorage.setItem('list_notif', JSON.stringify(list_data))
                 set_list_notif(list_data)
@@ -318,22 +318,56 @@ export default function DashboardLive() {
                                 style={{
                                     borderRadius: 20
                                 }} >
-                                {list_emotion.map((v, k) => <Flex key={k} align={"center"} p={0}>
+                                <Flex align={"center"} p={0}>
                                     <Flex px={"xs"} pb={10} direction={"column"} gap={0} p={0} >
                                         <Text style={{
                                             fontSize: 20,
                                             fontWeight: "bolder"
-                                        }}>{v.value}</Text>
+                                        }}>{dataPersen[0]?.positive} %</Text>
                                         <Group justify="end" style={{
                                             fontWeight: "bold"
                                         }} p={0} c={"white"} >
                                             <Text style={{
                                                 fontSize: 10,
-                                            }} bg={emotion_color(v.variant)}>{v.name} </Text>
+                                            }} bg={emotion_color('positive')}>positive</Text>
                                         </Group>
                                     </Flex>
-                                    <MdArrowDropUp color={emotion_color(v.variant)} size={60} />
-                                </Flex>)}
+                                    <MdArrowDropUp color={emotion_color('positive')} size={60} />
+                                </Flex>
+
+                                <Flex align={"center"} p={0}>
+                                    <Flex px={"xs"} pb={10} direction={"column"} gap={0} p={0} >
+                                        <Text style={{
+                                            fontSize: 20,
+                                            fontWeight: "bolder"
+                                        }}>{dataPersen[0]?.neutral} %</Text>
+                                        <Group justify="end" style={{
+                                            fontWeight: "bold"
+                                        }} p={0} c={"white"} >
+                                            <Text style={{
+                                                fontSize: 10,
+                                            }} bg={emotion_color('neutral')}>neutral</Text>
+                                        </Group>
+                                    </Flex>
+                                    <MdArrowDropUp color={emotion_color('neutral')} size={60} />
+                                </Flex>
+
+                                <Flex align={"center"} p={0}>
+                                    <Flex px={"xs"} pb={10} direction={"column"} gap={0} p={0} >
+                                        <Text style={{
+                                            fontSize: 20,
+                                            fontWeight: "bolder"
+                                        }}>{dataPersen[0]?.negative} %</Text>
+                                        <Group justify="end" style={{
+                                            fontWeight: "bold"
+                                        }} p={0} c={"white"} >
+                                            <Text style={{
+                                                fontSize: 10,
+                                            }} bg={emotion_color('negative')}>negative</Text>
+                                        </Group>
+                                    </Flex>
+                                    <MdArrowDropUp color={emotion_color('negative')} size={60} />
+                                </Flex>
                             </Group>
                         </Stack>
                         <BackgroundImage
@@ -343,10 +377,10 @@ export default function DashboardLive() {
                                 borderRadius: 12,
                             }} >
                             <Flex justify={"center"} gap={"200"} h={365}>
-                                {list_paslon.map((v, k) => <Stack key={k} py={"lg"} gap={"lg"}>
-                                    <Flex gap={"md"} justify={"center"} key={k}>
-                                        <Image width={100} height={100} src={v.pas1_img} alt="" />
-                                        <Image width={100} height={100} src={v.pas2_img} alt="" />
+                                <Stack py={"lg"} gap={"lg"}>
+                                    <Flex gap={"md"} justify={"center"}>
+                                        <Image width={100} height={100} src='/assets-img/ganjar.png' alt="" />
+                                        <Image width={100} height={100} src='/assets-img/mahfud.png' alt="" />
                                     </Flex>
                                     <Flex
                                         gap="md"
@@ -357,7 +391,7 @@ export default function DashboardLive() {
                                     >
                                         <Group>
                                             <Box>
-                                                <Text>23.45 %</Text>
+                                                <Text>{dataPersen[1]?.positive} %</Text>
                                                 <Group justify="flex-end">
                                                     <Text bg={"#06D974"} fz={10}>positive</Text>
                                                 </Group>
@@ -366,7 +400,7 @@ export default function DashboardLive() {
                                         </Group>
                                         <Group>
                                             <Box>
-                                                <Text>23.45 %</Text>
+                                                <Text>{dataPersen[1]?.neutral} %</Text>
                                                 <Group justify="flex-end">
                                                     <Text bg={'gray'} fz={10}>neutral</Text>
                                                 </Group>
@@ -375,7 +409,7 @@ export default function DashboardLive() {
                                         </Group>
                                         <Group>
                                             <Box>
-                                                <Text>23.45 %</Text>
+                                                <Text>{dataPersen[1]?.negative} %</Text>
                                                 <Group justify="flex-end">
                                                     <Text bg={"#E01E1E"} fz={10}>negative</Text>
                                                 </Group>
@@ -383,7 +417,51 @@ export default function DashboardLive() {
                                             <MdArrowDropDown color={"#E01E1E"} size={50} />
                                         </Group>
                                     </Flex>
-                                </Stack>)}
+                                </Stack>
+
+
+
+                                <Stack py={"lg"} gap={"lg"}>
+                                    <Flex gap={"md"} justify={"center"}>
+                                        <Image width={100} height={100} src='/assets-img/anis.png' alt="" />
+                                        <Image width={100} height={100} src='/assets-img/imin.png' alt="" />
+                                    </Flex>
+                                    <Flex
+                                        gap="md"
+                                        justify="center"
+                                        align="center"
+                                        direction="column"
+                                        wrap="wrap"
+                                    >
+                                        <Group>
+                                            <Box>
+                                                <Text>{dataPersen[2]?.positive} %</Text>
+                                                <Group justify="flex-end">
+                                                    <Text bg={"#06D974"} fz={10}>positive</Text>
+                                                </Group>
+                                            </Box>
+                                            <MdArrowDropDown color={"#06D974"} size={50} />
+                                        </Group>
+                                        <Group>
+                                            <Box>
+                                                <Text>{dataPersen[2]?.neutral} %</Text>
+                                                <Group justify="flex-end">
+                                                    <Text bg={'gray'} fz={10}>neutral</Text>
+                                                </Group>
+                                            </Box>
+                                            <MdArrowDropDown color={"gray"} size={50} />
+                                        </Group>
+                                        <Group>
+                                            <Box>
+                                                <Text>{dataPersen[2]?.negative} %</Text>
+                                                <Group justify="flex-end">
+                                                    <Text bg={"#E01E1E"} fz={10}>negative</Text>
+                                                </Group>
+                                            </Box>
+                                            <MdArrowDropDown color={"#E01E1E"} size={50} />
+                                        </Group>
+                                    </Flex>
+                                </Stack>
                             </Flex>
                         </BackgroundImage>
                     </Stack>
@@ -418,7 +496,7 @@ export default function DashboardLive() {
                                         <Text style={{
                                             fontSize: 12,
                                             fontStyle: "italic"
-                                        }}>{v && v.name}</Text>
+                                        }}>{v && v.description}</Text>
                                     </Grid.Col>
                                 </Grid>)}
                             </FlipMove>

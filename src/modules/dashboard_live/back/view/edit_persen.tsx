@@ -2,12 +2,23 @@
 import { ButtonBack } from '@/modules/_global';
 import { Box, Button, Group, Modal, NumberInput, Select, SimpleGrid, Stack, Text, TextInput } from '@mantine/core';
 import { useAtom } from 'jotai';
-import React from 'react';
+import React, { useState } from 'react';
 import { isModalDashboardLive } from '../val/isModalDashboardLive';
 import ModalEditPersen from '../components/modal_edit_persen';
+import toast from 'react-simple-toasts';
 
-export default function EditPersen({ data }: { data: string }) {
+export default function EditPersen({ data }: { data: any }) {
   const [valOpenModal, setOpenModal] = useAtom(isModalDashboardLive)
+
+  const [dataEditPersen, setDataEditPersen] = useState(data)
+
+
+  function validasiEdit() {
+    if (Object.values(dataEditPersen).includes(""))
+      return toast("The form cannot be empty", { theme: "dark" });
+    setOpenModal(true);
+  }
+
   return (
     <>
       <Stack>
@@ -26,11 +37,53 @@ export default function EditPersen({ data }: { data: string }) {
               spacing={{ base: 10, sm: 'xl' }}
               verticalSpacing={{ base: 'md', sm: 'xl' }}
             >
-              <Select label={"Paslon"} required placeholder='Paslon' disabled />
-              <NumberInput label={"Positive"} required placeholder='Positive' />
-              <NumberInput label={"Neutral"} required placeholder='Neutral' />
-              <NumberInput label={"Negative"} required placeholder='Negative' />
-              <Button w={200} color='gray' onClick={() => setOpenModal(true)}>Submit</Button>
+
+              <TextInput
+                value={data?.Paslon?.nameCapres + '-' + data?.Paslon?.nameCawapres}
+                label={"Paslon"}
+                required
+                placeholder='Paslon'
+                readOnly
+                disabled
+
+              />
+              <NumberInput
+                value={dataEditPersen.positive}
+                label={"Positive"}
+                required
+                placeholder='Positive'
+                onChange={(val) =>
+                  setDataEditPersen({
+                    ...dataEditPersen,
+                    positive: val
+                  })
+                }
+              />
+              <NumberInput
+                value={dataEditPersen.neutral}
+                label={"Neutral"}
+                required
+                placeholder='Neutral'
+                onChange={(val) =>
+                  setDataEditPersen({
+                    ...dataEditPersen,
+                    neutral: val
+                  })
+                }
+              />
+              <NumberInput
+                value={dataEditPersen.negative}
+                label={"Negative"}
+                required
+                placeholder='Negative'
+                onChange={(val) =>
+                  setDataEditPersen({
+                    ...dataEditPersen,
+                    negative: val
+                  })
+                }
+              />
+              <Button w={200} color='gray' onClick={validasiEdit}>Submit</Button>
             </SimpleGrid>
           </Box>
         </Box>
@@ -43,7 +96,7 @@ export default function EditPersen({ data }: { data: string }) {
         withCloseButton={false}
         closeOnClickOutside={false}
       >
-        <ModalEditPersen />
+        <ModalEditPersen data={dataEditPersen} />
       </Modal>
     </>
   );

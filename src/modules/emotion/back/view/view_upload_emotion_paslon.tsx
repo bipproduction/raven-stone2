@@ -106,10 +106,10 @@ export default function ViewUploadEmotionPaslon() {
 
                             <div>
                                 <Text size="xl" inline>
-                                    Drag images here or click to select files
+                                    Drag files here or click to select files
                                 </Text>
                                 <Text size="sm" inline mt={7} >
-                                    Attach as many files as you like, each file should not exceed 5mb
+                                    Attach one file, the file must not exceed 5MB
                                 </Text>
                             </div>
                         </Group>

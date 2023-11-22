@@ -3,7 +3,7 @@ import React from 'react';
 import ListNotification from './list_notification';
 import ListPersen from './list_persen';
 
-export default function ListDashboardLive() {
+export default async function ListDashboardLive({data, persen}: {data: any, persen: any}) {
     return (
         <>
             <SimpleGrid
@@ -12,10 +12,10 @@ export default function ListDashboardLive() {
                 verticalSpacing={{ base: 'md', sm: 'xl' }}
             >
                 <Box>
-                    <ListPersen />
+                    <ListPersen persen={persen} />
                 </Box>
                 <Box pt={30}>
-                    <ListNotification />
+                    <ListNotification data={data}  />
                 </Box>
             </SimpleGrid>
         </>

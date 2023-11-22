@@ -15,6 +15,7 @@ import { funSeederUserRole } from "../fun/fun_user_role";
 import { funSeederUser } from "../fun/fun_user";
 import { funSeederComponents } from "../fun/fun_component";
 import { funSeederUserAccess } from "../fun/fun_user_access";
+import { funSeederPersenLive } from "..";
 
 export default function ViewSeeder() {
     const [loading, setLoading] = useState(false)
@@ -98,6 +99,12 @@ export default function ViewSeeder() {
         if (res?.success) return setLoading(false), toast(res?.message, { theme: "dark" })
     }
 
+    async function onPersenLive() {
+        setLoading(true)
+        const res = await funSeederPersenLive()
+        if (res?.success) return setLoading(false), toast(res?.message, { theme: "dark" })
+    }
+
 
 
     return (
@@ -150,6 +157,7 @@ export default function ViewSeeder() {
                             <Button bg={"gray"} loading={loading} onClick={onRHIFix}>VALUE REGION HOT ISSUES</Button>
                             <Button bg={"gray"} loading={loading} onClick={onCandidate}>CANDIDATE</Button>
                             <Button bg={"gray"} loading={loading} onClick={onPaslon}>PASLON</Button>
+                            <Button bg={"gray"} loading={loading} onClick={onPersenLive}>PERSEN LIVE DASHBOARD</Button>
                         </Group>
                     </Paper>
                 </Box>
