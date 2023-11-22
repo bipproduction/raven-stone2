@@ -7,6 +7,7 @@ import seederUserAccess from "./data/user_access.json"
 import seederUser from "./data/user.json"
 import seederCandidate from "./data/candidate.json"
 import seederPaslon from "./data/paslon.json"
+import seederPersenLive from "./data/persen_live.json"
 import { funSeederComponents } from "./fun/fun_component";
 import { funSeederUserRole } from "./fun/fun_user_role";
 import { funSeederUserAccess } from "./fun/fun_user_access";
@@ -19,9 +20,11 @@ import funSeederLta from "./fun/fun_lta";
 import funSeederRhi from "./fun/fun_rhi";
 import { funSeederCandidate } from "./fun/fun_candidate";
 import { funSeederPaslon } from "./fun/fun_paslon";
+import { funSeederPersenLive } from "./fun/fun_persen_live";
 
 export { ViewSeeder }
 export { seederProvinsi }
+export { seederPersenLive }
 export { seederKabupaten }
 export { seederComponents }
 export { seederUserRole }
@@ -41,3 +44,4 @@ export { funSeederLta }
 export { funSeederRhi }
 export { funSeederCandidate }
 export { funSeederPaslon }
+export { funSeederPersenLive }
