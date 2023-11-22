@@ -10,30 +10,16 @@ import { isModalDashboardLive } from '../val/isModalDashboardLive';
 import ModalDeleteNotification from '../components/modal_delete_notification';
 import funGetAllNotification from '../fun/get_all_notification';
 
-const notification = [
-  {
-    id: 1,
-    notif: "Selamat Data di Bali",
-  },
-  {
-    id: 2,
-    notif: "Selamat Data di Bandung",
-  },
-  {
-    id: 3,
-    notif: "Selamat Data di malang",
-  }
-]
 
-export default function ListNotification({data}: {data: any}) {
+export default function ListNotification({ data }: { data: any }) {
   const [isDataNotif, setDataNotif] = useState<any[]>(data)
   const router = useRouter()
   const [valOpenModal, setOpenModal] = useAtom(isModalDashboardLive)
   const [dataDelete, setDataDelete] = useState("")
 
-  async function  onLoad() {
+  async function onLoad() {
     const dataLoad = await funGetAllNotification()
-    console.log(dataLoad)
+    setDataNotif(dataLoad)
   }
 
   return (
@@ -109,11 +95,10 @@ export default function ListNotification({data}: {data: any}) {
         closeOnClickOutside={false}
       >
         <ModalDeleteNotification
-        id={dataDelete}
-        onSuccess={(val) => {
-          console.log(val)
-          onLoad()
-        }}
+          id={dataDelete}
+          onSuccess={(val) => {
+            onLoad()
+          }}
         />
       </Modal>
     </>

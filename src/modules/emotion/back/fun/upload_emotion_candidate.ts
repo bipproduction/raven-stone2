@@ -15,45 +15,35 @@ export default async function funUploadEmotionCandidate({ body }: { body: any })
 
 
         if (i.id == '') {
-            // const cek = await prisma.effect.findFirst({
-            //     where: {
-            //         dateContent: new Date(i.dateContent),
-            //         timeContent: isoDateTime,
-            //         isActive: true,
-            //         idCandidate: 7
-            //     }
-            // });
-
-            // if (cek?.id) {
-            //     await prisma.effect.update({
-            //         where: {
-            //             id: cek.id
-            //         },
-            //         data: {
-            //             dateContent: new Date(i.dateContent),
-            //             timeContent: isoDateTime,
-            //             content: String(i.content)
-            //         }
-            //     });
-            // } else {
-            await prisma.candidateEmotion.create({
-                data: {
+            const cek = await prisma.effect.count({
+                where: {
+                    dateContent: new Date(i.date),
+                    timeContent: isoDateTime,
+                    isActive: true,
                     idCandidate: pas,
-                    dateEmotion: new Date(i.date),
-                    timeEmotion: isoDateTime,
-                    idKabkot: Number(i.idKabkot),
-                    idProvinsi: Number(i.idProvinsi),
-                    confidence: Number(i.confidence),
-                    supportive: Number(i.supportive),
-                    positive: Number(i.positive),
-                    undecided: Number(i.undecided),
-                    unsupportive: Number(i.unsupportive),
-                    uncomfortable: Number(i.uncomfortable),
-                    negative: Number(i.negative),
-                    dissapproval: Number(i.dissapproval)
                 }
             });
-            // }
+
+
+            if (cek == 0) {
+                await prisma.candidateEmotion.create({
+                    data: {
+                        idCandidate: pas,
+                        dateEmotion: new Date(i.date),
+                        timeEmotion: isoDateTime,
+                        idKabkot: Number(i.idKabkot),
+                        idProvinsi: Number(i.idProvinsi),
+                        confidence: Number(i.confidence),
+                        supportive: Number(i.supportive),
+                        positive: Number(i.positive),
+                        undecided: Number(i.undecided),
+                        unsupportive: Number(i.unsupportive),
+                        uncomfortable: Number(i.uncomfortable),
+                        negative: Number(i.negative),
+                        dissapproval: Number(i.dissapproval)
+                    }
+                });
+            }
 
 
         } else {
