@@ -1,35 +1,13 @@
 "use client"
 import { ActionIcon, Box, Center, Divider, Group, Stack, Table, Text } from '@mantine/core';
 import { useRouter } from 'next/navigation';
-import React from 'react';
+import React, { useState } from 'react';
 import { CiEdit } from 'react-icons/ci';
 import { MdDelete } from 'react-icons/md';
 
-const paslon = [
-  {
-    id: 1,
-    paslon: "Prabowo - Gibran",
-    negative: "21.89 %",
-    positive: "54.89 %",
-    neutral: "21.89 %",
-  },
-  {
-    id: 2,
-    paslon: "Ganjar - Mahfud",
-    negative: "21.89 %",
-    positive: "24.89 %",
-    neutral: "21.89 %",
-  },
-  {
-    id: 3,
-    paslon: "Anies - Muhaimin",
-    negative: "21.89 %",
-    positive: "34.89 %",
-    neutral: "21.89 %",
-  }
-]
 
-export default function ListPersen() {
+export default function ListPersen({ persen }: { persen: any }) {
+  const [isDataPersen, setDataPersen] = useState<any[]>(persen)
   const router = useRouter()
   return (
     <>
@@ -60,15 +38,15 @@ export default function ListPersen() {
               </Table.Th>
             </Table.Tr>
           </Table.Thead>
-          {paslon.map((v, i) => {
+          {isDataPersen.map((v, i) => {
             return (
               <Table.Tbody key={i}>
                 <Table.Tr>
                   <Table.Td>{i + 1}</Table.Td>
-                  <Table.Td>{v.paslon}</Table.Td>
-                  <Table.Td>{v.positive}</Table.Td>
-                  <Table.Td>{v.neutral}</Table.Td>
-                  <Table.Td>{v.negative}</Table.Td>
+                  <Table.Td>{v.capres + ' - ' + v.cawapres}</Table.Td>
+                  <Table.Td>{v.positive} %</Table.Td>
+                  <Table.Td>{v.neutral} %</Table.Td>
+                  <Table.Td>{v.negative} %</Table.Td>
                   <Table.Td>
                     <Center>
                       <ActionIcon
@@ -76,7 +54,7 @@ export default function ListPersen() {
                         color="green"
                         size="xl"
                         aria-label="Edit"
-                      onClick={() => router.push(`/dashboard-admin/persen/${v.id}`)}
+                        onClick={() => router.push(`/dashboard-admin/persen/${v.id}`)}
                       >
                         <CiEdit size={25} />
                       </ActionIcon>

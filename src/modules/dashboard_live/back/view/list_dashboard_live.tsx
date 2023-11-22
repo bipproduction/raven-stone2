@@ -2,9 +2,8 @@ import { Box, SimpleGrid } from '@mantine/core';
 import React from 'react';
 import ListNotification from './list_notification';
 import ListPersen from './list_persen';
-import funGetAllNotification from '../fun/get_all_notification';
 
-export default async function ListDashboardLive({data}: {data: any}) {
+export default async function ListDashboardLive({data, persen}: {data: any, persen: any}) {
     return (
         <>
             <SimpleGrid
@@ -13,10 +12,10 @@ export default async function ListDashboardLive({data}: {data: any}) {
                 verticalSpacing={{ base: 'md', sm: 'xl' }}
             >
                 <Box>
-                    <ListPersen />
+                    <ListPersen persen={persen} />
                 </Box>
                 <Box pt={30}>
-                    <ListNotification data={data} />
+                    <ListNotification data={data}  />
                 </Box>
             </SimpleGrid>
         </>

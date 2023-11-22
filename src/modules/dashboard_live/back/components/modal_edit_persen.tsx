@@ -3,11 +3,14 @@ import { useAtom } from 'jotai';
 import React from 'react';
 import { isModalDashboardLive } from '../val/isModalDashboardLive';
 import toast from 'react-simple-toasts';
+import funUpdatePersen from '../fun/update_persen';
 
-export default function ModalEditPersen() {
+export default function ModalEditPersen({data}: {data: any}) {
   const [valOpenModal, setOpenModal] = useAtom(isModalDashboardLive)
 
   async function editPersen() {
+    const edit = await funUpdatePersen({ data: data });
+    if (!edit.success) return toast(edit.message, { theme: "dark" });
     toast("Success", { theme: "dark" });
     setOpenModal(false);
   }
