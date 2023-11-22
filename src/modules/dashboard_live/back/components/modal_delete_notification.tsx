@@ -3,13 +3,17 @@ import { useAtom } from 'jotai';
 import React from 'react';
 import { isModalDashboardLive } from '../val/isModalDashboardLive';
 import toast from 'react-simple-toasts';
+import funDelNotification from '../fun/delete_notification';
 
-export default function ModalDeleteNotification() {
+export default function ModalDeleteNotification({id , onSuccess}: { id: any, onSuccess: (val: any) => void }) {
   const [valOpenModal, setOpenModal] = useAtom(isModalDashboardLive)
 
   async function DelNotification() {
+    const del = await funDelNotification({ id: id })
+    if (!del.success) return toast(del.message, { theme: "dark" })
     toast("Success", { theme: "dark" });
     setOpenModal(false);
+    onSuccess(true)
   }
 
   return (

@@ -2,12 +2,22 @@
 import { ButtonBack } from '@/modules/_global';
 import { Box, Button, Group, Modal, Stack, Text, Textarea } from '@mantine/core';
 import { useAtom } from 'jotai';
-import React from 'react';
+import React, { useState } from 'react';
 import { isModalDashboardLive } from '../val/isModalDashboardLive';
 import ModalEditNotification from '../components/modal_edit_notification';
+import toast from 'react-simple-toasts';
 
-export default function EditNotification({data}: {data: any}) {
+export default function EditNotification({ data }: { data: any }) {
   const [valOpenModal, setOpenModal] = useAtom(isModalDashboardLive)
+
+  const [dataEditNotif, setDataEditNotif] = useState(data)
+
+  function validasiEdit() {
+    if (Object.values(dataEditNotif).includes(""))
+      return toast("The form cannot be empty", { theme: "dark" });
+    setOpenModal(true);
+  }
+
   return (
     <>
       <Stack>
@@ -21,8 +31,19 @@ export default function EditNotification({data}: {data: any}) {
             borderRadius: 10,
             padding: 20
           }}>
-            <Textarea placeholder='Notificaton' label={"Notificaton"} required />
-            <Button mt={20} color='gray' w={200} onClick={() => setOpenModal(true)}>Submit</Button>
+            <Textarea
+              value={dataEditNotif.description}
+              placeholder='Notificaton'
+              label={"Notificaton"}
+              required
+              onChange={(val) =>
+                setDataEditNotif({
+                  ...dataEditNotif,
+                  description: val.target.value
+                })
+              }
+            />
+            <Button mt={20} color='gray' w={200} onClick={validasiEdit}>Submit</Button>
           </Box>
         </Box>
       </Stack>
@@ -34,7 +55,7 @@ export default function EditNotification({data}: {data: any}) {
         withCloseButton={false}
         closeOnClickOutside={false}
       >
-        <ModalEditNotification/>
+        <ModalEditNotification data={dataEditNotif} />
       </Modal>
     </>
   );

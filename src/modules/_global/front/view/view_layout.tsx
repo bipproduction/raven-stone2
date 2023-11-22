@@ -7,7 +7,6 @@ import { useAtom, useAtomValue } from 'jotai';
 import { isModalLayoutUser, sNavbarSmall } from '../val/isModalLayoutUser';
 import ModalLogoutUser from '../components/modal_logout_user';
 import { WARNA } from '../..';
-import { isModalGlobalCoba } from '@/modules/coba_layout/val/iisGlobalCoba';
 import { AiOutlineClose } from 'react-icons/ai';
 import { MdArrowForwardIos, MdFreeCancellation, MdGrading, MdHub, MdJoinLeft, MdLiveHelp, MdLiveTv, MdOutlineStarBorderPurple500, MdOutlineStars, MdStorage, MdVerifiedUser } from 'react-icons/md';
 import { DataFrontMobile } from '../components/data_mobile';
