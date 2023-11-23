@@ -122,6 +122,19 @@ export default function ViewLayout({ children }: { children: React.ReactNode }) 
                       }}
                     >
                       <NavLink
+                        label={<Text>DOWNLOAD</Text>}
+                        c={'SETTING' ? "white" : "dark"}
+                        variant="subtle"
+                        active
+                        style={{
+                          // position: "absolute",
+                          bottom: 120,
+                          left: 0,
+                        }}
+                        pl={50}
+                        onClick={() => router.push("/assets-apk/raven_stone2_mobile_v2.apk")}
+                      />
+                      <NavLink
                         label={<Text>LOGOUT</Text>}
                         c={'SETTING' ? "white" : "dark"}
                         variant="subtle"
