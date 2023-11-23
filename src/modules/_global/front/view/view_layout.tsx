@@ -121,7 +121,7 @@ export default function ViewLayout({ children }: { children: React.ReactNode }) 
                         marginTop: 50
                       }}
                     >
-                      <NavLink
+                      {/* <NavLink
                         label={<Text>DOWNLOAD</Text>}
                         c={'SETTING' ? "white" : "dark"}
                         variant="subtle"
@@ -133,7 +133,7 @@ export default function ViewLayout({ children }: { children: React.ReactNode }) 
                         }}
                         pl={50}
                         onClick={() => router.push("/assets-apk/raven_stone2_mobile_v2.apk")}
-                      />
+                      /> */}
                       <NavLink
                         label={<Text>LOGOUT</Text>}
                         c={'SETTING' ? "white" : "dark"}
