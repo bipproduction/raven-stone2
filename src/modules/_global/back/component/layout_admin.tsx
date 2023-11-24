@@ -109,6 +109,16 @@ export default function LayoutAdmin({ name, menu, children }: { name: any, menu:
             link: "/dashboard-admin/user",
             label: "USER",
         },
+        {
+            key: "md15",
+            link: "/dashboard-admin/delete-emotion-candidate",
+            label: "DELETE EMOTION CANDIDATE",
+        },
+        {
+            key: "md17",
+            link: "/dashboard-admin/delete-emotion",
+            label: "DELETE EMOTION",
+        },
     ];
 
     const router = useRouter();
@@ -195,16 +205,16 @@ export default function LayoutAdmin({ name, menu, children }: { name: any, menu:
                     </Group>
                 </AppShell.Header>
                 <AppShell.Navbar p="md" pb={30}>
-                    
+
                     {(menu.menuEmotion.length > 0) &&
-                    // {(dataEmotion.length > 0) &&
+                        // {(dataEmotion.length > 0) &&
                         <NavLink
                             label="EMOTION EDITOR"
                             childrenOffset={28}
                             fw={"bolder"}
                         >
                             {menu.menuEmotion.map((item: any) => {
-                            // {dataEmotion.map((item: any) => {
+                                // {dataEmotion.map((item: any) => {
                                 return (
                                     <NavLink
                                         key={item.key}
@@ -221,9 +231,9 @@ export default function LayoutAdmin({ name, menu, children }: { name: any, menu:
                             })}
                         </NavLink>
                     }
-                    
+
                     {menu.menuData1.map((item: any) => {
-                    // {data1.map((item: any) => {
+                        // {data1.map((item: any) => {
                         return (
                             <NavLink
                                 key={item.key}
@@ -240,7 +250,7 @@ export default function LayoutAdmin({ name, menu, children }: { name: any, menu:
                     })}
 
                     {
-                        
+
                         (menu.menuRegion.length > 0) &&
                         // (dataRegion.length > 0) &&
                         <NavLink
@@ -248,9 +258,9 @@ export default function LayoutAdmin({ name, menu, children }: { name: any, menu:
                             childrenOffset={28}
                             fw={"bolder"}
                         >
-                            
+
                             {menu.menuRegion.map((item: any) => {
-                            // {dataRegion.map((item: any) => {
+                                // {dataRegion.map((item: any) => {
                                 return (
                                     <NavLink
                                         key={item.key}
@@ -267,9 +277,9 @@ export default function LayoutAdmin({ name, menu, children }: { name: any, menu:
                             })}
                         </NavLink>
                     }
-                    
+
                     {menu.menuData2.map((item: any) => {
-                    // {dataDua.map((item: any) => {
+                        // {dataDua.map((item: any) => {
                         return (
                             <NavLink
                                 key={item.key}
@@ -286,7 +296,7 @@ export default function LayoutAdmin({ name, menu, children }: { name: any, menu:
                     })}
 
                     {
-                        
+
                         (menu.menuDeveloper.length > 0) &&
                         // (dataDeveloper.length > 0) &&
                         <NavLink
@@ -294,9 +304,9 @@ export default function LayoutAdmin({ name, menu, children }: { name: any, menu:
                             childrenOffset={28}
                             fw={"bolder"}
                         >
-                            
+
                             {menu.menuDeveloper.map((item: any) => {
-                            // {dataDeveloper.map((item: any) => {
+                                // {dataDeveloper.map((item: any) => {
                                 return (
                                     <NavLink
                                         key={item.key}
