@@ -12,7 +12,7 @@ export default function ModalLogout() {
   const [valOpenModal, setOpenModal] = useAtom(isModalLayout)
 
   async function logoutYes() {
-    await funLogUser({ act: 'LOGOUT', desc: 'User logout dari sistem' })
+    await funLogUser({ act: 'LOGOUT', desc: 'User logout' })
     await funLogout()
     router.push(`/`)
     setOpenModal(false)

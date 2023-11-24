@@ -4,13 +4,15 @@ import React from 'react';
 import { isModalDashboardLive } from '../val/isModalDashboardLive';
 import toast from 'react-simple-toasts';
 import funDelNotification from '../fun/delete_notification';
+import { funLogUser } from '@/modules/user';
 
-export default function ModalDeleteNotification({id , onSuccess}: { id: any, onSuccess: (val: any) => void }) {
+export default function ModalDeleteNotification({ id, onSuccess }: { id: any, onSuccess: (val: any) => void }) {
   const [valOpenModal, setOpenModal] = useAtom(isModalDashboardLive)
 
   async function DelNotification() {
     const del = await funDelNotification({ id: id })
     if (!del.success) return toast(del.message, { theme: "dark" })
+    await funLogUser({ act: "DELETE", desc: `User Delete Data Notification (ID : ${id})` })
     toast("Success", { theme: "dark" });
     setOpenModal(false);
     onSuccess(true)

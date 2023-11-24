@@ -12,7 +12,7 @@ export default function ModalDelSetUser({ id, onSuccess }: { id: any, onSuccess:
   async function delRole() {
     const del = await funDelSetUser({ id: id })
     if (!del.success) return toast(del.message, { theme: "dark" })
-    await funLogUser({act:"DELETE", desc:`User Deletes Data Seeting User With User ID  ${id}`})
+    await funLogUser({ act: "DELETE", desc: `User Delete Data User (ID: ${id})` })
     toast("Success", { theme: "dark" });
     setOpenModal(false);
     onSuccess(del.delData)
@@ -21,7 +21,7 @@ export default function ModalDelSetUser({ id, onSuccess }: { id: any, onSuccess:
     <>
       <Box>
         <Alert color="gray" variant="outline">
-          <Text fw={700} ta={"center"} mb={20} mt={20}>ARE YOU SURE TO DELETE THIS SETTING USER?</Text>
+          <Text fw={700} ta={"center"} mb={20} mt={20}>ARE YOU SURE TO DELETE THIS USER?</Text>
           <Group justify="space-between" pt={10}>
             <Button
 

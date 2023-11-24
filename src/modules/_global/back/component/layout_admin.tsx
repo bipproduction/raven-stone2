@@ -179,7 +179,7 @@ export default function LayoutAdmin({ name, menu, children }: { name: any, menu:
                                         }
                                         onClick={async () => {
                                             // setOpenModal(true) 
-                                            await funLogUser({ act: 'LOGOUT', desc: 'User logout dari sistem' })
+                                            await funLogUser({ act: 'LOGOUT', desc: 'User logout' })
                                             const logout = await funLogout()
                                             await new Promise((r) =>
                                                 setTimeout(r, 500)

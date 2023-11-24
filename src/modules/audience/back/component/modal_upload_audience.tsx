@@ -15,7 +15,7 @@ export default function ModalUploadAudience({ data, onSuccess }: { data: any, on
     async function onUpload() {
         setLoading(true)
         await funUploadAudience({ body: data })
-        await funLogUser({ act: "UPLOAD", desc: `User Uploads Data Audience` })
+        await funLogUser({ act: "UPLOAD", desc: `User Upload Data Audience` })
         setLoading(false)
         toast('Success', { theme: 'dark' })
         setOpenModal(false)

@@ -15,7 +15,7 @@ export default function ModalCopyEmotionCandidate({ from, to, candidate, onSucce
     async function onUpload() {
         setLoading(true)
         await funCopyEmotionCandidate({ dateFrom: from, dateTo: to, candidate: candidate })
-        await funLogUser({ act: "COPY DATA", desc: `User Copy Data, Emotion Candidate From: ${from} To: ${to} ` })
+        await funLogUser({ act: "COPY DATA", desc: `User Copy Emotion Candidate (Candidate ID : ${candidate}, From ${from} To ${to})` })
         setLoading(false)
         toast('Success', { theme: 'dark' })
         setOpenModal(false)

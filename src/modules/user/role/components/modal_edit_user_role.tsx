@@ -15,7 +15,7 @@ export default function ModalEditUserRole({ name, component, id }: { name: any, 
   async function updateData() {
     const edit = await funUpdateUserRole({ name: name, id: id, component: component })
     if (!edit.success) return toast(edit.message, { theme: "dark" });
-    await funLogUser({ act: "EDIT", desc: `User Edit Data Role With User ID  ${id}` })
+    await funLogUser({ act: "EDIT", desc: `User Edit Data Role (ID :${id})` })
     toast("Success", { theme: "dark" });
     router.push("/dashboard-admin/role-user")
     setOpenModal(false);
