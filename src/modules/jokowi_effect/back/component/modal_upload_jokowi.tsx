@@ -17,7 +17,7 @@ export default function ModalUploadJokowi({ data, onSuccess }: { data: any, onSu
 
     async function onUpload() {
         await funUploadEffect({ body: data })
-        await funLogUser({ act: "DELETE", desc: `User Deletes Data Jokowi Effect` })
+        await funLogUser({ act: "UPLOAD", desc: `User Upload Data Jokowi Effect` })
         toast('Success', { theme: 'dark' })
         setOpenModal(false)
         onSuccess(true)

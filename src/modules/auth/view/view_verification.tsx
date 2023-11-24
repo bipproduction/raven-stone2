@@ -50,7 +50,7 @@ export default function ViewVerification() {
   async function getVerification() {
     if (isOTP == inputOTP) {
       const setC = await funSetCookies({ user: isUser })
-      await funLogUser({ act: 'LOGIN', desc:`User login in to the system with id ${isUser}` })
+      await funLogUser({ act: 'LOGIN', desc:`User login` })
       router.push('/dashboard/summary')
       toast("Verification code is correct", { theme: "dark" })
     } else {

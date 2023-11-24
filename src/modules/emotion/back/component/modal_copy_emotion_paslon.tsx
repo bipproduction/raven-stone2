@@ -15,7 +15,8 @@ export default function ModalCopyEmotionPaslon({ from, to, onSuccess }: { from: 
     async function onUpload() {
         setLoading(true)
         await funCopyEmotionPaslon({ dateFrom: from, dateTo: to })
-        await funLogUser({ act: "COPY DATA", desc: `User Copy Data, Emotion Paslon From: ${from} To: ${to} ` })
+        //TODO: PASLON ID ON LOG USER
+        await funLogUser({ act: "COPY DATA", desc: `User Copy Emotion Candidate (Paslon ID : , From ${from} To ${to})` })
         setLoading(false)
         toast('Success', { theme: 'dark' })
         setOpenModal(false)

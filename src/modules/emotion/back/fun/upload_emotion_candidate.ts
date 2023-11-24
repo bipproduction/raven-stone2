@@ -5,10 +5,11 @@ import moment from "moment";
 import { revalidatePath } from "next/cache";
 
 export default async function funUploadEmotionCandidate({ body }: { body: any }) {
-    let date, isoDateTime, y, pas
+    let date, isoDateTime, y, pas, time_csv
 
     for (let i of body) {
         date = moment(i.date).format('YYYY-MM-DD');
+        time_csv = i.time
         y = new Date('1970-01-01 ' + i.time);
         isoDateTime = new Date(y.getTime() - (y.getTimezoneOffset() * 60000)).toISOString();
         pas = Number(i.idCandidate)
@@ -70,6 +71,9 @@ export default async function funUploadEmotionCandidate({ body }: { body: any })
 
     return {
         success: true,
-        message: 'Sukses'
+        message: 'Sukses',
+        candidate: pas,
+        date: date,
+        time: time_csv
     }
 }
