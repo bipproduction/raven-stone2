@@ -13,7 +13,7 @@ export default function ModalDeleteSwot({ id, onSuccess }: { id: any, onSuccess:
 
     async function onDelete() {
         await funDelSwotById({ idData: id })
-        await funLogUser({act:"DELETE", desc:`User Deletes Data Swot With User ID  ${id}`})
+        await funLogUser({ act: "DELETE", desc: `User Delete Data Swot (ID: ${id})` })
         toast('Success', { theme: 'dark' })
         setOpenModal(false)
         onSuccess(true)

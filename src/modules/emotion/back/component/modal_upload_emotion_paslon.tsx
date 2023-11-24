@@ -14,8 +14,8 @@ export default function ModalUploadEmotionPaslon({ data, onSuccess }: { data: an
 
     async function onUpload() {
         setLoading(true)
-        await funUploadEmotionPaslon({ body: data })
-        await funLogUser({ act: "UPLOAD", desc: `User UPLOAD, Emotion Paslon` })
+        const upd = await funUploadEmotionPaslon({ body: data })
+        await funLogUser({ act: "UPLOAD", desc: `User Upload Emotion Paslon (Paslon ID: ${upd.paslon}, on ${upd.date} ${upd.time}` })
         setLoading(false)
         toast('Success', { theme: 'dark' })
         setOpenModal(false)

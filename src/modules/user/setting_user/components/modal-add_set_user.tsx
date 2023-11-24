@@ -14,7 +14,7 @@ export default function ModalAddSetUser({ dataUser, id }: { dataUser: any, id: a
   async function addetUser() {
     const res = await funAddSetUser({ data: dataUser });
     if (!res.success) return toast(res.message);
-    await funLogUser({act:"ADD", desc:`User Add Data Setting User With User ID  ${id}`})
+    await funLogUser({ act: "ADD", desc: `User Add Data User (ID: ${res.id})` })
     toast("Success");
     router.push("/dashboard-admin/setting-user")
     setOpenModal(false);
@@ -24,7 +24,7 @@ export default function ModalAddSetUser({ dataUser, id }: { dataUser: any, id: a
     <>
       <Box>
         <Alert color="gray" variant="outline">
-          <Text fw={700} ta={"center"} mb={20} mt={20}>ARE YOU SURE TO ADD THIS SETTING USER?</Text>
+          <Text fw={700} ta={"center"} mb={20} mt={20}>ARE YOU SURE TO ADD THIS USER?</Text>
           <Group justify="space-between" pt={10}>
             <Button
               radius={10}

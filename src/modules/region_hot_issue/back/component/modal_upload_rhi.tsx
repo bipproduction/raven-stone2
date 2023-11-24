@@ -13,7 +13,7 @@ export default function ModalUploadRhi({ data, onSuccess }: { data: any, onSucce
 
     async function onUpload() {
         await funUploadRhi({ body: data })
-        await funLogUser({ act: "UPLOAD", desc: `User Uploads Data Public Concerns Trends` })
+        await funLogUser({ act: "UPLOAD", desc: `User Uploads Data Region Hot Issues` })
         toast('Success', { theme: 'dark' })
         setOpenModal(false)
         onSuccess(true)

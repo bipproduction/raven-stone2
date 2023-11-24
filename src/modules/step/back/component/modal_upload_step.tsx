@@ -14,7 +14,7 @@ export default function ModalUploadStep({ data, onSuccess }: { data: any, onSucc
 
     async function onUpload() {
         await funUploadStep({ body: data })
-        await funLogUser({ act: "UPLOAD", desc: `User Uploads Data Step` })
+        await funLogUser({ act: "UPLOAD", desc: `User Upload Data Step` })
         toast('Success', { theme: 'dark' })
         setOpenModal(false)
         onSuccess(true)

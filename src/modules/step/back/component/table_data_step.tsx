@@ -7,12 +7,14 @@ import ModalDeleteStep from "./modal_del_step";
 import { useAtom } from "jotai";
 import { isModalStep } from "../val/modal_step";
 import { funGetStepByCandidate } from "../..";
+import { useRouter } from "next/navigation";
+
 
 export default function TableDataStep({ title, data, searchParam }: { title: any, data: any, searchParam: any }) {
   const [openModal, setOpenModal] = useAtom(isModalStep);
   const [dataDelete, setDataDelete] = useState(Number)
-
   const [isData, setData] = useState(data)
+  const router = useRouter()
 
   async function onLoad() {
     const dataDB = await funGetStepByCandidate({ candidate: searchParam.idCandidate })
@@ -37,9 +39,9 @@ export default function TableDataStep({ title, data, searchParam }: { title: any
             <Text fw={"bold"} c={"white"}>
               {title}
             </Text>
-            {/* <Button bg={"gray"} onClick={() => router.push("step/add?prov=" + searchParams.get('prov') + '&city=' + searchParams.get('city'))}>
-                TAMBAH STEP
-              </Button> */}
+            <Button bg={"gray"} onClick={() => router.push("step/add")}>
+              ADD STEP
+            </Button>
           </Group>
           <Box pt={20}>
             <Box

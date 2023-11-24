@@ -4,13 +4,15 @@ import React from 'react';
 import { isModalDashboardLive } from '../val/isModalDashboardLive';
 import toast from 'react-simple-toasts';
 import funUpdateNotification from '../fun/update_notification';
+import { funLogUser } from '@/modules/user';
 
-export default function ModalEditNotification({data}: {data: any}) {
+export default function ModalEditNotification({ data }: { data: any }) {
   const [valOpenModal, setOpenModal] = useAtom(isModalDashboardLive)
 
   async function editNotification() {
     const edit = await funUpdateNotification({ data: data });
     if (!edit.success) return toast(edit.message, { theme: "dark" });
+    await funLogUser({ act: "EDIT", desc: `User Add Data Notification (ID : ${data.id})` })
     toast("Success", { theme: "dark" });
     setOpenModal(false);
   }

@@ -4,8 +4,8 @@ import { prisma } from "@/modules/_global";
 import { User } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 
-export default async function funAddSetUser({data}: {data: any}) {
-    await prisma.user.create({
+export default async function funAddSetUser({ data }: { data: any }) {
+    const ins = await prisma.user.create({
         data: {
             idUserRole: Number(data.idUserRole),
             name: data.name,
@@ -13,7 +13,7 @@ export default async function funAddSetUser({data}: {data: any}) {
             password: data.password,
             phone: data.phone
         },
-        select:{
+        select: {
             id: true
         }
     })
@@ -21,6 +21,7 @@ export default async function funAddSetUser({data}: {data: any}) {
 
     return {
         success: true,
-        message: "Success"
+        message: "Success",
+        id: ins
     }
 }

@@ -1,8 +1,7 @@
-
 'use client'
 
 import { ButtonBack } from "@/modules/_global";
-import { Box, Button, Center, Group, Modal, SimpleGrid, Stack, Text } from "@mantine/core";
+import { Box, Button, Center, Group, Modal, Select, SimpleGrid, Stack, Text } from "@mantine/core";
 import { DatePicker } from "@mantine/dates";
 import { useState } from "react";
 import funCekEmotionPaslon from "../fun/cek_emotion_paslon_by_date";
@@ -11,18 +10,30 @@ import moment from "moment";
 import ModalCopyEmotionPaslon from "../component/modal_copy_emotion_paslon";
 import { useAtom } from "jotai";
 import { isModalEmotionPaslon } from "../val/modal_emotion";
+import _ from "lodash";
 
 
-export default function ViewCopyEmotionPaslon() {
+export default function ViewCopyEmotionPaslon({ paslon }: { paslon: any }) {
     const [trueFrom, setTrueFrom] = useState<any>(null)
     const [trueTo, setTrueTo] = useState<any>(null)
     const [isFrom, setFrom] = useState(null)
     const [isTo, setTo] = useState(null)
+    const [isPaslon, setPaslon] = useState(null)
     const [openModal, setOpenModal] = useAtom(isModalEmotionPaslon)
 
+    function choosePaslon(can: any) {
+        setPaslon(can)
+        setFrom(null)
+        setTrueFrom(null)
+        setTo(null)
+        setTrueTo(null)
+    }
+
     async function cekFrom(isDate: any) {
+        if (_.isNull(isPaslon)) return toast('Silahkan pilih paslon', { theme: 'dark' })
+
         const tgl = moment(isDate).format('YYYY-MM-DD')
-        const cek = await funCekEmotionPaslon({ date: new Date(tgl) })
+        const cek = await funCekEmotionPaslon({ paslon: isPaslon, date: new Date(tgl) })
         if (!cek.ada) {
             setFrom(null)
             setTrueFrom(null)
@@ -34,8 +45,10 @@ export default function ViewCopyEmotionPaslon() {
     }
 
     async function cekTo(isDate: any) {
+        if (_.isNull(isPaslon)) return toast('Silahkan pilih paslon', { theme: 'dark' })
+
         const tgl = moment(isDate).format('YYYY-MM-DD')
-        const cek = await funCekEmotionPaslon({ date: new Date(tgl) })
+        const cek = await funCekEmotionPaslon({ paslon: isPaslon, date: new Date(tgl) })
         if (cek.ada) {
             setTo(null)
             setTrueTo(null)
@@ -61,6 +74,18 @@ export default function ViewCopyEmotionPaslon() {
                 >
                     <Text fw={"bold"} c={"white"} mb={20}>COPY DATA EMOTION PASLON</Text>
                     <Box>
+                        <Select
+                            placeholder="Pilih Paslon"
+                            data={paslon.map((can: any) => ({
+                                value: String(can.id),
+                                label: can.name
+                            }))}
+                            required
+                            value={isPaslon}
+                            label={"Paslon"}
+                            searchable
+                            onChange={(val) => { choosePaslon(val) }}
+                        />
                         <SimpleGrid
                             cols={{ base: 1, sm: 2, lg: 2 }}
                             spacing={{ base: 10, sm: "xl" }}
@@ -127,9 +152,12 @@ export default function ViewCopyEmotionPaslon() {
                 withCloseButton={false}
                 closeOnClickOutside={false}
             >
-                <ModalCopyEmotionPaslon from={trueFrom} to={trueTo} onSuccess={(val) => {
+                <ModalCopyEmotionPaslon from={trueFrom} to={trueTo} paslon={isPaslon} onSuccess={(val) => {
+                    setPaslon(null)
                     setFrom(null)
+                    setTrueFrom(null)
                     setTo(null)
+                    setTrueTo(null)
                 }} />
             </Modal>
         </>

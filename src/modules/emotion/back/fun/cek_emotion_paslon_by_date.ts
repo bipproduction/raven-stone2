@@ -2,10 +2,11 @@
 
 import { prisma } from "@/modules/_global"
 
-export default async function funCekEmotionPaslon({ date }: { date: any }) {
+export default async function funCekEmotionPaslon({ paslon, date }: { paslon: any, date: any }) {
     const data = await prisma.paslonEmotion.count({
         where: {
-            dateEmotion: date
+            dateEmotion: date,
+            idPaslon: Number(paslon)
         }
     })
 
