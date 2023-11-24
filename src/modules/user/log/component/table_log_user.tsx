@@ -4,8 +4,10 @@ import { Box, Group, Pagination, ScrollArea, Table } from "@mantine/core"
 import moment from "moment"
 import { useState } from "react"
 
-export default function TableLogUser({ user }: { user: any }) {
+export default function TableLogUser({ user, npage }: { user: any, npage: any }) {
     const [listData, setListData] = useState<any[]>(user)
+    
+
     return (
         <>
             <Box pt={30}>
@@ -35,8 +37,8 @@ export default function TableLogUser({ user }: { user: any }) {
             <Group justify="right" mt={20}>
                 <Pagination
                     value={1}
-                    // onChange={(val) => onLog()}
-                    total={10}
+                    onChange={(val) => console.log(val)}
+                    total={npage}
                 />
             </Group>
         </>
