@@ -8,31 +8,45 @@ import funGetAllJamEmotionPaslon from '../fun/get_all_emotion_paslon';
 import funDelJamEmotionPaslon from '../fun/del_emotion_paslon';
 import toast from 'react-simple-toasts';
 import { useAtom } from 'jotai';
-import { isModalEmotionPaslon } from '../val/modal_emotion';
+import { isModalEmotionCandidate, isModalEmotionPaslon } from '../val/modal_emotion';
 import ModalDelPaslon from '../component/modal_del_paslon';
+import funGetAllJamEmotionCandidate from '../fun/get_all_emotion_candidate';
+import ModalDelCandidate from '../component/modal_del_candidate';
 
-export default function ViewDeleteEmotion({ paslon, }: { paslon: any }) {
+export default function ViewDeleteEmotion({ paslon, candidate }: { paslon: any, candidate: any }) {
+
+  // CANDIDATE
+  const [valOpenModalCandidate, setOpenModalCandidate] = useAtom(isModalEmotionCandidate)
+  const [dataCandidate, setDataCandidate] = useState(candidate)
+  const [isCandidate, setCandidate] = useState()
+  const [isDateCan, setIsDateCan] = useState()
+  const [isJamCan, setIsJamCan] = useState<any>([])
+  const [valueJamCan, setValueJamCan] = useState()
+
+
+  async function dataValueCan(val: any) {
+    setIsDateCan(val)
+    const data = await funGetAllJamEmotionCandidate({ candidate: isCandidate, dateCan: val })
+    setIsJamCan(data)
+  }
+
+  function validasiUserCan() {
+    setOpenModalCandidate(true);
+  }
+
+
+  // PASLON
   const [valOpenModalPaslon, setOpenModalPaslon] = useAtom(isModalEmotionPaslon)
   const [dataPaslon, setDataPaslon] = useState(paslon)
   const [isPaslon, setPaslon] = useState()
   const [date, setDate] = useState()
-  const [allData, setAllData] = useState<any>()
   const [isJam, setIsJam] = useState<any>([])
   const [valueJam, setValueJam] = useState()
 
   async function dataValue(val: any) {
     setDate(val)
     const data = await funGetAllJamEmotionPaslon({ paslon: isPaslon, date: val })
-    // console.log(data)
-    setAllData(data)
     setIsJam(data)
-  }
-  console.log({ date, isPaslon })
-  // console.log(allData)
-
-  async function delData() {
-    const del = await funDelJamEmotionPaslon({ paslon: isPaslon, date: date, time: valueJam })
-    toast("Success", { theme: "dark" });
   }
 
   function validasiUser() {
@@ -103,35 +117,35 @@ export default function ViewDeleteEmotion({ paslon, }: { paslon: any }) {
               >
                 <Select
                   placeholder="Pilih Candidate"
-                  // data={dataPaslon.map((can: any) => ({
-                  //   value: String(can.id),
-                  //   label: can.name
-                  // }))}
+                  data={dataCandidate.map((can: any) => ({
+                    value: String(can.id),
+                    label: can.name
+                  }))}
                   required
-                  // value={isPaslon}
+                  value={isCandidate}
                   label={"Candidate"}
                   searchable
-                // onChange={(val) => { setPaslon(val) }}
+                  onChange={(val: any) => { setCandidate(val) }}
                 />
                 <DateInput
                   valueFormat="DD-MM-YYYY"
                   required
-                  // value={isDate}
+                  value={isDateCan}
                   label={"Tanggal"}
                   placeholder="Pilih Tanggal"
-                // onChange={(val) => { setDate(val) }} 
+                  onChange={(val: any) => { dataValueCan(val) }}
                 />
                 <Select
-                  // data={datajam.map((can: any) => ({
-                  //   value: String(can.timeEmotion),
-                  //   label: can.timeEmotion
-                  // }))}
+                  data={isJamCan.map((can: any) => ({
+                    value: String(can.timeEmotion),
+                    label: can.timeEmotion
+                  }))}
                   // value={isJam}
-                  // onChange={(val) => getLoad(val)}
+                  onChange={(val: any) => setValueJamCan(val)}
                   placeholder='Pilih Jam'
                   mt={10}
                 />
-                <Button color={"red"}>DELETE</Button>
+                <Button color={"red"} onClick={validasiUserCan}>DELETE</Button>
               </SimpleGrid>
             </Box>
           </Grid.Col>
@@ -139,6 +153,7 @@ export default function ViewDeleteEmotion({ paslon, }: { paslon: any }) {
 
       </Stack>
 
+      {/* MODAL PASLON */}
       <Modal
         size={"md"}
         opened={valOpenModalPaslon}
@@ -148,6 +163,19 @@ export default function ViewDeleteEmotion({ paslon, }: { paslon: any }) {
         closeOnClickOutside={false}
       >
         <ModalDelPaslon isPaslon={isPaslon} date={date} valueJam={valueJam} />
+      </Modal>
+
+
+      {/* MODAL CANDIDATE */}
+      <Modal
+        size={"md"}
+        opened={valOpenModalCandidate}
+        onClose={() => setOpenModalCandidate(false)}
+        centered
+        withCloseButton={false}
+        closeOnClickOutside={false}
+      >
+        <ModalDelCandidate isCandidate={isCandidate} isDateCan={isDateCan} valueJamCan={valueJamCan} />
       </Modal>
     </>
   );
