@@ -3,12 +3,13 @@
 import { prisma } from "@/modules/_global"
 import _ from "lodash"
 
-export default async function funCopyEmotionPaslon({ dateFrom, dateTo }: { dateFrom: any, dateTo: any }) {
+export default async function funCopyEmotionPaslon({ paslon, dateFrom, dateTo }: { paslon: any, dateFrom: any, dateTo: any }) {
 
 
     const data = await prisma.paslonEmotion.findMany({
         where: {
-            dateEmotion: dateFrom
+            dateEmotion: dateFrom,
+            idPaslon: Number(paslon)
         },
         select: {
             timeEmotion: true,
