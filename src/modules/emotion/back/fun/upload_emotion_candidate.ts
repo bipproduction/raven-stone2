@@ -16,12 +16,14 @@ export default async function funUploadEmotionCandidate({ body }: { body: any })
 
 
         if (i.id == '') {
-            const cek = await prisma.effect.count({
+            const cek = await prisma.candidateEmotion.count({
                 where: {
-                    dateContent: new Date(i.date),
-                    timeContent: isoDateTime,
+                    dateEmotion: new Date(i.date),
+                    timeEmotion: isoDateTime,
                     isActive: true,
                     idCandidate: pas,
+                    idKabkot: Number(i.idKabkot),
+                    idProvinsi: Number(i.idProvinsi),
                 }
             });
 
