@@ -4,13 +4,15 @@ import React from 'react';
 import { isModalDashboardLive } from '../val/isModalDashboardLive';
 import toast from 'react-simple-toasts';
 import funAddNotification from '../fun/add_notification';
+import { funLogUser } from '@/modules/user';
 
-export default function ModalAddNotification({isData}: {isData: any}) {
+export default function ModalAddNotification({ isData }: { isData: any }) {
   const [valOpenModal, setOpenModal] = useAtom(isModalDashboardLive)
 
   async function addNotification() {
-    const create = await funAddNotification({ data: isData})
+    const create = await funAddNotification({ data: isData })
     if (!create.success) return toast(create.message, { theme: "dark" });
+    await funLogUser({ act: "ADD", desc: `User Add Data Notification (ID : ${create.id})` })
     toast("Success", { theme: "dark" });
     setOpenModal(false);
   }

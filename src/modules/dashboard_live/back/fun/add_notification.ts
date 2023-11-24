@@ -5,9 +5,12 @@ import { LiveDashboardNotif } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 
 export default async function funAddNotification({ data }: { data: LiveDashboardNotif }) {
-    await prisma.liveDashboardNotif.create({
+    const insert = await prisma.liveDashboardNotif.create({
         data: {
             description: data.description
+        },
+        select: {
+            id: true
         }
     })
 
@@ -15,6 +18,7 @@ export default async function funAddNotification({ data }: { data: LiveDashboard
 
     return {
         success: true,
-        message: "Successfully added notification"
+        message: "Successfully added notification",
+        id: insert.id
     }
 }
