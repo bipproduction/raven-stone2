@@ -117,5 +117,12 @@
         "menu": "Admin Setting Dashboard Live",
         "name": "",
         "label": "Admin Setting Dashboard Live"
+    },
+    {
+        "id": 18,
+        "keyMenu": "md17",
+        "menu": "Admin Delete Emotion",
+        "name": "",
+        "label": "Admin Delete Emotion"
     }
 ]

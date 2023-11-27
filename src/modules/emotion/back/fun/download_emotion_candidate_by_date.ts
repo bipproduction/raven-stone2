@@ -134,7 +134,7 @@ export default async function funDownloadEmotionCandidateByDate({ find }: { find
             }
         },
         orderBy:{
-            idProvinsi:'asc',
+            idKabkot:'asc',
         }
     })
 

@@ -91,4 +91,9 @@ export const menu_developer = [
         link: "/dashboard-admin/setting-user",
         label: "USER",
     },
+    {
+        key: "md17",
+        link: "/dashboard-admin/delete-emotion",
+        label: "DELETE EMOTION",
+    },
 ]
