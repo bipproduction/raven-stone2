@@ -9,6 +9,8 @@ import { pwd_key_config } from "@/modules/_global/bin/val_global"
 export default async function funLogUser({ act, desc }: { act: any, desc: any }) {
     const c = cookies().get("_tknRV")
     const dataCookies = await unsealData(c!.value, { password: pwd_key_config as string })
+    
+    console.log(dataCookies)
 
     await prisma.userLog.create({
         data: {

@@ -11,6 +11,7 @@ export default async function funGetAccessAdmin() {
     const c = cookies().get("_tknRV")
     const dataCookies = await unsealData(c!.value, { password: pwd_key_config as string })
 
+    if (dataCookies && !dataCookies.cIdRoleUser) return null
 
     const cekDashboardAdmin = await prisma.userAccess.findMany({
         where: {
@@ -35,50 +36,50 @@ export default async function funGetAccessAdmin() {
         keyMenu: v.Component.keyMenu
     }))
 
-    let emotion=<any>[], data1=<any>[], region=<any>[], data2=<any>[], dev=<any>[]
+    let emotion = <any>[], data1 = <any>[], region = <any>[], data2 = <any>[], dev = <any>[]
 
     for (let i of menu_emotion) {
         let a = result.find((x) => x.keyMenu == i.key)
-        if(a){
-             emotion.push(i)
+        if (a) {
+            emotion.push(i)
         }
     }
 
     for (let i of menu_data1) {
         let a = result.find((x) => x.keyMenu == i.key)
-        if(a){
-             data1.push(i)
+        if (a) {
+            data1.push(i)
         }
     }
 
     for (let i of menu_region) {
         let a = result.find((x) => x.keyMenu == i.key)
-        if(a){
-             region.push(i)
+        if (a) {
+            region.push(i)
         }
     }
 
     for (let i of menu_data2) {
         let a = result.find((x) => x.keyMenu == i.key)
-        if(a){
-             data2.push(i)
+        if (a) {
+            data2.push(i)
         }
     }
 
     for (let i of menu_developer) {
         let a = result.find((x) => x.keyMenu == i.key)
-        if(a){
-             dev.push(i)
+        if (a) {
+            dev.push(i)
         }
     }
 
 
     const allData = {
-        menuEmotion : emotion,
-        menuData1:data1,
-        menuRegion:region,
-        menuData2:data2,
-        menuDeveloper:dev
+        menuEmotion: emotion,
+        menuData1: data1,
+        menuRegion: region,
+        menuData2: data2,
+        menuDeveloper: dev
     }
 
     return allData
