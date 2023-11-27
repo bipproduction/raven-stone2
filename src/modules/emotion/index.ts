@@ -6,6 +6,7 @@ import ViewAdminEmotionCandidate from "./back/view/view_admin_emotion_candidate"
 import ViewAdminEmotionPaslon from "./back/view/view_admin_emotion_paslon";
 import ViewCopyEmotionCandidate from "./back/view/view_copy_emotion_candidate";
 import ViewCopyEmotionPaslon from "./back/view/view_copy_emotion_paslon";
+import ViewDeleteEmotion from "./back/view/view_delete_emotion";
 import ViewUploadEmotionCandidate from "./back/view/view_upload_emotion_candidate";
 import ViewUploadEmotionPaslon from "./back/view/view_upload_emotion_paslon";
 import DetailRegionalDataPairing from "./front/components/detail_regional_data_pairing";
@@ -41,3 +42,4 @@ export { funGetEmotionDetailRegionalFront }
 export { funGetEmotionJokowiEffectAreaFront }
 export { funGetEmotionPersenJokowiFront }
 export { funGetEmotionCandidateChartFront }
+export {ViewDeleteEmotion}
