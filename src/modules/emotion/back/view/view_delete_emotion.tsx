@@ -18,16 +18,28 @@ export default function ViewDeleteEmotion({ paslon, candidate }: { paslon: any, 
   // CANDIDATE
   const [valOpenModalCandidate, setOpenModalCandidate] = useAtom(isModalEmotionCandidate)
   const [dataCandidate, setDataCandidate] = useState(candidate)
-  const [isCandidate, setCandidate] = useState()
-  const [isDateCan, setIsDateCan] = useState()
+  const [isCandidate, setCandidate] = useState<any>()
+  const [isDateCan, setIsDateCan] = useState<any>()
   const [isJamCan, setIsJamCan] = useState<any>([])
-  const [valueJamCan, setValueJamCan] = useState()
+  const [valueJamCan, setValueJamCan] = useState<any>()
 
 
   async function dataValueCan(val: any) {
-    setIsDateCan(val)
-    const data = await funGetAllJamEmotionCandidate({ candidate: isCandidate, dateCan: val })
-    setIsJamCan(data)
+    if (_.isUndefined(isCandidate) || _.isNull(isCandidate)) {
+      setIsDateCan(null)
+      toast("Silahkan pilih kandidat terlebih dahulu", { theme: "dark" })
+    } else {
+      setIsDateCan(val)
+      const data = await funGetAllJamEmotionCandidate({ candidate: isCandidate, dateCan: val })
+      setIsJamCan(data)
+    }
+  }
+
+  function chooseCandidate(val: any) {
+    setCandidate(val)
+    setIsDateCan(null)
+    setIsJamCan([])
+    setValueJamCan(null)
   }
 
   function validasiUserCan() {
@@ -91,6 +103,7 @@ export default function ViewDeleteEmotion({ paslon, candidate }: { paslon: any, 
                   }}
                 />
                 <Select
+                  label="Jam"
                   data={isJam.map((can: any) => ({
                     value: String(can.timeEmotion),
                     label: can.timeEmotion
@@ -125,7 +138,7 @@ export default function ViewDeleteEmotion({ paslon, candidate }: { paslon: any, 
                   value={isCandidate}
                   label={"Candidate"}
                   searchable
-                  onChange={(val: any) => { setCandidate(val) }}
+                  onChange={(val: any) => { chooseCandidate(val) }}
                 />
                 <DateInput
                   valueFormat="DD-MM-YYYY"
@@ -136,11 +149,12 @@ export default function ViewDeleteEmotion({ paslon, candidate }: { paslon: any, 
                   onChange={(val: any) => { dataValueCan(val) }}
                 />
                 <Select
+                  label="Jam"
                   data={isJamCan.map((can: any) => ({
                     value: String(can.timeEmotion),
                     label: can.timeEmotion
                   }))}
-                  // value={isJam}
+                  value={valueJamCan}
                   onChange={(val: any) => setValueJamCan(val)}
                   placeholder='Pilih Jam'
                   mt={10}
@@ -175,7 +189,12 @@ export default function ViewDeleteEmotion({ paslon, candidate }: { paslon: any, 
         withCloseButton={false}
         closeOnClickOutside={false}
       >
-        <ModalDelCandidate isCandidate={isCandidate} isDateCan={isDateCan} valueJamCan={valueJamCan} />
+        <ModalDelCandidate isCandidate={isCandidate} isDateCan={isDateCan} valueJamCan={valueJamCan} onSuccess={() => {
+          setValueJamCan(null)
+          setCandidate(null)
+          setIsDateCan(null)
+          setIsJamCan([])
+        }} />
       </Modal>
     </>
   );
