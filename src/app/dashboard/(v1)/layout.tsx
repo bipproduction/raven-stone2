@@ -9,7 +9,7 @@ export default async function Layout({ children }: { children: React.ReactNode }
     if (!c || !c.value || _.isEmpty(c.value)) return redirect('/')
 
     const cekAkses = await funCekAkses()
-    if(!cekAkses.dashboardUser && cekAkses.dashboardAdmin)  return redirect('/dashboard-admin/emotion-candidate')
+    if (cekAkses && !cekAkses!.dashboardUser && !cekAkses!.dashboardAdmin) return redirect('/dashboard-admin/emotion-candidate')
 
     return (
         <>

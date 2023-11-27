@@ -85,6 +85,11 @@
         "idComponent": 17
     },
     {
+        "id": 32,
+        "idUserRole": 1,
+        "idComponent": 18
+    },
+    {
         "id": 17,
         "idUserRole": 2,
         "idComponent": 1
