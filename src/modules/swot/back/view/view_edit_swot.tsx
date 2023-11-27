@@ -1,47 +1,47 @@
 "use client"
-import { ButtonBack, WARNA } from '@/modules/_global';
-import { ActionIcon, Box, Button, Group, Modal, Select, SimpleGrid, Stack, Text, TextInput } from '@mantine/core';
-import { DateInput, TimeInput } from '@mantine/dates';
-import React, { useEffect, useRef, useState } from 'react';
-import { AiOutlineClockCircle } from 'react-icons/ai';
-import { RichTextEditor, Link } from '@mantine/tiptap';
-import { Editor, useEditor } from '@tiptap/react';
+import React, { useState } from 'react';
+import { useEditor } from "@tiptap/react"
+import { Link, RichTextEditor } from "@mantine/tiptap"
 import Highlight from '@tiptap/extension-highlight';
 import StarterKit from '@tiptap/starter-kit';
 import Underline from '@tiptap/extension-underline';
 import TextAlign from '@tiptap/extension-text-align';
 import Superscript from '@tiptap/extension-superscript';
 import SubScript from '@tiptap/extension-subscript';
-import { Color } from '@tiptap/extension-color';
-import TextStyle from '@tiptap/extension-text-style';
-import { CiPickerEmpty } from 'react-icons/ci';
-import { useRouter } from 'next/navigation';
-import toast from 'react-simple-toasts';
-import moment from 'moment';
+import TextStyle from "@tiptap/extension-text-style"
+import Color from "@tiptap/extension-color"
+import toast from "react-simple-toasts"
+import { Box, Button, Group, Modal, Select, SimpleGrid, Stack, Text } from "@mantine/core"
+import { ButtonBack } from "@/modules/_global"
+import { CiPickerEmpty } from "react-icons/ci"
 import { useAtom } from 'jotai';
-import { isModalMlai } from '../val/modal_mlai';
-import ModalEditMlAi from '../component/modal_edit_ml_ai';
+import { isModalSwot } from '../val/modal_swot';
+import ModalEditSwot from '../component/modal_edit_swot';
 
+export default function ViewEditSwot({ data, dataCan }: { data: any, dataCan: any }) {
+  const [dataCandidate, setDataCandidate] = useState(dataCan)
+  const [valOpenModal, setOpenModal] = useAtom(isModalSwot)
+  const dCategory = [
+    {
+      val: "STRENGTH"
+    },
+    {
+      val: "WEAKNESS"
+    },
+    {
+      val: "OPPORTUNITY"
+    },
+    {
+      val: "THREAT"
+    }
+  ]
 
-export default function ViewEditAdminMlai({ data, paslon, }: { data: any, paslon: any, }) {
-  const [dataPaslon, setDataPaslon] = useState(paslon)
-  const [valOpenModal, setOpenModal] = useAtom(isModalMlai)
-  const [dataMl, setDataMl] = useState({
+  const [isDataSwot, setDataSwot] = useState({
     id: data.id,
-    idPaslon: data.idPaslon,
-    dateContent: moment(data.dateContent).format('YYYY-MM-DD'),
-    timeContent: moment.utc(data.timeContent).format('HH:mm'),
+    idCandidate: data.idCandidate,
+    category: data.category,
     content: data.content
   })
-  const ref = useRef<HTMLInputElement>(null);
-  const router = useRouter();
-
-  const pickerControl = (
-    <ActionIcon variant="subtle" color="gray" onClick={() => ref.current?.showPicker()}>
-      <AiOutlineClockCircle style={{ width: "70%", height: "70%" }} />
-    </ActionIcon>
-  );
-
 
   const editor = useEditor({
     extensions: [
@@ -55,12 +55,12 @@ export default function ViewEditAdminMlai({ data, paslon, }: { data: any, paslon
       Color,
       TextAlign.configure({ types: ['heading', 'paragraph'] }),
     ],
-    content: dataMl.content
+    content: isDataSwot.content
   });
 
 
-  function validasiUser() {
-    if (Object.values(dataMl).includes("") || editor?.getHTML() == '<p></p>')
+  function validationData() {
+    if (Object.values(isDataSwot).includes("") || editor?.getHTML() == '<p></p>')
       return toast("The form cannot be empty", { theme: "dark" });
     setOpenModal(true);
   }
@@ -71,55 +71,47 @@ export default function ViewEditAdminMlai({ data, paslon, }: { data: any, paslon
       <Stack>
         <ButtonBack />
         <Group pt={30}>
-          <Text fw={"bold"}>EDIT ML AI</Text>
+          <Text fw={"bold"}>EDIT STEP</Text>
         </Group>
         <SimpleGrid
-          cols={{ base: 1, sm: 3, lg: 3 }}
+          cols={{ base: 1, sm: 2, lg: 2 }}
           spacing={{ base: 10, sm: "xl" }}
         >
           <Box>
             <Select
-              label={"Paslon"}
+              label={"Kandidat"}
               required
-              value={dataMl.idPaslon}
-              data={dataPaslon.map((pro: any) => ({
+              value={isDataSwot.idCandidate}
+              placeholder='Pilih Kandidat'
+              data={dataCandidate.map((pro: any) => ({
                 value: String(pro.id),
                 label: pro.name
               }))}
               onChange={(val: any) =>
-                setDataMl({
-                  ...dataMl,
-                  idPaslon: val
+                setDataSwot({
+                  ...isDataSwot,
+                  idCandidate: val
                 })
               }
             />
           </Box>
           <Box>
-            <DateInput valueFormat="DD-MM-YYYY" required
-              label={"Tanggal"}
-              placeholder="Pilih Tanggal"
+            <Select
+              label={"Kategori"}
+              required
+              value={isDataSwot.category}
+              placeholder='Pilih Kategori'
+              data={dCategory.map((pro: any) => ({
+                value: String(pro.val),
+                label: pro.val
+              }))}
               onChange={(val: any) =>
-                setDataMl({
-                  ...dataMl,
-                  dateContent: moment(val).format('YYYY-MM-DD'),
+                setDataSwot({
+                  ...isDataSwot,
+                  category: val
                 })
               }
-              defaultValue={new Date(dataMl.dateContent)}
             />
-          </Box>
-          <Box>
-            <TimeInput
-              label="Jam"
-              required ref={ref}
-              rightSection={pickerControl} 
-              onChange={(val: any) =>
-                setDataMl({
-                  ...dataMl,
-                  timeContent: String(val.target.value)
-                })
-              }
-              defaultValue={dataMl.timeContent}
-              />
           </Box>
         </SimpleGrid>
         <Box pt={30}>
@@ -201,7 +193,7 @@ export default function ViewEditAdminMlai({ data, paslon, }: { data: any, paslon
         </Box>
       </Stack>
       <Group justify='flex-end' pt={20}>
-        <Button color={"gray"} w={200} onClick={()=> validasiUser()}>EDIT</Button>
+        <Button color={"gray"} w={200} onClick={() => validationData()}>SUBMIT</Button>
       </Group>
       <Modal
         size={"md"}
@@ -211,7 +203,7 @@ export default function ViewEditAdminMlai({ data, paslon, }: { data: any, paslon
         withCloseButton={false}
         closeOnClickOutside={false}
       >
-        <ModalEditMlAi dataMlAi={dataMl} textContent={editor?.getHTML()}/>
+        <ModalEditSwot dataSwot={isDataSwot} textContent={editor?.getHTML()} />
       </Modal>
     </>
   );

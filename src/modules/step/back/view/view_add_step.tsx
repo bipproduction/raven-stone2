@@ -79,7 +79,7 @@ export default function ViewAddStep({ candidate }: { candidate: any, }) {
         content: isContent,
     });
     const [isDataStep, setDataStep] = useState({
-        candidate: "",
+        idCandidate: "",
         category: "",
         sentiment: ""
     })
@@ -114,7 +114,7 @@ export default function ViewAddStep({ candidate }: { candidate: any, }) {
                             onChange={(val: any) =>
                                 setDataStep({
                                     ...isDataStep,
-                                    candidate: (val == null) ? '' : val
+                                    idCandidate: (val == null) ? '' : val
                                 })
                             }
                         />
