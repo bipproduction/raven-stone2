@@ -7,10 +7,12 @@ import { useAtom } from "jotai";
 import { isModalSwot } from "../val/modal_swot";
 import ModalDeleteSwot from "./modal_del_swot";
 import { funGetSwotByCandidate } from "../..";
+import { useRouter } from "next/navigation";
 
 export default function TableDataSwot({ title, data, searchParam }: { title: any, data: any, searchParam: any }) {
   const [openModal, setOpenModal] = useAtom(isModalSwot);
   const [dataDelete, setDataDelete] = useState(Number)
+  const router = useRouter()
 
 
   const [isData, setData] = useState(data)
@@ -38,9 +40,9 @@ export default function TableDataSwot({ title, data, searchParam }: { title: any
             <Text fw={"bold"} c={"white"}>
               {title}
             </Text>
-            {/* <Button bg={"gray"} onClick={() => router.push("swot/add?prov=" + searchParams.get('prov') + '&city=' + searchParams.get('city'))}>
-                TAMBAH SWOT
-              </Button> */}
+            <Button bg={"gray"} onClick={() => router.push("/dashboard-admin/swot/add")}>
+                ADD SWOT
+              </Button>
           </Group>
           <Box pt={20}>
             <Box

@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { CiRead, CiUnread } from "react-icons/ci";
 import { MdDelete, MdEditCalendar } from "react-icons/md";
+import TextAnimation from "react-typing-dynamics";
 
 export default function DetailDataSwot({ v, i, onClick }: { v: any; i: any, onClick: (val: any) => void }) {
     const open = useState(false);
@@ -36,6 +37,15 @@ export default function DetailDataSwot({ v, i, onClick }: { v: any; i: any, onCl
                             </Stack>
                             <ActionIcon
                                 variant="transparent"
+                                color="rgba(5, 128, 23, 1)"
+                                size="xl"
+                                aria-label="Edit"
+                                onClick={() => router.push("swot/edit/" + v.id)}
+                            >
+                                <MdEditCalendar size={20} />
+                            </ActionIcon>
+                            <ActionIcon
+                                variant="transparent"
                                 color="rgba(209, 4, 4, 1)"
                                 size="xl"
                                 aria-label="Delete"
@@ -65,7 +75,18 @@ export default function DetailDataSwot({ v, i, onClick }: { v: any; i: any, onCl
                                 <Text c={"white"} fw={"bold"} fz={20} mb={10}>
                                     Content
                                 </Text>
-                                <Text c={"white"}>{v.content}</Text>
+                                <Stack c={"white"}>
+                                    <TextAnimation
+                                        phrases={[...v.content.split('\n')]}
+                                        typingSpeed={0}
+                                        backspaceDelay={0}
+                                        eraseDelay={0}
+                                        timeComplete={0}
+                                        errorProbability={0}
+                                        eraseOnComplete={false}
+                                        isSecure={false}
+                                    />
+                                </Stack>
                             </Box>
                         </Collapse>
                     </Table.Td>
