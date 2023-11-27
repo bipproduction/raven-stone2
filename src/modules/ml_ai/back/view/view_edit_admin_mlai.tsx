@@ -60,7 +60,7 @@ export default function ViewEditAdminMlai({ data, paslon, }: { data: any, paslon
 
 
   function validasiUser() {
-    if (Object.values(dataMl).includes(""))
+    if (Object.values(dataMl).includes("") || editor?.getHTML() == '<p></p>')
       return toast("The form cannot be empty", { theme: "dark" });
     setOpenModal(true);
   }
