@@ -4,17 +4,19 @@ import toast from 'react-simple-toasts';
 import { useAtom } from 'jotai';
 import { funLogUser } from '@/modules/user';
 import { isModalStep } from '../val/modal_step';
+import funAddStep from '../fun/add_step';
 
 export default function ModalAddStep({ dataStep, textContent }: { dataStep: any, textContent: any }) {
     const [valOpenModal, setOpenModal] = useAtom(isModalStep)
 
     async function addStep() {
-        // const res = await funAddMlAi({ data: dataMlAi, textContent: textContent });
-        // if (!res.success) return toast("Failed! " + res.message, { theme: "dark" });
+        const res = await funAddStep({ data: dataStep, textContent: textContent });
+        if (!res.success) return toast("Failed! " + res.message, { theme: "dark" });
         // await funLogUser({ act: "ADD", desc: `User Add Data ML-AI (ID : ${res.id})` })
-        // toast("Success", { theme: "dark" });
-        // setOpenModal(false);
+        toast("Success", { theme: "dark" });
+        setOpenModal(false);
     }
+    
     return (
         <>
             <Box>
