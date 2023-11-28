@@ -50,15 +50,27 @@ export default function ViewDeleteEmotion({ paslon, candidate }: { paslon: any, 
   // PASLON
   const [valOpenModalPaslon, setOpenModalPaslon] = useAtom(isModalEmotionPaslon)
   const [dataPaslon, setDataPaslon] = useState(paslon)
-  const [isPaslon, setPaslon] = useState()
-  const [date, setDate] = useState()
+  const [isPaslon, setPaslon] = useState<any>()
+  const [date, setDate] = useState<any>()
   const [isJam, setIsJam] = useState<any>([])
-  const [valueJam, setValueJam] = useState()
+  const [valueJam, setValueJam] = useState<any>()
 
   async function dataValue(val: any) {
-    setDate(val)
-    const data = await funGetAllJamEmotionPaslon({ paslon: isPaslon, date: val })
-    setIsJam(data)
+    if (_.isUndefined(isPaslon) || _.isNull(isPaslon)) {
+      setDate(null)
+      toast("Silahkan pilih paslon terlebih dahulu", { theme: "dark" })
+    } else {
+      setDate(val)
+      const data = await funGetAllJamEmotionPaslon({ paslon: isPaslon, date: val })
+      setIsJam(data)
+    }
+  }
+
+  function choosePaslon(val: any) {
+    setPaslon(val)
+    setDate(null)
+    setIsJam([])
+    setValueJam(null)
   }
 
   function validasiUser() {
@@ -90,7 +102,7 @@ export default function ViewDeleteEmotion({ paslon, candidate }: { paslon: any, 
                   value={isPaslon}
                   label={"Paslon"}
                   searchable
-                  onChange={(val: any) => { setPaslon(val) }}
+                  onChange={(val: any) => { choosePaslon(val) }}
                 />
                 <DateInput
                   valueFormat="DD-MM-YYYY"
@@ -108,7 +120,7 @@ export default function ViewDeleteEmotion({ paslon, candidate }: { paslon: any, 
                     value: String(can.timeEmotion),
                     label: can.timeEmotion
                   }))}
-                  // value={dataJam}
+                  value={valueJam}
                   onChange={(val: any) => setValueJam(val)}
                   placeholder='Pilih Jam'
                   mt={10}
@@ -176,7 +188,12 @@ export default function ViewDeleteEmotion({ paslon, candidate }: { paslon: any, 
         withCloseButton={false}
         closeOnClickOutside={false}
       >
-        <ModalDelPaslon isPaslon={isPaslon} date={date} valueJam={valueJam} />
+        <ModalDelPaslon isPaslon={isPaslon} date={date} valueJam={valueJam} onSuccess={() => {
+          setPaslon(null)
+          setDate(null)
+          setIsJam([])
+          setValueJam(null)
+        }} />
       </Modal>
 
 
