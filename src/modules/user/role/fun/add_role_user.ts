@@ -4,11 +4,15 @@ import { revalidatePath } from 'next/cache';
 
 export default async function funAddUserRole({ name, component }: { name: any, component: any }) {
 
-   const role = await prisma.userRole.create({
+    // proses add data user role yaitu  nama
+    const role = await prisma.userRole.create({
         data: {
             name: name
         }
     })
+
+    // proses looping data user access
+    // dan mengambil id user role yang bisa di akses
     for (let i of component) {
         await prisma.userAccess.create({
             data: {
@@ -19,9 +23,11 @@ export default async function funAddUserRole({ name, component }: { name: any, c
     }
 
 
-
+    // berfungsi kembali ke path yang tertera pada url
     revalidatePath("/dashboard-admin/role-user")
 
+    // berfungsi untuk menampilkan data success, message,
+    // atau proses pengembalian yang terdiri dari success, message
     return {
         success: true,
         message: "Success"
