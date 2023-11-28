@@ -4,6 +4,9 @@ import { prisma } from "@/modules/_global"
 import _ from "lodash"
 
 export async function funGetAllSetUser() {
+
+    //proses untuk menampilkan semua data yang ada di user
+    // yaitu yang berada pada select
     const data = await prisma.user.findMany({
         where: {
             isActive: true,
@@ -22,6 +25,7 @@ export async function funGetAllSetUser() {
         }
     })
 
+    // proses omit untuk merapikan hasil dari data user, sesuai apa yang kita inginkan
     const dataOmit = data.map((item) => ({
         ..._.omit(item, ["User"], ["userRole"]),
         name: item.name,
@@ -31,5 +35,6 @@ export async function funGetAllSetUser() {
         UserRole: item.UserRole.name
     }))
 
+    //proses dataomit yang sudah di rapikan
     return dataOmit
 }
