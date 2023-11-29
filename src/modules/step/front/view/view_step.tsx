@@ -6,6 +6,14 @@ import _ from 'lodash';
 import { PageSubTitle, funGetOneCandidate } from '@/modules/_global';
 import funGetStepFront from '../fun/get_step_front';
 
+
+/**
+ * Fungsi untuk menampilkan view Step.
+ * @param {kandidate} kandidate - menampilkan kandidate.
+ * @param {stepCandidate} stepCandidate - menampilkan stepCandidate.
+ * @param {cCandidate} cCandidate - menampilkan cCandidate.
+ * @returns Untuk menampilkan keseluruhan dari View step
+ */
 export default function ViewStep({ kandidate, stepCandidate, cCandidate }: { kandidate: any, stepCandidate: any, cCandidate: any }) {
   const [dataKandidate, setDataKandidate] = useState(kandidate)
   const [isData, setData] = useState(stepCandidate)
