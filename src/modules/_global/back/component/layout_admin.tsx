@@ -1,5 +1,4 @@
 'use client'
-
 import { ActionIcon, AppShell, Box, Burger, Group, Menu, Modal, NavLink, UnstyledButton, rem } from "@mantine/core";
 import { useDisclosure, useShallowEffect } from "@mantine/hooks";
 import { usePathname, useRouter } from "next/navigation";
@@ -7,12 +6,19 @@ import { FaUserCircle, FaUserTie } from "react-icons/fa";
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import { useState } from "react";
 import { funLogout } from "@/modules/auth";
-import toast from "react-simple-toasts";
 import { funLogUser } from "@/modules/user";
 import { useAtom } from "jotai";
 import { isModalLayout } from "../val/isModalLayout";
 import ModalLogout from "./modal_logout";
 
+/**
+ * Menampilkan layout admin,
+ * berisikan menu navbar, header dan modal logout
+ * @param name nama user 
+ * @param menu list menu yang diperbolehkan utk diakses
+ * @param children content children
+ * @returns komponen layout admin
+ */
 
 export default function LayoutAdmin({ name, menu, children }: { name: any, menu: any, children: React.ReactNode; }) {
     const [valOpenModal, setOpenModal] = useAtom(isModalLayout)
