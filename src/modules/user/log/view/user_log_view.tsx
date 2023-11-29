@@ -8,6 +8,7 @@ import moment from "moment";
 
 /**
  * Fungsi untuk menampilkan table log user.
+ * @param {user} user - menampilkan user.
  * @returns  Hasil menampilkan tabel log user berdasarkan pencarian.
  */
 

@@ -6,6 +6,13 @@ import { cookies } from "next/headers"
 import _ from "lodash"
 import { pwd_key_config } from "@/modules/_global/bin/val_global"
 
+
+/**
+ * Fungsi untuk menampilkan User Log.
+ * @param {act} act - data dari act.
+ * @param {desc} desc - data dari desc.
+ * @returns {act, desc} Proses ini akan menghasilkan dari data act dan desc.
+ */
 export default async function funLogUser({ act, desc }: { act: any, desc: any }) {
     const c = cookies().get("_tknRV")
     const dataCookies = await unsealData(c!.value, { password: pwd_key_config as string })
