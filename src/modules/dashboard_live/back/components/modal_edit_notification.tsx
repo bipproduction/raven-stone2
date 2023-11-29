@@ -6,6 +6,14 @@ import toast from 'react-simple-toasts';
 import funUpdateNotification from '../fun/update_notification';
 import { funLogUser } from '@/modules/user';
 
+/**
+ * Modal konfirmasi edit notifikasi untuk dashboard live.
+ * Jika klik "NO" maka modal akan close,
+ * jika klik "YES" maka sistem akan menjalankan proses edit notifikasi
+ * @param data data yang akan diedit
+ * @returns komponen modal
+ */
+
 export default function ModalEditNotification({ data }: { data: any }) {
   const [valOpenModal, setOpenModal] = useAtom(isModalDashboardLive)
 
