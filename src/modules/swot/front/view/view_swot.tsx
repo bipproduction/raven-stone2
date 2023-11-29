@@ -7,6 +7,13 @@ import { PageSubTitle, funGetOneCandidate } from '@/modules/_global';
 import _ from 'lodash';
 
 
+/**
+ * Fungsi untuk menampilkan view Swot.
+ * @param {swot} swot - menampilkan swot.
+ * @param {candidate} candidate - menampilkan candidate.
+ * @param {cCandidate} cCandidate - menampilkan cCandidate.
+ * @returns Untuk menampilkan keseluruhan dari View Swot
+ */
 export default function ViewSwot({ swot, candidate, cCandidate }: { swot: any, candidate: any, cCandidate: any }) {
   const [dataKandidate, setDataKandidate] = useState(candidate)
   const [isData, setData] = useState(swot)
