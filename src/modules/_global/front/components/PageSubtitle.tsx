@@ -1,20 +1,22 @@
 'use client'
-
-
 import { Box, Divider, Group, Text, Title } from '@mantine/core';
 import { useInterval, useShallowEffect } from '@mantine/hooks';
 import _ from 'lodash';
 import React, { useState } from 'react';
 
 /**
- * Fungsi untuk menampilkanPage Subtitle.
- * @returns {component} menampilaknPage Subtitle.
+ * Menampilkan title page dan jam berjalan
+ * @param text1 kata yang ingin di bold
+ * @param text2 kata yang tidak ingin di bold
+ * @returns komponen subtitle page
  */
+
 export const PageSubTitle = ({ text1, text2 }: { text1: string, text2: string }) => {
   const now = new Date();
   const bulan = now.toLocaleString('default', { month: 'long' })
   const [isDateFull, setDateFull] = useState("")
 
+  // fungsi interval untuk update jam setiap 1 menit
   const interval = useInterval(() => {
     const nowLoad = new Date()
     setDateFull(nowLoad.getDate() + ' ' + _.upperCase(bulan) + ' ' + nowLoad.getFullYear() + ' ' + nowLoad.getHours() + ':' + (nowLoad.getMinutes() < 10 ? '0' + nowLoad.getMinutes() : nowLoad.getMinutes()) + ', GMT+8')
@@ -22,10 +24,15 @@ export const PageSubTitle = ({ text1, text2 }: { text1: string, text2: string })
 
 
   useShallowEffect(() => {
+    // set awal jam
     const now1 = now.getDate() + ' ' + _.upperCase(bulan) + ' ' + now.getFullYear() + ' ' + now.getHours() + ':' + (now.getMinutes() < 10 ? '0' + now.getMinutes() : now.getMinutes()) + ', GMT+8'
     setDateFull(now1)
+
+    // run fungsi interval
     interval.start()
   }, [])
+
+
   return (
     <>
       <Box>

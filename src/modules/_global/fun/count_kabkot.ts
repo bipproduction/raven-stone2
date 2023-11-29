@@ -1,7 +1,10 @@
 "use server"
-
 import { prisma } from "@/modules/_global";
 
+/**
+ * Get jumlah kabupaten kota
+ * @returns jumlah kabkot
+ */
 
 export async function countKabkot() {
     const kabCount = await prisma.areaKabkot.count({
@@ -9,5 +12,6 @@ export async function countKabkot() {
             isActive: true
         }
     })
+
     return kabCount;
 }
