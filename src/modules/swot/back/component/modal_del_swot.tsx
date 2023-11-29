@@ -8,6 +8,12 @@ import funDelSwotById from "../fun/del_swot_by_id"
 import { funLogUser } from "@/modules/user"
 
 
+/**
+ * Fungsi untuk menampilkan Modal Delete Swot.
+ * @param {id} id - menampilkan id.
+ * @param {onSuccess} onSuccess - menampilkan onSuccess.
+ * @returns Untuk menampilkan Modal Delete Swot
+ */
 export default function ModalDeleteSwot({ id, onSuccess }: { id: any, onSuccess: (val: any) => void }) {
     const [openModal, setOpenModal] = useAtom(isModalSwot)
 

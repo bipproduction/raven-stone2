@@ -8,6 +8,15 @@ import toast from "react-simple-toasts"
 import TableDataSwot from "../component/table_data_swot"
 import papa from "papaparse"
 
+
+/**
+ * Fungsi untuk menampilkan view Admin Swot.
+ * @param {kandidat} kandidat - menampilkan kandidat.
+ * @param {params} params - menampilkan params.
+ * @param {datatable} datatable - menampilkan datatable.
+ * @param {datadownload} datadownload - menampilkan datadownload.
+ * @returns Untuk menampilkan Hsil dari View Admin Swot
+ */
 export default function ViewAdminSwot({ params, kandidat, datatable, datadownload }: { params: any, kandidat: any, datatable: any, datadownload: any }) {
     const router = useRouter();
     const [dataKandidat, setDataKandidat] = useState(kandidat)

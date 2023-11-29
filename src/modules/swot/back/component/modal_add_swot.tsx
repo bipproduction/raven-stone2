@@ -5,6 +5,12 @@ import { Alert, Box, Button, Group, Text } from '@mantine/core';
 import toast from 'react-simple-toasts';
 import funAddSwot from '../fun/add_swot';
 
+/**
+ * Fungsi untuk menampilkan Modal Add Swot.
+ * @param {dataSwot} dataSwot - menampilkan dataSwot.
+ * @param {textContent} textContent - menampilkan textContent.
+ * @returns Untuk menampilkan Modal Add Swot
+ */
 export default function ModalAddSwot({ dataSwot, textContent }: { dataSwot: any, textContent: any }) {
     const [valOpenModal, setOpenModal] = useAtom(isModalSwot)
 

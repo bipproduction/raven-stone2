@@ -7,6 +7,14 @@ import { CiRead, CiUnread } from "react-icons/ci";
 import { MdDelete, MdEditCalendar } from "react-icons/md";
 import TextAnimation from "react-typing-dynamics";
 
+
+/**
+ * Fungsi untuk menampilkan Detail Data Swot.
+ * @param {v} v - menampilkan v.
+ * @param {i} i - menampilkan i.
+ * @param {onClick} onClick - menampilkan onClick.
+ * @returns Untuk menampilkan Hsil dari Detail Data Swot
+ */
 export default function DetailDataSwot({ v, i, onClick }: { v: any; i: any, onClick: (val: any) => void }) {
     const open = useState(false);
     const router = useRouter();

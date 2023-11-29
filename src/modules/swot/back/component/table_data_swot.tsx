@@ -9,6 +9,14 @@ import ModalDeleteSwot from "./modal_del_swot";
 import { funGetSwotByCandidate } from "../..";
 import { useRouter } from "next/navigation";
 
+
+/**
+ * Fungsi untuk menampilkan Table Data Swot.
+ * @param {data} data - menampilkan data.
+ * @param {title} title - menampilkan title.
+ * @param {searchParam} searchParam - menampilkan searchParam.
+ * @returns Untuk menampilkan Table Data Swot
+ */
 export default function TableDataSwot({ title, data, searchParam }: { title: any, data: any, searchParam: any }) {
   const [openModal, setOpenModal] = useAtom(isModalSwot);
   const [dataDelete, setDataDelete] = useState(Number)

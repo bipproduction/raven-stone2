@@ -18,6 +18,13 @@ import { useAtom } from 'jotai';
 import { isModalSwot } from '../val/modal_swot';
 import ModalEditSwot from '../component/modal_edit_swot';
 
+
+/**
+ * Fungsi untuk menampilkan view Edit Swot.
+ * @param {data} data - menampilkan data.
+ * @param {dataCan} dataCan - menampilkan dataCan.
+ * @returns Untuk menampilkan Hsil dari View Edit Swot
+ */
 export default function ViewEditSwot({ data, dataCan }: { data: any, dataCan: any }) {
   const [dataCandidate, setDataCandidate] = useState(dataCan)
   const [valOpenModal, setOpenModal] = useAtom(isModalSwot)

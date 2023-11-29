@@ -5,6 +5,13 @@ import { isModalSwot } from '../val/modal_swot';
 import funUpdateSwot from '../fun/update_swot';
 import toast from 'react-simple-toasts';
 
+
+/**
+ * Fungsi untuk menampilkan Modal Edit Swot.
+ * @param {dataSwot} dataSwot - menampilkan dataSwot.
+ * @param {textContent} textContent - menampilkan textContent.
+ * @returns Untuk menampilkan Modal Edit Swot
+ */
 export default function ModalEditSwot({dataSwot, textContent}: {dataSwot: any, textContent: any}) {
   const [valOpenModal, setOpenModal] = useAtom(isModalSwot)
 
