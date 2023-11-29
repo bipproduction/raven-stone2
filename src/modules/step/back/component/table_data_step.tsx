@@ -10,6 +10,13 @@ import { funGetStepByCandidate } from "../..";
 import { useRouter } from "next/navigation";
 
 
+/**
+ * Fungsi untuk menampilkan Table Data Step.
+ * @param {data} data - menampilkan data.
+ * @param {title} title - menampilkan title.
+ * @param {searchParam} searchParam - menampilkan searchParam.
+ * @returns Untuk menampilkan Table Data Step
+ */
 export default function TableDataStep({ title, data, searchParam }: { title: any, data: any, searchParam: any }) {
   const [openModal, setOpenModal] = useAtom(isModalStep);
   const [dataDelete, setDataDelete] = useState(Number)

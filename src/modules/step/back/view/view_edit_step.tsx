@@ -19,6 +19,13 @@ import { ButtonBack } from "@/modules/_global"
 import { CiPickerEmpty } from "react-icons/ci"
 import ModalEditStep from "../component/modal_edit_step"
 
+
+/**
+ * Fungsi untuk menampilkan view Edit Step.
+ * @param {data} data - menampilkan data.
+ * @param {dataCan} dataCan - menampilkan dataCan.
+ * @returns Untuk menampilkan Hsil dari View Edit Step
+ */
 export default function ViewEditStep({ data, dataCan }: { data: any, dataCan: any }) {
     const [dataCandidate, setDatCandidate] = useState(dataCan)
     const [valOpenModal, setOpenModal] = useAtom(isModalStep)

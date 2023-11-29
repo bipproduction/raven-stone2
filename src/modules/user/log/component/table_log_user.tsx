@@ -4,6 +4,13 @@ import { Box, Group, Pagination, ScrollArea, Table } from "@mantine/core"
 import moment from "moment"
 import { useState } from "react"
 
+
+/**
+ * Fungsi untuk menampilkan table log user.
+ * @param {user} user - menampilkan user.
+ * @param {npage} npage - menampilkan npage.
+ * @returns  Hasil menampilkan tabel log user.
+ */
 export default function TableLogUser({ user, npage }: { user: any, npage: any }) {
     const [listData, setListData] = useState<any[]>(user)
     

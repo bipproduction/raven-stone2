@@ -2,6 +2,12 @@
 
 import { prisma } from "@/modules/_global"
 
+
+/**
+ * Fungsi untuk Menampilkan User Role by id.
+ * @param {id} id - menampilkan id.
+ * @returns {id} Proses ini akan menghasilkan id dan data dari User Role yang akan di edit.
+ */
 export default async function funGetOneRoleUser({ id }: { id: number }) {
 
     // proses untuk menampilkan data userrole yang terdiri dari id dan name

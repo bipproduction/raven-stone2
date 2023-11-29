@@ -6,6 +6,13 @@ import { funLogUser } from '@/modules/user';
 import { isModalStep } from '../val/modal_step';
 import funAddStep from '../fun/add_step';
 
+
+/**
+ * Fungsi untuk menampilkan Modal Add tep.
+ * @param {dataStep} dataStep - menampilkan dataStep.
+ * @param {textContent} textContent - menampilkan textContent.
+ * @returns Untuk menampilkan Modal Add tep
+ */
 export default function ModalAddStep({ dataStep, textContent }: { dataStep: any, textContent: any }) {
     const [valOpenModal, setOpenModal] = useAtom(isModalStep)
 

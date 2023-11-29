@@ -8,6 +8,12 @@ import funDelStepById from "../fun/del_step"
 import { funLogUser } from "@/modules/user"
 
 
+/**
+ * Fungsi untuk menampilkan Modal Delete Step.
+ * @param {id} id - menampilkan id.
+ * @param {onSuccess} onSuccess - menampilkan onSuccess.
+ * @returns Untuk menampilkan Modal Delete Step
+ */
 export default function ModalDeleteStep({ id, onSuccess }: { id: any, onSuccess: (val: any) => void }) {
     const [openModal, setOpenModal] = useAtom(isModalStep)
 

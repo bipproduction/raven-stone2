@@ -2,7 +2,16 @@
 
 import { prisma } from "@/modules/_global"
 
-export default async function funGetOneStep({id}: {id: any}) {
+
+/**
+ * Fungsi untuk Menampilkan step by id.
+ * @param {id} id - menampilkan id.
+ * @returns {id} Proses ini akan menghasilkan id dan data dari step yang akan di edit.
+ */
+export default async function funGetOneStep({ id }: { id: any }) {
+
+    //proses untuk menampilkan data uniq seperti id
+    // proses tersebut menampilkan data yang terdapat di dalam select 
     const data = await prisma.step.findUnique({
         where: {
             isActive: true,
@@ -17,5 +26,6 @@ export default async function funGetOneStep({id}: {id: any}) {
         }
     })
 
+    // proses pengembalian data
     return data
 }

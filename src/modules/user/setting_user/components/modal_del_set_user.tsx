@@ -6,6 +6,12 @@ import funDelSetUser from '../fun/del_set_user';
 import toast from 'react-simple-toasts';
 import { funLogUser } from '../..';
 
+/**
+ * Fungsi untuk menampilkan Modal Delete Setting User.
+ * @param {id} id - menampilkan id.
+ * @param {onSuccess} onSuccess - menampilkan onSuccess.
+ * @returns Untuk menampilkan Modal Delete Setting User
+ */
 export default function ModalDelSetUser({ id, onSuccess }: { id: any, onSuccess: (val: any) => void }) {
   const [valOpenModal, setOpenModal] = useAtom(isModalSetUser)
 

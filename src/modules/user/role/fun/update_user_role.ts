@@ -5,6 +5,14 @@ import { prisma } from "@/modules/_global";
 import { UserRole } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 
+
+/**
+ * Fungsi untuk Edit User Role.
+ * @param {id} id - data dari id.
+ * @param {name} name - data dari name.
+ * @param {component} component - data dari iuser access.
+ * @returns {name, component} Proses ini akan menghasilkan dari data id, name dan component.
+ */
 export default async function funUpdateUserRole({ name, component, id }: { name: any, component: any, id: number }) {
 
     // proses update data user role 

@@ -18,6 +18,12 @@ import { ButtonBack } from '@/modules/_global';
 import { CiPickerEmpty } from 'react-icons/ci';
 import ModalAddSwot from '../component/modal_add_swot';
 
+
+/**
+ * Fungsi untuk menampilkan view Add Swot.
+ * @param {candidate} candidate - menampilkan candidate.
+ * @returns Untuk menampilkan Hsil dari View Add Swot
+ */
 export default function ViewAddSwot({ candidate }: { candidate: any }) {
   const [isContent, setContent] = useState('')
   const [dataCandidate, setDataCandidate] = useState(candidate)

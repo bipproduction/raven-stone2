@@ -8,6 +8,12 @@ import { isModalSetUser } from '../val/isModaSetUser';
 import toast from 'react-simple-toasts';
 import ModalEditSetUser from '../components/modal_edit_set_user';
 
+/**
+ * Fungsi untuk menampilkan view Edit Setting User.
+ * @param {data} data - menampilkan data.
+ * @param {roleUser} roleUser - menampilkan roleUser.
+ * @returns Untuk menampilkan keseluruhan dari View Edit Setting User
+ */
 export default function ViewEditSettingUser({ roleUser, data }: { roleUser: any, data: any }) {
   const focusTrapRef = useFocusTrap();
   const [isDataRole, setIsDataRole] = useState<any[]>(roleUser)
