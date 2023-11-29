@@ -5,6 +5,13 @@ import { Alert, Box, Button, Group, Text } from '@mantine/core';
 import funUpdateStep from '../fun/update_step';
 import toast from 'react-simple-toasts';
 
+
+/**
+ * Fungsi untuk menampilkan Modal Edit Step.
+ * @param {dataStep} dataStep - menampilkan dataStep.
+ * @param {textContent} textContent - menampilkan textContent.
+ * @returns Untuk menampilkan Modal Edit Step
+ */
 export default function ModalEditStep({ dataStep, textContent }: { dataStep: any, textContent: any }) {
   const [valOpenModal, setOpenModal] = useAtom(isModalStep)
 
