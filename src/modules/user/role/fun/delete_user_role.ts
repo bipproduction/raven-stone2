@@ -3,6 +3,12 @@
 import { prisma } from "@/modules/_global"
 import { revalidatePath } from "next/cache"
 
+
+/**
+ * Fungsi untuk Menghapus User Role.
+ * @param {id} id - menampilkan id.
+ * @returns {id} Proses ini akan menghasilkan id Data dari User Role yang akan di hapus.
+ */
 export default async function funDelUserRole({ id }: { id: number }) {
 
     //proses untuk delete data user role atau update isactive menjadi false

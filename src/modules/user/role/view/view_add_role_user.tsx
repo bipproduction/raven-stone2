@@ -10,6 +10,12 @@ import { isModalRoleUser } from '../val/isModalUserRole';
 import { ButtonBack } from '@/modules/_global';
 import ModalAddUserRole from '../components/modal_add_user_role';
 
+
+/**
+ * Fungsi untuk menampilkan view Role User.
+ * @param {data} data - menampilkan data.
+ * @returns Untuk menampilkan keseluruhan dari View Role User
+ */
 export default function ViewAddRoleUser({ data }: { data: any }) {
   const router = useRouter()
   const [isComponents, setIsComponents] = useState<any[]>(data)
