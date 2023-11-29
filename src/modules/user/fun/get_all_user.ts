@@ -2,6 +2,11 @@
 
 import { prisma } from "@/modules/_global"
 
+
+/**
+ * Fungsi untuk menampilkan  User.
+ * @returns  Proses ini akan menampilkan keseluruhan data dari user.
+ */
 export default async function funGetAllUser() {
 
     //prose menampikan semua data user
