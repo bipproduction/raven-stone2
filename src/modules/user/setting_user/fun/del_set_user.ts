@@ -3,6 +3,11 @@
 import { prisma } from "@/modules/_global"
 import { revalidatePath } from "next/cache"
 
+/**
+ * Fungsi untuk Menghapus set User.
+ * @param {id} id - menampilkan id.
+ * @returns {id} Proses ini akan menghasilkan id Data dari set User yang akan di hapus.
+ */
 export default async function funDelSetUser({ id }: { id: any }) {
 
     //proses untuk delete data user atau update isactive menjadi false

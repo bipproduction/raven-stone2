@@ -3,6 +3,10 @@
 import { prisma } from "@/modules/_global"
 import _ from "lodash"
 
+/**
+ * Fungsi untuk menampilkan set User.
+ * @returns  Proses ini akan menampilkan keseluruhan data dari set user.
+ */
 export async function funGetAllSetUser() {
 
     //proses untuk menampilkan semua data yang ada di user

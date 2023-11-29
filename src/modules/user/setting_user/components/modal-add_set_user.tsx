@@ -7,6 +7,13 @@ import funAddSetUser from '../fun/add_set_user';
 import toast from 'react-simple-toasts';
 import { funLogUser } from '../..';
 
+
+/**
+ * Fungsi untuk menampilkan Modal Add Setting User.
+ * @param {id} id - menampilkan id.
+ * @param {dataUser} dataUser - menampilkan dataUser.
+ * @returns Untuk menampilkan Modal Add Setting User
+ */
 export default function ModalAddSetUser({ dataUser, id }: { dataUser: any, id: any }) {
   const router = useRouter()
   const [valOpenModal, setOpenModal] = useAtom(isModalSetUser)

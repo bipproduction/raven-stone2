@@ -8,6 +8,11 @@ import { useAtom } from 'jotai';
 import { funGetAllSetUser } from '../fun/get_all_set_user';
 import ModalDelSetUser from '../components/modal_del_set_user';
 
+/**
+ * Fungsi untuk menampilkan view Setting User.
+ * @param {data} data - menampilkan data.
+ * @returns Untuk menampilkan keseluruhan dari View Setting User
+ */
 export default function ViewSettingUser({ data }: { data: any }) {
   const router = useRouter()
   const [lisData, setListData] = useState<any[]>(data)

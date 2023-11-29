@@ -7,6 +7,13 @@ import funUpdateSetUser from '../fun/update_set_user';
 import toast from 'react-simple-toasts';
 import { funLogUser } from '../..';
 
+
+/**
+ * Fungsi untuk menampilkan Modal Edit Setting User.
+ * @param {id} id - menampilkan id.
+ * @param {data} data - menampilkan data.
+ * @returns Untuk menampilkan Modal Edit Setting User
+ */
 export default function ModalEditSetUser({ data, id }: { data: any, id: any }) {
   const [valOpenModal, setOpenModal] = useAtom(isModalSetUser)
   const router = useRouter()

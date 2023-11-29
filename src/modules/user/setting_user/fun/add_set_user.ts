@@ -4,6 +4,12 @@ import { prisma } from "@/modules/_global";
 import { User } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 
+
+/**
+ * Fungsi untuk menambahkan setting User.
+ * @param {data} data - data dari id Set User.
+ * @returns {data} Proses ini akan menghasilkan dari data.
+ */
 export default async function funAddSetUser({ data }: { data: any }) {
 
     // proses untuk membuat add data dengan menambahkan prisma beserta nama databse
