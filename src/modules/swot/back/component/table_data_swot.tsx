@@ -8,6 +8,7 @@ import { isModalSwot } from "../val/modal_swot";
 import ModalDeleteSwot from "./modal_del_swot";
 import { funGetSwotByCandidate } from "../..";
 import { useRouter } from "next/navigation";
+import { useShallowEffect } from "@mantine/hooks";
 
 
 /**
@@ -23,7 +24,7 @@ export default function TableDataSwot({ title, data, searchParam }: { title: any
   const router = useRouter()
 
 
-  const [isData, setData] = useState(data)
+  const [isData, setData] = useState<any>()
 
   async function onLoad() {
     const dataDB = await funGetSwotByCandidate({ candidate: searchParam.idCandidate })
@@ -49,8 +50,8 @@ export default function TableDataSwot({ title, data, searchParam }: { title: any
               {title}
             </Text>
             <Button bg={"gray"} onClick={() => router.push("/dashboard-admin/swot/add")}>
-                ADD SWOT
-              </Button>
+              ADD SWOT
+            </Button>
           </Group>
           <Box pt={20}>
             <Box
@@ -79,7 +80,7 @@ export default function TableDataSwot({ title, data, searchParam }: { title: any
                       </Table.Th>
                     </Table.Tr>
                   </Table.Thead>
-                  {isData.map((v: any, i: any) => (
+                  {isData && isData.map((v: any, i: any) => (
                     <DetailDataSwot v={v} i={i} key={i} onClick={(val) => {
                       setDataDelete(val)
                       setOpenModal(true)

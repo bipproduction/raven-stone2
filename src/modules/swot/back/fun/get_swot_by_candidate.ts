@@ -1,5 +1,4 @@
 'use server'
-
 import { prisma } from "@/modules/_global"
 
 /**
@@ -7,6 +6,7 @@ import { prisma } from "@/modules/_global"
  * @param {candidate} candidate - menampilakan candidate.
  * @returns {candidate} Proses ini akan menampilakan swot by id.
  */
+
 export default async function funGetSwotByCandidate({ candidate }: { candidate: any }) {
 
     // proses ini menampilkan data swot seperti idCandidate
@@ -14,6 +14,9 @@ export default async function funGetSwotByCandidate({ candidate }: { candidate: 
         where: {
             idCandidate: candidate,
             isActive: true
+        },
+        orderBy: {
+            id: 'asc'
         }
     })
 
