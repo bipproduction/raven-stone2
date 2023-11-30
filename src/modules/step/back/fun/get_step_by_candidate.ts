@@ -15,6 +15,9 @@ export default async function funGetStepByCandidate({ candidate }: { candidate: 
         where: {
             idCandidate: candidate,
             isActive: true
+        },
+        orderBy: {
+            id: 'asc'
         }
     })
 

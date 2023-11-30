@@ -5,6 +5,7 @@ import { TypeAnimation } from 'react-type-animation';
 import _ from 'lodash';
 import { PageSubTitle, funGetOneCandidate } from '@/modules/_global';
 import funGetStepFront from '../fun/get_step_front';
+import TextAnimation from 'react-typing-dynamics';
 
 
 /**
@@ -95,14 +96,18 @@ export default function ViewStep({ kandidate, stepCandidate, cCandidate }: { kan
                                 <>
                                   <Box pt={10} pb={30}>
                                     <ScrollArea h={250}>
-                                      <TypeAnimation
-                                        sequence={[
-                                          datanya[0].content,
-                                          1000,
-                                        ]}
-                                        speed={70}
-                                        style={{ fontSize: '16', color: "white" }}
-                                      />
+                                      <Stack c={"white"}>
+                                        <TextAnimation
+                                          phrases={[...datanya[_.random(0, datanya.length - 1)].content.split('\n')]}
+                                          typingSpeed={0}
+                                          backspaceDelay={0}
+                                          eraseDelay={0}
+                                          timeComplete={0}
+                                          errorProbability={0}
+                                          eraseOnComplete={false}
+                                          isSecure={false}
+                                        />
+                                      </Stack>
                                     </ScrollArea>
                                   </Box>
                                 </>
@@ -122,14 +127,18 @@ export default function ViewStep({ kandidate, stepCandidate, cCandidate }: { kan
                                 <>
                                   <Box pt={10} pb={30}>
                                     <ScrollArea h={250}>
-                                      <TypeAnimation
-                                        sequence={[
-                                          datanya[0].content,
-                                          1000,
-                                        ]}
-                                        speed={70}
-                                        style={{ fontSize: '16', color: "white" }}
-                                      />
+                                      <Stack c={"white"}>
+                                        <TextAnimation
+                                          phrases={[...datanya[_.random(0, datanya.length - 1)].content.split('\n')]}
+                                          typingSpeed={0}
+                                          backspaceDelay={0}
+                                          eraseDelay={0}
+                                          timeComplete={0}
+                                          errorProbability={0}
+                                          eraseOnComplete={false}
+                                          isSecure={false}
+                                        />
+                                      </Stack>
                                     </ScrollArea>
                                   </Box>
                                 </>
