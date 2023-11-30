@@ -17,6 +17,7 @@ import { Box, Button, Group, Modal, Select, SimpleGrid, Stack, Text } from '@man
 import { ButtonBack } from '@/modules/_global';
 import { CiPickerEmpty } from 'react-icons/ci';
 import ModalAddSwot from '../component/modal_add_swot';
+import _, { isNull } from 'lodash';
 
 
 /**
@@ -25,9 +26,10 @@ import ModalAddSwot from '../component/modal_add_swot';
  * @returns Untuk menampilkan Hsil dari View Add Swot
  */
 export default function ViewAddSwot({ candidate }: { candidate: any }) {
-  const [isContent, setContent] = useState('')
+  const [isContent, setContent] = useState<string | null>('')
   const [dataCandidate, setDataCandidate] = useState(candidate)
   const [valOpenModal, setOpenModal] = useAtom(isModalSwot)
+  const [kosongkan, setKosongkan] = useState<string | null>("0")
   const dCategory = [
     {
       val: "STRENGTH"
@@ -69,9 +71,22 @@ export default function ViewAddSwot({ candidate }: { candidate: any }) {
     setOpenModal(true);
   }
 
+
+  // function resetInput() {
+  //   setDataSwot({
+  //     idCandidate: "",
+  //     category: "",
+  //   })
+  // }
+
+  // function handleSubmit(e: React.FormEvent) {
+  //   e.preventDefault()
+  //   resetInput()
+  // }
+
   return (
     <>
-      <Stack>
+      {<Stack key={kosongkan}>
         <ButtonBack />
         <Group pt={30}>
           <Text fw={"bold"}>ADD SWOT</Text>
@@ -95,6 +110,7 @@ export default function ViewAddSwot({ candidate }: { candidate: any }) {
                   idCandidate: (val == null) ? '' : val
                 })
               }
+            // onSubmit={handleSubmit}
             />
           </Box>
           <Box>
@@ -112,6 +128,7 @@ export default function ViewAddSwot({ candidate }: { candidate: any }) {
                   category: (val == null) ? '' : val
                 })
               }
+            // onSubmit={handleSubmit}
             />
           </Box>
         </SimpleGrid>
@@ -192,9 +209,11 @@ export default function ViewAddSwot({ candidate }: { candidate: any }) {
             <RichTextEditor.Content />
           </RichTextEditor>
         </Box>
-      </Stack>
+      </Stack>}
       <Group justify='flex-end' pt={20}>
-        <Button color={"gray"} w={200} onClick={() => validationData()}>SUBMIT</Button>
+        <Button color={"gray"} w={200}
+          onClick={() => validationData()}
+        >SUBMIT</Button>
       </Group>
       <Modal
         size={"md"}
@@ -204,7 +223,18 @@ export default function ViewAddSwot({ candidate }: { candidate: any }) {
         withCloseButton={false}
         closeOnClickOutside={false}
       >
-        <ModalAddSwot dataSwot={isDataSwot} textContent={editor?.getHTML()} />
+        <ModalAddSwot onClick={() => {
+          setKosongkan(_.random(1, 1000).toString())
+          setContent(_.isNull(editor?.getHTML() == null).toString())
+          // isContent?.toString()
+          // setKosongkan(_.isString(editor?.getHTML() == '<p></p>').toString())
+          //  editor?.isEmpty
+          // setTimeout(() => {
+          //   setContent(_.isEmpty().toString())
+          // }, 1)
+          console.log("dikclick")
+        }} dataSwot={isDataSwot} textContent={editor?.getHTML()}
+        />
       </Modal>
     </>
   );
