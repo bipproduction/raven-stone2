@@ -11,15 +11,17 @@ import funAddSwot from '../fun/add_swot';
  * @param {textContent} textContent - menampilkan textContent.
  * @returns Untuk menampilkan Modal Add Swot
  */
-export default function ModalAddSwot({ dataSwot, textContent }: { dataSwot: any, textContent: any }) {
+export default function ModalAddSwot({ dataSwot, textContent, onClick }: { onClick: () => void, dataSwot: any, textContent: any }) {
     const [valOpenModal, setOpenModal] = useAtom(isModalSwot)
 
     async function addSwot() {
-        const res = await funAddSwot({ data: dataSwot, textContent: textContent });
-        if (!res.success) return toast("Failed! " + res.message, { theme: "dark" });
-        // await funLogUser({ act: "ADD", desc: `User Add Data ML-AI (ID : ${res.id})` })
-        toast("Success", { theme: "dark" });
+        // const res = await funAddSwot({ data: dataSwot, textContent: textContent });
+        // if (!res.success) return toast("Failed! " + res.message, { theme: "dark" });
+        // // await funLogUser({ act: "ADD", desc: `User Add Data ML-AI (ID : ${res.id})` })
+        // toast("Success", { theme: "dark" });
         setOpenModal(false);
+        onClick()
+        // onSuccess(true)
     }
 
     return (
@@ -40,7 +42,7 @@ export default function ModalAddSwot({ dataSwot, textContent }: { dataSwot: any,
                             radius={10}
                             color="gray.7"
                             w={150}
-                            onClick={() => addSwot()}
+                            onClick={addSwot}
                         >
                             YES
                         </Button>
