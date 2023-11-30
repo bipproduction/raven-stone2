@@ -1,5 +1,4 @@
 'use server'
-
 import { prisma } from "@/modules/_global";
 import moment from "moment";
 import { revalidatePath } from "next/cache";
@@ -16,45 +15,36 @@ export default async function funUploadEmotionPaslon({ body }: { body: any }) {
 
 
         if (i.id == '') {
-            // const cek = await prisma.effect.findFirst({
-            //     where: {
-            //         dateContent: new Date(i.dateContent),
-            //         timeContent: isoDateTime,
-            //         isActive: true,
-            //         idCandidate: 7
-            //     }
-            // });
-
-            // if (cek?.id) {
-            //     await prisma.effect.update({
-            //         where: {
-            //             id: cek.id
-            //         },
-            //         data: {
-            //             dateContent: new Date(i.dateContent),
-            //             timeContent: isoDateTime,
-            //             content: String(i.content)
-            //         }
-            //     });
-            // } else {
-            await prisma.paslonEmotion.create({
-                data: {
-                    idPaslon: pas,
+            const cek = await prisma.paslonEmotion.count({
+                where: {
                     dateEmotion: new Date(i.date),
                     timeEmotion: isoDateTime,
+                    isActive: true,
+                    idPaslon: pas,
                     idKabkot: Number(i.idKabkot),
                     idProvinsi: Number(i.idProvinsi),
-                    confidence: Number(i.confidence),
-                    supportive: Number(i.supportive),
-                    positive: Number(i.positive),
-                    undecided: Number(i.undecided),
-                    unsupportive: Number(i.unsupportive),
-                    uncomfortable: Number(i.uncomfortable),
-                    negative: Number(i.negative),
-                    dissapproval: Number(i.dissapproval)
                 }
             });
-            // }
+
+            if (cek == 0) {
+                await prisma.paslonEmotion.create({
+                    data: {
+                        idPaslon: pas,
+                        dateEmotion: new Date(i.date),
+                        timeEmotion: isoDateTime,
+                        idKabkot: Number(i.idKabkot),
+                        idProvinsi: Number(i.idProvinsi),
+                        confidence: Number(i.confidence),
+                        supportive: Number(i.supportive),
+                        positive: Number(i.positive),
+                        undecided: Number(i.undecided),
+                        unsupportive: Number(i.unsupportive),
+                        uncomfortable: Number(i.uncomfortable),
+                        negative: Number(i.negative),
+                        dissapproval: Number(i.dissapproval)
+                    }
+                });
+            }
 
 
         } else {

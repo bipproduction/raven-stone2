@@ -190,7 +190,6 @@ export default function ViewUploadEmotionCandidate() {
                                     </Box>
                                 </Box>
                                 <Group justify="flex-end">
-
                                     <Box
                                         style={{
                                             padding: 10,
