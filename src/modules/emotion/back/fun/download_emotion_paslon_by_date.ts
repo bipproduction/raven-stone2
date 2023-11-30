@@ -1,30 +1,50 @@
 'use server'
-
 import { funGetOnePaslon, prisma } from "@/modules/_global"
 import moment from 'moment'
 import _ from 'lodash'
 
 export default async function funDownloadEmotionPaslonDate({ find }: { find: any }) {
-    let emotion, titleA, kondisi, kondisi2, prov, result, daerah, dataJam, jamFix
+    let emotion, titleA, kondisi, kondisi2, prov, result, daerah, dataJam, jamFix, isoDateTime
 
     const dPaslon = await funGetOnePaslon({ paslon: find.idPaslon })
 
-    if (find.idProvinsi > 0 && find.idProvinsi <= 38) {
+    // if (find.idProvinsi > 0 && find.idProvinsi <= 38) {
+    //     kondisi = {
+    //         idProvinsi: find.idProvinsi,
+    //         idPaslon: find.idPaslon,
+    //         dateEmotion: find.date
+    //     }
+    //     prov = await prisma.areaProvinsi.findUnique({
+    //         where: {
+    //             id: find.idProvinsi
+    //         }
+    //     })
+
+    //     daerah = await prisma.areaKabkot.findMany({
+    //         where: {
+    //             idProvinsi: find.idProvinsi
+    //         },
+    //         select: {
+    //             name: true,
+    //             id: true,
+    //             idProvinsi: true,
+    //             AreaProvinsi: {
+    //                 select: {
+    //                     name: true,
+    //                 }
+    //             }
+    //         }
+    //     })
+
+    //     titleA = 'PASLON ' + dPaslon?.id + ' - ' + moment(find.date).format('DD MMMM YYYY') + ' (PROVINSI ' + prov?.name + ')'
+
+    // } else {
         kondisi = {
-            idProvinsi: find.idProvinsi,
             idPaslon: find.idPaslon,
             dateEmotion: find.date
         }
-        prov = await prisma.areaProvinsi.findUnique({
-            where: {
-                id: find.idProvinsi
-            }
-        })
 
         daerah = await prisma.areaKabkot.findMany({
-            where: {
-                idProvinsi: find.idProvinsi
-            },
             select: {
                 name: true,
                 id: true,
@@ -37,29 +57,8 @@ export default async function funDownloadEmotionPaslonDate({ find }: { find: any
             }
         })
 
-        titleA = 'PASLON ' + dPaslon?.id + ' - ' + moment(find.date).format('DD MMMM YYYY') + ' (PROVINSI ' + prov?.name + ')'
-
-    } else {
-        kondisi = {
-            idPaslon: find.idPaslon,
-            dateEmotion: find.date
-        }
-
-        daerah = await prisma.areaKabkot.findMany({
-            select: {
-                name: true,
-                id: true,
-                idProvinsi: true,
-                AreaProvinsi: {
-                    select: {
-                        name: true,
-                    }
-                }
-            }
-        })
-
-        titleA = 'PASLON ' + dPaslon?.id + ' - ' + moment(find.date).format('DD MMMM YYYY') + ' (SELURUH PROVINSI)'
-    }
+        titleA = 'PASLON ' + dPaslon?.id + ' - ' + moment(find.date).format('DD MMMM YYYY')
+    // }
 
     dataJam = await prisma.paslonEmotion.findMany({
         where: kondisi,
@@ -67,36 +66,38 @@ export default async function funDownloadEmotionPaslonDate({ find }: { find: any
             timeEmotion: true
         },
         orderBy: {
-            id: 'desc'
+            timeEmotion: 'desc'
         }
     });
 
     dataJam = _.map(_.groupBy(dataJam, "timeEmotion"), (v: any) => ({
-        timeEmotion: v.timeEmotion
+        timeEmotion: v[0].timeEmotion
     }))
 
     if (dataJam.length > 0) {
-        if (find.jam != null) {
+        if (find.jam != null && find.jam != undefined) {
             jamFix = find.jam
+            jamFix = new Date('1970-01-01 ' + jamFix);
+            isoDateTime = new Date(jamFix.getTime() - (jamFix.getTimezoneOffset() * 60000)).toISOString();
         } else {
-            jamFix = dataJam[0].timeEmotion
+            isoDateTime = dataJam[0].timeEmotion
         }
     }
 
-    if (find.idProvinsi > 0 && find.idProvinsi <= 38) {
+    // if (find.idProvinsi > 0 && find.idProvinsi <= 38) {
+    //     kondisi2 = {
+    //         idProvinsi: find.idProvinsi,
+    //         idPaslon: find.idPaslon,
+    //         dateEmotion: find.date,
+    //         timeEmotion: jamFix
+    //     }
+    // } else {
         kondisi2 = {
-            idProvinsi: find.idProvinsi,
             idPaslon: find.idPaslon,
             dateEmotion: find.date,
-            timeEmotion: jamFix
+            timeEmotion: isoDateTime
         }
-    } else {
-        kondisi2 = {
-            idPaslon: find.idPaslon,
-            dateEmotion: find.date,
-            timeEmotion: jamFix
-        }
-    }
+    // }
 
 
 
@@ -133,6 +134,9 @@ export default async function funDownloadEmotionPaslonDate({ find }: { find: any
                     nameCawapres: true
                 }
             }
+        },
+        orderBy: {
+            idKabkot: 'asc'
         }
     })
 

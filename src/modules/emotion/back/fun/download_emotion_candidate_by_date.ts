@@ -1,5 +1,4 @@
 'use server'
-
 import { funGetOneCandidate, prisma } from "@/modules/_global"
 import moment from "moment"
 import _ from "lodash"

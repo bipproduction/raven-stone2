@@ -5,6 +5,8 @@ import { TypeAnimation } from 'react-type-animation';
 import { funGetSwotFront } from '../..';
 import { PageSubTitle, funGetOneCandidate } from '@/modules/_global';
 import _ from 'lodash';
+import { useShallowEffect } from '@mantine/hooks';
+import TextAnimation from 'react-typing-dynamics';
 
 
 /**
@@ -16,7 +18,7 @@ import _ from 'lodash';
  */
 export default function ViewSwot({ swot, candidate, cCandidate }: { swot: any, candidate: any, cCandidate: any }) {
   const [dataKandidate, setDataKandidate] = useState(candidate)
-  const [isData, setData] = useState(swot)
+  const [isData, setData] = useState<any>()
 
   const [isCandidateName, setCandidateName] = useState((cCandidate.name).toUpperCase())
   const [isCandidate, setCandidate] = useState(cCandidate.id)
@@ -24,12 +26,25 @@ export default function ViewSwot({ swot, candidate, cCandidate }: { swot: any, c
 
   async function chooseCandidate(value: any) {
     setCandidate(value)
+    setData([])
     const dataS = await funGetSwotFront({ candidate: value })
     const dataC = await funGetOneCandidate({ candidate: value })
     setCandidateName(dataC?.name.toUpperCase())
     setImgCandidate(`/img/candidate/${dataC?.img}`)
-    setData(dataS)
+
+    const grouping = _.groupBy(
+      dataS, (v) => v.category
+    )
+    setData(grouping)
   }
+
+  useShallowEffect(() => {
+    const group = _.groupBy(
+      swot, (v) => v.category
+    )
+
+    setData(group)
+  }, [])
 
   return (
     <>
@@ -69,7 +84,7 @@ export default function ViewSwot({ swot, candidate, cCandidate }: { swot: any, c
           </Grid.Col>
           <Grid.Col span={{ md: 9, lg: 9 }}>
             <ScrollArea h={700}>
-              {isData.map((item: any, i: any) => {
+              {/* {isData.map((item: any, i: any) => {
                 return (
                   <Box key={item.id}>
                     <Text fz={24} c={"#089A31"}>{item.category}</Text>
@@ -85,7 +100,32 @@ export default function ViewSwot({ swot, candidate, cCandidate }: { swot: any, c
                     </ScrollArea>
                   </Box>
                 )
-              })}
+              })} */}
+              {_.keys(isData).map((item: any, i: any) => (
+                <Box key={i}>
+                  <Text fz={24} c={"#089A31"}>{item}</Text>
+                  {(() => {
+                    const datanya = isData[item]
+                    if (datanya)
+                      return (
+                        <>
+                          <Stack c={"white"}>
+                            <TextAnimation
+                              phrases={[...datanya[_.random(0, datanya.length - 1)].content.split('\n')]}
+                              typingSpeed={0}
+                              backspaceDelay={0}
+                              eraseDelay={0}
+                              timeComplete={0}
+                              errorProbability={0}
+                              eraseOnComplete={false}
+                              isSecure={false}
+                            />
+                          </Stack>
+                        </>
+                      )
+                  })()}
+                </Box>
+              ))}
             </ScrollArea>
           </Grid.Col>
         </Grid>
