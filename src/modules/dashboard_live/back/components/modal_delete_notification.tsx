@@ -6,6 +6,15 @@ import toast from 'react-simple-toasts';
 import funDelNotification from '../fun/delete_notification';
 import { funLogUser } from '@/modules/user';
 
+/**
+ * Modal konfirmasi delete notifikasi untuk dashboard live.
+ * Jika klik "NO" maka modal akan close,
+ * jika klik "YES" maka sistem akan menjalankan proses delete notifikasi
+ * @param id id data yang akan dihapus
+ * @param onSuccess callback function
+ * @returns komponen modal
+ */
+
 export default function ModalDeleteNotification({ id, onSuccess }: { id: any, onSuccess: (val: any) => void }) {
   const [valOpenModal, setOpenModal] = useAtom(isModalDashboardLive)
 

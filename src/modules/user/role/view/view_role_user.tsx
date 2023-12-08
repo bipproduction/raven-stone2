@@ -8,6 +8,12 @@ import { isModalRoleUser } from '../val/isModalUserRole';
 import ModalUserRole from '../components/modal_del_user_role';
 import funGetAllRole from '../fun/get_all_role';
 
+
+/**
+ * Fungsi untuk menampilkan view Role User.
+ * @param {data} data - menampilkan data.
+ * @returns Untuk menampilkan keseluruhan dari View Role User
+ */
 export default function ViewRoleUser({ data }: { data: any }) {
   const router = useRouter()
   const [isRole, setRole] = useState<any[]>(data)

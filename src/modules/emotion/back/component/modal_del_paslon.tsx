@@ -4,15 +4,18 @@ import toast from 'react-simple-toasts';
 import { useAtom } from 'jotai';
 import { isModalEmotionPaslon } from '../val/modal_emotion';
 import { Alert, Box, Button, Group, Text } from '@mantine/core';
+import { funLogUser } from '@/modules/user';
 
-export default function ModalDelPaslon({ isPaslon, date, valueJam }: { isPaslon: any, date: any, valueJam: any }) {
+export default function ModalDelPaslon({ isPaslon, date, valueJam, onSuccess }: { isPaslon: any, date: any, valueJam: any, onSuccess: (val: any) => void }) {
   const [valOpenModal, setOpenModal] = useAtom(isModalEmotionPaslon)
   const [isLoading, setLoading] = useState(false)
 
   async function delData() {
     setLoading(true)
     await funDelJamEmotionPaslon({ paslon: isPaslon, date: date, time: valueJam })
+    await funLogUser({ act: 'DELETE', desc: `User Delete Data Emotion Paslon (Paslon ID: ${isPaslon}), ${date} ${valueJam}` })
     setLoading(false)
+    onSuccess(true)
     toast("Success", { theme: "dark" });
     setOpenModal(false)
   }

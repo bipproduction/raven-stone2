@@ -6,6 +6,14 @@ import toast from 'react-simple-toasts';
 import funUpdatePersen from '../fun/update_persen';
 import { funLogUser } from '@/modules/user';
 
+/**
+ * Modal konfirmasi edit persen untuk dashboard live.
+ * Jika klik "NO" maka modal akan close,
+ * jika klik "YES" maka sistem akan menjalankan proses edit persen
+ * @param data data yang akan diedit
+ * @returns komponen modal
+ */
+
 export default function ModalEditPersen({ data }: { data: any }) {
   const [valOpenModal, setOpenModal] = useAtom(isModalDashboardLive)
 

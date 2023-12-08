@@ -24,6 +24,12 @@ import { isModalStep } from '../val/modal_step';
 import ModalAddStep from '../component/modal_add_step';
 
 
+
+/**
+ * Fungsi untuk menampilkan view Add step.
+ * @param {candidate} candidate - menampilkan candidate.
+ * @returns Untuk menampilkan keseluruhan dari View Add step
+ */
 export default function ViewAddStep({ candidate }: { candidate: any, }) {
     const ref = useRef<HTMLInputElement>(null);
     const router = useRouter();
@@ -79,7 +85,7 @@ export default function ViewAddStep({ candidate }: { candidate: any, }) {
         content: isContent,
     });
     const [isDataStep, setDataStep] = useState({
-        candidate: "",
+        idCandidate: "",
         category: "",
         sentiment: ""
     })
@@ -114,7 +120,7 @@ export default function ViewAddStep({ candidate }: { candidate: any, }) {
                             onChange={(val: any) =>
                                 setDataStep({
                                     ...isDataStep,
-                                    candidate: (val == null) ? '' : val
+                                    idCandidate: (val == null) ? '' : val
                                 })
                             }
                         />

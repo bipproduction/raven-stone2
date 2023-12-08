@@ -3,7 +3,14 @@
 import { prisma } from "@/modules/_global"
 import { seederPersenLive } from ".."
 
+
+/**
+ * Fungsi untuk ambil data seeder Persen Live .
+ * @returns hasil untuk data seeder Persen Live
+ */
 export async function funSeederPersenLive() {
+
+    // proses seeder update dan create
     for (let data of seederPersenLive) {
         await prisma.liveDashboardPersen.upsert({
             where: {
@@ -25,6 +32,7 @@ export async function funSeederPersenLive() {
         })
     }
 
+    // proses pengembalian success dan message
     return {
         success: true,
         message: "Success Seeder Persen Live Dashboard"

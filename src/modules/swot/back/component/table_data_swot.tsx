@@ -7,13 +7,24 @@ import { useAtom } from "jotai";
 import { isModalSwot } from "../val/modal_swot";
 import ModalDeleteSwot from "./modal_del_swot";
 import { funGetSwotByCandidate } from "../..";
+import { useRouter } from "next/navigation";
+import { useShallowEffect } from "@mantine/hooks";
 
+
+/**
+ * Fungsi untuk menampilkan Table Data Swot.
+ * @param {data} data - menampilkan data.
+ * @param {title} title - menampilkan title.
+ * @param {searchParam} searchParam - menampilkan searchParam.
+ * @returns Untuk menampilkan Table Data Swot
+ */
 export default function TableDataSwot({ title, data, searchParam }: { title: any, data: any, searchParam: any }) {
   const [openModal, setOpenModal] = useAtom(isModalSwot);
   const [dataDelete, setDataDelete] = useState(Number)
+  const router = useRouter()
 
 
-  const [isData, setData] = useState(data)
+  const [isData, setData] = useState<any>()
 
   async function onLoad() {
     const dataDB = await funGetSwotByCandidate({ candidate: searchParam.idCandidate })
@@ -38,9 +49,9 @@ export default function TableDataSwot({ title, data, searchParam }: { title: any
             <Text fw={"bold"} c={"white"}>
               {title}
             </Text>
-            {/* <Button bg={"gray"} onClick={() => router.push("swot/add?prov=" + searchParams.get('prov') + '&city=' + searchParams.get('city'))}>
-                TAMBAH SWOT
-              </Button> */}
+            <Button bg={"gray"} onClick={() => router.push("/dashboard-admin/swot/add")}>
+              ADD SWOT
+            </Button>
           </Group>
           <Box pt={20}>
             <Box
@@ -69,7 +80,7 @@ export default function TableDataSwot({ title, data, searchParam }: { title: any
                       </Table.Th>
                     </Table.Tr>
                   </Table.Thead>
-                  {isData.map((v: any, i: any) => (
+                  {isData && isData.map((v: any, i: any) => (
                     <DetailDataSwot v={v} i={i} key={i} onClick={(val) => {
                       setDataDelete(val)
                       setOpenModal(true)

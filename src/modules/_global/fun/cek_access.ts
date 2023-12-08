@@ -1,9 +1,13 @@
 'use server'
-
 import { unsealData } from "iron-session"
 import { cookies } from "next/headers"
 import { prisma } from ".."
 import { pwd_key_config } from "../bin/val_global"
+
+/**
+ * Cek akses user login (apakah dapat akses ke dashboard user &/ admin)
+ * @returns array
+ */
 
 export default async function funCekAkses() {
     try {

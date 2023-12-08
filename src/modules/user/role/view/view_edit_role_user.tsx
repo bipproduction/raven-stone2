@@ -9,6 +9,12 @@ import { ButtonBack } from '@/modules/_global';
 import { useFocusTrap } from '@mantine/hooks';
 import ModalEditUserRole from '../components/modal_edit_user_role';
 
+/**
+ * Fungsi untuk menampilkan view Edit Role User.
+ * @param {data} data - menampilkan data.
+ * @param {component} component - menampilkan component.
+ * @returns Untuk menampilkan keseluruhan dari View Edit Role User
+ */
 export default function ViewEditRoleUser({ data, component }: { data: any, component: any }) {
   const focusTrapRef = useFocusTrap();
   const router = useRouter()

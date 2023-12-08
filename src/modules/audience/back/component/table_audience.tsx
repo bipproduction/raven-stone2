@@ -1,7 +1,14 @@
 'use client'
-
 import { Box, ScrollArea, Table, Text } from "@mantine/core";
 import { useEffect, useState } from "react";
+
+/**
+ * Menampilkan table data audience
+ * @param title judul table
+ * @param data data yg dari database
+ * @param th th kolom table
+ * @returns komponen table data audience
+ */
 
 export default function TableDataAudience({ title, data, th }: { title: string, data: any, th: any }) {
     const [isData, setData] = useState(data)

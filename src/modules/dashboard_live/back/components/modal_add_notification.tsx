@@ -6,6 +6,14 @@ import toast from 'react-simple-toasts';
 import funAddNotification from '../fun/add_notification';
 import { funLogUser } from '@/modules/user';
 
+/**
+ * Modal konfirmasi tambah notifikasi untuk dashboard live.
+ * Jika klik "NO" maka modal akan close,
+ * jika klik "YES" maka sistem akan menjalankan proses tambah notifikasi
+ * @param isData data yang akan ditambah
+ * @returns komponen modal
+ */
+
 export default function ModalAddNotification({ isData }: { isData: any }) {
   const [valOpenModal, setOpenModal] = useAtom(isModalDashboardLive)
 

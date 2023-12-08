@@ -1,11 +1,19 @@
 'use client'
-
 import { Box, Button, Group, Paper, Select, SimpleGrid, Stack, Text } from "@mantine/core"
 import _ from "lodash"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import TableDataAudience from "../component/table_audience"
 import papa from "papaparse"
+
+/**
+ * Layout halaman audience pada dashboard admin
+ * @param param parameter dari url page
+ * @param provinsi data provinsi 
+ * @param datatable data audience
+ * @param datadownload data audience untuk didownload
+ * @returns komponen halaman view audience
+ */
 
 export default function ViewAdminAudience({ param, provinsi, datatable, datadownload }: { param: any, provinsi: any, datatable: any, datadownload: any }) {
     const router = useRouter()
