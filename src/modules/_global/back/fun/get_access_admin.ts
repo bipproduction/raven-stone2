@@ -17,6 +17,7 @@ export default async function funGetAccessAdmin() {
     const c = cookies().get("_tknRV")
     const dataCookies = await unsealData(c!.value, { password: pwd_key_config as string })
 
+    if (dataCookies && !dataCookies.cIdRoleUser) return null
     // mengambil akses component menu sesuai dg id role user (didapat dari cookies)
     const cekDashboardAdmin = await prisma.userAccess.findMany({
         where: {
@@ -42,7 +43,6 @@ export default async function funGetAccessAdmin() {
     }))
 
     let emotion = <any>[], data1 = <any>[], region = <any>[], data2 = <any>[], dev = <any>[]
-
 
     // looping menu emotion
     for (let i of menu_emotion) {

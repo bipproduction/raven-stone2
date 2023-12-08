@@ -20,7 +20,7 @@ import ModalLogout from "./modal_logout";
  * @returns komponen layout admin
  */
 
-export default function LayoutAdmin({ name, menu, children }: { name: any, menu: any, children: React.ReactNode; }) {
+export default function LayoutAdmin({ name, menu, children }: { name: any, menu: any | null, children: React.ReactNode; }) {
     const [valOpenModal, setOpenModal] = useAtom(isModalLayout)
     const [opened, { toggle }] = useDisclosure();
     const dataEmotion = [
@@ -212,7 +212,7 @@ export default function LayoutAdmin({ name, menu, children }: { name: any, menu:
                 </AppShell.Header>
                 <AppShell.Navbar p="md" pb={30}>
 
-                    {(menu.menuEmotion.length > 0) &&
+                    {(menu && menu.menuEmotion && menu.menuEmotion.length > 0) &&
                         // {(dataEmotion.length > 0) &&
                         <NavLink
                             label="EMOTION EDITOR"
@@ -238,7 +238,7 @@ export default function LayoutAdmin({ name, menu, children }: { name: any, menu:
                         </NavLink>
                     }
 
-                    {menu.menuData1.map((item: any) => {
+                    {menu && menu.menuData1.map((item: any) => {
                         // {data1.map((item: any) => {
                         return (
                             <NavLink
@@ -257,7 +257,7 @@ export default function LayoutAdmin({ name, menu, children }: { name: any, menu:
 
                     {
 
-                        (menu.menuRegion.length > 0) &&
+                        (menu && menu.menuRegion.length > 0) &&
                         // (dataRegion.length > 0) &&
                         <NavLink
                             label="REGION VALUE EDITOR"
@@ -284,7 +284,7 @@ export default function LayoutAdmin({ name, menu, children }: { name: any, menu:
                         </NavLink>
                     }
 
-                    {menu.menuData2.map((item: any) => {
+                    {menu && menu.menuData2.map((item: any) => {
                         // {dataDua.map((item: any) => {
                         return (
                             <NavLink
@@ -303,7 +303,7 @@ export default function LayoutAdmin({ name, menu, children }: { name: any, menu:
 
                     {
 
-                        (menu.menuDeveloper.length > 0) &&
+                        (menu && menu.menuDeveloper.length > 0) &&
                         // (dataDeveloper.length > 0) &&
                         <NavLink
                             label="DEVELOPER"
