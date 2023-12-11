@@ -1,5 +1,5 @@
 'use client'
-import { ActionIcon, AppShell, Box, Burger, Group, Menu, Modal, NavLink, UnstyledButton, rem } from "@mantine/core";
+import { ActionIcon, AppShell, Box, Burger, Group, Menu, Modal, NavLink, ScrollArea, UnstyledButton, rem } from "@mantine/core";
 import { useDisclosure, useShallowEffect } from "@mantine/hooks";
 import { usePathname, useRouter } from "next/navigation";
 import { FaUserCircle, FaUserTie } from "react-icons/fa";
@@ -211,6 +211,7 @@ export default function LayoutAdmin({ name, menu, children }: { name: any, menu:
                     </Group>
                 </AppShell.Header>
                 <AppShell.Navbar p="md" pb={30}>
+                    <ScrollArea >
 
                     {(menu && menu.menuEmotion && menu.menuEmotion.length > 0) &&
                         // {(dataEmotion.length > 0) &&
@@ -329,6 +330,8 @@ export default function LayoutAdmin({ name, menu, children }: { name: any, menu:
                             })}
                         </NavLink>
                     }
+                    </ScrollArea>
+
 
                 </AppShell.Navbar>
                 <AppShell.Main bg={"#EAEAEA"}>
