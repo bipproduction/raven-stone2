@@ -4,6 +4,7 @@ import { EChartsOption, color } from "echarts";
 import EChartsReact from "echarts-for-react";
 import { Box, Button, Divider, Group } from '@mantine/core';
 import { WARNA } from '@/modules/_global';
+import * as echarts from 'echarts';
 
 
 /**
@@ -19,7 +20,7 @@ export default function EchartSummary() {
 
     const loadData = () => {
         const option: EChartsOption = {
-            color: ['red', 'gray', 'green'],
+            color: ['green', 'gray', 'red'],
             tooltip: {
                 trigger: 'axis',
                 axisPointer: {
@@ -39,9 +40,10 @@ export default function EchartSummary() {
                 {
                     type: 'category',
                     boundaryGap: false,
-                    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    data: ['21:00', '22:00', '23:00', '00:00', '01:00', '02:00', '03:00'],
                     axisLabel: {
-                        color: "white"
+                        color: "white",
+                        rotate: 30
                     }
                 }
             ],
@@ -49,69 +51,124 @@ export default function EchartSummary() {
                 {
                     type: 'value',
                     show: true,
+                    max: "100",
+                    splitLine: {
+                        lineStyle: {
+                            color: "gray",
+                            opacity: 0.5
+                        }
+                    },
                     axisLabel: {
+                        formatter: `{value}%`,
                         color: "white"
-                    }
+                    },
                 },
             ],
             series: [
                 {
-                    name: 'Negative',
+                    name: 'Positive',
                     type: 'line',
-                    stack: 'Total',
-                    smooth: true,
-                    lineStyle: {
-                        width: 0
+                    markLine: {
+                        symbol: ['none', 'none'],
+                        label: { show: false },
+                        data: [{
+                            xAxis: '00:00',
+                            lineStyle: {
+                                color: "yellow",
+                                width: 2
+                            },
+                        }],
                     },
                     showSymbol: false,
+                    data: [10, 32, 56, 21, 55, 40, 50],
+                    stack: 'z',
+                    color: 'green',
                     areaStyle: {
                         opacity: 1,
-                        color: WARNA.merah
+                        // color: "#076918"
+                        color: new echarts.graphic.LinearGradient(1, 1, 1, 0, [
+                            {
+                                offset: 0,
+                                color: 'rgb(35,13,55)'
+                            },
+                            {
+                                offset: 1,
+                                color: 'rgba(8,106,24,1)'
+                            }
+                        ])
                     },
-                    emphasis: {
-                        focus: 'series'
-                    },
-                    data: [100, 32, 101, 64, 90, 40, 50]
+                    smooth: true,
                 },
                 {
                     name: 'Neutral',
                     type: 'line',
-                    stack: 'Total',
-                    smooth: true,
-                    lineStyle: {
-                        width: 0
+                    markLine: {
+                        symbol: ['none', 'none'],
+                        label: { show: false },
+                        data: [{
+                            xAxis: '00:00',
+                            lineStyle: {
+                                color: "yellow",
+                                width: 2
+                            },
+                        }],
                     },
+                    smooth: true,
                     showSymbol: false,
+                    data: [20, 21, 5, 41, 22, 34, 31],
+                    color: "#EBEBEB",
+                    stack: 'x',
                     areaStyle: {
                         opacity: 1,
-                        color: "white"
-                    },
-                    emphasis: {
-                        focus: 'series'
-                    },
-                    data: [20, 82, 111, 23, 22, 34, 31]
+                        // color: "#FFFFFF"
+                        color: new echarts.graphic.LinearGradient(1, 1, 1, 0, [
+                            {
+                                offset: 0,
+                                color: 'rgb(35,13,55)'
+                            },
+                            {
+                                offset: 1,
+                                color: 'rgba(255,255,255,1)'
+                            }
+                        ])
+                    }
                 },
                 {
-                    name: 'Positive',
+                    name: 'Neutral',
                     type: 'line',
-                    stack: 'Total',
-                    smooth: true,
-                    lineStyle: {
-                        width: 0
+                    markLine: {
+                        symbol: ['none', 'none'],
+                        label: { show: false },
+                        data: [{
+                            xAxis: '00:00',
+                            lineStyle: {
+                                color: "yellow",
+                                width: 2
+                            },
+                        }],
                     },
+                    smooth: true,
                     showSymbol: false,
+                    data: [20, 22, 22, 14, 19, 30, 66],
+                    color: "red",
+                    stack: 'y',
                     areaStyle: {
                         opacity: 1,
-                        color: WARNA.hijau
-                    },
-                    emphasis: {
-                        focus: 'series'
-                    },
-                    data: [20, 22, 22, 14, 19, 30, 12]
-                },
-
+                        // color: "#A71211"
+                        color: new echarts.graphic.LinearGradient(1, 1, 1, 0, [
+                            {
+                                offset: 0,
+                                color: 'rgb(35,13,55)'
+                            },
+                            {
+                                offset: 1,
+                                color: 'rgba(124,3,13,1)'
+                            }
+                        ])
+                    }
+                }
             ]
-        }
+        };
         setOptions(option);
     }
 
@@ -120,6 +177,8 @@ export default function EchartSummary() {
             <Box>
                 <Group justify='flex-end'>
                     <Group>
+                        <Button variant='subtle' c={"white"}>Today</Button>
+                        <Divider orientation="vertical" />
                         <Button variant='subtle' c={"white"}>Month</Button>
                         <Divider orientation="vertical" />
                         <Button variant='subtle' c={"white"}>Week</Button>
@@ -127,7 +186,7 @@ export default function EchartSummary() {
                         <Button variant='subtle' c={"white"}>Custom</Button>
                     </Group>
                 </Group>
-                <EChartsReact style={{height: 300 }} option={options} />
+                <EChartsReact style={{ height: 300 }} option={options} />
             </Box>
         </>
     )
