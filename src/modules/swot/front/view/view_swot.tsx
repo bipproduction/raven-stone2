@@ -48,17 +48,6 @@ export default function ViewSwot({ swot, candidate, cCandidate }: { swot: any, c
 
   return (
     <>
-      <Box style={{
-        backgroundColor: "rgba(27,11,47,0.8)",
-        zIndex: 100,
-        position: "fixed",
-        width: "100%",
-        height: "100%",
-        top: 0,
-        left: 0,
-        backdropFilter: `blur(10px)`,
-        // opacity: 0.8,
-      }}></Box>
       <Stack>
         <PageSubTitle text1='SWOT' text2='EVALUATION' />
         <Grid gutter={60}>
@@ -83,24 +72,7 @@ export default function ViewSwot({ swot, candidate, cCandidate }: { swot: any, c
             </Box>
           </Grid.Col>
           <Grid.Col span={{ md: 9, lg: 9 }}>
-            <ScrollArea h={700}>
-              {/* {isData.map((item: any, i: any) => {
-                return (
-                  <Box key={item.id}>
-                    <Text fz={24} c={"#089A31"}>{item.category}</Text>
-                    <ScrollArea h={200}>
-                      <TypeAnimation
-                        sequence={[
-                          item.content,
-                          1000,
-                        ]}
-                        speed={70}
-                        style={{ fontSize: '16', color: "white" }}
-                      />
-                    </ScrollArea>
-                  </Box>
-                )
-              })} */}
+            <ScrollArea h={"79vh"}>
               {_.keys(isData).map((item: any, i: any) => (
                 <Box key={i}>
                   <Text fz={24} c={"#089A31"}>{item}</Text>
@@ -109,18 +81,22 @@ export default function ViewSwot({ swot, candidate, cCandidate }: { swot: any, c
                     if (datanya)
                       return (
                         <>
-                          <Stack c={"white"}>
-                            <TextAnimation
-                              phrases={[...datanya[_.random(0, datanya.length - 1)].content.split('\n')]}
-                              typingSpeed={0}
-                              backspaceDelay={0}
-                              eraseDelay={0}
-                              timeComplete={0}
-                              errorProbability={0}
-                              eraseOnComplete={false}
-                              isSecure={false}
-                            />
-                          </Stack>
+                        <Box pb={20} pt={10}>
+                          <ScrollArea h={200}>
+                            <Stack c={"white"}>
+                              <TextAnimation
+                                phrases={[...datanya[_.random(0, datanya.length - 1)].content.split('\n')]}
+                                typingSpeed={0}
+                                backspaceDelay={0}
+                                eraseDelay={0}
+                                timeComplete={0}
+                                errorProbability={0}
+                                eraseOnComplete={false}
+                                isSecure={false}
+                              />
+                            </Stack>
+                          </ScrollArea>
+                        </Box>
                         </>
                       )
                   })()}

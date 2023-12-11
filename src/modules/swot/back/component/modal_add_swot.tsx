@@ -15,10 +15,10 @@ export default function ModalAddSwot({ dataSwot, textContent, onClick }: { onCli
     const [valOpenModal, setOpenModal] = useAtom(isModalSwot)
 
     async function addSwot() {
-        // const res = await funAddSwot({ data: dataSwot, textContent: textContent });
-        // if (!res.success) return toast("Failed! " + res.message, { theme: "dark" });
-        // // await funLogUser({ act: "ADD", desc: `User Add Data ML-AI (ID : ${res.id})` })
-        // toast("Success", { theme: "dark" });
+        const res = await funAddSwot({ data: dataSwot, textContent: textContent });
+        if (!res.success) return toast("Failed! " + res.message, { theme: "dark" });
+        // await funLogUser({ act: "ADD", desc: `User Add Data ML-AI (ID : ${res.id})` })
+        toast("Success", { theme: "dark" });
         setOpenModal(false);
         onClick()
         // onSuccess(true)
