@@ -45,17 +45,6 @@ export default function ViewNationalPopularityMetric({ paslon, cpaslon, dataNow 
 
   return (
     <>
-      <Box style={{
-        backgroundColor: "rgba(27,11,47,0.8)",
-        zIndex: 100,
-        position: "fixed",
-        width: "100%",
-        height: "100%",
-        top: 0,
-        left: 0,
-        backdropFilter: `blur(10px)`,
-        // opacity: 0.8,
-      }}></Box>
       <Box>
         <PageSubTitle text1='NATIONAL' text2='POPULARITY METRICS' />
         <Stack pt={10}>
