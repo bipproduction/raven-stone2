@@ -9,6 +9,13 @@ import ModalDeleteMlai from "./modal_delete_mlai";
 import { funGetMlaiPaslonDate } from "../..";
 import { useRouter } from "next/navigation";
 
+/**
+ * Fungsi untuk menampilkan table data ml ai.
+ * @param {data} data - menampilkan data.
+ * @param {title} title - menampilkan title.
+ * @param {searchParams} searchParams - menampilkan searchParams.
+ * @returns Untuk menampilkan table data ml ai
+ */
 export default function TableDataMLAI({ title, data, searchParam }: { title: any, data: any, searchParam: any }) {
     const [openModal, setOpenModal] = useAtom(isModalMlai);
     const [dataDelete, setDataDelete] = useState(Number)

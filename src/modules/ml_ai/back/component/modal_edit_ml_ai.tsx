@@ -7,6 +7,13 @@ import funUpdateMlAi from '../fun/update_ml_ai';
 import toast from 'react-simple-toasts';
 import { funLogUser } from '@/modules/user';
 
+
+/**
+ * Fungsi untuk menampilkan modal edit ml ai.
+ * @param {dataMlAi} dataMlAi - menampilkan dataMlAi.
+ * @param {textContent} textContent - menampilkan textContent.
+ * @returns Untuk menampilkan modal edit ml ai
+ */
 export default function ModalEditMlAi({ dataMlAi, textContent }: { dataMlAi: any, textContent: any }) {
   const [valOpenModal, setOpenModal] = useAtom(isModalMlai)
   const router = useRouter()

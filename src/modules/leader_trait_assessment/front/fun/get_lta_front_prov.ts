@@ -3,6 +3,10 @@
 import { prisma } from "@/modules/_global"
 import _ from "lodash"
 
+/**
+ * Fungsi untuk get leader trait assessment provinsi.
+ * @returns Untuk get leader trait assessment provinsi
+ */
 export default async function funGetLtaFrontProv() {
     const dataTable = await prisma.leaderTraitAssessment.findMany({
         select: {

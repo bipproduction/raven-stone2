@@ -3,6 +3,12 @@ import { prisma } from "@/modules/_global";
 import moment from "moment";
 import { revalidatePath } from "next/cache";
 
+
+/**
+ * Fungsi untuk upload emotion paslon.
+ * @param {body} body - menampilkan body.
+ * @returns Untuk  upload emotion paslon
+ */
 export default async function funUploadEmotionPaslon({ body }: { body: any }) {
     let date, isoDateTime, y, pas, time_csv
 

@@ -7,6 +7,12 @@ import { isModalDashboardLive } from '../val/isModalDashboardLive';
 import ModalEditNotification from '../components/modal_edit_notification';
 import toast from 'react-simple-toasts';
 
+
+/**
+ * Fungsi untuk menampilkan edit notification.
+ * @param {data} data - menampilkan data.
+ * @returns Untuk menampilkan edit notification
+ */
 export default function EditNotification({ data }: { data: any }) {
   const [valOpenModal, setOpenModal] = useAtom(isModalDashboardLive)
 

@@ -7,6 +7,12 @@ import { isModalLta } from "../val/modal_lta"
 import funUploadLta from "../fun/upload_lta"
 import { funLogUser } from "@/modules/user"
 
+/**
+ * Fungsi untuk menampilkan modal upload leader trait assessment.
+ * @param {data} data - menampilkan data.
+ * @param {onSuccess} onSuccess - menampilkan onSuccess.
+ * @returns Untuk menampilkan modal upload leader trait assessment
+ */
 export default function ModalUploadLta({ data, onSuccess }: { data: any, onSuccess: (val: any) => void }) {
     const [openModal, setOpenModal] = useAtom(isModalLta)
 

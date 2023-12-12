@@ -3,6 +3,12 @@
 import { prisma } from '@/modules/_global'
 import _ from 'lodash'
 
+/**
+ * Fungsi untuk get emotion detail regional front.
+ * @param {candidate} candidate - menampilkan candidate.
+ * @param {startDate} startDate - menampilkan startDate.
+ * @returns Untuk  get emotion detail regional front
+ */
 export default async function funGetEmotionDetailRegionalFront({ candidate, provinsi, kabupaten }: { candidate: any, provinsi: any, kabupaten?: any }) {
     let kondisi
 

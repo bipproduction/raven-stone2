@@ -13,6 +13,11 @@ import { useAtom } from "jotai"
 import { isModalEmotionPaslon } from "../val/modal_emotion"
 import ModalUploadEmotionPaslon from "../component/modal_upload_emotion_paslon"
 
+
+/**
+ * Fungsi untuk menampilkan view upload emotion paslon.
+ * @returns Untuk  menampilkan view upload emotion paslon
+ */
 export default function ViewUploadEmotionPaslon() {
     const [json, setJson] = useState<any[]>([])
     const [openModal, setOpenModal] = useAtom(isModalEmotionPaslon)

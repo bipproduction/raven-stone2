@@ -4,6 +4,7 @@ import React from 'react';
 import { isModalSwot } from '../val/modal_swot';
 import funUpdateSwot from '../fun/update_swot';
 import toast from 'react-simple-toasts';
+import { funLogUser } from '@/modules/user';
 
 
 /**
@@ -18,7 +19,7 @@ export default function ModalEditSwot({dataSwot, textContent}: {dataSwot: any, t
   async function editSwot() {
       const res = await funUpdateSwot({ data: dataSwot, textContent: textContent });
       if (!res.success) return toast("Failed! " + res.message, { theme: "dark" });
-      // await funLogUser({ act: "ADD", desc: `User Add Data ML-AI (ID : ${res.id})` })
+      await funLogUser({ act: "EDIT", desc: `User Edit Data Swot` })
       toast("Success", { theme: "dark" });
       setOpenModal(false);
   }

@@ -13,7 +13,13 @@ import Wrapper from '../component/wrapper_push_id';
 import Head from 'next/head';
 import TextAnimation from 'react-typing-dynamics';
 
-
+/**
+ * Fungsi untuk menampilkan view ml ai.
+ * @param {data} data - menampilkan data.
+ * @param {paslon} paslon - menampilkan paslon.
+ * @param {cpaslon} cpaslon - menampilkan cpaslon.
+ * @returns Untuk menampilkan view ml ai
+ */
 export default function ViewMlAi({ data, paslon, cpaslon }: { data: any, paslon: any, cpaslon: any }) {
     const [dataMlai, setDataMlai] = useState(data.data)
     const [dataJamMlai, setDataJamMlai] = useState(data.dataJam)

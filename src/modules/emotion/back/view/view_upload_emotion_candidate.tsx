@@ -13,6 +13,11 @@ import { useAtom } from "jotai"
 import { isModalEmotionCandidate } from "../val/modal_emotion"
 import ModalUploadEmotionCandidate from "../component/modal_upload_emotion_candidate"
 
+
+/**
+ * Fungsi untuk menampilkan view upload emotion candidate.
+ * @returns Untuk  menampilkan view upload emotion candidate
+ */
 export default function ViewUploadEmotionCandidate() {
     const [json, setJson] = useState<any[]>([])
     const [openModal, setOpenModal] = useAtom(isModalEmotionCandidate)

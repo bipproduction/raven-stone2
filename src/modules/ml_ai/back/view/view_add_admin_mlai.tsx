@@ -23,6 +23,12 @@ import { isModalMlai } from '../val/modal_mlai';
 import ModalAddMlAi from '../component/modal_add_ml_ai';
 
 
+/**
+ * Fungsi untuk menampilkan view add admin ml ai.
+ * @param {params} params - menampilkan params.
+ * @param {paslon} paslon - menampilkan paslon.
+ * @returns Untuk menampilkan view add admin ml ai
+ */
 export default function ViewAddAdminMlai({ params, paslon, }: {params: any, paslon: any,}) {
   const ref = useRef<HTMLInputElement>(null);
   const router = useRouter();

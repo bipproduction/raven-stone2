@@ -8,6 +8,14 @@ import funCopyPopularity from "../fun/copy_popularity"
 import { useState } from "react"
 import { funLogUser } from "@/modules/user"
 
+
+/**
+ * Fungsi untuk menampilkan modal copy popularity.
+ * @param {from} from - menampilkan from.
+ * @param {to} to - menampilkan to.
+ * @param {onSuccess} onSuccess - menampilkan onSuccess.
+ * @returns Untuk menampilkan modal copy popularity
+ */
 export default function ModalCopyPopularity({ from, to, onSuccess }: { from: any, to: any, onSuccess: (val: any) => void }) {
     const [openModal, setOpenModal] = useAtom(isModalPopularity)
     const [isLoading, setLoading] = useState(false)

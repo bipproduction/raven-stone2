@@ -6,6 +6,14 @@ import { useRouter } from 'next/navigation';
 import { WARNA } from '@/modules/_global';
 import _ from 'lodash';
 
+
+/**
+ * Fungsi untuk menampilkan sentiment analysis.
+ * @param {dataEmotion} dataEmotion - menampilkan dataEmotion.
+ * @param {dataAudience} dataAudience - menampilkan dataAudience.
+ * @param {candidate} candidate - menampilkan candidate.
+ * @returns Untuk  menampilkan sentiment analysis
+ */
 export default function SentimentAnalysis({ dataAudience, dataEmotion, candidate }: { dataAudience: any, dataEmotion: any, candidate: any }) {
   const router = useRouter()
 

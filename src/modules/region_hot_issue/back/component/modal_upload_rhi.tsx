@@ -7,7 +7,12 @@ import { isModalRhi } from "../val/modal_rhi"
 import funUploadRhi from "../fun/upload_rhi"
 import { funLogUser } from "@/modules/user"
 
-
+/**
+ * Fungsi untuk Menampilkan modal upload rhi.
+ * @param {data} data - menampilkan data.
+ * @param {onSuccess} onSuccess - menampilkan onSuccess.
+ * @returns Untuk Menampilkan modal upload rhi
+ */
 export default function ModalUploadRhi({ data, onSuccess }: { data: any, onSuccess: (val: any) => void }) {
     const [openModal, setOpenModal] = useAtom(isModalRhi)
 

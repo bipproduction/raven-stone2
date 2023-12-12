@@ -5,6 +5,10 @@ import * as echarts from 'echarts';
 import { Box, Button, Divider, Group } from '@mantine/core';
 import EChartsReact from 'echarts-for-react';
 
+/**
+ * Fungsi untuk menampilkan echart popularity.
+ * @returns Untuk menampilkan echart popularity
+ */
 export default function EchartPopularity() {
   const [options, setOptions] = useState<EChartsOption>({});
 

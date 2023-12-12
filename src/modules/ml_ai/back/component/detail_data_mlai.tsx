@@ -10,6 +10,14 @@ import { LuClipboardEdit } from "react-icons/lu";
 import { useRouter } from "next/navigation";
 import TextAnimation from "react-typing-dynamics";
 
+
+/**
+ * Fungsi untuk menampilkan detail data ml ai.
+ * @param {v} v - menampilkan v.
+ * @param {i} i - menampilkan i.
+ * @param {onClick} onClick - menampilkan onClick.
+ * @returns Untuk menampilkan detail data ml ai
+ */
 export default function DetailDataMLAI({ v, i, onClick }: { v: any; i: any, onClick: (val: any) => void }) {
     const formatDate = moment.utc(v.timeContent).format('HH:mm');
     const open = useState(false);

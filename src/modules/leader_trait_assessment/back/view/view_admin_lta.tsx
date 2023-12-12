@@ -8,6 +8,15 @@ import toast from "react-simple-toasts"
 import papa from "papaparse"
 import TableDataLTA from "../component/table_lta"
 
+
+/**
+ * Fungsi untuk menampilkan view admin leader trait assessment.
+ * @param {datadownload} datadownload - menampilkan datadownload.
+ * @param {param} param - menampilkan param.
+ * @param {provinsi} provinsi - menampilkan provinsi.
+ * @param {datatable} datatable - menampilkan datatable.
+ * @returns Untuk menampilkan view admin leader trait assessment
+ */
 export default function ViewAdminLTA({ datadownload, param, provinsi, datatable }: { datadownload: any, param: any, provinsi: any, datatable: any }) {
     const router = useRouter()
 

@@ -6,6 +6,13 @@ import { useAtom } from 'jotai';
 import { isModalMlai } from '../val/modal_mlai';
 import { funLogUser } from '@/modules/user';
 
+
+/**
+ * Fungsi untuk menampilkan modal add ml ai.
+ * @param {dataMlAi} dataMlAi - menampilkan dataMlAi.
+ * @param {textContent} textContent - menampilkan textContent.
+ * @returns Untuk menampilkan modal add ml ai
+ */
 export default function ModalAddMlAi({ dataMlAi, textContent }: { dataMlAi: any, textContent: any }) {
   const [valOpenModal, setOpenModal] = useAtom(isModalMlai)
 

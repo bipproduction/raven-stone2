@@ -5,6 +5,13 @@ import EchartRegionalDataPairing from './echart_regional_data_pairing';
 import _, { filter } from 'lodash';
 import { WARNA } from '@/modules/_global';
 
+
+/**
+ * Fungsi untuk menampilkan detail regional data pairing.
+ * @param {dataEmotion} dataEmotion - menampilkan dataEmotion.
+ * @param {dataAudience} dataAudience - menampilkan dataAudience.
+ * @returns Untuk  menampilkan detail regional data pairing
+ */
 export default function DetailRegionalDataPairing({ dataEmotion, dataAudience }: { dataEmotion: any, dataAudience: any }) {
   const locked = dataAudience
     .filter((v: any) => v.idProvinsi === dataEmotion.idProvinsi)

@@ -4,6 +4,11 @@ import { prisma } from "@/modules/_global"
 import moment from "moment"
 import _ from "lodash"
 
+/**
+ * Fungsi untuk get popuparity by date.
+ * @param {date} date - menampilkan date.
+ * @returns Untuk get popuparity by date
+ */
 export default async function funGetPopularityByDate({ date }: { date: any }) {
     const dataDB = await prisma.paslonPopularity.findMany({
         where: {

@@ -3,6 +3,13 @@
 import { prisma } from "@/modules/_global"
 import _ from "lodash"
 
+
+/**
+ * Fungsi untuk get emotion regional front.
+ * @param {candidate} candidate - menampilkan candidate.
+ * @param {region} region - menampilkan region.
+ * @returns Untuk  get emotion regional front
+ */
 export default async function funGetEmotionRegionalFront({ candidate, region }: { candidate: any, region?: any }) {
     let kondisi
 

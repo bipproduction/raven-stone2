@@ -9,6 +9,13 @@ import { useEffect, useState } from "react";
 import papa from "papaparse"
 import TableDataPopularity from "../component/table_popularity";
 
+/**
+ * Fungsi untuk menampilkan view admin popularity.
+ * @param {param} param - menampilkan param.
+ * @param {datatable} datatable - menampilkan datatable.
+ * @param {datadownload} datadownload - menampilkan datadownload.
+ * @returns Untuk menampilkan view admin popularity
+ */
 export default function ViewAdminPopularity({ param, datatable, datadownload }: { param: any, datatable: any, datadownload: any }) {
     const router = useRouter()
 

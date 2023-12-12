@@ -14,6 +14,7 @@ import { funLogUser } from '@/modules/user';
  * @returns komponen modal
  */
 
+
 export default function ModalAddNotification({ isData }: { isData: any }) {
   const [valOpenModal, setOpenModal] = useAtom(isModalDashboardLive)
 

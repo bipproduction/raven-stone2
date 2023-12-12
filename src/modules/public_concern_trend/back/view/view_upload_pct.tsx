@@ -13,6 +13,11 @@ import { useAtom } from "jotai"
 import { isModalPct } from "../val/modal_pct"
 import ModalUploadPct from "../component/modal_upload_pct"
 
+
+/**
+ * Fungsi untuk menampilkan view upload pct.
+ * @returns Untuk menampilkan view upload pct
+ */
 export default function ViewUploadPct() {
     const [json, setJson] = useState<any[]>([])
     const [openModal, setOpenModal] = useAtom(isModalPct)

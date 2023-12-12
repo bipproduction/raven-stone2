@@ -7,6 +7,17 @@ import { funGetRateFront } from '@/modules/national_popularity_metric';
 import _ from 'lodash';
 import { DetailRegionalDataPairing } from '@/modules/emotion';
 
+
+/**
+ * Fungsi untuk Menampilkan view pairing.
+ * @param {paslon} paslon - menampilkan paslon.
+ * @param {provinsi} provinsi - menampilkan provinsi.
+ * @param {cpaslon} cpaslon - menampilkan cpaslon.
+ * @param {data} data - menampilkan data.
+ * @param {audience} audience - menampilkan audience.
+ * @param {rate} rate - menampilkan rate.
+ * @returns Untuk Menampilkan view pairing
+ */
 export default function ViewaPairing({ paslon, provinsi, cpaslon, data, audience, rate }: { paslon: any, provinsi: any, cpaslon: any, data: any, audience: any, rate: any }) {
   const [isData, setData] = useState(data)
   const [isRate, setRate] = useState(rate)

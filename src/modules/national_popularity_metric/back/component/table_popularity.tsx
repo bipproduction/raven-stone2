@@ -3,6 +3,12 @@
 import { Box, Group, ScrollArea, Select, Table, Text } from "@mantine/core";
 import { useEffect, useState } from "react";
 
+/**
+ * Fungsi untuk menampilkan modal upload popularity.
+ * @param {data} data - menampilkan data.
+ * @param {title} title - menampilkan title.
+ * @returns Untuk menampilkan modal upload popularity
+ */
 export default function TableDataPopularity({ title, data }: { title: string, data: any }) {
     const [isData, setData] = useState(data)
     let angka

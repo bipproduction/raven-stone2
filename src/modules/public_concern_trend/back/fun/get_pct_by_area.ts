@@ -3,6 +3,11 @@
 import { countProvince, prisma } from "@/modules/_global";
 import _ from "lodash"
 
+/**
+ * Fungsi untuk get pct by area.
+ * @param {find} find - menampilkan find.
+ * @returns Untuk get pct by area
+ */
 export default async function funGetPctByArea({ find }: { find: any }) {
     let titleTrue, dataTable = <any>[], area, th
 

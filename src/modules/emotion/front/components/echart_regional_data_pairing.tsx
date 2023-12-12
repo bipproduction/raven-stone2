@@ -6,14 +6,13 @@ import EChartsReact from 'echarts-for-react';
 import React, { useState } from 'react';
 import _ from 'lodash';
 
-const provinsi = [
-  {
-    id: 1,
-    name: 'ACEH',
-  }
 
-]
-
+/**
+ * Fungsi untuk menampilkan echart regional data pairing.
+ * @param {dataEmotion} dataEmotion - menampilkan dataEmotion.
+ * @param {total} total - menampilkan total.
+ * @returns Untuk  menampilkan echart regional data pairing
+ */
 export default function EchartRegionalDataPairing({ dataEmotion, total }: { dataEmotion: any, total: any }) {
   const [options, setOptions] = useState<EChartsOption>({});
   const [dataChart, setDataChart] = useState<any>({
