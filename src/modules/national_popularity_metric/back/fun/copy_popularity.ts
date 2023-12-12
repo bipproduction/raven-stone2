@@ -4,6 +4,12 @@
 import { prisma } from "@/modules/_global"
 import _ from "lodash"
 
+/**
+ * Fungsi untuk copy popuparity.
+ * @param {dateFrom} dateFrom - menampilkan dateFrom.
+ * @param {dateTo} dateTo - menampilkan dateTo.
+ * @returns Untuk copy popuparity
+ */
 export default async function funCopyPopularity({ dateFrom, dateTo }: { dateFrom: any, dateTo: any }) {
 
 

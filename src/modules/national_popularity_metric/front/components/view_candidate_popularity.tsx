@@ -1,6 +1,13 @@
 import { Box, Grid, Image, SimpleGrid, Text } from '@mantine/core';
 import React from 'react';
 
+
+/**
+ * Fungsi untuk menampilkan view candidate popularity.
+ * @param {dataPaslon} dataPaslon - menampilkan dataPaslon.
+ * @param {probability} probability - menampilkan probability.
+ * @returns Untuk menampilkan view candidate popularity
+ */
 export default function ViewCandidatePopularity({ dataPaslon, probability }: { dataPaslon: any, probability: any }) {
   return (
     <>

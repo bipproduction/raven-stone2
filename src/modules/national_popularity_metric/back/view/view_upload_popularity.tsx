@@ -13,6 +13,11 @@ import { useAtom } from "jotai"
 import { isModalPopularity } from "../val/modal_popularity"
 import ModalUploadPopularity from "../component/modal_upload_popularity"
 
+
+/**
+ * Fungsi untuk menampilkan view upload popularity.
+ * @returns Untuk menampilkan view upload popularity
+ */
 export default function ViewUploadPopularity() {
     const [json, setJson] = useState<any[]>([])
     const [openModal, setOpenModal] = useAtom(isModalPopularity)

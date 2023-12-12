@@ -4,6 +4,12 @@ import { funGetAllPaslon, prisma } from "@/modules/_global"
 import moment from "moment"
 import _ from "lodash"
 
+
+/**
+ * Fungsi untuk download popularity by date.
+ * @param {date} date - menampilkan date.
+ * @returns Untuk download popularity by date
+ */
 export default async function funDownloadPopularityByDate({ date }: { date: any }) {
 
     let result

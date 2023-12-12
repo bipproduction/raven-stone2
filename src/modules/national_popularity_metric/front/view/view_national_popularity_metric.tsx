@@ -8,7 +8,13 @@ import { PageSubTitle, funGetOnePaslon } from '@/modules/_global';
 import _ from 'lodash';
 import { funGetOnePopularityFront } from '../..';
 
-
+/**
+ * Fungsi untuk Menampilkan view national popularity metric.
+ * @param {paslon} paslon - menampilkan paslon.
+ * @param {cpaslon} cpaslon - menampilkan cpaslon.
+ * @param {dataNow} dataNow - menampilkan dataNow.
+ * @returns Untuk Menampilkan view national popularity metric
+ */
 export default function ViewNationalPopularityMetric({ paslon, cpaslon, dataNow }: { paslon: any, cpaslon: any, dataNow: any }) {
 
   const [isPaslon, setPaslon] = useState<any>(1)
