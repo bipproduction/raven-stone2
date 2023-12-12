@@ -19,7 +19,7 @@ export default function ModalAddStep({ dataStep, textContent }: { dataStep: any,
     async function addStep() {
         const res = await funAddStep({ data: dataStep, textContent: textContent });
         if (!res.success) return toast("Failed! " + res.message, { theme: "dark" });
-        // await funLogUser({ act: "ADD", desc: `User Add Data ML-AI (ID : ${res.id})` })
+        await funLogUser({ act: "ADD", desc: `User Add Data Step )` })
         toast("Success", { theme: "dark" });
         setOpenModal(false);
     }

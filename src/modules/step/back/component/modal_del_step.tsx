@@ -6,6 +6,7 @@ import toast from "react-simple-toasts"
 import { isModalStep } from "../val/modal_step"
 import funDelStepById from "../fun/del_step"
 import { funLogUser } from "@/modules/user"
+import { funLogout } from "@/modules/auth"
 
 
 /**
@@ -19,7 +20,7 @@ export default function ModalDeleteStep({ id, onSuccess }: { id: any, onSuccess:
 
     async function onDelete() {
         await funDelStepById({ idData: id })
-        await funLogUser({ act: "DELETE", desc: `User Delete Data Step (ID: ${id})` })
+        await funLogUser({act: "DELETE", desc: `User Delete Data Step (ID : ${id})`})
         toast('Success', { theme: 'dark' })
         setOpenModal(false)
         onSuccess(true)
