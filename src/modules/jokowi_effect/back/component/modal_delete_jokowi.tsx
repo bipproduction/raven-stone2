@@ -8,6 +8,12 @@ import funDelEffectById from "../fun/del_effect_by_id"
 import { funLogUser } from "@/modules/user"
 
 
+/**
+ * Fungsi untuk menampilkan Modal delete Jokowi Effect.
+ * @param {id} id - menampilkan id.
+ * @param {onSuccess} onSuccess - menampilkan onSuccess.
+ * @returns Untuk menampilkan Modal delete Jokowi Effect
+ */
 export default function ModalDeleteJokowi({ id, onSuccess }: { id: any, onSuccess: (val: any) => void }) {
     const [openModal, setOpenModal] = useAtom(isModalJokowi)
 

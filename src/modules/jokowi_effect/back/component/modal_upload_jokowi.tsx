@@ -8,10 +8,12 @@ import funUploadEffect from "../fun/upload_effect"
 import { funLogUser } from "@/modules/user"
 
 
-
-
-
-
+/**
+ * Fungsi untuk menampilkan Modal upload Jokowi Effect.
+ * @param {data} data - menampilkan data.
+ * @param {onSuccess} onSuccess - menampilkan onSuccess.
+ * @returns Untuk menampilkan Modal upload Jokowi Effect
+ */
 export default function ModalUploadJokowi({ data, onSuccess }: { data: any, onSuccess: (val: any) => void }) {
     const [openModal, setOpenModal] = useAtom(isModalJokowi)
 

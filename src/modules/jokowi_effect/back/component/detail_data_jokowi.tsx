@@ -11,6 +11,13 @@ import { useShallowEffect } from "@mantine/hooks";
 import { values } from "lodash";
 import TextAnimation from "react-typing-dynamics";
 
+
+/**
+ * Fungsi untuk menampilkan detail data jokowi.
+ * @param {v} v - menampilkan v.
+ * @param {i} i - menampilkan i.
+ * @returns Untuk menampilkan detail data jokowi
+ */
 export default function DetailDataJokowi({ v, i, onClick }: { v: any; i: any, onClick: (val: any) => void }) {
     const is_client = useState(false)
 

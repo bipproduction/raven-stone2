@@ -24,7 +24,10 @@ import ModalAddJokowiEffect from '../component/modal_add_jokowi_effect';
 import { useShallowEffect } from '@mantine/hooks';
 import funCekAddJokowiEffect from '../fun/cek_add_jokowi_effect';
 
-
+/**
+ * Fungsi untuk menampilkan add admin Jokowi Effect.
+ * @returns Untuk menampilkan add admin Jokowi Effect
+ */
 export default function ViewAddAdminJokowi() {
   const is_client = useState(false)
 

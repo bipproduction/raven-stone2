@@ -10,6 +10,14 @@ import TableDataJokowi from "../component/table_data_jokowi";
 import papa from "papaparse"
 import { useShallowEffect } from "@mantine/hooks";
 
+
+/**
+ * Fungsi untuk menampilkan view admin Jokowi Effect.
+ * @param {param} param - menampilkan param.
+ * @param {datatable} datatable - menampilkan datatable.
+ * @param {datadwonload} datadwonload - menampilkan datadwonload.
+ * @returns Untuk menampilkan view admin Jokowi Effect
+ */
 export default function ViewAdminJokowi({ param, datatable, datadownload }: { param: any, datatable: any, datadownload: any }) {
     const router = useRouter()
     const [isDate, setDate] = useState<any>(param.date)

@@ -20,8 +20,13 @@ import _ from "lodash"
 
 
 /**
- * Fungsi untuk menampilkan Jokowi Effect.
- * @returns {component} menampilakn Jokowi Effect.
+ * Fungsi untuk menampilkan view admin Jokowi Effect.
+ * @param {effect} effect - menampilkan effect.
+ * @param {emotion} emotion - menampilkan emotion.
+ * @param {locked} locked - menampilkan locked.
+ * @param {persen} persen - menampilkan persen.
+ * @param {emotionChart} emotionChart - menampilkan emotionChart.
+ * @returns Untuk menampilkan view admin Jokowi Effect
  */
 export default function ViewJokowiEffect({ effect, emotion, locked, persen, emotionChart }: { effect: any, emotion: any, locked: any, persen: any, emotionChart: any }) {
   const [dataEffect, setDataEffect] = useState(effect.data)
