@@ -37,17 +37,6 @@ export default function ViewaPairing({ paslon, provinsi, cpaslon, data, audience
 
   return (
     <>
-      <Box style={{
-        backgroundColor: "rgba(27,11,47,0.8)",
-        zIndex: 100,
-        position: "fixed",
-        width: "100%",
-        height: "100%",
-        top: 0,
-        left: 0,
-        backdropFilter: `blur(10px)`,
-        // opacity: 0.8,
-      }}></Box>
       <Stack>
         <PageSubTitle text1='REGIONAL' text2='DATA PAIRING' />
         <Box
@@ -116,7 +105,7 @@ export default function ViewaPairing({ paslon, provinsi, cpaslon, data, audience
             </Box>
           </Grid.Col>
           <Grid.Col span={{ md: 7, lg: 7 }}>
-            <ScrollArea h={600}>
+            <ScrollArea h={"67vh"}>
               {isData.map((v: any, i: any) => (
                 <Box key={i}>
                   <DetailRegionalDataPairing dataEmotion={v} dataAudience={audience} />

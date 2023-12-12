@@ -36,17 +36,6 @@ export default function ViewStep({ kandidate, stepCandidate, cCandidate }: { kan
 
   return (
     <>
-      <Box style={{
-        backgroundColor: "rgba(27,11,47,0.8)",
-        zIndex: 100,
-        position: "fixed",
-        width: "100%",
-        height: "100%",
-        top: 0,
-        left: 0,
-        backdropFilter: `blur(10px)`,
-        // opacity: 0.8,
-      }}></Box>
       <Stack>
         <PageSubTitle text1='STEP' text2='ASSESSMENT' />
         <Grid gutter={60}>
@@ -73,7 +62,7 @@ export default function ViewStep({ kandidate, stepCandidate, cCandidate }: { kan
             </Box>
           </Grid.Col>
           <Grid.Col span={{ md: 9, lg: 9 }}>
-            <ScrollArea h={700}>
+            <ScrollArea h={"79vh"}>
               {!_.isEmpty(isData) ? (
                 <Box>
                   {
@@ -95,7 +84,7 @@ export default function ViewStep({ kandidate, stepCandidate, cCandidate }: { kan
                               return (
                                 <>
                                   <Box pt={10} pb={30}>
-                                    <ScrollArea h={250}>
+                                    <ScrollArea h={200}>
                                       <Stack c={"white"}>
                                         <TextAnimation
                                           phrases={[...datanya[_.random(0, datanya.length - 1)].content.split('\n')]}
@@ -126,7 +115,7 @@ export default function ViewStep({ kandidate, stepCandidate, cCandidate }: { kan
                               return (
                                 <>
                                   <Box pt={10} pb={30}>
-                                    <ScrollArea h={250}>
+                                    <ScrollArea h={200}>
                                       <Stack c={"white"}>
                                         <TextAnimation
                                           phrases={[...datanya[_.random(0, datanya.length - 1)].content.split('\n')]}

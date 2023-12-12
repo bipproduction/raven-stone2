@@ -20,7 +20,6 @@ export default function ModalEditStep({ dataStep, textContent }: { dataStep: any
     if (!res.success) return toast("Failed! " + res.message, { theme: "dark" });
     // await funLogUser({ act: "ADD", desc: `User Add Data ML-AI (ID : ${res.id})` })
     toast("Success", { theme: "dark" });
-    console.log(dataStep, textContent)
     setOpenModal(false);
 }
 

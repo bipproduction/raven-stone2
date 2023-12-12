@@ -212,7 +212,6 @@ export default function DashboardLive({ dataPersen, dataNotif }: { dataPersen: a
             a.emotion = 2
 
             const idx = _.indexOf(kab.map((v) => v.id), a.id)
-            // console.log(idx)
             if (idx) {
                 kab.splice(idx, 1)
             }

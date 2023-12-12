@@ -226,13 +226,6 @@ export default function ViewAddSwot({ candidate }: { candidate: any }) {
         <ModalAddSwot onClick={() => {
           setKosongkan(_.random(1, 1000).toString())
           setContent(_.isNull(editor?.getHTML() == null).toString())
-          // isContent?.toString()
-          // setKosongkan(_.isString(editor?.getHTML() == '<p></p>').toString())
-          //  editor?.isEmpty
-          // setTimeout(() => {
-          //   setContent(_.isEmpty().toString())
-          // }, 1)
-          console.log("dikclick")
         }} dataSwot={isDataSwot} textContent={editor?.getHTML()}
         />
       </Modal>
