@@ -4,6 +4,7 @@ import { isModalSwot } from '../val/modal_swot';
 import { Alert, Box, Button, Group, Text } from '@mantine/core';
 import toast from 'react-simple-toasts';
 import funAddSwot from '../fun/add_swot';
+import { funLogUser } from '@/modules/user';
 
 /**
  * Fungsi untuk menampilkan Modal Add Swot.
@@ -17,7 +18,7 @@ export default function ModalAddSwot({ dataSwot, textContent, onClick }: { onCli
     async function addSwot() {
         const res = await funAddSwot({ data: dataSwot, textContent: textContent });
         if (!res.success) return toast("Failed! " + res.message, { theme: "dark" });
-        // await funLogUser({ act: "ADD", desc: `User Add Data ML-AI (ID : ${res.id})` })
+        await funLogUser({ act: "ADD", desc: `User Add Data Swot` })
         toast("Success", { theme: "dark" });
         setOpenModal(false);
         onClick()
