@@ -6,6 +6,11 @@ import EChartsReact from 'echarts-for-react';
 import _ from 'lodash';
 import React, { useState } from 'react';
 
+/**
+ * Fungsi untuk menampilkan echart bar regional insights.
+ * @param {dataEmotion} dataEmotion - menampilkan dataEmotion.
+ * @returns Untuk  menampilkan echart bar regional insights
+ */
 export default function EchartBarRegionalInsights({ dataEmotion }: { dataEmotion: any }) {
   const [options, setOptions] = useState<EChartsOption>({})
   const [dataChart, setDataChart] = useState<any>({

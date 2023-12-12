@@ -4,6 +4,13 @@ import { prisma } from "@/modules/_global"
 import _ from "lodash"
 import moment from "moment"
 
+
+/**
+ * Fungsi untuk get emotion candidate chart front.
+ * @param {candidate} candidate - menampilkan candidate.
+ * @param {startDate} startDate - menampilkan startDate.
+ * @returns Untuk  get emotion candidate chart front
+ */
 export default async function funGetEmotionCandidateChartFront({ candidate, startDate, endDate }: { candidate: any, startDate: any, endDate: any }) {
     const jamNow = new Date().getHours() + 1 + ':00:00'
     const IniisoDateTime = new Date(new Date('1970-01-01 ' + jamNow).getTime() - (new Date('1970-01-01 ' + jamNow).getTimezoneOffset() * 60000)).toISOString()

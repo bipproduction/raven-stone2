@@ -20,7 +20,12 @@ import { useRouter } from 'next/navigation';
 
 /**
  * Fungsi untuk menampilkan view summary.
- * @returns {component} menampilakn view summary.
+ * @param {effect} effect - menampilkan effect.
+ * @param {emotion} emotion - menampilkan emotion.
+ * @param {locked} locked - menampilkan locked.
+ * @param {persen} persen - menampilkan persen.
+ * @param {emotionChart} emotionChart - menampilkan emotionChart.
+ * @returns Untuk  menampilkan view summary
  */
 export default function ViewSummary({ effect, emotion, locked, persen, emotionChart }: { effect: any, emotion: any, locked: any, persen: any, emotionChart: any }) {
   const [dataEffect, setDataEffect] = useState(effect.data)

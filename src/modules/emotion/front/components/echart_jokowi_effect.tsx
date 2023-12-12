@@ -16,7 +16,8 @@ import * as echarts from 'echarts';
 
 /**
  * Fungsi untuk menampilkan echart jokowi effect.
- * @returns {component} menampilakn echart jokowi effect.
+ * @param {data} data - menampilkan data.
+ * @returns Untuk  menampilkan echart jokowi effect
  */
 export default function EchartJokowiEffect({ data }: { data: any }) {
     const [options, setOptions] = useState<EChartsOption>({})

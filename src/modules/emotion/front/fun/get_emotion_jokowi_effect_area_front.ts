@@ -4,6 +4,11 @@ import { prisma } from "@/modules/_global"
 import moment from "moment";
 import _, { ceil } from "lodash"
 
+
+/**
+ * Fungsi untuk get emotion jokowi effect area front.
+ * @returns Untuk  get emotion jokowi effect area front
+ */
 export default async function funGetEmotionJokowiEffectAreaFront() {
     const jamNow = new Date().getHours() + 1 + ':00:00'
     const IniisoDateTime = new Date(new Date('1970-01-01 ' + jamNow).getTime() - (new Date('1970-01-01 ' + jamNow).getTimezoneOffset() * 60000)).toISOString()

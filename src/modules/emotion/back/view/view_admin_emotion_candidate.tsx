@@ -10,6 +10,16 @@ import toast from "react-simple-toasts";
 import TableDataEmotionCandidate from "../component/table_emotion_candidate";
 import papa from "papaparse"
 
+
+/**
+ * Fungsi untuk menampilkan view emotion candidate.
+ * @param {param} param - menampilkan param.
+ * @param {provinsi} provinsi - menampilkan provinsi.
+ * @param {candidate} candidate - menampilkan candidate.
+ * @param {datatable} datatable - menampilkan datatable.
+ * @param {datadownload} datadownload - menampilkan datadownload.
+ * @returns Untuk  menampilkan view emotion candidate
+ */
 export default function ViewAdminEmotionCandidate({ param, provinsi, candidate, datatable, datadownload }: { param: any, provinsi: any, candidate: any, datatable: any, datadownload: any }) {
     const router = useRouter()
 

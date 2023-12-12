@@ -8,6 +8,16 @@ import funCopyEmotionCandidate from "../fun/copy_emotion_candidate"
 import { useState } from "react"
 import { funLogUser } from "@/modules/user"
 
+
+
+/**
+ * Fungsi untuk menampilkan Modal copy emotion candidate.
+ * @param {from} from - menampilkan from.
+ * @param {to} to - menampilkan to.
+ * @param {candidate} candidate - menampilkan candidate.
+ * @param {onSuccess} onSuccess - menampilkan onSuccess.
+ * @returns Untuk menampilkan Modal copy emotion candidate
+ */
 export default function ModalCopyEmotionCandidate({ from, to, candidate, onSuccess }: { from: any, to: any, candidate: any, onSuccess: (val: any) => void }) {
     const [openModal, setOpenModal] = useAtom(isModalEmotionPaslon)
     const [isLoading, setLoading] = useState(false)

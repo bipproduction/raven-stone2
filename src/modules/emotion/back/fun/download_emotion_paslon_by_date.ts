@@ -7,38 +7,6 @@ export default async function funDownloadEmotionPaslonDate({ find }: { find: any
     let emotion, titleA, kondisi, kondisi2, prov, result, daerah, dataJam, jamFix, isoDateTime
 
     const dPaslon = await funGetOnePaslon({ paslon: find.idPaslon })
-
-    // if (find.idProvinsi > 0 && find.idProvinsi <= 38) {
-    //     kondisi = {
-    //         idProvinsi: find.idProvinsi,
-    //         idPaslon: find.idPaslon,
-    //         dateEmotion: find.date
-    //     }
-    //     prov = await prisma.areaProvinsi.findUnique({
-    //         where: {
-    //             id: find.idProvinsi
-    //         }
-    //     })
-
-    //     daerah = await prisma.areaKabkot.findMany({
-    //         where: {
-    //             idProvinsi: find.idProvinsi
-    //         },
-    //         select: {
-    //             name: true,
-    //             id: true,
-    //             idProvinsi: true,
-    //             AreaProvinsi: {
-    //                 select: {
-    //                     name: true,
-    //                 }
-    //             }
-    //         }
-    //     })
-
-    //     titleA = 'PASLON ' + dPaslon?.id + ' - ' + moment(find.date).format('DD MMMM YYYY') + ' (PROVINSI ' + prov?.name + ')'
-
-    // } else {
         kondisi = {
             idPaslon: find.idPaslon,
             dateEmotion: find.date
@@ -58,7 +26,6 @@ export default async function funDownloadEmotionPaslonDate({ find }: { find: any
         })
 
         titleA = 'PASLON ' + dPaslon?.id + ' - ' + moment(find.date).format('DD MMMM YYYY')
-    // }
 
     dataJam = await prisma.paslonEmotion.findMany({
         where: kondisi,
@@ -84,20 +51,11 @@ export default async function funDownloadEmotionPaslonDate({ find }: { find: any
         }
     }
 
-    // if (find.idProvinsi > 0 && find.idProvinsi <= 38) {
-    //     kondisi2 = {
-    //         idProvinsi: find.idProvinsi,
-    //         idPaslon: find.idPaslon,
-    //         dateEmotion: find.date,
-    //         timeEmotion: jamFix
-    //     }
-    // } else {
         kondisi2 = {
             idPaslon: find.idPaslon,
             dateEmotion: find.date,
             timeEmotion: isoDateTime
         }
-    // }
 
 
 

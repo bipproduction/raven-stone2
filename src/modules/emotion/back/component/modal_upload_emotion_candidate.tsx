@@ -8,6 +8,13 @@ import funUploadEmotionCandidate from "../fun/upload_emotion_candidate"
 import { useState } from "react"
 import { funLogUser } from "@/modules/user"
 
+
+/**
+ * Fungsi untuk menampilkan Modal upload emotion candidate.
+ * @param {data} data - menampilkan data.
+ * @param {onSuccess} onSuccess - menampilkan onSuccess.
+ * @returns Untuk menampilkan Modal upload emotion candidate
+ */
 export default function ModalUploadEmotionCandidate({ data, onSuccess }: { data: any, onSuccess: (val: any) => void }) {
     const [openModal, setOpenModal] = useAtom(isModalEmotionCandidate)
     const [isLoading, setLoading] = useState(false)

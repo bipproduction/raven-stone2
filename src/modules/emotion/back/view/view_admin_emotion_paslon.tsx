@@ -10,6 +10,16 @@ import toast from "react-simple-toasts";
 import TableDataEmotionPaslon from "../component/table_emotion_paslon";
 import papa from "papaparse"
 
+
+/**
+ * Fungsi untuk menampilkan view emotion paslon.
+ * @param {param} param - menampilkan param.
+ * @param {provinsi} provinsi - menampilkan provinsi.
+ * @param {paslon} paslon - menampilkan paslon.
+ * @param {datatable} datatable - menampilkan datatable.
+ * @param {datadownload} datadownload - menampilkan datadownload.
+ * @returns Untuk  menampilkan view emotion paslon
+ */
 export default function ViewAdminEmotionPaslon({ param, provinsi, paslon, datatable, datadownload }: { param: any, provinsi: any, paslon: any, datatable: any, datadownload: any }) {
     const router = useRouter()
     const today = new Date();

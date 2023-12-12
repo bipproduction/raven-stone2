@@ -4,6 +4,10 @@ import { prisma } from "@/modules/_global"
 import _ from "lodash"
 import moment from "moment"
 
+/**
+ * Fungsi untuk get emotion persen jokowi effect.
+ * @returns Untuk  get emotion persen jokowi effect
+ */
 export default async function funGetEmotionPersenJokowiFront(){
     const jamNow = new Date().getHours() + 1 + ':00:00'
     const IniisoDateTime = new Date(new Date('1970-01-01 ' + jamNow).getTime() - (new Date('1970-01-01 ' + jamNow).getTimezoneOffset() * 60000)).toISOString()

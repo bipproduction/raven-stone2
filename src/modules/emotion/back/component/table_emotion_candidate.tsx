@@ -4,6 +4,17 @@ import { Box, Group, ScrollArea, Select, Table, Text } from "@mantine/core";
 import { useEffect, useState } from "react";
 import { funDownloadEmotionCandidateByDate, funGetEmotionCandidateDateArea } from "../..";
 
+
+/**
+ * Fungsi untuk menampilkan Modal upload emotion candidate.
+ * @param {data} data - menampilkan data.
+ * @param {param} param - menampilkan param.
+ * @param {title} title - menampilkan title.
+ * @param {th} th - menampilkan th.
+ * @param {dataJam} dataJam - menampilkan dataJam.
+ * @param {onLoad} onLoad - menampilkan onLoad.
+ * @returns Untuk menampilkan Modal upload emotion candidate
+ */
 export default function TableDataEmotionCandidate({ param, title, data, th, datajam, onLoad }: { param: any, title: string, data: any, th: any, datajam: any, onLoad: (val: any) => void }) {
     const [isData, setData] = useState(data)
     const [dataJam, setDataJam] = useState(datajam)

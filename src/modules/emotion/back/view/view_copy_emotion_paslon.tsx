@@ -13,6 +13,11 @@ import { isModalEmotionPaslon } from "../val/modal_emotion";
 import _ from "lodash";
 
 
+/**
+ * Fungsi untuk menampilkan view copy emotion paslon.
+ * @param {paslon} paslon - menampilkan paslon.
+ * @returns Untuk  menampilkan view copy emotion paslon
+ */
 export default function ViewCopyEmotionPaslon({ paslon }: { paslon: any }) {
     const [trueFrom, setTrueFrom] = useState<any>(null)
     const [trueTo, setTrueTo] = useState<any>(null)

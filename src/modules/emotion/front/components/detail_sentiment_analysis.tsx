@@ -6,6 +6,13 @@ import DetailEchartBarRegionalInsights from './detail_echart_bar_regional_insigh
 import { WARNA } from '@/modules/_global';
 import _ from 'lodash';
 
+
+/**
+ * Fungsi untuk menampilkan detail sentiment analysis.
+ * @param {dataEmotion} dataEmotion - menampilkan dataEmotion.
+ * @param {dataAudience} dataAudience - menampilkan dataAudience.
+ * @returns Untuk  menampilkan detail sentiment analysis
+ */
 export default function DetailSentimentAnalysis({ dataAudience, dataEmotion }: { dataAudience: any, dataEmotion: any }) {
 
   const locked = dataAudience

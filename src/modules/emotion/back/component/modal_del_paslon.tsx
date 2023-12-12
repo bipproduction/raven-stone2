@@ -6,6 +6,15 @@ import { isModalEmotionPaslon } from '../val/modal_emotion';
 import { Alert, Box, Button, Group, Text } from '@mantine/core';
 import { funLogUser } from '@/modules/user';
 
+
+/**
+ * Fungsi untuk menampilkan Modal delete paslon.
+ * @param {isPaslon} isPaslon - menampilkan isPaslon.
+ * @param {date} date - menampilkan date.
+ * @param {valueJam} valueJam - menampilkan valueJam.
+ * @param {onSuccess} onSuccess - menampilkan onSuccess.
+ * @returns Untuk menampilkan Modal delete paslon
+ */
 export default function ModalDelPaslon({ isPaslon, date, valueJam, onSuccess }: { isPaslon: any, date: any, valueJam: any, onSuccess: (val: any) => void }) {
   const [valOpenModal, setOpenModal] = useAtom(isModalEmotionPaslon)
   const [isLoading, setLoading] = useState(false)
