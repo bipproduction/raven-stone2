@@ -3,6 +3,14 @@
 import { Accordion, Box, Center, ScrollArea, Table, Text } from "@mantine/core";
 import { useEffect, useState } from "react";
 
+
+/**
+ * Fungsi untuk Menampilkan table data rhi.
+ * @param {data} data - menampilkan data.
+ * @param {title} title - menampilkan title.
+ * @param {th} th - menampilkan th.
+ * @returns Untuk Menampilkan table data rhi
+ */
 export default function TableDataRHI({ title, data, th }: { title: string, data: any, th: any }) {
     const [isData, setData] = useState(data)
 

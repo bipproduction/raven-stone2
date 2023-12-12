@@ -1,6 +1,12 @@
 import { Box, ScrollArea, Stack, Text } from '@mantine/core';
 import React from 'react';
 
+
+/**
+ * Fungsi untuk menampilkan detail region hot issue.
+ * @param {data} data - menampilkan data.
+ * @returns Untuk menampilkan detail region hot issue
+ */
 export default function DetailRegionHotIssue({ data }: { data: any }) {
   return (
     <>
