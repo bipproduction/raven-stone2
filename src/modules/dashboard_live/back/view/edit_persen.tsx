@@ -7,6 +7,12 @@ import { isModalDashboardLive } from '../val/isModalDashboardLive';
 import ModalEditPersen from '../components/modal_edit_persen';
 import toast from 'react-simple-toasts';
 
+
+/**
+ * Fungsi untuk menampilkan  edit persen.
+ * @param {data} data - menampilkan data.
+ * @returns Untuk menampilkan  edit persen
+ */
 export default function EditPersen({ data }: { data: any }) {
   const [valOpenModal, setOpenModal] = useAtom(isModalDashboardLive)
 

@@ -21,85 +21,6 @@ export const roboto_mono = Michroma({
     style: ["normal"]
 })
 
-const list_menu = [
-    {
-        id: 1,
-        title: "menu 1"
-    },
-    {
-        id: 2,
-        title: "menu 2"
-    },
-    {
-        id: 3,
-        title: "menu 3"
-    }
-]
-
-
-const list_media_listener = [
-    {
-        id: "1",
-        user: "suparman",
-        text: `Momen mahasiswa Unisma lebih memilih Pulang saat salah satu Cawapres Berpidato
-        Sepurane  2024 Mahasiswa All In Prabowo`,
-    },
-    {
-        id: "2",
-        user: "ndon_76",
-        text: `Begini nih hasil survei Charta Politika terakhir yang bukan HOAX, pasangan Ganjar-Mahfud perolehannya 36.9%. Sementara Prabowo-Gibran 35.3%.
-
-        Baiknya kubu Prabowo jangan mainan hoax lagi deh. Nanti orang pada inget Nenek Oplas.. Sang Lejen!!`,
-    },
-    {
-        id: "3",
-        user: "argawinata",
-        text: `Dua kali dukung prabowo subianto, kenapa tahun 2019 jadi penghianat malah ikut memenangkan JOMA,gegara ulah anda istri tercinta sampe mengembuskan nafas di rs singapore 
-
-        Emang susah kalau sudah tersandera pelanggaran HAM waktu di militer`,
-    },
-    {
-        id: "4",
-        user: "andre",
-        text: `Survei Charta Politika: Ganjar Pranowo - Mahfud Md unggul dari Prabowo - Gibran dan AMIN
-
-        Survei GAMA Unggul
-        Hasil Survei Membuktikan`,
-    },
-    {
-        id: "5",
-        user: "elang pemburu",
-        text: `Momen mahasiswa Unisma lebih memilih Pulang saat salah satu Cawapres Berpidato
-        Sepurane  2024 Mahasiswa All In Prabowo`,
-    },
-    {
-        id: "6",
-        user: "deddy",
-        text: `Ini cocok menggambarkan para penikmat kekuasaan yg 2 kali pemilu melawan Prabowo dan skrg tersungkur menyembah dikaki nya tanpa rasa malu!`,
-    }
-]
-
-
-const list_emotion = [
-    {
-        id: 1,
-        name: "positive",
-        value: '49.06 %',
-        variant: "positive",
-    },
-    {
-        id: 2,
-        name: "neutral",
-        value: '12.88 %',
-        variant: "neutral"
-    },
-    {
-        id: 3,
-        name: "negative",
-        value: '38.06 %',
-        variant: "negative"
-    }
-]
 
 const list_color = {
     "red": "#E01E1E",
@@ -116,36 +37,13 @@ const get_variant = function (par: type_variant) {
     return par
 }
 
-const list_paslon = [
-    {
-        id: "1",
-        pas1_name: "anies",
-        pas2_name: "imin",
-        pas1_img: "/assets-img/anis.png",
-        pas2_img: "/assets-img/imin.png",
-        value: 29393,
-        indicator: "up"
-    },
-    {
-        id: "2",
-        pas1_name: "ganjar",
-        pas2_name: "mahfud",
-        pas1_img: "/assets-img/ganjar.png",
-        pas2_img: "/assets-img/mahfud.png",
-        value: 64862736,
-        indicator: "down"
-    }
-]
 
-interface MODEL_KAB {
-    id: number
-    prov_id: number
-    kab_id: string
-    prov_name: string
-    kab_name: string
-    emotion: number
-}
-
+/**
+ * Fungsi untuk menampilkan dashboard live.
+ * @param {dataPersen} dataPersen - menampilkan dataPersen.
+ * @param {dataNotif} dataNotif - menampilkan dataNotif.
+ * @returns Untuk menampilkan dashboard live
+ */
 export default function DashboardLive({ dataPersen, dataNotif }: { dataPersen: any, dataNotif: any }) {
     const [list_prov, set_list_prov] = useState<any[]>(provi)
     // const [list_media, set_list_media] = useState<any[]>([])
