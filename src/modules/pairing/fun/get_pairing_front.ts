@@ -3,6 +3,13 @@
 import { prisma } from "@/modules/_global"
 import _ from "lodash"
 
+
+/**
+ * Fungsi untuk get pairing front.
+ * @param {paslon} paslon - menampilkan paslon.
+ * @param {region} region - menampilkan region.
+ * @returns Untuk get pairing front
+ */
 export default async function funGetPairingFront({ paslon, region }: { paslon: any, region?: any }) {
     let kondisi
 
