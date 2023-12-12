@@ -33,6 +33,18 @@ const provinsi = [
 
 ]
 
+/**
+ * Fungsi untuk menampilkan view detail regional insights.
+ * @param {parameter} parameter - menampilkan parameter.
+ * @param {emotion} emotion - menampilkan emotion.
+ * @param {audience} audience - menampilkan audience.
+ * @param {rhi} rhi - menampilkan rhi.
+ * @param {lta} lta - menampilkan lta.
+ * @param {pct} pct - menampilkan pct.
+ * @param {region} region - menampilkan region.
+ * @param {kabupaten} kabupaten - menampilkan kabupaten.
+ * @returns Untuk menampilkan view detail regional insights
+ */
 export default function ViewDetailRegionalInsights({ parameter, emotion, audience, rhi, lta, pct, region, kabupaten }: { parameter: any, emotion: any, audience: any, rhi: any, lta: any, pct: any, region: any, kabupaten: any }) {
   const [isEmotion, setEmotion] = useState(emotion)
   const [isKabupaten, setKabupaten] = useState(null)

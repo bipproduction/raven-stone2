@@ -8,7 +8,16 @@ import _ from 'lodash';
 import React, { useState } from 'react';
 
 
-
+/**
+ * Fungsi untuk menampilkan view regional insights.
+ * @param {emotion} emotion - menampilkan emotion.
+ * @param {audience} audience - menampilkan audience.
+ * @param {provinsi} provinsi - menampilkan provinsi.
+ * @param {lta} lta - menampilkan lta.
+ * @param {pct} pct - menampilkan pct.
+ * @param {candidate} candidate - menampilkan candidate.
+ * @returns Untuk menampilkan view regional insights
+ */
 export default function ViewRegionalInsights({ candidate, provinsi, audience, emotion, pct, lta }: { candidate: any, provinsi: any, audience: any, emotion: any, pct: any, lta: any }) {
   const [isCandidate, setCandidate] = useState(1)
   const [isProvinsi, setProvinsi] = useState(null)
