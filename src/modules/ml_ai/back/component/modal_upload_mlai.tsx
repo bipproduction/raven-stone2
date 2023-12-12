@@ -9,8 +9,12 @@ import { funLogUser } from "@/modules/user"
 
 
 
-
-
+/**
+ * Fungsi untuk menampilkan modal upload ml ai.
+ * @param {data} data - menampilkan data.
+ * @param {onSuccess} onSuccess - menampilkan onSuccess.
+ * @returns Untuk menampilkan modal upload ml ai
+ */
 export default function ModalUploadMlai({ data, onSuccess }: { data: any, onSuccess: (val: any) => void }) {
     const [openModal, setOpenModal] = useAtom(isModalMlai)
 

@@ -4,6 +4,14 @@ import { prisma } from "@/modules/_global";
 import _ from "lodash"
 import moment from "moment";
 
+
+/**
+ * Fungsi untuk get ml ai front.
+ * @param {isPaslon} isPaslon - menampilkan isPaslon.
+ * @param {isDate} isDate - menampilkan isDate.
+ * @param {isTime} isTime - menampilkan isTime.
+ * @returns Untuk get ml ai front
+ */
 export default async function funGetMlaiFront({ isPaslon, isDate, isTime }: { isPaslon: any, isDate: any, isTime?: any }) {
     let jamFix, isoDateTime, kondisi
     const jamNow = new Date().getHours() + 1 + ':00:00'
