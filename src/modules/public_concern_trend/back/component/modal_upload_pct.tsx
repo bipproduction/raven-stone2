@@ -7,6 +7,12 @@ import { isModalPct } from "../val/modal_pct"
 import funUploadPct from "../fun/upload_pct"
 import { funLogUser } from "@/modules/user"
 
+/**
+ * Fungsi untuk menampilkan modal upload pct.
+ * @param {data} data - menampilkan data.
+ * @param {onSuccess} onSuccess - menampilkan onSuccess.
+ * @returns Untuk menampilkan modal upload pct
+ */
 export default function ModalUploadPct({ data, onSuccess }: { data: any, onSuccess: (val: any) => void }) {
     const [openModal, setOpenModal] = useAtom(isModalPct)
 

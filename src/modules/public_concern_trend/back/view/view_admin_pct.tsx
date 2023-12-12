@@ -7,9 +7,16 @@ import { useEffect, useState } from "react"
 import papa from "papaparse"
 import TableDataPCT from "../component/table_pct"
 
+/**
+ * Fungsi untuk menampilkan view admin pct.
+ * @param {param} param - menampilkan param.
+ * @param {provinsi} provinsi - menampilkan provinsi.
+ * @param {datatable} datatable - menampilkan datatable.
+ * @param {datadownload} datadownload - menampilkan datadownload.
+ * @returns Untuk menampilkan view admin pct
+ */
 export default function ViewAdminPCT({ param, provinsi, datatable, datadownload }: { param: any, provinsi: any, datatable: any, datadownload: any }) {
     const router = useRouter()
-
     const [dataProvinsi, setDataProvinsi] = useState(provinsi)
     const [isProvinsi, setProvinsi] = useState<any>(param.idProvinsi || null)
 

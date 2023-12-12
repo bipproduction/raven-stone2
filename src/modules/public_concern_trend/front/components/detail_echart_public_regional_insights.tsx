@@ -7,6 +7,11 @@ import { EChartsOption } from 'echarts';
 import EChartsReact from 'echarts-for-react';
 import React, { useState } from 'react';
 
+/**
+ * Fungsi untuk menampilkan detail echart public regional insights.
+ * @param {DataPct} DataPct - menampilkan DataPct.
+ * @returns Untuk menampilkan detail echart public regional insights
+ */
 export default function DetailEchartPublicRegionalInsights({ dataPct }: { dataPct: any }) {
   const [options, setOptions] = useState<EChartsOption>({})
   const [dataChart, setDataChart] = useState<any>({

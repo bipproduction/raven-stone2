@@ -3,7 +3,13 @@
 import { Box, ScrollArea, Table, Text } from "@mantine/core";
 import { useEffect, useState } from "react";
 
-
+/**
+ * Fungsi untuk menampilkan table data pct.
+ * @param {title} title - menampilkan title.
+ * @param {data} data - menampilkan data.
+ * @param {th} th - menampilkan th.
+ * @returns Untuk menampilkan table data pct
+ */
 export default function TableDataPCT({ title, data, th }: { title: string, data: any, th: any }) {
     const [isData, setData] = useState(data)
   

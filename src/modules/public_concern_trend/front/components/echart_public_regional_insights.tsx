@@ -8,6 +8,12 @@ import EChartsReact from 'echarts-for-react';
 import _ from 'lodash';
 import React, { useState } from 'react';
 
+
+/**
+ * Fungsi untuk menampilkan echart public regional insights.
+ * @param {DataPct} DataPct - menampilkan DataPct.
+ * @returns Untuk menampilkan echart public regional insights
+ */
 export default function EchartPublicRegionalInsights({ dataPct }: { dataPct: any }) {
   const [options, setOptions] = useState<EChartsOption>({})
   const [dataChart, setDataChart] = useState<any>({

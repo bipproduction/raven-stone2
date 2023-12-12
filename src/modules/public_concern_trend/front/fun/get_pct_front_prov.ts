@@ -3,6 +3,11 @@
 import { prisma } from "@/modules/_global"
 import _ from "lodash"
 
+
+/**
+ * Fungsi untuk function get pct front Provinsi.
+ * @returns Untuk function get pct front Provinsi
+ */
 export default async function funGetPctFrontProv() {
     const dataTable = await prisma.publicConcernTrend.findMany({
         select: {
