@@ -8,6 +8,12 @@ import EChartsReact from 'echarts-for-react';
 import _ from 'lodash';
 import React, { useState } from 'react';
 
+
+/**
+ * Fungsi untuk menampilkan menampilkan echart bat polar regional insights.
+ * @param {dataLta} dataLta - menampilkan dataLta.
+ * @returns Untuk menampilkan menampilkan echart bat polar regional insights
+ */
 export default function EcahrtBarPolarRegionalInsights({ dataLta }: { dataLta: any }) {
   const [options, setOptions] = useState<EChartsOption>({})
   const total = _.sum([
