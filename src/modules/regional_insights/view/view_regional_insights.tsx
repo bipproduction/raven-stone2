@@ -30,7 +30,7 @@ export default function ViewRegionalInsights({ candidate, provinsi, audience, em
 
   return (
     <>
-      <Stack h={"100vh"}>
+      <Stack >
         <PageSubTitle text1='REGIONAL' text2='INSIGHTS' />
         <Box
           style={{
@@ -82,7 +82,6 @@ export default function ViewRegionalInsights({ candidate, provinsi, audience, em
             </Box>
           )
         })}
-        {JSON.stringify(isData)}
       </Stack>
     </>
   );
