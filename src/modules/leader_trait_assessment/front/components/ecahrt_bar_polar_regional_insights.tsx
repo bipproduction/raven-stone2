@@ -59,7 +59,7 @@ export default function EcahrtBarPolarRegionalInsights({ dataLta }: { dataLta: a
       },
       angleAxis: {
         type: "category",
-        data: ['Honest', 'Military Background', 'Religius', 'Achievement', 'Leading Experience', 'Smart', 'Firm', 'Hard Worker', 'Populist'],
+        data: _.keys(dataChart).map((v) => (v)).filter((v) => v != "name" && v != "idProvinsi"),
         axisTick: {
           alignWithLabel: true,
         },
