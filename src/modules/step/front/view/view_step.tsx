@@ -71,37 +71,39 @@ export default function ViewStep({ kandidate, stepCandidate, cCandidate }: { kan
                         <Box pb={20}>
                           <Text fz={30} c={"white"} fw={'bold'}>{_.upperCase(v)}</Text>
                         </Box>
-                        <Grid >
+                        <Grid pb={30} gutter={30} >
                           <Grid.Col span={{ md: 6, lg: 6 }}>
-                            <Text c={"#0DBF0A"} fz={20}>POSITIVE</Text>
-                            {(() => {
-                              const datanya = _.groupBy(
-                                isData[v],
-                                (v3) => v3.sentiment
-                              )["1"];
+                            <Box h={200}>
+                              <Text c={"#0DBF0A"} fz={20}>POSITIVE</Text>
+                              {(() => {
+                                const datanya = _.groupBy(
+                                  isData[v],
+                                  (v3) => v3.sentiment
+                                )["1"];
 
-                              if (!datanya) return <></>;
-                              return (
-                                <>
-                                  <Box pt={10} pb={30}>
-                                    <ScrollArea h={200}>
-                                      <Stack c={"white"}>
-                                        <TextAnimation
-                                          phrases={[...datanya[_.random(0, datanya.length - 1)].content.split('\n')]}
-                                          typingSpeed={0}
-                                          backspaceDelay={0}
-                                          eraseDelay={0}
-                                          timeComplete={0}
-                                          errorProbability={0}
-                                          eraseOnComplete={false}
-                                          isSecure={false}
-                                        />
-                                      </Stack>
-                                    </ScrollArea>
-                                  </Box>
-                                </>
-                              )
-                            })()}
+                                if (!datanya) return <></>;
+                                return (
+                                  <>
+                                    <Box pt={10} pb={30}>
+                                      <ScrollArea h={200}>
+                                        <Stack c={"white"}>
+                                          <TextAnimation
+                                            phrases={[...datanya[_.random(0, datanya.length - 1)].content.split('\n')]}
+                                            typingSpeed={0}
+                                            backspaceDelay={0}
+                                            eraseDelay={0}
+                                            timeComplete={0}
+                                            errorProbability={0}
+                                            eraseOnComplete={false}
+                                            isSecure={false}
+                                          />
+                                        </Stack>
+                                      </ScrollArea>
+                                    </Box>
+                                  </>
+                                )
+                              })()}
+                            </Box>
                           </Grid.Col>
                           <Grid.Col span={{ md: 6, lg: 6 }}>
                             <Text c={"#D01234"} fz={20}>NEGATIVE</Text>
