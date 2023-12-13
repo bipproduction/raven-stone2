@@ -72,17 +72,19 @@ export default function ViewSwot({ swot, candidate, cCandidate }: { swot: any, c
             </Box>
           </Grid.Col>
           <Grid.Col span={{ md: 9, lg: 9 }}>
-            <ScrollArea h={"85vh"}>
+            <ScrollArea h={"79vh"}>
               {_.keys(isData).map((item: any, i: any) => (
-                <Box key={i} pb={20}>
-                  <Text  c={"#089A31"}>{item}</Text>
+                <Box key={i} pb={50}>
+                  <Box>
+                    <Text fw={"bold"} fz={24} c={"#089A31"}>{item}</Text>
+                  </Box>
                   {(() => {
                     const datanya = isData[item]
                     if (datanya)
                       return (
                         <>
-                          <ScrollArea h={150} >
-                              <Text c={"white"} fz={14} mt={0}>
+                          <ScrollArea h={200}>
+                              <Text c={"white"} m={1}>
                                 <TextAnimation
                                   phrases={[...datanya[_.random(0, datanya.length - 1)].content.split('\n')]}
                                   typingSpeed={0}
