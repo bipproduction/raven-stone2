@@ -81,7 +81,9 @@ export default function ViewStep({ kandidate, stepCandidate, cCandidate }: { kan
                                   (v3) => v3.sentiment
                                 )["1"];
 
-                                if (!datanya) return <></>;
+                                if (!datanya) return <>
+                                
+                                </>;
                                 return (
                                   <>
                                     <Box pt={10} pb={30}>
