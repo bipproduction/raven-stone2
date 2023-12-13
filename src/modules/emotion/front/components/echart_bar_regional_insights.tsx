@@ -97,7 +97,7 @@ export default function EchartBarRegionalInsights({ dataEmotion }: { dataEmotion
         <Group justify='flex-end'>
           <Text c={"white"} fw={'bold'}>SENTIMENT ANALYSIS</Text>
         </Group>
-        <EChartsReact style={{ height: 400 }} option={options} />
+        <EChartsReact style={{ height: 550 }} option={options} />
       </Box>
     </>
   );

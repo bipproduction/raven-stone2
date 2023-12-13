@@ -30,6 +30,13 @@ export default function DetailEchartBarRegionalInsights({ dataEmotion }: { dataE
   }, [])
   const loadData = () => {
     const option: EChartsOption = {
+      title: {
+        text: "SENTIMENT ANALYSIS",
+        textStyle: {
+          color: "white",
+          fontSize: 15
+        }
+      },
       tooltip: {
         trigger: 'axis',
         axisPointer: {
@@ -94,10 +101,7 @@ export default function DetailEchartBarRegionalInsights({ dataEmotion }: { dataE
   }
   return (
     <>
-      <Box>
-        <Group justify='flex-end'>
-          <Text c={"white"} fw={'bold'}>SENTIMENT ANALYSIS</Text>
-        </Group>
+      <Box pt={20}>
         <EChartsReact style={{ width: "100%" }} option={options} />
       </Box>
     </>
