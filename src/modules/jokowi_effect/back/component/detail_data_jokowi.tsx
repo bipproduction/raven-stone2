@@ -10,7 +10,7 @@ import parse from "html-react-parser"
 import { useShallowEffect } from "@mantine/hooks";
 import { values } from "lodash";
 import TextAnimation from "react-typing-dynamics";
-
+import InnerHTML from 'dangerously-set-html-content'
 
 /**
  * Fungsi untuk menampilkan detail data jokowi.
@@ -99,7 +99,10 @@ export default function DetailDataJokowi({ v, i, onClick }: { v: any; i: any, on
                                 <Text c={"white"} fw={"bold"} fz={20} mb={10}>
                                     Content
                                 </Text>
-                                <Stack c={"white"}>
+                                <Stack c={'white'}>
+                                    <InnerHTML html={v.content} />
+                                </Stack>
+                                {/* <Stack c={"white"}>
                                     <TextAnimation
                                         phrases={[...v.content.split('\n')]}
                                         typingSpeed={0}
@@ -110,7 +113,7 @@ export default function DetailDataJokowi({ v, i, onClick }: { v: any; i: any, on
                                         eraseOnComplete={false}
                                         isSecure={false}
                                     />
-                                </Stack>
+                                </Stack> */}
                             </Box>
                         </Collapse>
                     </Table.Td>
