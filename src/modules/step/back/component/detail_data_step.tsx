@@ -6,6 +6,7 @@ import { useState } from "react";
 import { CiRead, CiUnread } from "react-icons/ci";
 import { MdDelete, MdEditCalendar } from "react-icons/md";
 import TextAnimation from "react-typing-dynamics";
+import InnerHTML from 'dangerously-set-html-content'
 
 /**
  * Fungsi untuk menampilkan Detail Data Step.
@@ -85,7 +86,10 @@ export default function DetailDataStep({ v, i, onClick }: { v: any; i: any, onCl
                                 <Text c={"white"} fw={"bold"} fz={20} mb={10}>
                                     Content
                                 </Text>
-                                <Stack c={"white"}>
+                                <Stack c={'white'}>
+                                    <InnerHTML html={v.content} />
+                                </Stack>
+                                {/* <Stack c={"white"}>
                                     <TextAnimation
                                         phrases={[...v.content.split('\n')]}
                                         typingSpeed={0}
@@ -96,7 +100,7 @@ export default function DetailDataStep({ v, i, onClick }: { v: any; i: any, onCl
                                         eraseOnComplete={false}
                                         isSecure={false}
                                     />
-                                </Stack>
+                                </Stack> */}
                             </Box>
                         </Collapse>
                     </Table.Td>

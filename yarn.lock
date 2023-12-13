@@ -1450,6 +1450,11 @@ damerau-levenshtein@^1.0.8:
   resolved "https://registry.yarnpkg.com/damerau-levenshtein/-/damerau-levenshtein-1.0.8.tgz#b43d286ccbd36bc5b2f7ed41caf2d0aba1f8a6e7"
   integrity sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==
 
+dangerously-set-html-content@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/dangerously-set-html-content/-/dangerously-set-html-content-1.1.0.tgz#cffd83f2a8e3d59eca7302feecad1b068e94a4c3"
+  integrity sha512-kUHpnYZ9EgT6BKUEgrgccg17Pa0YdI9MlWdDYeu49HIXYONCxZpKr6Tj24q+LwFmbmtL3IJ1Rvj+aaTTzFOepg==
+
 dash-get@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/dash-get/-/dash-get-1.0.2.tgz#4c9e9ad5ef04c4bf9d3c9a451f6f7997298dcc7c"
