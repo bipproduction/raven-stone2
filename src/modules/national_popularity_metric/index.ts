@@ -4,6 +4,7 @@ import ViewAdminPopularity from "./back/view/view_admin_popularity";
 import ViewCopyPopularity from "./back/view/view_copy_popularity";
 import ViewUploadPopularity from "./back/view/view_upload_popularity";
 import funGetOnePopularityFront from "./front/fun/get_one_popularity_by_paslon";
+import funGetPopularityFront from "./front/fun/get_popularity_front";
 import funGetRateFront from "./front/fun/get_rate";
 import ViewNationalPopularityMetric from "./front/view/view_national_popularity_metric";
 
@@ -15,3 +16,4 @@ export { ViewUploadPopularity }
 export { ViewCopyPopularity }
 export { funGetRateFront }
 export { funGetOnePopularityFront }
+export { funGetPopularityFront }

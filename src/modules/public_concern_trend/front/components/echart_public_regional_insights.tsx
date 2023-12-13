@@ -47,7 +47,7 @@ export default function EchartPublicRegionalInsights({ dataPct }: { dataPct: any
       yAxis: [
         {
           type: "category",
-          data: ['Education', 'Health Services', 'Infrastructure', 'Poverty', 'Social Justice', 'Jobs'],
+          data: _.keys(dataChart).map((v) => (v)).filter((v) => v != "name" && v != "idProvinsi"),
           axisTick: {
             alignWithLabel: true,
           },
