@@ -72,31 +72,29 @@ export default function ViewSwot({ swot, candidate, cCandidate }: { swot: any, c
             </Box>
           </Grid.Col>
           <Grid.Col span={{ md: 9, lg: 9 }}>
-            <ScrollArea h={"79vh"}>
+            <ScrollArea h={"85vh"}>
               {_.keys(isData).map((item: any, i: any) => (
-                <Box key={i}>
-                  <Text fz={24} c={"#089A31"}>{item}</Text>
+                <Box key={i} pb={20}>
+                  <Text  c={"#089A31"}>{item}</Text>
                   {(() => {
                     const datanya = isData[item]
                     if (datanya)
                       return (
                         <>
-                        <Box pb={20} pt={10}>
-                          <ScrollArea h={200}>
-                            <Stack c={"white"}>
-                              <TextAnimation
-                                phrases={[...datanya[_.random(0, datanya.length - 1)].content.split('\n')]}
-                                typingSpeed={0}
-                                backspaceDelay={0}
-                                eraseDelay={0}
-                                timeComplete={0}
-                                errorProbability={0}
-                                eraseOnComplete={false}
-                                isSecure={false}
-                              />
-                            </Stack>
+                          <ScrollArea h={150} >
+                              <Text c={"white"} fz={14} mt={0}>
+                                <TextAnimation
+                                  phrases={[...datanya[_.random(0, datanya.length - 1)].content.split('\n')]}
+                                  typingSpeed={0}
+                                  backspaceDelay={0}
+                                  eraseDelay={0}
+                                  timeComplete={0}
+                                  errorProbability={0}
+                                  eraseOnComplete={false}
+                                  isSecure={false}
+                                />
+                              </Text>
                           </ScrollArea>
-                        </Box>
                         </>
                       )
                   })()}
