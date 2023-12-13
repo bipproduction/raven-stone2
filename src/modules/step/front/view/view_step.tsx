@@ -1,12 +1,10 @@
 "use client"
 import { Box, Grid, Image, ScrollArea, Select, Stack, Text } from '@mantine/core';
 import React, { useState } from 'react';
-import { TypeAnimation } from 'react-type-animation';
 import _ from 'lodash';
 import { PageSubTitle, funGetOneCandidate } from '@/modules/_global';
 import funGetStepFront from '../fun/get_step_front';
 import TextAnimation from 'react-typing-dynamics';
-
 
 /**
  * Fungsi untuk menampilkan view Step.
@@ -15,6 +13,7 @@ import TextAnimation from 'react-typing-dynamics';
  * @param {cCandidate} cCandidate - menampilkan cCandidate.
  * @returns Untuk menampilkan keseluruhan dari View step
  */
+
 export default function ViewStep({ kandidate, stepCandidate, cCandidate }: { kandidate: any, stepCandidate: any, cCandidate: any }) {
   const [dataKandidate, setDataKandidate] = useState(kandidate)
   const [isData, setData] = useState(stepCandidate)
@@ -26,6 +25,7 @@ export default function ViewStep({ kandidate, stepCandidate, cCandidate }: { kan
 
   async function chooseCandidate(value: any) {
     setCandidate(value)
+    setData([])
     const dataS = await funGetStepFront({ candidate: value })
     const dataC = await funGetOneCandidate({ candidate: value })
     setCandidateName(dataC?.name.toUpperCase())

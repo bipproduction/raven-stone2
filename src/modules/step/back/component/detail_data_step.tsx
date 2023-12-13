@@ -1,12 +1,9 @@
 'use client'
-
 import { ActionIcon, Box, Center, Collapse, Group, Stack, Table, Text } from "@mantine/core";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { CiRead, CiUnread } from "react-icons/ci";
 import { MdDelete, MdEditCalendar } from "react-icons/md";
-import TextAnimation from "react-typing-dynamics";
-import InnerHTML from 'dangerously-set-html-content'
 
 /**
  * Fungsi untuk menampilkan Detail Data Step.
@@ -15,19 +12,20 @@ import InnerHTML from 'dangerously-set-html-content'
  * @param {onClick} onClick - menampilkan onClick.
  * @returns Untuk menampilkan Hsil dari Detail Data Step
  */
+
 export default function DetailDataStep({ v, i, onClick }: { v: any; i: any, onClick: (val: any) => void }) {
     const open = useState(false);
     const router = useRouter();
-    // const [openModal, setOpenModal] = useAtom(isModalStep);
+
     function callBackDelete({ idDel }: { idDel: any }) {
         onClick(idDel)
     }
+
     return (
         <>
             <Table.Tbody key={i}>
                 <Table.Tr>
                     <Table.Td>{i + 1}</Table.Td>
-                    {/* <Table.Td>{v.name}</Table.Td> */}
                     <Table.Td>{v.category}</Table.Td>
                     <Table.Td>{(v.sentiment == "1") ? "Positive" : "Negative"}</Table.Td>
                     <Table.Td>
@@ -87,20 +85,8 @@ export default function DetailDataStep({ v, i, onClick }: { v: any; i: any, onCl
                                     Content
                                 </Text>
                                 <Stack c={'white'}>
-                                    <InnerHTML html={v.content} />
+                                    <Box dangerouslySetInnerHTML={{ __html: v.content }} />
                                 </Stack>
-                                {/* <Stack c={"white"}>
-                                    <TextAnimation
-                                        phrases={[...v.content.split('\n')]}
-                                        typingSpeed={0}
-                                        backspaceDelay={0}
-                                        eraseDelay={0}
-                                        timeComplete={0}
-                                        errorProbability={0}
-                                        eraseOnComplete={false}
-                                        isSecure={false}
-                                    />
-                                </Stack> */}
                             </Box>
                         </Collapse>
                     </Table.Td>
