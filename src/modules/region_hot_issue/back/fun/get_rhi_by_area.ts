@@ -19,6 +19,7 @@ export default async function funGetRhiByArea({ find }: { find: any }) {
                 idProvinsi: find.idProvinsi,
             },
             select: {
+                id: true,
                 description: true,
                 AreaKabkot: {
                     select: {
