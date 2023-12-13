@@ -92,14 +92,14 @@ export default function ViewDetailRegionalInsights({ parameter, emotion, audienc
             <Box pt={20} key={i} pb={20}>
               <Grid gutter={40}>
                 <Grid.Col span={{ md: 6, lg: 6 }}>
-                  <DetailRegionHotIssue data={rhi.filter((v: any) => v.idKabkot === item.idKabkot)} />
+                <Text fz={25} fw={"bold"} c={"white"}>{item.name}</Text>
+                  <DetailSentimentAnalysis dataAudience={audience} dataEmotion={item} />
                   <Box pt={40}>
                     <DetailEchartPublicRegionalInsights dataPct={pct.filter((v: any) => v.idKabkot === item.idKabkot)} />
                   </Box>
                 </Grid.Col>
                 <Grid.Col span={{ md: 6, lg: 6 }}>
-                  <Text fz={33} fw={"bold"} c={"white"}>{item.name}</Text>
-                  <DetailSentimentAnalysis dataAudience={audience} dataEmotion={item} />
+                <DetailRegionHotIssue data={rhi.filter((v: any) => v.idKabkot === item.idKabkot)} />
                   <Box pt={40}>
                     <DetailEcahrtBarPolarRegionalInsights dataLta={lta.filter((v: any) => v.idKabkot === item.idKabkot)} />
                   </Box>

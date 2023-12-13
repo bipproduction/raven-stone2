@@ -29,6 +29,13 @@ export default function DetailEchartPublicRegionalInsights({ dataPct }: { dataPc
 
   const loadData = () => {
     const option: EChartsOption = {
+      title: {
+        text: "PUBLIC CONCERNS TRENDS",
+        textStyle: {
+          color: "white",
+          fontSize: 15
+        }
+      },
       tooltip: {
         trigger: "axis",
         axisPointer: {
@@ -93,9 +100,6 @@ export default function DetailEchartPublicRegionalInsights({ dataPct }: { dataPc
   return (
     <>
       <Box>
-        <Group >
-          <Text c={"white"} fw={'bold'}>PUBLIC CONCERNS TRENDS</Text>
-        </Group>
         <EChartsReact style={{ width: "100%" }} option={options} />
       </Box>
     </>
