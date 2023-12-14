@@ -1,7 +1,6 @@
 "use client"
-import { ActionIcon, BackgroundImage, Box, Button, Divider, Grid, Group, Image, Menu, ScrollArea, SimpleGrid, Stack, Text } from '@mantine/core';
+import { ActionIcon, Box, Button, Divider, Grid, Group, Image, Menu, ScrollArea, SimpleGrid, Stack, Text } from '@mantine/core';
 import React, { useState } from 'react';
-import JokowiEffectSummary from '../components/jokowi_effect_summary';
 import ViewSummaryCandidate from '../components/view_summary_candidate';
 import { PageSubTitle, WARNA } from '@/modules/_global';
 import { EchartJokowiEffect, Top10JokowiEffect } from '../..';
@@ -17,7 +16,6 @@ import TextAnimation from 'react-typing-dynamics';
 import { MdNavigateNext } from 'react-icons/md';
 import { useRouter } from 'next/navigation';
 
-
 /**
  * Fungsi untuk menampilkan view summary.
  * @param {effect} effect - menampilkan effect.
@@ -27,7 +25,8 @@ import { useRouter } from 'next/navigation';
  * @param {emotionChart} emotionChart - menampilkan emotionChart.
  * @returns Untuk  menampilkan view summary
  */
-export default function ViewSummary({ effect, emotion, locked, persen, emotionChart }: { effect: any, emotion: any, locked: any, persen: any, emotionChart: any }) {
+
+export default function ViewSummary({ summaryTable, paslon, effect, emotion, locked, persen, emotionChart }: { summaryTable: any, paslon: any, effect: any, emotion: any, locked: any, persen: any, emotionChart: any }) {
   const [dataEffect, setDataEffect] = useState(effect.data)
   const [dataJamEffect, setDataJamEffect] = useState(effect.dataJam)
   const [isDate, setDate] = useState<any>(new Date())
@@ -116,9 +115,8 @@ export default function ViewSummary({ effect, emotion, locked, persen, emotionCh
       <Box>
         <PageSubTitle text1='EMOTIONAL' text2='SPECTRUM CHART' />
         <Stack pt={10}>
-          <ViewSummaryCandidate />
+          <ViewSummaryCandidate paslon={paslon} table={summaryTable} dataLocked={locked} />
           <Box pt={20}>
-            {/* <JokowiEffectSummary emotion={[]} locked={[]}/> */}
             <PageSubTitle text1='JOKOWI' text2='EFFECT' />
             <Stack pt={10}>
               <Grid>
