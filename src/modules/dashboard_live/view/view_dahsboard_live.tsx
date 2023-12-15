@@ -135,7 +135,7 @@ export default function DashboardLive({ dataPersen, dataNotif }: { dataPersen: a
         <Stack c={"white"} gap={"md"} p={0} >
             <Group justify='space-between' pl={10} pr={10} pt={5}>
                 <Image src={'/assets-img/logo_raven.png'} alt="" width={50} height={50} />
-                <Avatar radius={100} bg={"red"} onClick={() => router.push("/dashboard/ml-ai")}>
+                <Avatar radius={100} bg={"red"} onClick={() => router.push("/dashboard/summary")}>
                     <CloseButton radius={100} />
                 </Avatar>
             </Group>
