@@ -74,7 +74,7 @@ export default function ViewSummaryCandidate({ table, paslon, dataLocked }: { ta
                       borderRadius: 5
                     }}>
                       <Text ml={5} fz={13} c={"white"}>POSITIVE</Text>
-                      <Text ta={'center'} fw={'bold'} c={"white"} fz={24}>{table[v.id].persen.positive}%</Text>
+                      <Text ta={'center'} fw={'bold'} c={"white"} fz={24}>{_.isNaN(table[v.id].persen.positive) ? 0 : table[v.id].persen.positive}%</Text>
                     </Box>
                   </Box>
                   <Box pt={20}>
@@ -85,7 +85,7 @@ export default function ViewSummaryCandidate({ table, paslon, dataLocked }: { ta
                       borderRadius: 5
                     }}>
                       <Text ml={5} fz={13} c={WARNA.hijau}>NEUTRAL</Text>
-                      <Text ta={'center'} fw={'bold'} c={WARNA.hijau} fz={24}>{table[v.id].persen.neutral}%</Text>
+                      <Text ta={'center'} fw={'bold'} c={WARNA.hijau} fz={24}>{_.isNaN(table[v.id].persen.neutral) ? 0 : table[v.id].persen.neutral}%</Text>
                     </Box>
                   </Box>
                   <Box pt={20}>
@@ -96,7 +96,7 @@ export default function ViewSummaryCandidate({ table, paslon, dataLocked }: { ta
                       borderRadius: 5
                     }}>
                       <Text ml={5} fz={13} c={"white"}>NEGATIVE</Text>
-                      <Text ta={'center'} fw={'bold'} c={"white"} fz={24}>{table[v.id].persen.negative}%</Text>
+                      <Text ta={'center'} fw={'bold'} c={"white"} fz={24}>{_.isNaN(table[v.id].persen.negative) ? 0 : table[v.id].persen.negative}%</Text>
                     </Box>
                   </Box>
                 </SimpleGrid>
