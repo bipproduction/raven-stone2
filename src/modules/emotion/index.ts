@@ -22,6 +22,8 @@ import funGetEmotionPaslonAreaFront from "./front/fun/get_emotion_paslon_table";
 import funGetEmotionPersenJokowiFront from "./front/fun/get_emotion_persen_jokowi_front";
 import funGetEmotionPersenPaslonFront from "./front/fun/get_emotion_persen_paslon";
 import funGetEmotionRegionalFront from "./front/fun/get_emotion_regional_front";
+import funGetKabkotEmotionPaslon from "./front/fun/get_kabkot_emotion_paslon";
+import funGetProvinsiEmotionPaslon from "./front/fun/get_provinsi_emotion_paslon";
 import ViewSummary from "./front/view/view_summary";
 
 export { ViewAdminEmotionCandidate }
@@ -49,3 +51,5 @@ export { ViewDeleteEmotion }
 export { funGetEmotionPaslonAreaFront }
 export { funGetEmotionPersenPaslonFront }
 export { funGetEmotionPaslonChartFront }
+export { funGetProvinsiEmotionPaslon }
+export { funGetKabkotEmotionPaslon }
