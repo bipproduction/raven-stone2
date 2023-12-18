@@ -91,7 +91,5 @@ export default async function funGetProvinsiEmotionPaslon() {
         // timeEmotion: v.timeEmotion,
     }))
 
-    console.log(sortData)
-
     return sortData
 }
