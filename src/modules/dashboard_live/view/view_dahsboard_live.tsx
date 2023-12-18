@@ -37,14 +37,14 @@ const get_variant = function (par: type_variant) {
     return par
 }
 
-
 /**
  * Fungsi untuk menampilkan dashboard live.
  * @param {dataPersen} dataPersen - menampilkan dataPersen.
  * @param {dataNotif} dataNotif - menampilkan dataNotif.
  * @returns Untuk menampilkan dashboard live
  */
-export default function DashboardLive({ dataPersen, dataNotif }: { dataPersen: any, dataNotif: any }) {
+
+export default function DashboardLive({ dataPersen, dataNotif, emotionPersen }: { dataPersen: any, dataNotif: any, emotionPersen: any }) {
     const [list_prov, set_list_prov] = useState<any[]>(provi)
     // const [list_media, set_list_media] = useState<any[]>([])
     const [list_kab, set_list_kab] = useState<any[]>(kabu)
@@ -233,10 +233,14 @@ export default function DashboardLive({ dataPersen, dataNotif }: { dataPersen: a
                                     }} >
                                     <Flex align={"center"} p={0}>
                                         <Flex px={"xs"} pb={10} direction={"column"} gap={0} p={0} >
+                                            {/* <Text style={{
+                                                fontSize: 20,
+                                                fontWeight: "bolder"
+                                            }}>{dataPersen[0]?.positive} %</Text> */}
                                             <Text style={{
                                                 fontSize: 20,
                                                 fontWeight: "bolder"
-                                            }}>{dataPersen[0]?.positive} %</Text>
+                                            }}>{_.isNaN(emotionPersen[1].positive) ? 0 : emotionPersen[1].positive} %</Text>
                                             <Group justify="end" style={{
                                                 fontWeight: "bold"
                                             }} p={0} c={"white"} >
@@ -250,10 +254,14 @@ export default function DashboardLive({ dataPersen, dataNotif }: { dataPersen: a
 
                                     <Flex align={"center"} p={0}>
                                         <Flex px={"xs"} pb={10} direction={"column"} gap={0} p={0} >
+                                            {/* <Text style={{
+                                                fontSize: 20,
+                                                fontWeight: "bolder"
+                                            }}>{dataPersen[0]?.neutral} %</Text> */}
                                             <Text style={{
                                                 fontSize: 20,
                                                 fontWeight: "bolder"
-                                            }}>{dataPersen[0]?.neutral} %</Text>
+                                            }}>{_.isNaN(emotionPersen[1].neutral) ? 0 : emotionPersen[1].neutral} %</Text>
                                             <Group justify="end" style={{
                                                 fontWeight: "bold"
                                             }} p={0} c={"white"} >
@@ -267,10 +275,14 @@ export default function DashboardLive({ dataPersen, dataNotif }: { dataPersen: a
 
                                     <Flex align={"center"} p={0}>
                                         <Flex px={"xs"} pb={10} direction={"column"} gap={0} p={0} >
+                                            {/* <Text style={{
+                                                fontSize: 20,
+                                                fontWeight: "bolder"
+                                            }}>{dataPersen[0]?.negative} %</Text> */}
                                             <Text style={{
                                                 fontSize: 20,
                                                 fontWeight: "bolder"
-                                            }}>{dataPersen[0]?.negative} %</Text>
+                                            }}>{_.isNaN(emotionPersen[1].negative) ? 0 : emotionPersen[1].negative} %</Text>
                                             <Group justify="end" style={{
                                                 fontWeight: "bold"
                                             }} p={0} c={"white"} >
@@ -313,7 +325,8 @@ export default function DashboardLive({ dataPersen, dataNotif }: { dataPersen: a
                                     >
                                         <Group>
                                             <Box>
-                                                <Text>{dataPersen[1]?.positive} %</Text>
+                                                {/* <Text>{dataPersen[1]?.positive} %</Text> */}
+                                                <Text>{_.isNaN(emotionPersen[2].positive) ? 0 : emotionPersen[2].positive} %</Text>
                                                 <Group justify="flex-end">
                                                     <Text bg={"#06D974"} fz={10}>positive</Text>
                                                 </Group>
@@ -322,7 +335,8 @@ export default function DashboardLive({ dataPersen, dataNotif }: { dataPersen: a
                                         </Group>
                                         <Group>
                                             <Box>
-                                                <Text>{dataPersen[1]?.neutral} %</Text>
+                                                {/* <Text>{dataPersen[1]?.neutral} %</Text> */}
+                                                <Text>{_.isNaN(emotionPersen[2].neutral) ? 0 : emotionPersen[2].neutral} %</Text>
                                                 <Group justify="flex-end">
                                                     <Text bg={'gray'} fz={10}>neutral</Text>
                                                 </Group>
@@ -331,7 +345,8 @@ export default function DashboardLive({ dataPersen, dataNotif }: { dataPersen: a
                                         </Group>
                                         <Group>
                                             <Box>
-                                                <Text>{dataPersen[1]?.negative} %</Text>
+                                                {/* <Text>{dataPersen[1]?.negative} %</Text> */}
+                                                <Text>{_.isNaN(emotionPersen[2].negative) ? 0 : emotionPersen[2].negative} %</Text>
                                                 <Group justify="flex-end">
                                                     <Text bg={"#E01E1E"} fz={10}>negative</Text>
                                                 </Group>
@@ -357,7 +372,8 @@ export default function DashboardLive({ dataPersen, dataNotif }: { dataPersen: a
                                     >
                                         <Group>
                                             <Box>
-                                                <Text>{dataPersen[2]?.positive} %</Text>
+                                                {/* <Text>{dataPersen[2]?.positive} %</Text> */}
+                                                <Text>{_.isNaN(emotionPersen[3].positive) ? 0 : emotionPersen[3].positive} %</Text>
                                                 <Group justify="flex-end">
                                                     <Text bg={"#06D974"} fz={10}>positive</Text>
                                                 </Group>
@@ -366,7 +382,8 @@ export default function DashboardLive({ dataPersen, dataNotif }: { dataPersen: a
                                         </Group>
                                         <Group>
                                             <Box>
-                                                <Text>{dataPersen[2]?.neutral} %</Text>
+                                                {/* <Text>{dataPersen[2]?.neutral} %</Text> */}
+                                                <Text>{_.isNaN(emotionPersen[3].neutral) ? 0 : emotionPersen[3].neutral} %</Text>
                                                 <Group justify="flex-end">
                                                     <Text bg={'gray'} fz={10}>neutral</Text>
                                                 </Group>
@@ -375,7 +392,8 @@ export default function DashboardLive({ dataPersen, dataNotif }: { dataPersen: a
                                         </Group>
                                         <Group>
                                             <Box>
-                                                <Text>{dataPersen[2]?.negative} %</Text>
+                                                {/* <Text>{dataPersen[2]?.negative} %</Text> */}
+                                                <Text>{_.isNaN(emotionPersen[3].negative) ? 0 : emotionPersen[3].negative} %</Text>
                                                 <Group justify="flex-end">
                                                     <Text bg={"#E01E1E"} fz={10}>negative</Text>
                                                 </Group>
@@ -393,53 +411,53 @@ export default function DashboardLive({ dataPersen, dataNotif }: { dataPersen: a
 
                     </Stack>
                 </Box>
-                        {/* kedua 3 pembuka */}
-                        <Box w={"25%"} p={"sm"} >
-                            <Box
-                                style={{
-                                    background: `linear-gradient(0deg, rgba(2,2,16,1) 0%, rgba(13,26,88,1) 60%, rgba(29,58,118,1) 100%)`,
-                                    height: "100vh",
-                                    borderRadius: 10,
-                                    opacity: 0.7
-                                }}
-                                w={"100%"} h={"100%"} p={"sm"}
-                            >
-                                <Stack>
-                                    <Flex>
-                                        <Text c={"yellow"} w={"100%"}>Notification Center</Text>
-                                        {/* <ActionIcon radius={100} onClick={() => {
+                {/* kedua 3 pembuka */}
+                <Box w={"25%"} p={"sm"} >
+                    <Box
+                        style={{
+                            background: `linear-gradient(0deg, rgba(2,2,16,1) 0%, rgba(13,26,88,1) 60%, rgba(29,58,118,1) 100%)`,
+                            height: "100vh",
+                            borderRadius: 10,
+                            opacity: 0.7
+                        }}
+                        w={"100%"} h={"100%"} p={"sm"}
+                    >
+                        <Stack>
+                            <Flex>
+                                <Text c={"yellow"} w={"100%"}>Notification Center</Text>
+                                {/* <ActionIcon radius={100} onClick={() => {
                                     localStorage.setItem('list_notif', '[]')
                                     set_list_notif([])
                                     toast("success")
                                 }}>
                                     <MdDelete />
                                 </ActionIcon> */}
-                                    </Flex>
-                                    <FlipMove>
-                                        {list_notif.map((v, k) => <Grid
-                                            key={v && v.id ? v.id : k}
-                                            bg={k === 0 ? "blue" : ""}
-                                            style={{
-                                                borderRadius: 4
-                                            }}
-                                        >
-                                            <Grid.Col span={"content"}>
-                                                <MdNotificationsActive />
-                                            </Grid.Col>
-                                            <Grid.Col span={"auto"} p={"sm"}>
-                                                <Text style={{
-                                                    fontSize: 12,
-                                                    fontStyle: "italic"
-                                                }}>{v && v.description}</Text>
-                                            </Grid.Col>
-                                        </Grid>)}
-                                    </FlipMove>
-                                </Stack>
+                            </Flex>
+                            <FlipMove>
+                                {list_notif.map((v, k) => <Grid
+                                    key={v && v.id ? v.id : k}
+                                    bg={k === 0 ? "blue" : ""}
+                                    style={{
+                                        borderRadius: 4
+                                    }}
+                                >
+                                    <Grid.Col span={"content"}>
+                                        <MdNotificationsActive />
+                                    </Grid.Col>
+                                    <Grid.Col span={"auto"} p={"sm"}>
+                                        <Text style={{
+                                            fontSize: 12,
+                                            fontStyle: "italic"
+                                        }}>{v && v.description}</Text>
+                                    </Grid.Col>
+                                </Grid>)}
+                            </FlipMove>
+                        </Stack>
 
-                            </Box>
-                        </Box>
+                    </Box>
+                </Box>
 
-                        {/* kedua 3 penutup */}
+                {/* kedua 3 penutup */}
             </Flex>
         </Stack>
     </BackgroundImage>
