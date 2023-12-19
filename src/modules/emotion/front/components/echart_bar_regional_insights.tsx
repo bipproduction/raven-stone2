@@ -63,9 +63,6 @@ export default function EchartBarRegionalInsights({ dataEmotion }: { dataEmotion
           type: 'value',
           axisLabel: {
             color: "white",
-            formatter: (a: any) => {
-              return `${a}`;
-            },
           },
         }
       ],
