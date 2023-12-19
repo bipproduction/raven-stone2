@@ -45,8 +45,33 @@ export default async function funGetLtaFrontProv() {
         agamis: _.sumBy(v, 'agamis'),
         name: v[0].name,
         idProvinsi: v[0].idProvinsi,
+        total: _.sum([
+            _.sumBy(v, 'pekerjaKeras'),
+            _.sumBy(v, 'cerdas'),
+            _.sumBy(v, 'jujur'),
+            _.sumBy(v, 'merakyat'),
+            _.sumBy(v, 'tegas'),
+            _.sumBy(v, 'berpengalamanMemimpin'),
+            _.sumBy(v, 'berprestasi'),
+            _.sumBy(v, 'latarBelakangMiliter'),
+            _.sumBy(v, 'agamis'),
+        ])
     }))
 
+    const persen = result.map((v: any) => ({
+        name: v.name,
+        idProvinsi: v.idProvinsi,
+        total: v.total,
+        pekerjaKeras: _.round((Number(v.pekerjaKeras) / v.total) * 100, 2),
+        cerdas:  _.round((Number(v.cerdas) / v.total) * 100, 2),
+        jujur:  _.round((Number(v.jujur) / v.total) * 100, 2),
+        merakyat:  _.round((Number(v.merakyat) / v.total) * 100, 2),
+        tegas:  _.round((Number(v.tegas) / v.total) * 100, 2),
+        berpengalamanMemimpin:  _.round((Number(v.berpengalamanMemimpin) / v.total) * 100, 2),
+        berprestasi:  _.round((Number(v.berprestasi) / v.total) * 100, 2),
+        latarBelakangMiliter:  _.round((Number(v.latarBelakangMiliter) / v.total) * 100, 2),
+        agamis:  _.round((Number(v.agamis) / v.total) * 100, 2),
+    }))
 
-    return result
+    return persen
 }

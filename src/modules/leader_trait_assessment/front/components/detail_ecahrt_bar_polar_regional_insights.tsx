@@ -1,5 +1,4 @@
 'use client'
-
 import { COLOR_EMOTION } from '@/modules/_global';
 import { Box, Text } from '@mantine/core';
 import { useShallowEffect } from '@mantine/hooks';
@@ -8,37 +7,49 @@ import EChartsReact from 'echarts-for-react';
 import _ from 'lodash';
 import React, { useState } from 'react';
 
-
 /**
  * Fungsi untuk menampilkan menampilkan detail echart bat polar regional insights.
  * @param {dataLta} dataLta - menampilkan dataLta.
  * @returns Untuk menampilkan menampilkan detail echart bat polar regional insights
  */
+
 export default function DetailEcahrtBarPolarRegionalInsights({ dataLta }: { dataLta: any }) {
   const [options, setOptions] = useState<EChartsOption>({});
 
-  const total = _.sum([
-    dataLta[0].pekerjaKeras,
-    dataLta[0].cerdas,
-    dataLta[0].jujur,
-    dataLta[0].merakyat,
-    dataLta[0].tegas,
-    dataLta[0].berpengalamanMemimpin,
-    dataLta[0].berprestasi,
-    dataLta[0].latarBelakangMiliter,
-    dataLta[0].agamis,
-  ])
+  // const total = _.sum([
+  //   dataLta[0].pekerjaKeras,
+  //   dataLta[0].cerdas,
+  //   dataLta[0].jujur,
+  //   dataLta[0].merakyat,
+  //   dataLta[0].tegas,
+  //   dataLta[0].berpengalamanMemimpin,
+  //   dataLta[0].berprestasi,
+  //   dataLta[0].latarBelakangMiliter,
+  //   dataLta[0].agamis,
+  // ])
+
+  // const [dataChart, setDataChart] = useState<any>({
+  //   hard_worker: _.round((Number(dataLta[0].pekerjaKeras) / total) * 100, 2),
+  //   smart: _.round((Number(dataLta[0].cerdas) / total) * 100, 2),
+  //   honest: _.round((Number(dataLta[0].jujur) / total) * 100, 2),
+  //   populist: _.round((Number(dataLta[0].merakyat) / total) * 100, 2),
+  //   firm: _.round((Number(dataLta[0].tegas) / total) * 100, 2),
+  //   leading_experince: _.round((Number(dataLta[0].berpengalamanMemimpin) / total) * 100, 2),
+  //   achievement: _.round((Number(dataLta[0].berprestasi) / total) * 100, 2),
+  //   military_background: _.round((Number(dataLta[0].latarBelakangMiliter) / total) * 100, 2),
+  //   religious: _.round((Number(dataLta[0].agamis) / total) * 100, 2),
+  // })
 
   const [dataChart, setDataChart] = useState<any>({
-    pekerjaKeras: _.round((Number(dataLta[0].pekerjaKeras) / total) * 100, 2),
-    cerdas: _.round((Number(dataLta[0].cerdas) / total) * 100, 2),
-    jujur: _.round((Number(dataLta[0].jujur) / total) * 100, 2),
-    merakyat: _.round((Number(dataLta[0].merakyat) / total) * 100, 2),
-    tegas: _.round((Number(dataLta[0].tegas) / total) * 100, 2),
-    berpengalamanMemimpin: _.round((Number(dataLta[0].berpengalamanMemimpin) / total) * 100, 2),
-    berprestasi: _.round((Number(dataLta[0].berprestasi) / total) * 100, 2),
-    latarBelakangMiliter: _.round((Number(dataLta[0].latarBelakangMiliter) / total) * 100, 2),
-    agamis: _.round((Number(dataLta[0].agamis) / total) * 100, 2),
+    hard_worker: dataLta[0].pekerjaKeras,
+    smart: dataLta[0].cerdas,
+    honest: dataLta[0].jujur,
+    populist: dataLta[0].merakyat,
+    firm: dataLta[0].tegas,
+    leading_experince: dataLta[0].berpengalamanMemimpin,
+    achievement: dataLta[0].berprestasi,
+    military_background: dataLta[0].latarBelakangMiliter,
+    religious: dataLta[0].agamis,
   })
 
   useShallowEffect(() => {
@@ -60,13 +71,16 @@ export default function DetailEcahrtBarPolarRegionalInsights({ dataLta }: { data
       },
       angleAxis: {
         type: "category",
-        data: ['Honest', 'Military Background', 'Religius', 'Achievement', 'Leading Experience', 'Smart', 'Firm', 'Hard Worker', 'Populist'],
+        data: _.keys(dataChart).map((v) => (v)).filter((v) => v != "name" && v != "idProvinsi"),
         axisTick: {
           alignWithLabel: true,
         },
         axisLabel: {
           color: "white",
           fontSize: "10",
+          formatter: function (params: any) {
+            return _.startCase(params);
+          },
         },
         startAngle: 60,
       },
