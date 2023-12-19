@@ -71,6 +71,14 @@ export default function EchartRegionalDataPairing({ dataEmotion, total }: { data
       yAxis: [
         {
           type: 'value',
+          show: true,
+          max: "100",
+          splitLine: {
+            lineStyle: {
+              color: "gray",
+              opacity: 0.5
+            }
+          },
           axisLabel: {
             color: "white",
             formatter: (a: any) => {
@@ -111,7 +119,7 @@ export default function EchartRegionalDataPairing({ dataEmotion, total }: { data
         <Group justify='flex-end' >
           <Text c={"white"} fw={'bold'}>SENTIMENT ANALYSIS</Text>
         </Group>
-        <Box pb={10}>
+        <Box>
           <EChartsReact style={{ width: "100%", height:420 }} option={options} />
         </Box>
       </Box>
