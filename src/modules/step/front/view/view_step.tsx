@@ -38,7 +38,7 @@ export default function ViewStep({ kandidate, stepCandidate, cCandidate }: { kan
     <>
       <Stack>
         <PageSubTitle text1='STEP' text2='ASSESSMENT' />
-        <Grid gutter={60}>
+        <Grid gutter={40}>
           <Grid.Col span={{ md: 3, lg: 3 }} >
             <Box >
               <Image alt='candidate'
@@ -64,38 +64,92 @@ export default function ViewStep({ kandidate, stepCandidate, cCandidate }: { kan
           <Grid.Col span={{ md: 9, lg: 9 }}>
             <ScrollArea h={"79vh"}>
               {!_.isEmpty(isData) ? (
-                <Box>
+                <Box
+                >
                   {
                     _.keys(isData).map((v, i) => (
-                      <Box key={i}>
-                        <Box pb={20}>
+                      <Box
+                        key={i}
+                        pb={30}
+                      >
+                        <Box pb={10}>
                           <Text fz={30} c={"white"} fw={'bold'}>{_.upperCase(v)}</Text>
                         </Box>
-                        <Grid pb={30} gutter={30} >
+                        <Grid gutter={30} >
                           <Grid.Col span={{ md: 6, lg: 6 }}>
-                            <Box h={200}>
-                              <Text c={"#0DBF0A"} fz={20}>POSITIVE</Text>
+                            <Box
+                            >
+                              <Box
+                                style={{
+                                  background: "rgba(0,0,0,0.3)",
+                                  padding: 20,
+                                  borderRadius: 10,
+                                  height: 300
+                                }}
+                              >
+                                <Text c={"#0DBF0A"} fz={20}>POSITIVE</Text>
+                                {(() => {
+                                  const datanya = _.groupBy(
+                                    isData[v],
+                                    (v3) => v3.sentiment
+                                  )["1"];
+
+                                  if (!datanya) return <>
+
+                                  </>;
+                                  return (
+                                    <>
+                                      <Box pt={10} >
+                                        <ScrollArea h={200}>
+                                          <Stack c={"white"}>
+                                            <TextAnimation
+                                              phrases={[...datanya[_.random(0, datanya.length - 1)].content.split('\n')]}
+                                              typingSpeed={0}
+                                              backspaceDelay={0}
+                                              eraseDelay={0}
+                                              timeComplete={0}
+                                              errorProbability={0}
+                                              eraseOnComplete={false}
+                                              isSecure={false}
+                                            />
+                                          </Stack>
+                                        </ScrollArea>
+                                      </Box>
+                                    </>
+                                  )
+                                })()}
+                              </Box>
+                            </Box>
+                          </Grid.Col>
+                          <Grid.Col span={{ md: 6, lg: 6 }}>
+                            <Box
+                              style={{
+                                background: "rgba(0,0,0,0.3)",
+                                padding: 20,
+                                borderRadius: 10,
+                                height: 300
+                              }}
+                            >
+                              <Text c={"#D01234"} fz={20}>NEGATIVE</Text>
                               {(() => {
                                 const datanya = _.groupBy(
                                   isData[v],
                                   (v3) => v3.sentiment
-                                )["1"];
+                                )["2"];
 
-                                if (!datanya) return <>
-                                
-                                </>;
+                                if (!datanya) return <></>;
                                 return (
                                   <>
-                                    <Box pt={10} pb={30}>
+                                    <Box pt={10} pb={10}>
                                       <ScrollArea h={200}>
                                         <Stack c={"white"}>
                                           <TextAnimation
                                             phrases={[...datanya[_.random(0, datanya.length - 1)].content.split('\n')]}
                                             typingSpeed={0}
-                                            backspaceDelay={0}
+                                            backspaceDelay={1000}
                                             eraseDelay={0}
-                                            timeComplete={0}
-                                            errorProbability={0}
+                                            timeComplete={3000}
+                                            errorProbability={0.3}
                                             eraseOnComplete={false}
                                             isSecure={false}
                                           />
@@ -106,37 +160,6 @@ export default function ViewStep({ kandidate, stepCandidate, cCandidate }: { kan
                                 )
                               })()}
                             </Box>
-                          </Grid.Col>
-                          <Grid.Col span={{ md: 6, lg: 6 }}>
-                            <Text c={"#D01234"} fz={20}>NEGATIVE</Text>
-                            {(() => {
-                              const datanya = _.groupBy(
-                                isData[v],
-                                (v3) => v3.sentiment
-                              )["2"];
-
-                              if (!datanya) return <></>;
-                              return (
-                                <>
-                                  <Box pt={10} pb={30}>
-                                    <ScrollArea h={200}>
-                                      <Stack c={"white"}>
-                                        <TextAnimation
-                                          phrases={[...datanya[_.random(0, datanya.length - 1)].content.split('\n')]}
-                                          typingSpeed={0}
-                                          backspaceDelay={0}
-                                          eraseDelay={0}
-                                          timeComplete={0}
-                                          errorProbability={0}
-                                          eraseOnComplete={false}
-                                          isSecure={false}
-                                        />
-                                      </Stack>
-                                    </ScrollArea>
-                                  </Box>
-                                </>
-                              )
-                            })()}
                           </Grid.Col>
                         </Grid>
                       </Box>

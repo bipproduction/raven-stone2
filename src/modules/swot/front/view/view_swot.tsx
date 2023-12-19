@@ -50,7 +50,7 @@ export default function ViewSwot({ swot, candidate, cCandidate }: { swot: any, c
     <>
       <Stack>
         <PageSubTitle text1='SWOT' text2='EVALUATION' />
-        <Grid gutter={60}>
+        <Grid gutter={40}>
           <Grid.Col span={{ md: 3, lg: 3 }} >
             <Box>
               <Image alt='candidate' src={isImgCandidate} maw={"auto"} mx="auto" />
@@ -74,32 +74,43 @@ export default function ViewSwot({ swot, candidate, cCandidate }: { swot: any, c
           <Grid.Col span={{ md: 9, lg: 9 }}>
             <ScrollArea h={"79vh"}>
               {_.keys(isData).map((item: any, i: any) => (
-                <Box key={i} pb={50}>
-                  <Box>
-                    <Text fw={"bold"} fz={24} c={"#089A31"}>{item}</Text>
-                  </Box>
-                  {(() => {
-                    const datanya = isData[item]
-                    if (datanya)
-                      return (
-                        <>
-                          <ScrollArea h={200}>
+                <Box
+                key={i}
+                pb={30}
+                >
+                  <Box 
+                   style={{
+                    background: "rgba(0,0,0,0.3)",
+                    padding: 20,
+                    borderRadius: 10
+                  }}
+                  >
+                    <Box>
+                      <Text fw={"bold"} fz={24} c={"#089A31"}>{item}</Text>
+                    </Box>
+                    {(() => {
+                      const datanya = isData[item]
+                      if (datanya)
+                        return (
+                          <>
+                            <ScrollArea h={200}>
                               <Text c={"white"} m={1}>
                                 <TextAnimation
                                   phrases={[...datanya[_.random(0, datanya.length - 1)].content.split('\n')]}
-                                  typingSpeed={0}
-                                  backspaceDelay={0}
-                                  eraseDelay={0}
-                                  timeComplete={0}
-                                  errorProbability={0}
+                                  typingSpeed={(i == 0) ? 0 : Number(datanya.id ? Math.floor(Math.random() * 1 + 0) : Math.floor(Math.random() * 1 + 5))}
+                                  backspaceDelay={Number(datanya.id ? Math.floor(Math.random() * 899999 + 100000) : Math.floor(Math.random() * 899999 + 100000))}
+                                  eraseDelay={Number(datanya.id ? Math.floor(Math.random() * 899999 + 100000) : Math.floor(Math.random() * 899999 + 100000))}
+                                  timeComplete={Number(datanya.id ? Math.floor(Math.random() * 899999 + 100000) : Math.floor(Math.random() * 899999 + 100000))}
+                                  errorProbability={Number(datanya.id ? 0 : 0.1)}
                                   eraseOnComplete={false}
                                   isSecure={false}
                                 />
                               </Text>
-                          </ScrollArea>
-                        </>
-                      )
-                  })()}
+                            </ScrollArea>
+                          </>
+                        )
+                    })()}
+                  </Box>
                 </Box>
               ))}
             </ScrollArea>

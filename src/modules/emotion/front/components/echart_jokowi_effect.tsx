@@ -205,9 +205,9 @@ export default function EchartJokowiEffect({ data }: { data: any }) {
             <Box>
                 <Group justify='flex-end'>
                     <Group>
-                        <Button loading={isLoadingMonth} variant={(isButton == 'month') ? 'filled' : 'subtle'} c={"white"} onClick={() => onChooseTime('month') }>Month</Button>
-                        <Divider orientation="vertical" />
                         <Button loading={isLoadingWeek} variant={(isButton == 'week') ? 'filled' : 'subtle'} c={"white"} onClick={() => onChooseTime('week')}>Week</Button>
+                        <Divider orientation="vertical" />
+                        <Button loading={isLoadingMonth} variant={(isButton == 'month') ? 'filled' : 'subtle'} c={"white"} onClick={() => onChooseTime('month') }>Month</Button>
                         <Divider orientation="vertical" />
                         <Menu opened={showPopDate} position='bottom-end'>
                             <Menu.Target>
