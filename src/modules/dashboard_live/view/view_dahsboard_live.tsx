@@ -230,9 +230,11 @@ export default function DashboardLive({ dataPersen, dataNotif, emotionPersen }: 
                                     gap={"md"}
                                     style={{
                                         borderRadius: 20
-                                    }} >
+                                    }} 
+                                    pt={10}
+                                    >
                                     <Flex align={"center"} p={0}>
-                                        <Flex px={"xs"} pb={10} direction={"column"} gap={0} p={0} >
+                                        <Flex px={"lg"} pb={10} direction={"column"} gap={0} p={0} >
                                             {/* <Text style={{
                                                 fontSize: 20,
                                                 fontWeight: "bolder"
@@ -249,11 +251,11 @@ export default function DashboardLive({ dataPersen, dataNotif, emotionPersen }: 
                                                 }} bg={emotion_color('positive')}>positive</Text>
                                             </Group>
                                         </Flex>
-                                        <MdArrowDropUp color={emotion_color('positive')} size={60} />
+                                        {/* <MdArrowDropUp color={emotion_color('positive')} size={60} /> */}
                                     </Flex>
 
                                     <Flex align={"center"} p={0}>
-                                        <Flex px={"xs"} pb={10} direction={"column"} gap={0} p={0} >
+                                        <Flex px={"lg"} pb={10} direction={"column"} gap={0} p={0} >
                                             {/* <Text style={{
                                                 fontSize: 20,
                                                 fontWeight: "bolder"
@@ -270,11 +272,11 @@ export default function DashboardLive({ dataPersen, dataNotif, emotionPersen }: 
                                                 }} bg={emotion_color('neutral')}>neutral</Text>
                                             </Group>
                                         </Flex>
-                                        <MdArrowDropUp color={emotion_color('neutral')} size={60} />
+                                        {/* <MdArrowDropUp color={emotion_color('neutral')} size={60} /> */}
                                     </Flex>
 
                                     <Flex align={"center"} p={0}>
-                                        <Flex px={"xs"} pb={10} direction={"column"} gap={0} p={0} >
+                                        <Flex px={"lg"} pb={10} direction={"column"} gap={0} p={0} >
                                             {/* <Text style={{
                                                 fontSize: 20,
                                                 fontWeight: "bolder"
@@ -291,7 +293,7 @@ export default function DashboardLive({ dataPersen, dataNotif, emotionPersen }: 
                                                 }} bg={emotion_color('negative')}>negative</Text>
                                             </Group>
                                         </Flex>
-                                        <MdArrowDropUp color={emotion_color('negative')} size={60} />
+                                        {/* <MdArrowDropUp color={emotion_color('negative')} size={60} /> */}
                                     </Flex>
                                 </Group>
                             </Stack>
@@ -331,7 +333,7 @@ export default function DashboardLive({ dataPersen, dataNotif, emotionPersen }: 
                                                     <Text bg={"#06D974"} fz={10}>positive</Text>
                                                 </Group>
                                             </Box>
-                                            <MdArrowDropDown color={"#06D974"} size={50} />
+                                            {/* <MdArrowDropDown color={"#06D974"} size={50} /> */}
                                         </Group>
                                         <Group>
                                             <Box>
@@ -341,7 +343,7 @@ export default function DashboardLive({ dataPersen, dataNotif, emotionPersen }: 
                                                     <Text bg={'gray'} fz={10}>neutral</Text>
                                                 </Group>
                                             </Box>
-                                            <MdArrowDropDown color={"gray"} size={50} />
+                                            {/* <MdArrowDropDown color={"gray"} size={50} /> */}
                                         </Group>
                                         <Group>
                                             <Box>
@@ -351,7 +353,7 @@ export default function DashboardLive({ dataPersen, dataNotif, emotionPersen }: 
                                                     <Text bg={"#E01E1E"} fz={10}>negative</Text>
                                                 </Group>
                                             </Box>
-                                            <MdArrowDropDown color={"#E01E1E"} size={50} />
+                                            {/* <MdArrowDropDown color={"#E01E1E"} size={50} /> */}
                                         </Group>
                                     </Flex>
                                 </Stack>
@@ -378,7 +380,7 @@ export default function DashboardLive({ dataPersen, dataNotif, emotionPersen }: 
                                                     <Text bg={"#06D974"} fz={10}>positive</Text>
                                                 </Group>
                                             </Box>
-                                            <MdArrowDropDown color={"#06D974"} size={50} />
+                                            {/* <MdArrowDropDown color={"#06D974"} size={50} /> */}
                                         </Group>
                                         <Group>
                                             <Box>
@@ -388,7 +390,7 @@ export default function DashboardLive({ dataPersen, dataNotif, emotionPersen }: 
                                                     <Text bg={'gray'} fz={10}>neutral</Text>
                                                 </Group>
                                             </Box>
-                                            <MdArrowDropDown color={"gray"} size={50} />
+                                            {/* <MdArrowDropDown color={"gray"} size={50} /> */}
                                         </Group>
                                         <Group>
                                             <Box>
@@ -398,7 +400,7 @@ export default function DashboardLive({ dataPersen, dataNotif, emotionPersen }: 
                                                     <Text bg={"#E01E1E"} fz={10}>negative</Text>
                                                 </Group>
                                             </Box>
-                                            <MdArrowDropDown color={"#E01E1E"} size={50} />
+                                            {/* <MdArrowDropDown color={"#E01E1E"} size={50} /> */}
                                         </Group>
                                     </Flex>
                                 </Stack>
