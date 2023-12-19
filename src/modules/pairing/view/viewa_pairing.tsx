@@ -100,19 +100,21 @@ export default function ViewaPairing({ paslon, provinsi, cpaslon, data, audience
                 </Box>
               </Box>
             </SimpleGrid>
-            <Box pt={40} pb={20}>
+            {/* <Box pt={40} pb={20}>
               <Text fz={24} fs="italic" c={"#6ABD45"} ta={'center'} >SUCCESS PROBABILITY PROJECTION</Text>
-            </Box>
-            <Box
-              style={{
-                backgroundColor: "#269214",
-                padding: 20,
-                borderRadius: 10
-              }}
-            >
-              <Text ta={"center"} c={"white"} fz={55} fw={"bold"}>
-                {(isRate) ? isRate.rate + '%' : '0%'}
-              </Text>
+            </Box> */}
+            <Box pt={40}>
+              <Box
+                style={{
+                  backgroundColor: "#269214",
+                  padding: 20,
+                  borderRadius: 10
+                }}
+              >
+                <Text ta={"center"} c={"white"} fz={55} fw={"bold"}>
+                  {(isRate) ? isRate.rate + '%' : '0%'}
+                </Text>
+              </Box>
             </Box>
           </Grid.Col>
           <Grid.Col span={{ md: 7, lg: 7 }}>
