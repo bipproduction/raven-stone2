@@ -120,9 +120,9 @@ export default function EchartPopularity({ data, paslon }: { data: any, paslon: 
       >
         <Group justify='flex-end' mr={30}>
           <Group>
-            <Button variant={(isButton == 'month') ? 'filled' : 'subtle'} c={"white"} onClick={() => onChooseTime('month')}>Month</Button>
-            <Divider orientation="vertical" />
             <Button variant={(isButton == 'week') ? 'filled' : 'subtle'} c={"white"} onClick={() => onChooseTime('week')}>Week</Button>
+            <Divider orientation="vertical" />
+            <Button variant={(isButton == 'month') ? 'filled' : 'subtle'} c={"white"} onClick={() => onChooseTime('month')}>Month</Button>
             <Divider orientation="vertical" />
             <Menu opened={showPopDate} position='bottom-end'>
               <Menu.Target>
