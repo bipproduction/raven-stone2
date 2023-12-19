@@ -1,12 +1,13 @@
+'use client'
 import { Box, ScrollArea, Stack, Text } from '@mantine/core';
 import React from 'react';
-
 
 /**
  * Fungsi untuk menampilkan detail region hot issue.
  * @param {data} data - menampilkan data.
  * @returns Untuk menampilkan detail region hot issue
  */
+
 export default function DetailRegionHotIssue({ data }: { data: any }) {
   return (
     <>
@@ -21,11 +22,7 @@ export default function DetailRegionHotIssue({ data }: { data: any }) {
             <Text fz={24} fw={"bold"} c={"white"}>REGION HOT ISSUE</Text>
           </Box>
           <ScrollArea w={"100%"} h={315}>
-            <Box>
-              <Text c={"white"}>
-                {data[0].description}
-              </Text>
-            </Box>
+            <Box c={"white"} dangerouslySetInnerHTML={{ __html: data[0].description }} />
           </ScrollArea>
         </Box>
       </Stack>

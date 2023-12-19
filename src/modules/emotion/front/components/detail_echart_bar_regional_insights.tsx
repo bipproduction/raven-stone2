@@ -71,9 +71,6 @@ export default function DetailEchartBarRegionalInsights({ dataEmotion }: { dataE
           type: 'value',
           axisLabel: {
             color: "white",
-            formatter: (a: any) => {
-              return `${a}`;
-            },
           },
         }
       ],
