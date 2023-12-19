@@ -1,8 +1,6 @@
 'use server'
-
 import { prisma } from "@/modules/_global"
 import _ from "lodash"
-
 
 /**
  * Fungsi untuk get emotion regional front.
@@ -10,6 +8,7 @@ import _ from "lodash"
  * @param {region} region - menampilkan region.
  * @returns Untuk  get emotion regional front
  */
+
 export default async function funGetEmotionRegionalFront({ candidate, region }: { candidate: any, region?: any }) {
     let kondisi
 
@@ -62,6 +61,16 @@ export default async function funGetEmotionRegionalFront({ candidate, region }: 
         uncomfortable: _.sumBy(v, 'uncomfortable'),
         undecided: _.sumBy(v, 'undecided'),
         unsupportive: _.sumBy(v, 'unsupportive'),
+        filtered: _.sum([
+            _.sumBy(v, 'confidence'),
+            _.sumBy(v, 'dissapproval'),
+            _.sumBy(v, 'negative'),
+            _.sumBy(v, 'positive'),
+            _.sumBy(v, 'supportive'),
+            _.sumBy(v, 'uncomfortable'),
+            _.sumBy(v, 'undecided'),
+            _.sumBy(v, 'unsupportive'),
+        ])
     }))
 
     return result

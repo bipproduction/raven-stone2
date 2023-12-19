@@ -1,5 +1,4 @@
 'use client'
-
 import { COLOR_EMOTION } from '@/modules/_global';
 import { Box, Text } from '@mantine/core';
 import { useShallowEffect } from '@mantine/hooks';
@@ -8,12 +7,12 @@ import EChartsReact from 'echarts-for-react';
 import _ from 'lodash';
 import React, { useState } from 'react';
 
-
 /**
  * Fungsi untuk menampilkan menampilkan echart bat polar regional insights.
  * @param {dataLta} dataLta - menampilkan dataLta.
  * @returns Untuk menampilkan menampilkan echart bat polar regional insights
  */
+
 export default function EcahrtBarPolarRegionalInsights({ dataLta }: { dataLta: any }) {
   const [options, setOptions] = useState<EChartsOption>({})
   const total = _.sum([
@@ -29,15 +28,15 @@ export default function EcahrtBarPolarRegionalInsights({ dataLta }: { dataLta: a
   ])
 
   const [dataChart, setDataChart] = useState<any>({
-    pekerjaKeras: _.round((Number(dataLta[0].pekerjaKeras) / total) * 100, 2),
-    cerdas: _.round((Number(dataLta[0].cerdas) / total) * 100, 2),
-    jujur: _.round((Number(dataLta[0].jujur) / total) * 100, 2),
-    merakyat: _.round((Number(dataLta[0].merakyat) / total) * 100, 2),
-    tegas: _.round((Number(dataLta[0].tegas) / total) * 100, 2),
-    berpengalamanMemimpin: _.round((Number(dataLta[0].berpengalamanMemimpin) / total) * 100, 2),
-    berprestasi: _.round((Number(dataLta[0].berprestasi) / total) * 100, 2),
-    latarBelakangMiliter: _.round((Number(dataLta[0].latarBelakangMiliter) / total) * 100, 2),
-    agamis: _.round((Number(dataLta[0].agamis) / total) * 100, 2),
+    hard_worker: _.round((Number(dataLta[0].pekerjaKeras) / total) * 100, 2),
+    smart: _.round((Number(dataLta[0].cerdas) / total) * 100, 2),
+    honest: _.round((Number(dataLta[0].jujur) / total) * 100, 2),
+    populist: _.round((Number(dataLta[0].merakyat) / total) * 100, 2),
+    firm: _.round((Number(dataLta[0].tegas) / total) * 100, 2),
+    leading_experince: _.round((Number(dataLta[0].berpengalamanMemimpin) / total) * 100, 2),
+    achievement: _.round((Number(dataLta[0].berprestasi) / total) * 100, 2),
+    military_background: _.round((Number(dataLta[0].latarBelakangMiliter) / total) * 100, 2),
+    religious: _.round((Number(dataLta[0].agamis) / total) * 100, 2),
   })
 
   useShallowEffect(() => {
@@ -66,6 +65,9 @@ export default function EcahrtBarPolarRegionalInsights({ dataLta }: { dataLta: a
         axisLabel: {
           color: "white",
           fontSize: "10",
+          formatter: function (params: any) {
+            return _.startCase(params);
+          },
         },
         startAngle: 60,
       },

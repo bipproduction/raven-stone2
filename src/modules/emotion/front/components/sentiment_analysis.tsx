@@ -6,7 +6,6 @@ import { useRouter } from 'next/navigation';
 import { WARNA } from '@/modules/_global';
 import _ from 'lodash';
 
-
 /**
  * Fungsi untuk menampilkan sentiment analysis.
  * @param {dataEmotion} dataEmotion - menampilkan dataEmotion.
@@ -14,6 +13,7 @@ import _ from 'lodash';
  * @param {candidate} candidate - menampilkan candidate.
  * @returns Untuk  menampilkan sentiment analysis
  */
+
 export default function SentimentAnalysis({ dataAudience, dataEmotion, candidate }: { dataAudience: any, dataEmotion: any, candidate: any }) {
   const router = useRouter()
 
@@ -22,16 +22,18 @@ export default function SentimentAnalysis({ dataAudience, dataEmotion, candidate
     .map((itm: any) => Number(itm.value))
 
 
-  const filtered = _.sum([
-    dataEmotion.confidence,
-    dataEmotion.dissapproval,
-    dataEmotion.negative,
-    dataEmotion.positive,
-    dataEmotion.supportive,
-    dataEmotion.uncomfortable,
-    dataEmotion.undecided,
-    dataEmotion.unsupportive,
-  ])
+  // const filtered = _.sum([
+  //   dataEmotion.confidence,
+  //   dataEmotion.dissapproval,
+  //   dataEmotion.negative,
+  //   dataEmotion.positive,
+  //   dataEmotion.supportive,
+  //   dataEmotion.uncomfortable,
+  //   dataEmotion.undecided,
+  //   dataEmotion.unsupportive,
+  // ])
+
+  const filtered = dataEmotion.filtered
 
   return (
     <>
@@ -41,18 +43,18 @@ export default function SentimentAnalysis({ dataAudience, dataEmotion, candidate
           <Box pt={20}>
             <Group justify='space-between' gap={20}>
               <Group pl={30}>
-                  <Box>
-                    <Text c={WARNA.merah_emotion} fz={15}>Filtered Audience</Text>
-                    <Text ta={'center'} c={WARNA.hijau_emotion} fz={25} fw={'bold'}>{Intl.NumberFormat("id-ID").format(Number(filtered))}</Text>
-                  </Box>
-                  <Box>
-                    <Text c={WARNA.merah_emotion} fz={15}>Locked Audience</Text>
-                    <Text ta={'center'} c={WARNA.hijau_emotion} fz={25} fw={'bold'}>{Intl.NumberFormat("id-ID").format(Number(locked))}</Text>
-                  </Box>
+                <Box>
+                  <Text c={WARNA.merah_emotion} fz={15}>Locked Audience</Text>
+                  <Text ta={'center'} c={WARNA.hijau_emotion} fz={25} fw={'bold'}>{Intl.NumberFormat("id-ID").format(Number(locked))}</Text>
+                </Box>
+                <Box>
+                  <Text c={WARNA.merah_emotion} fz={15}>Filtered Audience</Text>
+                  <Text ta={'center'} c={WARNA.hijau_emotion} fz={25} fw={'bold'}>{Intl.NumberFormat("id-ID").format(Number(filtered))}</Text>
+                </Box>
               </Group>
-            <Box>
-              <Button c={"dark"} bg={"white"} onClick={() => router.push('/dashboard/regional-insights/' + candidate + '/' + dataEmotion.idProvinsi)} >DETAIL</Button>
-            </Box>
+              <Box>
+                <Button c={"dark"} bg={"white"} onClick={() => router.push('/dashboard/regional-insights/' + candidate + '/' + dataEmotion.idProvinsi)} >DETAIL</Button>
+              </Box>
             </Group>
           </Box>
         </Box>
