@@ -1,11 +1,9 @@
 "use client"
 import { Box, Button, Grid, Group, Stack, Text } from '@mantine/core';
 import React from 'react';
-import { useRouter } from 'next/navigation';
 import DetailEchartBarRegionalInsights from './detail_echart_bar_regional_insights';
 import { WARNA } from '@/modules/_global';
 import _ from 'lodash';
-
 
 /**
  * Fungsi untuk menampilkan detail sentiment analysis.
@@ -13,23 +11,14 @@ import _ from 'lodash';
  * @param {dataAudience} dataAudience - menampilkan dataAudience.
  * @returns Untuk  menampilkan detail sentiment analysis
  */
+
 export default function DetailSentimentAnalysis({ dataAudience, dataEmotion }: { dataAudience: any, dataEmotion: any }) {
 
   const locked = dataAudience
     .filter((v: any) => v.idKabkot === dataEmotion.idKabkot)
     .map((itm: any) => Number(itm.value))
-
-
-  const filtered = _.sum([
-    dataEmotion.confidence,
-    dataEmotion.dissapproval,
-    dataEmotion.negative,
-    dataEmotion.positive,
-    dataEmotion.supportive,
-    dataEmotion.uncomfortable,
-    dataEmotion.undecided,
-    dataEmotion.unsupportive,
-  ])
+    
+  const filtered = dataEmotion.filtered
 
   return (
     <>

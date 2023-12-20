@@ -17,16 +17,7 @@ export default function DetailRegionalDataPairing({ dataEmotion, dataAudience }:
     .filter((v: any) => v.idProvinsi === dataEmotion.idProvinsi)
     .map((itm: any) => Number(itm.value))
 
-  const filtered = _.sum([
-    dataEmotion.confidence,
-    dataEmotion.dissapproval,
-    dataEmotion.negative,
-    dataEmotion.positive,
-    dataEmotion.supportive,
-    dataEmotion.uncomfortable,
-    dataEmotion.undecided,
-    dataEmotion.unsupportive,
-  ])
+  const filtered = dataEmotion.filtered
 
   return (
     <>
@@ -36,12 +27,12 @@ export default function DetailRegionalDataPairing({ dataEmotion, dataAudience }:
           <Group justify='space-between'>
             <Group pl={30}>
               <Box>
-                <Text c={WARNA.merah_emotion} fz={15}>Filtered Audience</Text>
-                <Text ta={'center'} c={WARNA.hijau_emotion} fz={25} fw={'bold'}>{Intl.NumberFormat("id-ID").format(Number(filtered))}</Text>
-              </Box>
-              <Box>
                 <Text c={WARNA.merah_emotion} fz={15}>Locked Audience</Text>
                 <Text ta={'center'} c={WARNA.hijau_emotion} fz={25} fw={'bold'}>{Intl.NumberFormat("id-ID").format(Number(locked))}</Text>
+              </Box>
+              <Box>
+                <Text c={WARNA.merah_emotion} fz={15}>Filtered Audience</Text>
+                <Text ta={'center'} c={WARNA.hijau_emotion} fz={25} fw={'bold'}>{Intl.NumberFormat("id-ID").format(Number(filtered))}</Text>
               </Box>
             </Group>
           </Group>

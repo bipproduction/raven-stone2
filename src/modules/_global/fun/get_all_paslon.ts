@@ -11,10 +11,16 @@ export default async function funGetAllPaslon() {
 
     // get data semua paslon
     const data = await prisma.paslon.findMany({
+        where: {
+            isActive: true
+        },
         select: {
             id: true,
             nameCapres: true,
             nameCawapres: true
+        },
+        orderBy: {
+            id: 'asc'
         }
     });
 

@@ -17,7 +17,7 @@ export default async function funGetEmotionPaslonAreaFront() {
 
 
 
-    // PASLON 1 - PRABOWO
+    // PASLON 1 - ANIES
     const data = await prisma.paslonEmotion.findMany({
         where: {
             idPaslon: 1,
@@ -108,7 +108,7 @@ export default async function funGetEmotionPaslonAreaFront() {
 
 
 
-    // PASLON 2 - GANJAR
+    // PASLON 2 - PRABOWO
     const data2 = await prisma.paslonEmotion.findMany({
         where: {
             idPaslon: 2,
@@ -198,7 +198,7 @@ export default async function funGetEmotionPaslonAreaFront() {
 
 
 
-    // PASLON 3 - ANIES
+    // PASLON 3 - GANJAR
     const data3 = await prisma.paslonEmotion.findMany({
         where: {
             idPaslon: 3,

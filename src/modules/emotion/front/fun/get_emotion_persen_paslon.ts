@@ -15,15 +15,34 @@ export default async function funGetEmotionPersenPaslonFront() {
 
 
 
-    // PASLON 1 - PRABOWO
+    // PASLON 1 - ANIES
+    const dataJam = await prisma.paslonEmotion.findMany({
+        where: {
+            idPaslon: 1,
+            dateEmotion: new Date(),
+            timeEmotion: {
+                lt: IniisoDateTime
+            }
+        },
+        orderBy: {
+            timeEmotion: 'desc'
+        },
+        select: {
+            timeEmotion: true,
+            idPaslon: true,
+        }
+    })
+
+    const findJam = _.map(_.groupBy(dataJam, ["timeEmotion"]), (v: any) => ({
+        timeEmotionFormat: moment.utc(v[0].timeEmotion).format('HH:mm'),
+        timeEmotion: v[0].timeEmotion
+    }))
+
     const data = await prisma.paslonEmotion.findMany({
         where: {
             idPaslon: 1,
             dateEmotion: new Date(),
-            //TODO: ini harusnya nyalaa .. tapi nanti ga pas sama persen
-            // timeEmotion: {
-            //     lt: IniisoDateTime
-            // }
+            timeEmotion: findJam[0]?.timeEmotion
         },
         orderBy: {
             timeEmotion: 'desc'
@@ -114,7 +133,7 @@ export default async function funGetEmotionPersenPaslonFront() {
 
 
 
-    // PASLON 2 - GANJAR
+    // PASLON 2 - PRABOWO
     const data2 = await prisma.paslonEmotion.findMany({
         where: {
             idPaslon: 2,
@@ -215,7 +234,7 @@ export default async function funGetEmotionPersenPaslonFront() {
 
 
 
-    // PASLON 3 - ANIESS
+    // PASLON 3 - GANJAR
     const data3 = await prisma.paslonEmotion.findMany({
         where: {
             idPaslon: 3,
