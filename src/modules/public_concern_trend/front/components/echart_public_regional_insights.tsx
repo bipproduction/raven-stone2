@@ -15,21 +15,21 @@ import React, { useState } from 'react';
 
 export default function EchartPublicRegionalInsights({ dataPct }: { dataPct: any }) {
   const [options, setOptions] = useState<EChartsOption>({})
-  const [dataChart, setDataChart] = useState<any>({
-    infrastructure: Number(dataPct[0].infrastruktur),
-    social_justice: Number(dataPct[0].keadilanSosial),
-    poverty: Number(dataPct[0].kemiskinan),
-    jobs: Number(dataPct[0].lapanganPekerjaan),
-    health_services: Number(dataPct[0].layananKesehatan),
-    education: Number(dataPct[0].pendidikan),
-  })
-
+  const [dataChart, setDataChart] = useState<any>()
 
   useShallowEffect(() => {
-    loadData()
-  }, [])
+    setDataChart({
+      infrastructure: Number(dataPct[0].infrastruktur),
+      social_justice: Number(dataPct[0].keadilanSosial),
+      poverty: Number(dataPct[0].kemiskinan),
+      jobs: Number(dataPct[0].lapanganPekerjaan),
+      health_services: Number(dataPct[0].layananKesehatan),
+      education: Number(dataPct[0].pendidikan),
+    })
+    loadData(dataChart)
+  }, [dataPct, dataChart])
 
-  const loadData = () => {
+  const loadData = (dataLoad: any) => {
     const option: EChartsOption = {
       tooltip: {
         trigger: "axis",
@@ -53,7 +53,7 @@ export default function EchartPublicRegionalInsights({ dataPct }: { dataPct: any
       yAxis: [
         {
           type: "category",
-          data: _.keys(dataChart).map((v) => (v)).filter((v) => v != "name" && v != "idProvinsi"),
+          data: _.keys(dataLoad).map((v) => (v)).filter((v) => v != "name" && v != "idProvinsi"),
           axisTick: {
             alignWithLabel: true,
           },
@@ -84,11 +84,11 @@ export default function EchartPublicRegionalInsights({ dataPct }: { dataPct: any
           name: "Direct",
           type: "bar",
           barWidth: "60%",
-          data: Object.keys(dataChart ?? []).map(
+          data: Object.keys(dataLoad ?? []).map(
             (v: any, i: any) =>
             ({
               name: v,
-              value: dataChart[v],
+              value: dataLoad[v],
               itemStyle: {
                 color: COLOR_PCT[i],
               },

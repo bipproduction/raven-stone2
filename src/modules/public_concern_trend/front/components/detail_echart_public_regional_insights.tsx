@@ -1,5 +1,4 @@
 'use client'
-
 import { COLOR_EMOTION, COLOR_PCT } from '@/modules/_global';
 import { Box, Group, Text } from '@mantine/core';
 import { useShallowEffect } from '@mantine/hooks';
@@ -13,22 +12,24 @@ import React, { useState } from 'react';
  * @param {DataPct} DataPct - menampilkan DataPct.
  * @returns Untuk menampilkan detail echart public regional insights
  */
+
 export default function DetailEchartPublicRegionalInsights({ dataPct }: { dataPct: any }) {
   const [options, setOptions] = useState<EChartsOption>({})
-  const [dataChart, setDataChart] = useState<any>({
-    infrastructure: Number(dataPct[0].infrastruktur),
-    social_justice: Number(dataPct[0].keadilanSosial),
-    poverty: Number(dataPct[0].kemiskinan),
-    jobs: Number(dataPct[0].lapanganPekerjaan),
-    health_services: Number(dataPct[0].layananKesehatan),
-    education: Number(dataPct[0].pendidikan),
-  })
+  const [dataChart, setDataChart] = useState<any>()
 
   useShallowEffect(() => {
-    loadData()
-  }, [])
+    setDataChart({
+      infrastructure: Number(dataPct[0].infrastruktur),
+      social_justice: Number(dataPct[0].keadilanSosial),
+      poverty: Number(dataPct[0].kemiskinan),
+      jobs: Number(dataPct[0].lapanganPekerjaan),
+      health_services: Number(dataPct[0].layananKesehatan),
+      education: Number(dataPct[0].pendidikan),
+    })
+    loadData(dataChart)
+  }, [dataPct, dataChart])
 
-  const loadData = () => {
+  const loadData = (dataLoad: any) => {
     const option: EChartsOption = {
       title: {
         text: "PUBLIC CONCERNS TRENDS",
@@ -59,7 +60,7 @@ export default function DetailEchartPublicRegionalInsights({ dataPct }: { dataPc
       yAxis: [
         {
           type: "category",
-          data: _.keys(dataChart).map((v) => (v)).filter((v) => v != "name" && v != "idKabkot"),
+          data: _.keys(dataLoad).map((v) => (v)).filter((v) => v != "name" && v != "idKabkot"),
           axisTick: {
             alignWithLabel: true,
           },
@@ -90,11 +91,11 @@ export default function DetailEchartPublicRegionalInsights({ dataPct }: { dataPc
           name: "Direct",
           type: "bar",
           barWidth: "60%",
-          data: Object.keys(dataChart ?? []).map(
+          data: Object.keys(dataLoad ?? []).map(
             (v: any, i: any) =>
             ({
               name: v,
-              value: dataChart[v],
+              value: dataLoad[v],
               itemStyle: {
                 color: COLOR_PCT[i],
               },

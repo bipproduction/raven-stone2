@@ -15,48 +15,24 @@ import React, { useState } from 'react';
 
 export default function DetailEcahrtBarPolarRegionalInsights({ dataLta }: { dataLta: any }) {
   const [options, setOptions] = useState<EChartsOption>({});
-
-  // const total = _.sum([
-  //   dataLta[0].pekerjaKeras,
-  //   dataLta[0].cerdas,
-  //   dataLta[0].jujur,
-  //   dataLta[0].merakyat,
-  //   dataLta[0].tegas,
-  //   dataLta[0].berpengalamanMemimpin,
-  //   dataLta[0].berprestasi,
-  //   dataLta[0].latarBelakangMiliter,
-  //   dataLta[0].agamis,
-  // ])
-
-  // const [dataChart, setDataChart] = useState<any>({
-  //   hard_worker: _.round((Number(dataLta[0].pekerjaKeras) / total) * 100, 2),
-  //   smart: _.round((Number(dataLta[0].cerdas) / total) * 100, 2),
-  //   honest: _.round((Number(dataLta[0].jujur) / total) * 100, 2),
-  //   populist: _.round((Number(dataLta[0].merakyat) / total) * 100, 2),
-  //   firm: _.round((Number(dataLta[0].tegas) / total) * 100, 2),
-  //   leading_experince: _.round((Number(dataLta[0].berpengalamanMemimpin) / total) * 100, 2),
-  //   achievement: _.round((Number(dataLta[0].berprestasi) / total) * 100, 2),
-  //   military_background: _.round((Number(dataLta[0].latarBelakangMiliter) / total) * 100, 2),
-  //   religious: _.round((Number(dataLta[0].agamis) / total) * 100, 2),
-  // })
-
-  const [dataChart, setDataChart] = useState<any>({
-    hard_worker: dataLta[0].pekerjaKeras,
-    smart: dataLta[0].cerdas,
-    honest: dataLta[0].jujur,
-    populist: dataLta[0].merakyat,
-    firm: dataLta[0].tegas,
-    leading_experince: dataLta[0].berpengalamanMemimpin,
-    achievement: dataLta[0].berprestasi,
-    military_background: dataLta[0].latarBelakangMiliter,
-    religious: dataLta[0].agamis,
-  })
+  const [dataChart, setDataChart] = useState<any>()
 
   useShallowEffect(() => {
-    loadData()
-  }, [])
+    setDataChart({
+      hard_worker: dataLta[0].pekerjaKeras,
+      smart: dataLta[0].cerdas,
+      honest: dataLta[0].jujur,
+      populist: dataLta[0].merakyat,
+      firm: dataLta[0].tegas,
+      leading_experince: dataLta[0].berpengalamanMemimpin,
+      achievement: dataLta[0].berprestasi,
+      military_background: dataLta[0].latarBelakangMiliter,
+      religious: dataLta[0].agamis,
+    })
+    loadData(dataChart)
+  }, [dataLta, dataChart])
 
-  const loadData = () => {
+  const loadData = (dataLoad: any) => {
     const option: EChartsOption = {
       radiusAxis: {},
       polar: {},
@@ -71,7 +47,7 @@ export default function DetailEcahrtBarPolarRegionalInsights({ dataLta }: { data
       },
       angleAxis: {
         type: "category",
-        data: _.keys(dataChart).map((v) => (v)).filter((v) => v != "name" && v != "idProvinsi"),
+        data: _.keys(dataLoad).map((v) => (v)).filter((v) => v != "name" && v != "idProvinsi"),
         axisTick: {
           alignWithLabel: true,
         },
@@ -90,11 +66,11 @@ export default function DetailEcahrtBarPolarRegionalInsights({ dataLta }: { data
           type: "bar",
           coordinateSystem: "polar",
           barWidth: 80,
-          data: Object.keys(dataChart ?? []).map(
+          data: Object.keys(dataLoad ?? []).map(
             (v: any, i: any) =>
             ({
               name: v,
-              value: dataChart[v],
+              value: dataLoad[v],
               itemStyle: {
                 color:
                   COLOR_EMOTION.find((v2) => v2.id == String(i))

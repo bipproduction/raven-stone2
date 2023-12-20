@@ -36,12 +36,12 @@ export default function DetailRegionalDataPairing({ dataEmotion, dataAudience }:
           <Group justify='space-between'>
             <Group pl={30}>
               <Box>
-                <Text c={WARNA.merah_emotion} fz={15}>Filtered Audience</Text>
-                <Text ta={'center'} c={WARNA.hijau_emotion} fz={25} fw={'bold'}>{Intl.NumberFormat("id-ID").format(Number(filtered))}</Text>
-              </Box>
-              <Box>
                 <Text c={WARNA.merah_emotion} fz={15}>Locked Audience</Text>
                 <Text ta={'center'} c={WARNA.hijau_emotion} fz={25} fw={'bold'}>{Intl.NumberFormat("id-ID").format(Number(locked))}</Text>
+              </Box>
+              <Box>
+                <Text c={WARNA.merah_emotion} fz={15}>Filtered Audience</Text>
+                <Text ta={'center'} c={WARNA.hijau_emotion} fz={25} fw={'bold'}>{Intl.NumberFormat("id-ID").format(Number(filtered))}</Text>
               </Box>
             </Group>
           </Group>
