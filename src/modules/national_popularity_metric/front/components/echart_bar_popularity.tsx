@@ -1,3 +1,4 @@
+'use client'
 import { COLOR_EMOTION } from '@/modules/_global';
 import { Box } from '@mantine/core';
 import { useShallowEffect } from '@mantine/hooks';
@@ -11,10 +12,11 @@ import React, { useEffect, useState } from 'react';
  * @param {emotion} emotion - menampilkan emotion.
  * @returns Untuk menampilkan echart bar popularity
  */
+
 export default function EchartBarPopularity({ emotion }: { emotion: any }) {
   const [options, setOptions] = useState<EChartsOption>({})
 
-  useEffect(() => {
+  useShallowEffect(() => {
     loadData(emotion)
   }, [emotion])
 
@@ -75,7 +77,7 @@ export default function EchartBarPopularity({ emotion }: { emotion: any }) {
   }
   return (
     <>
-      <Box>
+      <Box>s
         <EChartsReact style={{
           height: 400,
           width: 400,

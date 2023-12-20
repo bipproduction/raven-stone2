@@ -1,3 +1,4 @@
+'use client'
 import { useShallowEffect } from '@mantine/hooks';
 import { EChartsOption } from 'echarts';
 import React, { useState } from 'react';
@@ -13,6 +14,7 @@ import { DatePicker } from '@mantine/dates';
  * Fungsi untuk menampilkan echart popularity.
  * @returns Untuk menampilkan echart popularity
  */
+
 export default function EchartPopularity({ data, paslon }: { data: any, paslon: any }) {
   const [options, setOptions] = useState<EChartsOption>({});
   const [listData, setListData] = useState(data)
@@ -111,13 +113,7 @@ export default function EchartPopularity({ data, paslon }: { data: any, paslon: 
 
   return (
     <>
-      <Box
-      // style={{
-      //   backgroundColor: "#000000",
-      //   borderRadius: 10,
-      //   padding: 10
-      // }}
-      >
+      <Box>
         <Group justify='flex-end' mr={30}>
           <Group>
             <Button variant={(isButton == 'week') ? 'filled' : 'subtle'} c={"white"} onClick={() => onChooseTime('week')}>Week</Button>
