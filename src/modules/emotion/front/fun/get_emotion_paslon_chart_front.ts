@@ -1,6 +1,5 @@
 'use server'
 import { prisma } from "@/modules/_global"
-import { PaslonEmotion } from "@prisma/client";
 import _ from "lodash"
 import moment from 'moment';
 
@@ -17,12 +16,46 @@ export default async function funGetEmotionPaslonChartFront({ paslon, startDate,
 
     if (startDate == endDate) {
         startDate = moment(new Date()).subtract(1, "days").format("YYYY-MM-DD")
-        const data = await prisma.$queryRaw`SELECT * FROM "PaslonEmotion" WHERE "idPaslon"=${paslon} AND (("dateEmotion"='2023-12-13' AND "timeEmotion">='15:00') OR ("dateEmotion"='2023-12-14' AND "timeEmotion"<'15:00')) ORDER BY "dateEmotion", "timeEmotion"`
+        // const data = await prisma.$queryRaw`SELECT * FROM "PaslonEmotion" WHERE "idPaslon"=${paslon} AND (("dateEmotion"='2023-12-13' AND "timeEmotion">='15:00') OR ("dateEmotion"='2023-12-14' AND "timeEmotion"<'15:00')) ORDER BY "dateEmotion", "timeEmotion"`
         // const data = await prisma.$queryRaw`SELECT * FROM "PaslonEmotion" WHERE "idPaslon"=${paslon} AND (("dateEmotion"=${new Date(startDate)} AND "timeEmotion">=${new Date(jamNow)}) OR ("dateEmotion"=${endDate} AND "timeEmotion"<${new Date(jamNow)})) ORDER BY "dateEmotion", "timeEmotion"`
         // const data = await prisma.$queryRaw`SELECT * FROM "PaslonEmotion" WHERE "idPaslon"=${paslon} AND (("dateEmotion"=${new Date(startDate)}) OR ("dateEmotion"=${endDate})) ORDER BY "dateEmotion", "timeEmotion"`
 
+        // const jamNowCoba = '15:00:00'
+        // const IniisoDateTimeCoba = new Date(new Date('1970-01-01 ' + jamNowCoba).getTime() - (new Date('1970-01-01 ' + jamNowCoba).getTimezoneOffset() * 60000)).toISOString()
+        let gabung = <any>[]
 
-        const groupedData = _.groupBy(data as any, (d: any) => d.timeEmotion.toISOString())
+        const dataCoba1 = await prisma.paslonEmotion.findMany({
+            where: {
+                idPaslon: Number(paslon),
+                dateEmotion: new Date(startDate),
+                timeEmotion: {
+                    gte: IniisoDateTime
+                }
+            },
+            orderBy: {
+                timeEmotion: 'asc'
+            }
+        })
+
+        const dataCoba2 = await prisma.paslonEmotion.findMany({
+            where: {
+                idPaslon: Number(paslon),
+                dateEmotion: new Date(endDate),
+                timeEmotion: {
+                    lt: IniisoDateTime
+                }
+            },
+            orderBy: {
+                timeEmotion: 'asc'
+            }
+        })
+
+        gabung.push(dataCoba1)
+        gabung.push(dataCoba2)
+        const selesai= gabung.flat()
+
+
+        const groupedData = _.groupBy(selesai as any, (d: any) => d.timeEmotion.toISOString())
 
         const result = Object.keys(groupedData).map((dateStr) => {
             const sentimentData = groupedData[dateStr];
@@ -82,17 +115,30 @@ export default async function funGetEmotionPaslonChartFront({ paslon, startDate,
         })
 
         let dataDateTime: { date: any, time: any }[] = []
+        let kondisinya
 
         for (let i = 0; i < getDate.length; i++) {
+            if (moment(getDate[i].dateEmotion).format('YYYY-MM-DD') == moment(new Date()).format('YYYY-MM-DD')) {
+                kondisinya = {
+                    idPaslon: Number(paslon),
+                    dateEmotion: getDate[i].dateEmotion,
+                    timeEmotion: {
+                        lt: IniisoDateTime
+                    }
+                }
+            } else {
+                kondisinya = {
+                    idPaslon: Number(paslon),
+                    dateEmotion: getDate[i].dateEmotion
+                }
+            }
+
             const getDateTime = await prisma.paslonEmotion.groupBy({
                 by: ['timeEmotion'],
                 orderBy: {
                     timeEmotion: 'desc'
                 },
-                where: {
-                    idPaslon: Number(paslon),
-                    dateEmotion: getDate[i].dateEmotion
-                }
+                where: kondisinya
             })
 
             dataDateTime.push({ date: getDate[i].dateEmotion, time: getDateTime[0].timeEmotion })
