@@ -1,5 +1,6 @@
 'use server'
 import { prisma } from "@/modules/_global"
+import { PaslonEmotion } from "@prisma/client";
 import _ from "lodash"
 import moment from 'moment';
 
@@ -66,26 +67,72 @@ export default async function funGetEmotionPaslonChartFront({ paslon, startDate,
         return result
 
     } else {
-        const data = await prisma.paslonEmotion.findMany({
+        const getDate = await prisma.paslonEmotion.groupBy({
+            by: ['dateEmotion'],
+            orderBy: {
+                dateEmotion: 'asc'
+            },
             where: {
                 idPaslon: Number(paslon),
                 dateEmotion: {
                     gte: new Date(startDate),
                     lte: new Date(endDate),
                 }
-            },
-            orderBy: {
-                dateEmotion: 'asc'
             }
         })
 
-        const groupedData = _.groupBy(data, (d: any) => d.dateEmotion.toDateString());
+        let dataDateTime: { date: any, time: any }[] = []
+
+        for (let i = 0; i < getDate.length; i++) {
+            const getDateTime = await prisma.paslonEmotion.groupBy({
+                by: ['timeEmotion'],
+                orderBy: {
+                    timeEmotion: 'desc'
+                },
+                where: {
+                    idPaslon: Number(paslon),
+                    dateEmotion: getDate[i].dateEmotion
+                }
+            })
+
+            dataDateTime.push({ date: getDate[i].dateEmotion, time: getDateTime[0].timeEmotion })
+        }
+
+        let dataMentah = []
+        for (let i = 0; i < dataDateTime.length; i++) {
+            const find = await prisma.paslonEmotion.findMany({
+                where: {
+                    idPaslon: Number(paslon),
+                    dateEmotion: dataDateTime[i].date,
+                    timeEmotion: dataDateTime[i].time
+                }
+            })
+
+            dataMentah.push(find)
+        }
+
+        const dataMentah2 = dataMentah.flat()
+        // const data = await prisma.paslonEmotion.findMany({
+        //     where: {
+        //         idPaslon: Number(paslon),
+        //         dateEmotion: {
+        //             gte: new Date(startDate),
+        //             lte: new Date(endDate),
+        //         }
+        //     },
+        //     orderBy: {
+        //         dateEmotion: 'asc'
+        //     }
+        // })
+
+        const groupedData = _.groupBy(dataMentah2, (d: any) => d.dateEmotion.toDateString());
+
 
         const result = Object.keys(groupedData).map((dateStr) => {
             const sentimentData = groupedData[dateStr];
 
             const sum = sentimentData.reduce(
-                (result: any, value) => ({
+                (result: any, value: any) => ({
                     confidence: result.confidence + value.confidence,
                     supportive: result.supportive + value.supportive,
                     positive: result.positive + value.positive,
