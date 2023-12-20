@@ -17,16 +17,7 @@ export default function DetailRegionalDataPairing({ dataEmotion, dataAudience }:
     .filter((v: any) => v.idProvinsi === dataEmotion.idProvinsi)
     .map((itm: any) => Number(itm.value))
 
-  const filtered = _.sum([
-    dataEmotion.confidence,
-    dataEmotion.dissapproval,
-    dataEmotion.negative,
-    dataEmotion.positive,
-    dataEmotion.supportive,
-    dataEmotion.uncomfortable,
-    dataEmotion.undecided,
-    dataEmotion.unsupportive,
-  ])
+  const filtered = dataEmotion.filtered
 
   return (
     <>

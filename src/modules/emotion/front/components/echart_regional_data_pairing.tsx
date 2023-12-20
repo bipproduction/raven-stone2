@@ -1,3 +1,4 @@
+'use client'
 import { COLOR_EMOTION } from '@/modules/_global';
 import { Box, Group, Text } from '@mantine/core';
 import { useShallowEffect } from '@mantine/hooks';
@@ -6,32 +7,32 @@ import EChartsReact from 'echarts-for-react';
 import React, { useState } from 'react';
 import _ from 'lodash';
 
-
 /**
  * Fungsi untuk menampilkan echart regional data pairing.
  * @param {dataEmotion} dataEmotion - menampilkan dataEmotion.
  * @param {total} total - menampilkan total.
  * @returns Untuk  menampilkan echart regional data pairing
  */
+
 export default function EchartRegionalDataPairing({ dataEmotion, total }: { dataEmotion: any, total: any }) {
   const [options, setOptions] = useState<EChartsOption>({});
-  const [dataChart, setDataChart] = useState<any>({
-    confidence: _.round((Number(dataEmotion.confidence) / total) * 100, 2),
-    supportive: _.round((Number(dataEmotion.supportive) / total) * 100, 2),
-    positive: _.round((Number(dataEmotion.positive) / total) * 100, 2),
-    undecided: _.round((Number(dataEmotion.undecided) / total) * 100, 2),
-    unsupportive: _.round((Number(dataEmotion.unsupportive) / total) * 100, 2),
-    uncomfortable: _.round((Number(dataEmotion.uncomfortable) / total) * 100, 2),
-    negative: _.round((Number(dataEmotion.negative) / total) * 100, 2),
-    dissapproval: _.round((Number(dataEmotion.dissapproval) / total) * 100, 2),
-  })
-
-
+  const [dataChart, setDataChart] = useState<any>()
 
   useShallowEffect(() => {
-    loadData()
-  }, [])
-  const loadData = () => {
+    setDataChart({
+      confidence: dataEmotion.confidence,
+      supportive: dataEmotion.supportive,
+      positive: dataEmotion.positive,
+      undecided: dataEmotion.undecided,
+      unsupportive: dataEmotion.unsupportive,
+      uncomfortable: dataEmotion.uncomfortable,
+      negative: dataEmotion.negative,
+      dissapproval: dataEmotion.dissapproval,
+    })
+    loadData(dataChart)
+  }, [dataEmotion, dataChart]);
+
+  const loadData = (dataLoad: any) => {
     const option: EChartsOption = {
       tooltip: {
         trigger: 'axis',
@@ -120,7 +121,7 @@ export default function EchartRegionalDataPairing({ dataEmotion, total }: { data
           <Text c={"white"} fw={'bold'}>SENTIMENT ANALYSIS</Text>
         </Group>
         <Box>
-          <EChartsReact style={{ width: "100%", height:420 }} option={options} />
+          <EChartsReact style={{ width: "100%", height: 420 }} option={options} />
         </Box>
       </Box>
     </>
