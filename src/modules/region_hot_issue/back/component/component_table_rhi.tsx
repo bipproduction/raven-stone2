@@ -1,5 +1,4 @@
 "use client";
-import { useAtom } from "jotai";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import {
@@ -14,7 +13,6 @@ import {
 } from "@mantine/core";
 import { CiRead, CiUnread } from "react-icons/ci";
 import { MdDelete, MdEditCalendar } from "react-icons/md";
-import TextAnimation from "react-typing-dynamics";
 
 export default function ComponentTableRhi({ v, i }: { v: any; i: any }) {
   const open = useState(false);
@@ -70,19 +68,9 @@ export default function ComponentTableRhi({ v, i }: { v: any; i: any }) {
                 <Text c={"white"} fw={"bold"} fz={20} mb={10}>
                   Content
                 </Text>
-                {/* <Text c={"white"} dangerouslySetInnerHTML={RubahHTML(v.content)} /> */}
-                <Text c={"white"}>
-                  <TextAnimation
-                    phrases={[...v.description.split('\n')]}
-                    typingSpeed={0}
-                    backspaceDelay={0}
-                    eraseDelay={0}
-                    timeComplete={0}
-                    errorProbability={0}
-                    eraseOnComplete={false}
-                    isSecure={false}
-                  />
-                </Text>
+                <Stack c={'white'}>
+                  <Box dangerouslySetInnerHTML={{ __html: v.description }} />
+                </Stack>
               </Box>
             </Collapse>
           </Table.Td>
