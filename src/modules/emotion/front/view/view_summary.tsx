@@ -32,57 +32,7 @@ export default function ViewSummary({ summaryTable, paslon, effect, emotion, loc
   const [isDate, setDate] = useState<any>(new Date())
   const [isBTime, setBTime] = useState(effect.isJam)
   const [valRead, setRead] = useAtom(_valReadIdEffect)
-  const [presentase, setPresentase] = useState({
-    positive: 0,
-    neutral: 0,
-    negative: 0,
-  });
   const router = useRouter()
-
-  useShallowEffect(() => {
-    const total = _.reduce(
-      persen,
-      (result, value) => {
-        return {
-          confidence: result.confidence + value.confidence,
-          supportive: result.supportive + value.supportive,
-          positive: result.positive + value.positive,
-          undecided: result.undecided + value.undecided,
-          unsupportive: result.unsupportive + value.unsupportive,
-          uncomfortable: result.uncomfortable + value.uncomfortable,
-          negative: result.negative + value.negative,
-          dissapproval: result.dissapproval + value.dissapproval,
-          value: result.value + value.total,
-        };
-      },
-      {
-        confidence: 0,
-        supportive: 0,
-        positive: 0,
-        undecided: 0,
-        unsupportive: 0,
-        uncomfortable: 0,
-        negative: 0,
-        dissapproval: 0,
-        value: 0,
-      }
-    );
-
-    const positive = total.confidence + total.supportive + total.positive;
-    const neutral = total.undecided;
-    const negative = total.unsupportive + total.uncomfortable + total.negative + total.dissapproval;
-    const totalEmotions = total.value;
-
-    const result = {
-      positive: Number(((positive / totalEmotions) * 100).toFixed(2)),
-      neutral: Number(((neutral / totalEmotions) * 100).toFixed(2)),
-      negative: Number(((negative / totalEmotions) * 100).toFixed(2)),
-    }
-
-    if (!_.isEmpty(persen)) {
-      setPresentase(result);
-    }
-  }, [persen]);
 
 
   async function chooseDate(value: any) {
@@ -141,7 +91,7 @@ export default function ViewSummary({ summaryTable, paslon, effect, emotion, loc
                           borderRadius: 5
                         }}>
                           <Text ml={5} fz={13} c={"white"}>POSITIVE</Text>
-                          <Text ta={'center'} fw={'bold'} c={"white"} fz={24}>{presentase.positive} %</Text>
+                          <Text ta={'center'} fw={'bold'} c={"white"} fz={24}>{_.isNaN(persen.positive) ? 0 : persen.positive} %</Text>
                         </Box>
                       </Box>
                       <Box>
@@ -152,7 +102,7 @@ export default function ViewSummary({ summaryTable, paslon, effect, emotion, loc
                           borderRadius: 5
                         }}>
                           <Text ml={5} fz={13} c={WARNA.hijau}>NEUTRAL</Text>
-                          <Text ta={'center'} fw={'bold'} c={WARNA.hijau} fz={24}>{presentase.neutral} %</Text>
+                          <Text ta={'center'} fw={'bold'} c={WARNA.hijau} fz={24}>{_.isNaN(persen.neutral) ? 0 : persen.neutral} %</Text>
                         </Box>
                       </Box>
                       <Box>
@@ -163,7 +113,7 @@ export default function ViewSummary({ summaryTable, paslon, effect, emotion, loc
                           borderRadius: 5
                         }}>
                           <Text ml={5} fz={13} c={"white"}>NEGATIVE</Text>
-                          <Text ta={'center'} fw={'bold'} c={"white"} fz={24}>{presentase.negative} %</Text>
+                          <Text ta={'center'} fw={'bold'} c={"white"} fz={24}>{_.isNaN(persen.negative) ? 0 : persen.negative} %</Text>
                         </Box>
                       </Box>
                     </SimpleGrid>

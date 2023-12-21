@@ -6,30 +6,6 @@ import ViewTop10 from './view_top10';
 import { WARNA } from '@/modules/_global';
 import _ from 'lodash';
 
-const dataSummary = [
-  {
-    id: 1,
-    presiden: "PRABOWO SUBIANTO",
-    wakil: "GIBRAN RAKABUMING",
-    imgPresiden: "/candidate/c1.png",
-    imgWakil: "/candidate/c2.png",
-  },
-  {
-    id: 2,
-    presiden: "GANJAR PRANOWO",
-    wakil: "MAHFUD MAHMODIN",
-    imgPresiden: "/candidate/c3.png",
-    imgWakil: "/candidate/c4.png",
-  },
-  {
-    id: 3,
-    presiden: "ANIES BASWEDAN",
-    wakil: "MUHAIMIN ISKANDAR",
-    imgPresiden: "/candidate/c5.png",
-    imgWakil: "/candidate/c6.png",
-  },
-]
-
 /**
  * Fungsi untuk menampilkan summary candidate.
  * @returns {component} menampilakn summary candidate.

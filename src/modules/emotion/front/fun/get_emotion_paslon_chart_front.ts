@@ -52,7 +52,7 @@ export default async function funGetEmotionPaslonChartFront({ paslon, startDate,
 
         gabung.push(dataCoba1)
         gabung.push(dataCoba2)
-        const selesai= gabung.flat()
+        const selesai = gabung.flat()
 
 
         const groupedData = _.groupBy(selesai as any, (d: any) => d.timeEmotion.toISOString())
@@ -141,20 +141,23 @@ export default async function funGetEmotionPaslonChartFront({ paslon, startDate,
                 where: kondisinya
             })
 
-            dataDateTime.push({ date: getDate[i].dateEmotion, time: getDateTime[0].timeEmotion })
+            dataDateTime.push({ date: getDate[i]?.dateEmotion, time: getDateTime[0]?.timeEmotion })
         }
 
         let dataMentah = []
         for (let i = 0; i < dataDateTime.length; i++) {
-            const find = await prisma.paslonEmotion.findMany({
-                where: {
-                    idPaslon: Number(paslon),
-                    dateEmotion: dataDateTime[i].date,
-                    timeEmotion: dataDateTime[i].time
-                }
-            })
+            // klo ga ada data di terakhir 
+            if (!_.isUndefined(dataDateTime[i].time)) {
+                const find = await prisma.paslonEmotion.findMany({
+                    where: {
+                        idPaslon: Number(paslon),
+                        dateEmotion: dataDateTime[i].date,
+                        timeEmotion: dataDateTime[i].time
+                    }
+                })
 
-            dataMentah.push(find)
+                dataMentah.push(find)
+            }
         }
 
         const dataMentah2 = dataMentah.flat()
