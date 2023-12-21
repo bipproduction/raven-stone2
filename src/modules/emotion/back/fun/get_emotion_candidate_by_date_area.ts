@@ -1,15 +1,14 @@
 'use server'
-
 import { funGetOneCandidate, prisma } from "@/modules/_global"
 import moment from "moment"
 import _ from "lodash"
-
 
 /**
  * Fungsi untuk get emotion candidate date area.
  * @param {find} find - menampilkan find.
  * @returns Untuk  get emotion candidate date area
  */
+
 export default async function funGetEmotionCandidateDateArea({ find }: { find: any }) {
     let emotion, dataJam, titleA, kondisi, kondisi2, thTrue, prov, result, jamFix, formatJam, isoDateTime
 

@@ -3,12 +3,12 @@ import { funGetOneCandidate, prisma } from "@/modules/_global"
 import moment from "moment"
 import _ from "lodash"
 
-
 /**
  * Fungsi untuk download emotion candidate by date.
  * @param {find} find - menampilkan find.
  * @returns Untuk  download emotion candidate by date
  */
+
 export default async function funDownloadEmotionCandidateByDate({ find }: { find: any }) {
     let emotion, titleA, kondisi, kondisi2, prov, result, daerah, dataJam, jamFix, isoDateTime
 
