@@ -12,7 +12,7 @@ import { funLogUser } from '@/modules/user';
  * @param {textContent} textContent - menampilkan textContent.
  * @returns Untuk menampilkan Modal Add Swot
  */
-export default function ModalAddSwot({ dataSwot, textContent, onClick }: { onClick: () => void, dataSwot: any, textContent: any }) {
+export default function ModalAddSwot({ dataSwot, textContent, onSuccess }: { onSuccess: () => void, dataSwot: any, textContent: any }) {
     const [valOpenModal, setOpenModal] = useAtom(isModalSwot)
 
     async function addSwot() {
@@ -21,8 +21,7 @@ export default function ModalAddSwot({ dataSwot, textContent, onClick }: { onCli
         await funLogUser({ act: "ADD", desc: `User Add Data Swot` })
         toast("Success", { theme: "dark" });
         setOpenModal(false);
-        onClick()
-        // onSuccess(true)
+        onSuccess()
     }
 
     return (

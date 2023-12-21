@@ -38,33 +38,38 @@ export default async function funGetEmotionPersenPaslonFront() {
         timeEmotion: v[0].timeEmotion
     }))
 
-    const data = await prisma.paslonEmotion.findMany({
-        where: {
-            idPaslon: 1,
-            dateEmotion: new Date(),
-            timeEmotion: findJam[0]?.timeEmotion
-        },
-        orderBy: {
-            timeEmotion: 'desc'
-        },
-        select: {
-            idProvinsi: true,
-            confidence: true,
-            dissapproval: true,
-            negative: true,
-            positive: true,
-            supportive: true,
-            uncomfortable: true,
-            undecided: true,
-            unsupportive: true,
-            timeEmotion: true,
-            AreaProvinsi: {
-                select: {
-                    name: true
+    let data: any[] = []
+
+    if (findJam.length > 0) {
+        data = await prisma.paslonEmotion.findMany({
+            where: {
+                idPaslon: 1,
+                dateEmotion: new Date(),
+                timeEmotion: findJam[0]?.timeEmotion
+            },
+            orderBy: {
+                timeEmotion: 'desc'
+            },
+            select: {
+                idProvinsi: true,
+                confidence: true,
+                dissapproval: true,
+                negative: true,
+                positive: true,
+                supportive: true,
+                uncomfortable: true,
+                undecided: true,
+                unsupportive: true,
+                timeEmotion: true,
+                AreaProvinsi: {
+                    select: {
+                        name: true
+                    }
                 }
             }
-        }
-    })
+        })
+    }
+
 
     const formatProvinsi = data.map((v: any) => ({
         ..._.omit(v, ["AreaProvinsi"]),
@@ -134,36 +139,60 @@ export default async function funGetEmotionPersenPaslonFront() {
 
 
     // PASLON 2 - PRABOWO
-    const data2 = await prisma.paslonEmotion.findMany({
+    const dataJam2 = await prisma.paslonEmotion.findMany({
         where: {
             idPaslon: 2,
             dateEmotion: new Date(),
-            //TODO: ini harusnya nyalaa .. tapi nanti ga pas sama persen
-            // timeEmotion: {
-            //     lt: IniisoDateTime
-            // }
+            timeEmotion: {
+                lt: IniisoDateTime
+            }
         },
         orderBy: {
             timeEmotion: 'desc'
         },
         select: {
-            idProvinsi: true,
-            confidence: true,
-            dissapproval: true,
-            negative: true,
-            positive: true,
-            supportive: true,
-            uncomfortable: true,
-            undecided: true,
-            unsupportive: true,
             timeEmotion: true,
-            AreaProvinsi: {
-                select: {
-                    name: true
-                }
-            }
+            idPaslon: true,
         }
     })
+
+    const findJam2 = _.map(_.groupBy(dataJam2, ["timeEmotion"]), (v: any) => ({
+        timeEmotionFormat: moment.utc(v[0].timeEmotion).format('HH:mm'),
+        timeEmotion: v[0].timeEmotion
+    }))
+
+    let data2: any[] = []
+
+    if (findJam2.length > 0) {
+        data2 = await prisma.paslonEmotion.findMany({
+            where: {
+                idPaslon: 2,
+                dateEmotion: new Date(),
+                timeEmotion: findJam2[0]?.timeEmotion
+            },
+            orderBy: {
+                timeEmotion: 'desc'
+            },
+            select: {
+                idProvinsi: true,
+                confidence: true,
+                dissapproval: true,
+                negative: true,
+                positive: true,
+                supportive: true,
+                uncomfortable: true,
+                undecided: true,
+                unsupportive: true,
+                timeEmotion: true,
+                AreaProvinsi: {
+                    select: {
+                        name: true
+                    }
+                }
+            }
+        })
+    }
+
 
     const formatProvinsi2 = data2.map((v: any) => ({
         ..._.omit(v, ["AreaProvinsi"]),
@@ -235,36 +264,60 @@ export default async function funGetEmotionPersenPaslonFront() {
 
 
     // PASLON 3 - GANJAR
-    const data3 = await prisma.paslonEmotion.findMany({
+    const dataJam3 = await prisma.paslonEmotion.findMany({
         where: {
             idPaslon: 3,
             dateEmotion: new Date(),
-            //TODO: ini harusnya nyalaa .. tapi nanti ga pas sama persen
-            // timeEmotion: {
-            //     lt: IniisoDateTime
-            // }
+            timeEmotion: {
+                lt: IniisoDateTime
+            }
         },
         orderBy: {
             timeEmotion: 'desc'
         },
         select: {
-            idProvinsi: true,
-            confidence: true,
-            dissapproval: true,
-            negative: true,
-            positive: true,
-            supportive: true,
-            uncomfortable: true,
-            undecided: true,
-            unsupportive: true,
             timeEmotion: true,
-            AreaProvinsi: {
-                select: {
-                    name: true
-                }
-            }
+            idPaslon: true,
         }
     })
+
+    const findJam3 = _.map(_.groupBy(dataJam3, ["timeEmotion"]), (v: any) => ({
+        timeEmotionFormat: moment.utc(v[0].timeEmotion).format('HH:mm'),
+        timeEmotion: v[0].timeEmotion
+    }))
+
+    let data3: any[] = []
+
+    if (findJam3.length > 0) {
+        data3 = await prisma.paslonEmotion.findMany({
+            where: {
+                idPaslon: 3,
+                dateEmotion: new Date(),
+                timeEmotion: findJam3[0]?.timeEmotion
+            },
+            orderBy: {
+                timeEmotion: 'desc'
+            },
+            select: {
+                idProvinsi: true,
+                confidence: true,
+                dissapproval: true,
+                negative: true,
+                positive: true,
+                supportive: true,
+                uncomfortable: true,
+                undecided: true,
+                unsupportive: true,
+                timeEmotion: true,
+                AreaProvinsi: {
+                    select: {
+                        name: true
+                    }
+                }
+            }
+        })
+    }
+
 
     const formatProvinsi3 = data3.map((v: any) => ({
         ..._.omit(v, ["AreaProvinsi"]),
@@ -296,7 +349,7 @@ export default async function funGetEmotionPersenPaslonFront() {
     }))
 
     const total3 = _.reduce(
-        dataAkhir3,
+        dataAkhir,
         (result, value) => {
             return {
                 confidence: result.confidence + value.confidence,

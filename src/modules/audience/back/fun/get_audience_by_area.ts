@@ -30,6 +30,9 @@ export default async function funGetAudienceByArea({ find }: { find: any }) {
                         name: true
                     }
                 }
+            },
+            orderBy: {
+                idKabkot: 'asc'
             }
         })
 
@@ -62,6 +65,9 @@ export default async function funGetAudienceByArea({ find }: { find: any }) {
                         name: true
                     }
                 }
+            },
+            orderBy: {
+                idProvinsi: 'asc'
             }
         })
 
