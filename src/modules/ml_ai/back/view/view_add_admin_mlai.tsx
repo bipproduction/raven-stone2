@@ -22,27 +22,23 @@ import { useAtom } from 'jotai';
 import { isModalMlai } from '../val/modal_mlai';
 import ModalAddMlAi from '../component/modal_add_ml_ai';
 
-
 /**
  * Fungsi untuk menampilkan view add admin ml ai.
  * @param {params} params - menampilkan params.
  * @param {paslon} paslon - menampilkan paslon.
  * @returns Untuk menampilkan view add admin ml ai
  */
-export default function ViewAddAdminMlai({ params, paslon, }: {params: any, paslon: any,}) {
+
+export default function ViewAddAdminMlai({ params, paslon, }: { params: any, paslon: any, }) {
   const ref = useRef<HTMLInputElement>(null);
   const router = useRouter();
   const [dataPaslon, setDataPaslon] = useState(paslon)
   const [isPaslon, setPaslon] = useState<any>(params.idPaslon || null)
   const [isDate, setDate] = useState<any>(params.date)
   const [valOpenModal, setOpenModal] = useAtom(isModalMlai)
-
   const [isContent, setContent] = useState('')
 
-  function onProsses() {
-    if (isPaslon == null) return toast("Silahkan pilih paslon", { theme: "dark" })
-    router.replace("/dashboard-admin/ml-ai/add?paslon=" + isPaslon + '&date=' + moment(isDate).format('YYYY-MM-DD'))
-  }
+
   CiPickerEmpty
   useEffect(() => {
     setPaslon(params.idPaslon == 0 ? null : params.idPaslon)
@@ -54,7 +50,7 @@ export default function ViewAddAdminMlai({ params, paslon, }: {params: any, pasl
     </ActionIcon>
   );
 
-  const editor = useEditor({
+  let editor = useEditor({
     extensions: [
       StarterKit,
       Underline,
@@ -66,10 +62,11 @@ export default function ViewAddAdminMlai({ params, paslon, }: {params: any, pasl
       Color,
       TextAlign.configure({ types: ['heading', 'paragraph'] }),
     ],
-    content: isContent,
+    content: isContent
   });
+
   const [isDataMlAi, setDataMlAi] = useState({
-    idPaslon: Number(),
+    idPaslon: "",
     dateContent: "",
     timeContent: ""
   })
@@ -101,6 +98,7 @@ export default function ViewAddAdminMlai({ params, paslon, }: {params: any, pasl
                 value: String(pro.id),
                 label: pro.name
               }))}
+              value={(isDataMlAi.idPaslon == "" ? null : isDataMlAi.idPaslon)}
               onChange={(val: any) =>
                 setDataMlAi({
                   ...isDataMlAi,
@@ -113,6 +111,7 @@ export default function ViewAddAdminMlai({ params, paslon, }: {params: any, pasl
             <DateInput valueFormat="DD-MM-YYYY" required
               label={"Tanggal"}
               placeholder="Pilih Tanggal"
+              value={(isDataMlAi.dateContent == '') ? null : new Date(isDataMlAi.dateContent)}
               onChange={(e) => {
                 setDataMlAi({
                   ...isDataMlAi,
@@ -126,6 +125,7 @@ export default function ViewAddAdminMlai({ params, paslon, }: {params: any, pasl
               label="Jam"
               required ref={ref}
               rightSection={pickerControl}
+              value={isDataMlAi.timeContent}
               onChange={(val) =>
                 setDataMlAi({
                   ...isDataMlAi,
@@ -223,7 +223,15 @@ export default function ViewAddAdminMlai({ params, paslon, }: {params: any, pasl
         withCloseButton={false}
         closeOnClickOutside={false}
       >
-       <ModalAddMlAi dataMlAi={isDataMlAi} textContent={editor?.getHTML()}/>
+        <ModalAddMlAi dataMlAi={isDataMlAi} textContent={editor?.getHTML()} onSuccess={() => {
+          editor?.commands.setContent('<p></p>')
+          setDataMlAi({
+            ...isDataMlAi,
+            idPaslon: "",
+            dateContent: '',
+            timeContent: '',
+          });
+        }} />
       </Modal>
     </>
   );
