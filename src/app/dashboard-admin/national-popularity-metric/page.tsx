@@ -7,8 +7,8 @@ export default async function Page({ searchParams }: { searchParams: { candidate
         date: (_.isUndefined(searchParams.date) ? today : new Date(searchParams.date)),
     }
 
-    const dataDB = await funGetPopularityByDate({ date: findData.date })
-    const dataDownload = await funDownloadPopularityByDate({ date: findData.date })
+    const dataDB = await funGetPopularityByDate({ find: findData })
+    const dataDownload = await funDownloadPopularityByDate({ find: findData })
 
     return (
         <>
