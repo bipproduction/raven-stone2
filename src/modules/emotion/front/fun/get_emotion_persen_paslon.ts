@@ -349,7 +349,7 @@ export default async function funGetEmotionPersenPaslonFront() {
     }))
 
     const total3 = _.reduce(
-        dataAkhir,
+        dataAkhir3,
         (result, value) => {
             return {
                 confidence: result.confidence + value.confidence,

@@ -16,6 +16,7 @@ import moment from "moment";
  * @param {dataNow} dataNow - menampilkan dataNow.
  * @returns Untuk Menampilkan view national popularity metric
  */
+
 export default function ViewNationalPopularityMetric({ paslon, cpaslon, dataNow, dbChart }: { paslon: any, cpaslon: any, dataNow: any, dbChart: any }) {
 
   const [isPaslon, setPaslon] = useState<any>(1)
