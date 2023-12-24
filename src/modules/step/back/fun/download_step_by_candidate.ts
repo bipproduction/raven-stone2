@@ -3,8 +3,16 @@
 import { prisma } from "@/modules/_global"
 import _ from "lodash"
 
+
+/**
+ * Fungsi untuk download step by candidate.
+ * @param {candidate} candidate - menampilakan candidate.
+ * @returns {candidate} Proses ini untuk download data step by candidate.
+ */
 export default async function funDownloadStepCandidate({ candidate }: { candidate: any }) {
     let result
+
+    // proses ini mengecek swot by idCandidate
     const cek = await prisma.step.count({
         where: {
             idCandidate: candidate,
@@ -12,12 +20,16 @@ export default async function funDownloadStepCandidate({ candidate }: { candidat
         }
     })
 
+    // proses ini menampilkan data uniq seperti id yang ada di candidate
     const dCandidate = await prisma.candidate.findUnique({
         where: {
             id: candidate
         }
     })
 
+    // prose menampilkan data yang akan keluar ketika di download
+    // jika terdapat data akan muncul id
+    // dan jika masih belum terdapat data makan id tersebut kosong
     if (cek > 0) {
         result = await prisma.step.findMany({
             where: {
@@ -55,11 +67,13 @@ export default async function funDownloadStepCandidate({ candidate }: { candidat
 
 
 
-
+    // proses menampilkan keseluruhan data yg terdiri dari title yang di ambil dari id candidate
+    // dan mengambil data yang ada di result
     const allData = {
         title: 'STEP - ' + dCandidate?.name,
         data: result
     }
 
+    // proses pengembalian allData
     return allData
 }

@@ -8,6 +8,13 @@ import toast from 'react-simple-toasts';
 import { isModalJokowi } from '../val/modal_jokowi';
 import { funLogUser } from '@/modules/user';
 
+
+/**
+ * Fungsi untuk menampilkan Modal edit Jokowi Effect.
+ * @param {dataJokowi} dataJokowi - menampilkan dataJokowi.
+ * @param {textContent} textContent - menampilkan textContent.
+ * @returns Untuk menampilkan Modal edit Jokowi Effect
+ */
 export default function ModalEditJokowiEffect({dataJokowi, textContent}: {dataJokowi: any, textContent: any}) {
   const [valOpenModal, setOpenModal] = useAtom(isModalJokowi)
   const router= useRouter()

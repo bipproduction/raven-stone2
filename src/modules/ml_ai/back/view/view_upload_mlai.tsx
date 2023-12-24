@@ -14,6 +14,10 @@ import { isModalMlai } from "../val/modal_mlai"
 import ModalUploadMlai from "../component/modal_upload_mlai"
 
 
+/**
+ * Fungsi untuk menampilkan view upload admin ml ai.
+ * @returns Untuk menampilkan view upload admin ml ai
+ */
 export default function ViewUploadMlai() {
     const [json, setJson] = useState<any[]>([])
     const [openModal, setOpenModal] = useAtom(isModalMlai)

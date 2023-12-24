@@ -3,6 +3,11 @@
 import { countProvince, prisma } from "@/modules/_global";
 import _ from "lodash"
 
+/**
+ * Fungsi untuk download leader trait assessment by area.
+ * @param {find} find - menampilkan find.
+ * @returns Untuk download leader trait assessment by area
+ */
 export default async function funDownloadLtaByArea({ find }: { find: any }) {
     let titleTrue, dataTable = <any>[], area, kondisi
 

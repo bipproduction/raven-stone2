@@ -1,7 +1,12 @@
 'use server'
-
 import { countProvince, prisma } from "@/modules/_global";
 import _ from "lodash"
+
+/**
+ * Fungsi untuk get function get rhi by area.
+ * @param {find} find - menampilkan find.
+ * @returns Untuk get function get rhi by area
+ */
 
 export default async function funGetRhiByArea({ find }: { find: any }) {
     let titleTrue, dataTable = <any>[], area, th
@@ -14,12 +19,16 @@ export default async function funGetRhiByArea({ find }: { find: any }) {
                 idProvinsi: find.idProvinsi,
             },
             select: {
+                id: true,
                 description: true,
                 AreaKabkot: {
                     select: {
                         name: true
                     }
                 }
+            },
+            orderBy: {
+                idKabkot: 'asc'
             }
         })
 

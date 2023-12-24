@@ -9,6 +9,11 @@ import toast from 'react-simple-toasts';
 import funAddSetUser from '../fun/add_set_user';
 import ModalAddSetUser from '../components/modal-add_set_user';
 
+/**
+ * Fungsi untuk menampilkan view Add Setting User.
+ * @param {roleUser} roleUser - menampilkan roleUser.
+ * @returns Untuk menampilkan keseluruhan dari View Add Setting User
+ */
 export default function ViewAddSettingUser({ roleUser }: { roleUser: any }) {
   const focusTrapRef = useFocusTrap();
   const [valOpenModal, setOpenModal] = useAtom(isModalSetUser)

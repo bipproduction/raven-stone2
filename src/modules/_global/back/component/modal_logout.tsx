@@ -7,6 +7,13 @@ import { funLogUser } from '@/modules/user';
 import { funLogout } from '@/modules/auth';
 import toast from 'react-simple-toasts';
 
+/**
+ * Menampilkan modal konfirmasi logout.
+ * Yang jika klik "NO" maka modal akan close,
+ * sedangkan jika klik "YES" maka user akan logout.
+ * @returns komponen modal logout
+ */
+
 export default function ModalLogout() {
   const router = useRouter()
   const [valOpenModal, setOpenModal] = useAtom(isModalLayout)

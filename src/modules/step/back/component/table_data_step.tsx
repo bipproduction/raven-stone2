@@ -1,5 +1,4 @@
 'use client'
-
 import { Box, Button, Center, Group, Modal, ScrollArea, Table, Text } from "@mantine/core";
 import { useEffect, useState } from "react";
 import DetailDataStep from "./detail_data_step";
@@ -9,6 +8,13 @@ import { isModalStep } from "../val/modal_step";
 import { funGetStepByCandidate } from "../..";
 import { useRouter } from "next/navigation";
 
+/**
+ * Fungsi untuk menampilkan Table Data Step.
+ * @param {data} data - menampilkan data.
+ * @param {title} title - menampilkan title.
+ * @param {searchParam} searchParam - menampilkan searchParam.
+ * @returns Untuk menampilkan Table Data Step
+ */
 
 export default function TableDataStep({ title, data, searchParam }: { title: any, data: any, searchParam: any }) {
   const [openModal, setOpenModal] = useAtom(isModalStep);
@@ -64,7 +70,6 @@ export default function TableDataStep({ title, data, searchParam }: { title: any
                       }}
                     >
                       <Table.Th>No</Table.Th>
-                      {/* <Table.Th w={200}>Kandidat</Table.Th> */}
                       <Table.Th>Kategori</Table.Th>
                       <Table.Th>Sentiment</Table.Th>
                       <Table.Th>
@@ -72,12 +77,15 @@ export default function TableDataStep({ title, data, searchParam }: { title: any
                       </Table.Th>
                     </Table.Tr>
                   </Table.Thead>
-                  {isData.map((v: any, i: any) => (
-                    <DetailDataStep v={v} i={i} key={i} onClick={(val) => {
-                      setDataDelete(val)
-                      setOpenModal(true)
-                    }} />
-                  ))}
+                  {isData.map((v: any, i: any) => {
+                    return (
+                      <DetailDataStep v={v} i={i} key={i} onClick={(val) => {
+                        setDataDelete(val)
+                        setOpenModal(true)
+                      }} />
+                    )
+                  }
+                  )}
                 </Table>
               </ScrollArea>
             </Box>

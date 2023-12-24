@@ -1,5 +1,4 @@
 'use client'
-
 import { Alert, Box, Button, Group, Text } from "@mantine/core"
 import { useAtom } from "jotai"
 import { isModalAudience } from "../val/modal_audience"
@@ -7,6 +6,15 @@ import funUploadAudience from "../fun/upload_audience"
 import toast from "react-simple-toasts"
 import { funLogUser } from "@/modules/user"
 import { useState } from "react"
+
+/**
+ * Menampilkan modal konfirmasi upload data audience
+ * Yang jika klik "NO" maka modal akan close,
+ * sedangkan jika klik "YES" maka data akan diupload.
+ * @param data data yang akan diupdload
+ * @param onSuccess callback function
+ * @returns komponen modal upload data audience
+ */
 
 export default function ModalUploadAudience({ data, onSuccess }: { data: any, onSuccess: (val: any) => void }) {
     const [openModal, setOpenModal] = useAtom(isModalAudience)

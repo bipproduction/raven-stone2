@@ -1,24 +1,26 @@
 "use client"
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDisclosure, useShallowEffect } from '@mantine/hooks';
-import { ActionIcon, AppShell, AppShellNavbar, AppShellSection, BackgroundImage, Box, Burger, Center, Divider, Grid, Group, Image, Modal, NavLink, Skeleton, Stack, Text, Title, Tooltip } from '@mantine/core';
+import { ActionIcon, AppShell, AppShellNavbar, AppShellSection, BackgroundImage, Box, Center, Divider, Grid, Group, Image, Modal, NavLink, Stack, Text, Title, Tooltip } from '@mantine/core';
 import { usePathname, useRouter } from 'next/navigation';
-import { useAtom, useAtomValue } from 'jotai';
+import { useAtom } from 'jotai';
 import { isModalLayoutUser, sNavbarSmall } from '../val/isModalLayoutUser';
 import ModalLogoutUser from '../components/modal_logout_user';
 import { WARNA } from '../..';
 import { AiOutlineClose } from 'react-icons/ai';
-import { MdArrowForwardIos, MdFreeCancellation, MdGrading, MdHub, MdJoinLeft, MdLiveHelp, MdLiveTv, MdOutlineStarBorderPurple500, MdOutlineStars, MdStorage, MdVerifiedUser } from 'react-icons/md';
+import { MdArrowForwardIos } from 'react-icons/md';
 import { DataFrontMobile } from '../components/data_mobile';
 import { DataFrontNav } from '../components/data_navbar';
 import { funLogUser } from '@/modules/user';
 import { funLogout } from '@/modules/auth';
 
-
 /**
- * Fungsi untuk menampilkan layout dashboard.
- * @returns {component} menampilakn layout dashboard.
+ * Menampilkan layout dashboard user,
+ * berisikan menu navbar (show & hide) dan modal logout
+ * @param children content children
+ * @returns komponen layout dashboard user
  */
+
 export default function ViewLayout({ children }: { children: React.ReactNode }) {
   const [valOpenModal, setOpenModal] = useAtom(isModalLayoutUser)
   const [opened, { toggle }] = useDisclosure();

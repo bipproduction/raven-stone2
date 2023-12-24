@@ -1,45 +1,18 @@
 'use server'
-
 import { funGetOneCandidate, prisma } from "@/modules/_global"
 import moment from "moment"
 import _ from "lodash"
+
+/**
+ * Fungsi untuk download emotion candidate by date.
+ * @param {find} find - menampilkan find.
+ * @returns Untuk  download emotion candidate by date
+ */
 
 export default async function funDownloadEmotionCandidateByDate({ find }: { find: any }) {
     let emotion, titleA, kondisi, kondisi2, prov, result, daerah, dataJam, jamFix, isoDateTime
 
     const dCandidate = await funGetOneCandidate({ candidate: find.idCandidate })
-
-    // if (find.idProvinsi > 0 && find.idProvinsi <= 38) {
-    //     kondisi = {
-    //         idProvinsi: find.idProvinsi,
-    //         idCandidate: find.idCandidate,
-    //         dateEmotion: find.date
-    //     }
-    //     prov = await prisma.areaProvinsi.findUnique({
-    //         where: {
-    //             id: find.idProvinsi
-    //         }
-    //     })
-
-    //     daerah = await prisma.areaKabkot.findMany({
-    //         where: {
-    //             idProvinsi: find.idProvinsi
-    //         },
-    //         select: {
-    //             name: true,
-    //             id: true,
-    //             idProvinsi: true,
-    //             AreaProvinsi: {
-    //                 select: {
-    //                     name: true,
-    //                 }
-    //             }
-    //         }
-    //     })
-
-    //     titleA = dCandidate?.name + ' - ' + moment(find.date).format('DD MMMM YYYY') + ' (PROVINSI ' + prov?.name + ')'
-
-    // } else {
         kondisi = {
             idCandidate: find.idCandidate,
             dateEmotion: find.date
@@ -84,15 +57,6 @@ export default async function funDownloadEmotionCandidateByDate({ find }: { find
             isoDateTime = dataJam2[0].timeEmotion
         }
     }
-
-    // if (find.idProvinsi > 0 && find.idProvinsi <= 38) {
-    //     kondisi2 = {
-    //         idProvinsi: find.idProvinsi,
-    //         idCandidate: find.idCandidate,
-    //         dateEmotion: find.date,
-    //         timeEmotion: jamFix
-    //     }
-    // } else {
         kondisi2 = {
             idCandidate: find.idCandidate,
             dateEmotion: find.date,

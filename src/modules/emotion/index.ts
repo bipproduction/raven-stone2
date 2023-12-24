@@ -17,8 +17,13 @@ import Top10JokowiEffect from "./front/components/top10_jokowi_effect";
 import funGetEmotionCandidateChartFront from "./front/fun/get_emotion_candidate_chart_front";
 import funGetEmotionDetailRegionalFront from "./front/fun/get_emotion_detail_regional_front";
 import funGetEmotionJokowiEffectAreaFront from "./front/fun/get_emotion_jokowi_effect_area_front";
+import funGetEmotionPaslonChartFront from "./front/fun/get_emotion_paslon_chart_front";
+import funGetEmotionPaslonAreaFront from "./front/fun/get_emotion_paslon_table";
 import funGetEmotionPersenJokowiFront from "./front/fun/get_emotion_persen_jokowi_front";
+import funGetEmotionPersenPaslonFront from "./front/fun/get_emotion_persen_paslon";
 import funGetEmotionRegionalFront from "./front/fun/get_emotion_regional_front";
+import funGetKabkotEmotionPaslon from "./front/fun/get_kabkot_emotion_paslon";
+import funGetProvinsiEmotionPaslon from "./front/fun/get_provinsi_emotion_paslon";
 import ViewSummary from "./front/view/view_summary";
 
 export { ViewAdminEmotionCandidate }
@@ -42,4 +47,9 @@ export { funGetEmotionDetailRegionalFront }
 export { funGetEmotionJokowiEffectAreaFront }
 export { funGetEmotionPersenJokowiFront }
 export { funGetEmotionCandidateChartFront }
-export {ViewDeleteEmotion}
+export { ViewDeleteEmotion }
+export { funGetEmotionPaslonAreaFront }
+export { funGetEmotionPersenPaslonFront }
+export { funGetEmotionPaslonChartFront }
+export { funGetProvinsiEmotionPaslon }
+export { funGetKabkotEmotionPaslon }

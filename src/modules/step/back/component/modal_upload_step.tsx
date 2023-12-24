@@ -8,7 +8,12 @@ import funUploadStep from "../fun/upload_step"
 import { funLogUser } from "@/modules/user"
 
 
-
+/**
+ * Fungsi untuk menampilkan Modal Upload Step.
+ * @param {data} data - menampilkan data.
+ * @param {onSuccess} onSuccess - menampilkan onSuccess.
+ * @returns Untuk menampilkan Modal Upload Step
+ */
 export default function ModalUploadStep({ data, onSuccess }: { data: any, onSuccess: (val: any) => void }) {
     const [openModal, setOpenModal] = useAtom(isModalStep)
 

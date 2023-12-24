@@ -10,6 +10,13 @@ import { funGetEffectByDate } from "../..";
 import { useRouter } from "next/navigation";
 import { useShallowEffect } from "@mantine/hooks";
 
+/**
+ * Fungsi untuk menampilkan table data Jokowi Effect.
+ * @param {title} title - menampilkan title.
+ * @param {data} data - menampilkan data.
+ * @param {searchParam} searchParam - menampilkan searchParam.
+ * @returns Untuk menampilkan table data Jokowi Effect
+ */
 export default function TableDataJokowi({ title, data, searchParam }: { title: any, data: any, searchParam: any }) {
     const is_client = useState(false)
 

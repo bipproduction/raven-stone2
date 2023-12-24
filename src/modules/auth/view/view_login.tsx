@@ -11,10 +11,9 @@ import { ViewVerification, funLogin } from '..';
 import { WARNA } from '@/modules/_global';
 
 /**
- * Fungsi untuk menampilkan view login.
- * @returns {component} menampilakn view login.
+ * Menampilkan layout login
+ * @returns komponen view login
  */
-
 
 export default function ViewLogin() {
   const focusTrapRef = useFocusTrap();
@@ -30,11 +29,15 @@ export default function ViewLogin() {
   async function onLogin() {
     if (isEmail == "" || isPassword == "")
       return toast('Please fill in completely', { theme: 'dark' })
+
     const cek = await funLogin({ email: isEmail, pass: isPassword })
     if (!cek.success)
       return toast(cek.message, { theme: 'dark' })
+
+    // proses pengambilan nomer 4 digit random untuk code verfication
     const code = Math.floor(Math.random() * 1000) + 1000
 
+    // proses pengiriman code verification melalui wa
     const res = await fetch(`https://wa.wibudev.com/code?nom=${cek.phone}&text=${code}`)
       .then(
         async (res) => {
@@ -51,8 +54,10 @@ export default function ViewLogin() {
       );
   }
 
+  // jika code verification telah terkirim maka view akan diarahkan ke view verification
   if (isVerif) return <ViewVerification />
 
+  // jika code verification belum terkirim maka yang tampil akan view login
   return (
     <>
       <Box

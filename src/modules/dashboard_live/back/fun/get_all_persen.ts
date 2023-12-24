@@ -3,6 +3,10 @@
 import { prisma } from "@/modules/_global"
 import _ from "lodash"
 
+/**
+ * Fungsi untuk get all persen
+ * @returns Untuk get all persen
+ */
 export default async function funGetAllPersen() {
   const data = await prisma.liveDashboardPersen.findMany({
     where: {

@@ -8,6 +8,15 @@ import funCopyEmotionPaslon from "../fun/copy_emotion_paslon"
 import { useState } from "react"
 import { funLogUser } from "@/modules/user"
 
+
+/**
+ * Fungsi untuk menampilkan Modal copy emotion paslon.
+ * @param {from} from - menampilkan from.
+ * @param {to} to - menampilkan to.
+ * @param {paslon} paslon - menampilkan paslon.
+ * @param {onSuccess} onSuccess - menampilkan onSuccess.
+ * @returns Untuk menampilkan Modal copy emotion paslon
+ */
 export default function ModalCopyEmotionPaslon({ from, to, paslon, onSuccess }: { from: any, to: any, paslon: any, onSuccess: (val: any) => void }) {
     const [openModal, setOpenModal] = useAtom(isModalEmotionPaslon)
     const [isLoading, setLoading] = useState(false)

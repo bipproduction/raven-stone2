@@ -3,6 +3,10 @@
 import { prisma } from "@/modules/_global"
 import { seederPaslon } from ".."
 
+/**
+ * Fungsi untuk ambil data seeder Paslon.
+ * @returns hasil untuk data seeder Paslon 
+ */
 export async function funSeederPaslon() {
     for (let data of seederPaslon) {
         await prisma.paslon.upsert({

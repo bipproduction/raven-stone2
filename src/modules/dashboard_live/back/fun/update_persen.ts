@@ -4,6 +4,11 @@ import { prisma } from "@/modules/_global"
 import { LiveDashboardPersen } from "@prisma/client"
 import { revalidatePath } from "next/cache";
 
+/**
+ * Fungsi untuk update persen.
+ * @param {data} data - menampilkan data.
+ * @returns Untuk update persen
+ */
 export default async function funUpdatePersen({ data }: { data: any }) {
     await prisma.liveDashboardPersen.update({
         where: {

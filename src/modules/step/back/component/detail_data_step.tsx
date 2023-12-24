@@ -1,24 +1,31 @@
 'use client'
-
 import { ActionIcon, Box, Center, Collapse, Group, Stack, Table, Text } from "@mantine/core";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { CiRead, CiUnread } from "react-icons/ci";
 import { MdDelete, MdEditCalendar } from "react-icons/md";
 
+/**
+ * Fungsi untuk menampilkan Detail Data Step.
+ * @param {v} v - menampilkan v.
+ * @param {i} i - menampilkan i.
+ * @param {onClick} onClick - menampilkan onClick.
+ * @returns Untuk menampilkan Hsil dari Detail Data Step
+ */
+
 export default function DetailDataStep({ v, i, onClick }: { v: any; i: any, onClick: (val: any) => void }) {
     const open = useState(false);
     const router = useRouter();
-    // const [openModal, setOpenModal] = useAtom(isModalStep);
+
     function callBackDelete({ idDel }: { idDel: any }) {
         onClick(idDel)
     }
+
     return (
         <>
             <Table.Tbody key={i}>
                 <Table.Tr>
                     <Table.Td>{i + 1}</Table.Td>
-                    {/* <Table.Td>{v.name}</Table.Td> */}
                     <Table.Td>{v.category}</Table.Td>
                     <Table.Td>{(v.sentiment == "1") ? "Positive" : "Negative"}</Table.Td>
                     <Table.Td>
@@ -36,7 +43,7 @@ export default function DetailDataStep({ v, i, onClick }: { v: any; i: any, onCl
                                     </ActionIcon>
                                 </Group>
                             </Stack>
-                            {/* <ActionIcon
+                            <ActionIcon
                                 variant="transparent"
                                 color="rgba(5, 128, 23, 1)"
                                 size="xl"
@@ -45,7 +52,7 @@ export default function DetailDataStep({ v, i, onClick }: { v: any; i: any, onCl
 
                             >
                                 <MdEditCalendar size={20} />
-                            </ActionIcon> */}
+                            </ActionIcon>
                             <ActionIcon
                                 variant="transparent"
                                 color="rgba(209, 4, 4, 1)"
@@ -77,7 +84,9 @@ export default function DetailDataStep({ v, i, onClick }: { v: any; i: any, onCl
                                 <Text c={"white"} fw={"bold"} fz={20} mb={10}>
                                     Content
                                 </Text>
-                                <Text c={"white"}>{v.content}</Text>
+                                <Stack c={'white'}>
+                                    <Box dangerouslySetInnerHTML={{ __html: v.content }} />
+                                </Stack>
                             </Box>
                         </Collapse>
                     </Table.Td>

@@ -16,8 +16,10 @@ const data_jokowi = [
 ]
 
 /**
- * Fungsi untuk menampilkan Jokowi Effect.
- * @returns {component} menampilakn Jokowi Effect.
+ * Fungsi untuk menampilkan jokowi effext summary.
+ * @param {emotion} emotion - menampilkan emotion.
+ * @param {locked} locked - menampilkan locked.
+ * @returns Untuk  menampilkan jokowi effext summary
  */
 export default function JokowiEffectSummary({ emotion, locked }: { emotion: any, locked: any }) {
   const router = useRouter()

@@ -4,6 +4,11 @@ import { prisma } from "@/modules/_global";
 import moment from "moment";
 import { revalidatePath } from "next/cache";
 
+/**
+ * Fungsi untuk upload popularity.
+ * @param {body} body - menampilkan body.
+ * @returns Untuk upload popularity
+ */
 export default async function funUploadPopularity({ body }: { body: any }) {
     let date, isoDateTime, y, pas
 

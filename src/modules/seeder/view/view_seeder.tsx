@@ -17,9 +17,13 @@ import { funSeederComponents } from "../fun/fun_component";
 import { funSeederUserAccess } from "../fun/fun_user_access";
 import { funSeederPersenLive } from "..";
 
+
+/**
+ * Fungsi untuk seeder.
+ * @returns menampilkan seeder
+ */
 export default function ViewSeeder() {
     const [loading, setLoading] = useState(false)
-
 
     // USER
     async function onComponents() {

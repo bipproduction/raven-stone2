@@ -1,20 +1,31 @@
+'use client'
 import { Alert, Box, Button, Group, Text } from '@mantine/core';
 import React from 'react';
 import toast from 'react-simple-toasts';
 import { useAtom } from 'jotai';
 import { funLogUser } from '@/modules/user';
 import { isModalStep } from '../val/modal_step';
+import funAddStep from '../fun/add_step';
 
-export default function ModalAddStep({ dataStep, textContent }: { dataStep: any, textContent: any }) {
+/**
+ * Fungsi untuk menampilkan Modal Add tep.
+ * @param {dataStep} dataStep - menampilkan dataStep.
+ * @param {textContent} textContent - menampilkan textContent.
+ * @returns Untuk menampilkan Modal Add tep
+ */
+
+export default function ModalAddStep({ dataStep, textContent, onSuccess }: { dataStep: any, textContent: any, onSuccess: (val: any) => void }) {
     const [valOpenModal, setOpenModal] = useAtom(isModalStep)
 
     async function addStep() {
-        // const res = await funAddMlAi({ data: dataMlAi, textContent: textContent });
-        // if (!res.success) return toast("Failed! " + res.message, { theme: "dark" });
-        // await funLogUser({ act: "ADD", desc: `User Add Data ML-AI (ID : ${res.id})` })
-        // toast("Success", { theme: "dark" });
-        // setOpenModal(false);
+        const res = await funAddStep({ data: dataStep, textContent: textContent });
+        if (!res.success) return toast("Failed! " + res.message, { theme: "dark" });
+        await funLogUser({ act: "ADD", desc: `User Add Data Step )` })
+        toast("Success", { theme: "dark" });
+        onSuccess(true);
+        setOpenModal(false);
     }
+
     return (
         <>
             <Box>

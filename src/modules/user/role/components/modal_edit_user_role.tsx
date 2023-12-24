@@ -8,6 +8,14 @@ import toast from 'react-simple-toasts';
 import { useRouter } from 'next/navigation';
 import { funLogUser } from '../..';
 
+
+/**
+ * Fungsi untuk menampilkan Modal Edit User Role.
+ * @param {id} id - menampilkan id.
+ * @param {name} name - menampilkan name.
+ * @param {component} component - menampilkan component.
+ * @returns Untuk menampilkan Modal Edit User Role
+ */
 export default function ModalEditUserRole({ name, component, id }: { name: any, component: any, id: any }) {
   const [valOpenModal, setOpenModal] = useAtom(isModalRoleUser)
   const router = useRouter()

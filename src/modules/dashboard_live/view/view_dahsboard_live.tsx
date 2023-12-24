@@ -21,85 +21,6 @@ export const roboto_mono = Michroma({
     style: ["normal"]
 })
 
-const list_menu = [
-    {
-        id: 1,
-        title: "menu 1"
-    },
-    {
-        id: 2,
-        title: "menu 2"
-    },
-    {
-        id: 3,
-        title: "menu 3"
-    }
-]
-
-
-const list_media_listener = [
-    {
-        id: "1",
-        user: "suparman",
-        text: `Momen mahasiswa Unisma lebih memilih Pulang saat salah satu Cawapres Berpidato
-        Sepurane  2024 Mahasiswa All In Prabowo`,
-    },
-    {
-        id: "2",
-        user: "ndon_76",
-        text: `Begini nih hasil survei Charta Politika terakhir yang bukan HOAX, pasangan Ganjar-Mahfud perolehannya 36.9%. Sementara Prabowo-Gibran 35.3%.
-
-        Baiknya kubu Prabowo jangan mainan hoax lagi deh. Nanti orang pada inget Nenek Oplas.. Sang Lejen!!`,
-    },
-    {
-        id: "3",
-        user: "argawinata",
-        text: `Dua kali dukung prabowo subianto, kenapa tahun 2019 jadi penghianat malah ikut memenangkan JOMA,gegara ulah anda istri tercinta sampe mengembuskan nafas di rs singapore 
-
-        Emang susah kalau sudah tersandera pelanggaran HAM waktu di militer`,
-    },
-    {
-        id: "4",
-        user: "andre",
-        text: `Survei Charta Politika: Ganjar Pranowo - Mahfud Md unggul dari Prabowo - Gibran dan AMIN
-
-        Survei GAMA Unggul
-        Hasil Survei Membuktikan`,
-    },
-    {
-        id: "5",
-        user: "elang pemburu",
-        text: `Momen mahasiswa Unisma lebih memilih Pulang saat salah satu Cawapres Berpidato
-        Sepurane  2024 Mahasiswa All In Prabowo`,
-    },
-    {
-        id: "6",
-        user: "deddy",
-        text: `Ini cocok menggambarkan para penikmat kekuasaan yg 2 kali pemilu melawan Prabowo dan skrg tersungkur menyembah dikaki nya tanpa rasa malu!`,
-    }
-]
-
-
-const list_emotion = [
-    {
-        id: 1,
-        name: "positive",
-        value: '49.06 %',
-        variant: "positive",
-    },
-    {
-        id: 2,
-        name: "neutral",
-        value: '12.88 %',
-        variant: "neutral"
-    },
-    {
-        id: 3,
-        name: "negative",
-        value: '38.06 %',
-        variant: "negative"
-    }
-]
 
 const list_color = {
     "red": "#E01E1E",
@@ -116,37 +37,14 @@ const get_variant = function (par: type_variant) {
     return par
 }
 
-const list_paslon = [
-    {
-        id: "1",
-        pas1_name: "anies",
-        pas2_name: "imin",
-        pas1_img: "/assets-img/anis.png",
-        pas2_img: "/assets-img/imin.png",
-        value: 29393,
-        indicator: "up"
-    },
-    {
-        id: "2",
-        pas1_name: "ganjar",
-        pas2_name: "mahfud",
-        pas1_img: "/assets-img/ganjar.png",
-        pas2_img: "/assets-img/mahfud.png",
-        value: 64862736,
-        indicator: "down"
-    }
-]
+/**
+ * Fungsi untuk menampilkan dashboard live.
+ * @param {dataPersen} dataPersen - menampilkan dataPersen.
+ * @param {dataNotif} dataNotif - menampilkan dataNotif.
+ * @returns Untuk menampilkan dashboard live
+ */
 
-interface MODEL_KAB {
-    id: number
-    prov_id: number
-    kab_id: string
-    prov_name: string
-    kab_name: string
-    emotion: number
-}
-
-export default function DashboardLive({ dataPersen, dataNotif }: { dataPersen: any, dataNotif: any }) {
+export default function DashboardLive({ dataPersen, dataNotif, emotionPersen }: { dataPersen: any, dataNotif: any, emotionPersen: any }) {
     const [list_prov, set_list_prov] = useState<any[]>(provi)
     // const [list_media, set_list_media] = useState<any[]>([])
     const [list_kab, set_list_kab] = useState<any[]>(kabu)
@@ -212,7 +110,6 @@ export default function DashboardLive({ dataPersen, dataNotif }: { dataPersen: a
             a.emotion = 2
 
             const idx = _.indexOf(kab.map((v) => v.id), a.id)
-            // console.log(idx)
             if (idx) {
                 kab.splice(idx, 1)
             }
@@ -236,19 +133,25 @@ export default function DashboardLive({ dataPersen, dataNotif }: { dataPersen: a
 
     return <BackgroundImage src="/assets-img/bg_dashbaoard.png" h={"100vh"} className={roboto_mono.className} pos={"fixed"} >
         <Stack c={"white"} gap={"md"} p={0} >
-            <Box h={"5vh"} >
-                <Flex justify={"space-between"} p={"md"} pos={"relative"}>
-                    <Image src={'/assets-img/logo_raven.png'} alt="" width={50} height={50} />
-                    <Avatar radius={100} bg={"red"} onClick={() => router.push("/dashboard/ml-ai")}>
-                        <CloseButton radius={100} />
-                    </Avatar>
-                </Flex>
-            </Box>
+            <Group justify='space-between' pl={10} pr={10} pt={5}>
+                <Image src={'/assets-img/logo_raven.png'} alt="" width={50} height={50} />
+                <Avatar radius={100} bg={"red"} onClick={() => router.push("/dashboard/summary")}>
+                    <CloseButton radius={100} />
+                </Avatar>
+            </Group>
             <Flex h={"95vh"} >
+                {/* pertama pembuka */}
                 <Box w={"25%"} p={"sm"} >
-                    <BackgroundImage style={{
-                        borderRadius: "12px"
-                    }} pos={"relative"} src="/assets-img/bg_side.png" w={"100%"} h={"100%"} p={"sm"}>
+                    <Box
+                        style={{
+                            background: `linear-gradient(0deg, rgba(2,2,16,1) 0%, rgba(13,26,88,1) 60%, rgba(29,58,118,1) 100%)`,
+                            height: "100vh",
+                            borderRadius: 10,
+                            opacity: 0.7
+                        }}
+                        pos={"relative"}
+                        w={"100%"} h={"100%"} p={"sm"}
+                    >
                         <Stack justify="space-between" pos={"relative"}>
                             <Box h={view.height / 2.3} style={{
                                 overflow: "hidden"
@@ -283,99 +186,132 @@ export default function DashboardLive({ dataPersen, dataNotif }: { dataPersen: a
                                 </FlipMove>
                             </Box>
                         </Stack>
-                    </BackgroundImage>
+                    </Box>
                 </Box>
+                {/* pertama penutup */}
+
+                {/* kedua 1 pembuka */}
                 <Box
                     w={"70%"}
                     py={"sm"}
                     h={"95vh"}>
                     <Stack
-                        h={"95vh"}
+                        h={"93vh"}
                         gap={0}
                         p={0}
                         align="stretch"
                         justify="space-between">
-                        <Stack>
-                            <Flex align={"center"} gap={"80"} justify={"center"}>
-                                <Stack>
-                                    <Image width={150} height={150} src={"/assets-img/prabowo.png"} alt="" />
-                                    <BackgroundImage src="/assets-img/bg_title.png" p={"xs"}>
-                                        <Center><Text>PRABOWO</Text></Center>
-                                    </BackgroundImage>
-                                </Stack>
-                                <Stack>
-                                    <Image width={150} height={150} src={"/assets-img/gibran.png"} alt="" />
-                                    <BackgroundImage src="/assets-img/bg_title.png" p={"xs"} >
-                                        <Center><Text>GIBRAN</Text></Center>
-                                    </BackgroundImage>
-                                </Stack>
-                            </Flex>
-                            <Group
-                                bg={"url(/assets-img/bg_bottom.png)"}
-                                align={"center"}
-                                justify={"center"}
-                                gap={"md"}
-                                style={{
-                                    borderRadius: 20
-                                }} >
-                                <Flex align={"center"} p={0}>
-                                    <Flex px={"xs"} pb={10} direction={"column"} gap={0} p={0} >
-                                        <Text style={{
-                                            fontSize: 20,
-                                            fontWeight: "bolder"
-                                        }}>{dataPersen[0]?.positive} %</Text>
-                                        <Group justify="end" style={{
-                                            fontWeight: "bold"
-                                        }} p={0} c={"white"} >
-                                            <Text style={{
-                                                fontSize: 10,
-                                            }} bg={emotion_color('positive')}>positive</Text>
-                                        </Group>
-                                    </Flex>
-                                    <MdArrowDropUp color={emotion_color('positive')} size={60} />
+                        <Box
+                            style={{
+                                background: `linear-gradient(0deg, rgba(10,66,82,1) 0%, rgba(12,22,55,0) 16%)`,
+                                height: "40vh",
+                                borderRadius: 10,
+                                opacity: 0.7
+                            }}
+                        >
+                            <Stack>
+                                <Flex align={"center"} gap={"80"} justify={"center"}>
+                                    <Stack>
+                                        <Image width={150} height={150} src={"/assets-img/prabowo.png"} alt="" />
+                                        <BackgroundImage src="/assets-img/bg_title.png" p={"xs"}>
+                                            <Center><Text>PRABOWO</Text></Center>
+                                        </BackgroundImage>
+                                    </Stack>
+                                    <Stack>
+                                        <Image width={150} height={150} src={"/assets-img/gibran.png"} alt="" />
+                                        <BackgroundImage src="/assets-img/bg_title.png" p={"xs"} >
+                                            <Center><Text>GIBRAN</Text></Center>
+                                        </BackgroundImage>
+                                    </Stack>
                                 </Flex>
+                                <Group
+                                    align={"center"}
+                                    justify={"center"}
+                                    gap={"md"}
+                                    style={{
+                                        borderRadius: 20
+                                    }} 
+                                    pt={10}
+                                    >
+                                    <Flex align={"center"} p={0}>
+                                        <Flex px={"lg"} pb={10} direction={"column"} gap={0} p={0} >
+                                            {/* <Text style={{
+                                                fontSize: 20,
+                                                fontWeight: "bolder"
+                                            }}>{dataPersen[0]?.positive} %</Text> */}
+                                            <Text style={{
+                                                fontSize: 20,
+                                                fontWeight: "bolder"
+                                            }}>{_.isNaN(emotionPersen[1].positive) ? 0 : emotionPersen[1].positive} %</Text>
+                                            <Group justify="end" style={{
+                                                fontWeight: "bold"
+                                            }} p={0} c={"white"} >
+                                                <Text style={{
+                                                    fontSize: 10,
+                                                }} bg={emotion_color('positive')}>positive</Text>
+                                            </Group>
+                                        </Flex>
+                                        {/* <MdArrowDropUp color={emotion_color('positive')} size={60} /> */}
+                                    </Flex>
 
-                                <Flex align={"center"} p={0}>
-                                    <Flex px={"xs"} pb={10} direction={"column"} gap={0} p={0} >
-                                        <Text style={{
-                                            fontSize: 20,
-                                            fontWeight: "bolder"
-                                        }}>{dataPersen[0]?.neutral} %</Text>
-                                        <Group justify="end" style={{
-                                            fontWeight: "bold"
-                                        }} p={0} c={"white"} >
+                                    <Flex align={"center"} p={0}>
+                                        <Flex px={"lg"} pb={10} direction={"column"} gap={0} p={0} >
+                                            {/* <Text style={{
+                                                fontSize: 20,
+                                                fontWeight: "bolder"
+                                            }}>{dataPersen[0]?.neutral} %</Text> */}
                                             <Text style={{
-                                                fontSize: 10,
-                                            }} bg={emotion_color('neutral')}>neutral</Text>
-                                        </Group>
+                                                fontSize: 20,
+                                                fontWeight: "bolder"
+                                            }}>{_.isNaN(emotionPersen[1].neutral) ? 0 : emotionPersen[1].neutral} %</Text>
+                                            <Group justify="end" style={{
+                                                fontWeight: "bold"
+                                            }} p={0} c={"white"} >
+                                                <Text style={{
+                                                    fontSize: 10,
+                                                }} bg={emotion_color('neutral')}>neutral</Text>
+                                            </Group>
+                                        </Flex>
+                                        {/* <MdArrowDropUp color={emotion_color('neutral')} size={60} /> */}
                                     </Flex>
-                                    <MdArrowDropUp color={emotion_color('neutral')} size={60} />
-                                </Flex>
 
-                                <Flex align={"center"} p={0}>
-                                    <Flex px={"xs"} pb={10} direction={"column"} gap={0} p={0} >
-                                        <Text style={{
-                                            fontSize: 20,
-                                            fontWeight: "bolder"
-                                        }}>{dataPersen[0]?.negative} %</Text>
-                                        <Group justify="end" style={{
-                                            fontWeight: "bold"
-                                        }} p={0} c={"white"} >
+                                    <Flex align={"center"} p={0}>
+                                        <Flex px={"lg"} pb={10} direction={"column"} gap={0} p={0} >
+                                            {/* <Text style={{
+                                                fontSize: 20,
+                                                fontWeight: "bolder"
+                                            }}>{dataPersen[0]?.negative} %</Text> */}
                                             <Text style={{
-                                                fontSize: 10,
-                                            }} bg={emotion_color('negative')}>negative</Text>
-                                        </Group>
+                                                fontSize: 20,
+                                                fontWeight: "bolder"
+                                            }}>{_.isNaN(emotionPersen[1].negative) ? 0 : emotionPersen[1].negative} %</Text>
+                                            <Group justify="end" style={{
+                                                fontWeight: "bold"
+                                            }} p={0} c={"white"} >
+                                                <Text style={{
+                                                    fontSize: 10,
+                                                }} bg={emotion_color('negative')}>negative</Text>
+                                            </Group>
+                                        </Flex>
+                                        {/* <MdArrowDropUp color={emotion_color('negative')} size={60} /> */}
                                     </Flex>
-                                    <MdArrowDropUp color={emotion_color('negative')} size={60} />
-                                </Flex>
-                            </Group>
-                        </Stack>
-                        <BackgroundImage
-                            // bottom={0}
-                            // pos={"relative"}
-                            src="/assets-img/bg_bottom_4.png" style={{
-                                borderRadius: 12,
-                            }} >
+                                </Group>
+                            </Stack>
+                            {/* kedua 1 penutup */}
+
+                            {/* kedua 2 pembukan */}
+
+
+                        </Box>
+                        <Box
+                            style={{
+                                background: `linear-gradient(0deg, rgba(20,76,169,1) 0%, rgba(10,43,102,1) 45%, rgba(12,22,55,0.01) 88%)`,
+                                // height: "55vh",
+                                borderRadius: 10,
+                                opacity: 0.7
+                            }}
+                        >
+
                             <Flex justify={"center"} gap={"200"} h={365}>
                                 <Stack py={"lg"} gap={"lg"}>
                                     <Flex gap={"md"} justify={"center"}>
@@ -391,30 +327,33 @@ export default function DashboardLive({ dataPersen, dataNotif }: { dataPersen: a
                                     >
                                         <Group>
                                             <Box>
-                                                <Text>{dataPersen[1]?.positive} %</Text>
+                                                {/* <Text>{dataPersen[1]?.positive} %</Text> */}
+                                                <Text>{_.isNaN(emotionPersen[2].positive) ? 0 : emotionPersen[2].positive} %</Text>
                                                 <Group justify="flex-end">
                                                     <Text bg={"#06D974"} fz={10}>positive</Text>
                                                 </Group>
                                             </Box>
-                                            <MdArrowDropDown color={"#06D974"} size={50} />
+                                            {/* <MdArrowDropDown color={"#06D974"} size={50} /> */}
                                         </Group>
                                         <Group>
                                             <Box>
-                                                <Text>{dataPersen[1]?.neutral} %</Text>
+                                                {/* <Text>{dataPersen[1]?.neutral} %</Text> */}
+                                                <Text>{_.isNaN(emotionPersen[2].neutral) ? 0 : emotionPersen[2].neutral} %</Text>
                                                 <Group justify="flex-end">
                                                     <Text bg={'gray'} fz={10}>neutral</Text>
                                                 </Group>
                                             </Box>
-                                            <MdArrowDropDown color={"gray"} size={50} />
+                                            {/* <MdArrowDropDown color={"gray"} size={50} /> */}
                                         </Group>
                                         <Group>
                                             <Box>
-                                                <Text>{dataPersen[1]?.negative} %</Text>
+                                                {/* <Text>{dataPersen[1]?.negative} %</Text> */}
+                                                <Text>{_.isNaN(emotionPersen[2].negative) ? 0 : emotionPersen[2].negative} %</Text>
                                                 <Group justify="flex-end">
                                                     <Text bg={"#E01E1E"} fz={10}>negative</Text>
                                                 </Group>
                                             </Box>
-                                            <MdArrowDropDown color={"#E01E1E"} size={50} />
+                                            {/* <MdArrowDropDown color={"#E01E1E"} size={50} /> */}
                                         </Group>
                                     </Flex>
                                 </Stack>
@@ -435,41 +374,56 @@ export default function DashboardLive({ dataPersen, dataNotif }: { dataPersen: a
                                     >
                                         <Group>
                                             <Box>
-                                                <Text>{dataPersen[2]?.positive} %</Text>
+                                                {/* <Text>{dataPersen[2]?.positive} %</Text> */}
+                                                <Text>{_.isNaN(emotionPersen[3].positive) ? 0 : emotionPersen[3].positive} %</Text>
                                                 <Group justify="flex-end">
                                                     <Text bg={"#06D974"} fz={10}>positive</Text>
                                                 </Group>
                                             </Box>
-                                            <MdArrowDropDown color={"#06D974"} size={50} />
+                                            {/* <MdArrowDropDown color={"#06D974"} size={50} /> */}
                                         </Group>
                                         <Group>
                                             <Box>
-                                                <Text>{dataPersen[2]?.neutral} %</Text>
+                                                {/* <Text>{dataPersen[2]?.neutral} %</Text> */}
+                                                <Text>{_.isNaN(emotionPersen[3].neutral) ? 0 : emotionPersen[3].neutral} %</Text>
                                                 <Group justify="flex-end">
                                                     <Text bg={'gray'} fz={10}>neutral</Text>
                                                 </Group>
                                             </Box>
-                                            <MdArrowDropDown color={"gray"} size={50} />
+                                            {/* <MdArrowDropDown color={"gray"} size={50} /> */}
                                         </Group>
                                         <Group>
                                             <Box>
-                                                <Text>{dataPersen[2]?.negative} %</Text>
+                                                {/* <Text>{dataPersen[2]?.negative} %</Text> */}
+                                                <Text>{_.isNaN(emotionPersen[3].negative) ? 0 : emotionPersen[3].negative} %</Text>
                                                 <Group justify="flex-end">
                                                     <Text bg={"#E01E1E"} fz={10}>negative</Text>
                                                 </Group>
                                             </Box>
-                                            <MdArrowDropDown color={"#E01E1E"} size={50} />
+                                            {/* <MdArrowDropDown color={"#E01E1E"} size={50} /> */}
                                         </Group>
                                     </Flex>
                                 </Stack>
                             </Flex>
-                        </BackgroundImage>
+                        </Box>
+
+                        {/* kedua 2 penutup */}
+
+
+
                     </Stack>
                 </Box>
+                {/* kedua 3 pembuka */}
                 <Box w={"25%"} p={"sm"} >
-                    <BackgroundImage style={{
-                        borderRadius: "12px"
-                    }} src="/assets-img/bg_side.png" w={"100%"} h={"100%"} p={"sm"}>
+                    <Box
+                        style={{
+                            background: `linear-gradient(0deg, rgba(2,2,16,1) 0%, rgba(13,26,88,1) 60%, rgba(29,58,118,1) 100%)`,
+                            height: "100vh",
+                            borderRadius: 10,
+                            opacity: 0.7
+                        }}
+                        w={"100%"} h={"100%"} p={"sm"}
+                    >
                         <Stack>
                             <Flex>
                                 <Text c={"yellow"} w={"100%"}>Notification Center</Text>
@@ -501,9 +455,11 @@ export default function DashboardLive({ dataPersen, dataNotif }: { dataPersen: a
                                 </Grid>)}
                             </FlipMove>
                         </Stack>
-                    </BackgroundImage>
+
+                    </Box>
                 </Box>
 
+                {/* kedua 3 penutup */}
             </Flex>
         </Stack>
     </BackgroundImage>

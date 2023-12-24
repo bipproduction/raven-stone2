@@ -22,7 +22,12 @@ import { useAtom } from 'jotai';
 import { isModalMlai } from '../val/modal_mlai';
 import ModalEditMlAi from '../component/modal_edit_ml_ai';
 
-
+/**
+ * Fungsi untuk menampilkan view edit admin ml ai.
+ * @param {data} data - menampilkan data.
+ * @param {paslon} paslon - menampilkan paslon.
+ * @returns Untuk menampilkan view edit admin ml ai
+ */
 export default function ViewEditAdminMlai({ data, paslon, }: { data: any, paslon: any, }) {
   const [dataPaslon, setDataPaslon] = useState(paslon)
   const [valOpenModal, setOpenModal] = useAtom(isModalMlai)
@@ -60,7 +65,7 @@ export default function ViewEditAdminMlai({ data, paslon, }: { data: any, paslon
 
 
   function validasiUser() {
-    if (Object.values(dataMl).includes(""))
+    if (Object.values(dataMl).includes("") || editor?.getHTML() == '<p></p>')
       return toast("The form cannot be empty", { theme: "dark" });
     setOpenModal(true);
   }

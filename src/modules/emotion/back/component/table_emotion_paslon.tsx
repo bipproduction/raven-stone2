@@ -2,9 +2,20 @@
 
 import { Box, Group, ScrollArea, Select, Table, Text } from "@mantine/core";
 import { useEffect, useState } from "react";
-import { funGetEmotionPaslonDateArea } from "../..";
+import { funDownloadEmotionPaslonDate, funGetEmotionPaslonDateArea } from "../..";
 
-export default function TableDataEmotionPaslon({ param, title, data, th, datajam }: { param: any, title: string, data: any, th: any, datajam: any }) {
+
+/**
+ * Fungsi untuk menampilkan table data emotion paslon.
+ * @param {data} data - menampilkan data.
+ * @param {param} param - menampilkan param.
+ * @param {title} title - menampilkan title.
+ * @param {th} th - menampilkan th.
+ * @param {dataJam} dataJam - menampilkan dataJam.
+ * @param {onLoad} onLoad - menampilkan onLoad.
+ * @returns Untuk menampilkan table data emotion paslon
+ */
+export default function TableDataEmotionPaslon({ param, title, data, th, datajam, onLoad }: { param: any, title: string, data: any, th: any, datajam: any, onLoad: (val: any) => void }) {
     const [isData, setData] = useState(data)
     const [dataJam, setDataJam] = useState(datajam)
     const [isJam, setJam] = useState((dataJam.length > 0) ? dataJam[0].timeEmotion : null)
@@ -15,12 +26,15 @@ export default function TableDataEmotionPaslon({ param, title, data, th, datajam
         param['jam'] = valJam
         const dataDB = await funGetEmotionPaslonDateArea({ find: param })
         setData(dataDB.data)
+        const dataDownload = await funDownloadEmotionPaslonDate({ find: param })
+        onLoad(dataDownload)
     }
 
 
     useEffect(() => {
         setData(data)
-    }, [data])
+        setJam((datajam.length > 0) ? datajam[0].timeEmotion : null)
+    }, [data, datajam])
 
     return (
         <>

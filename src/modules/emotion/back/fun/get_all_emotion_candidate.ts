@@ -4,6 +4,13 @@ import { prisma } from "@/modules/_global"
 import _ from "lodash"
 import moment from "moment"
 
+
+/**
+ * Fungsi untuk get all jam emotion candidate.
+ * @param {dateCan} dateCan - menampilkan dateCan.
+ * @param {candidate} candidate - menampilkan candidate.
+ * @returns Untuk  get all jam emotion candidate
+ */
 export default async function funGetAllJamEmotionCandidate({candidate, dateCan}: {candidate: any, dateCan: any}) {
     const data = await prisma.candidateEmotion.findMany({
         where: {

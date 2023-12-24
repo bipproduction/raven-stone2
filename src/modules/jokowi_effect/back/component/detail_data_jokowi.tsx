@@ -1,15 +1,18 @@
 'use client'
-
 import { ActionIcon, Box, Center, Collapse, Group, Stack, Table, Text } from "@mantine/core";
 import { useState } from "react";
 import { CiEdit, CiRead, CiUnread } from "react-icons/ci";
 import { MdDelete, MdEditCalendar } from "react-icons/md";
 import moment from "moment";
 import { useRouter } from "next/navigation";
-import parse from "html-react-parser"
-import { useShallowEffect } from "@mantine/hooks";
-import { values } from "lodash";
-import TextAnimation from "react-typing-dynamics";
+import { useShallowEffect } from "@mantine/hooks"
+
+/**
+ * Fungsi untuk menampilkan detail data jokowi.
+ * @param {v} v - menampilkan v.
+ * @param {i} i - menampilkan i.
+ * @returns Untuk menampilkan detail data jokowi
+ */
 
 export default function DetailDataJokowi({ v, i, onClick }: { v: any; i: any, onClick: (val: any) => void }) {
     const is_client = useState(false)
@@ -26,11 +29,7 @@ export default function DetailDataJokowi({ v, i, onClick }: { v: any; i: any, on
         onClick(idDel)
     }
 
-    function RubahHTMLBack(c: any) {
-        return {
-            __html: c
-        }
-    }
+
     return (
         <>
             <Table.Tbody key={i}>
@@ -92,17 +91,8 @@ export default function DetailDataJokowi({ v, i, onClick }: { v: any; i: any, on
                                 <Text c={"white"} fw={"bold"} fz={20} mb={10}>
                                     Content
                                 </Text>
-                                <Stack c={"white"}>
-                                    <TextAnimation
-                                        phrases={[...v.content.split('\n')]}
-                                        typingSpeed={0}
-                                        backspaceDelay={0}
-                                        eraseDelay={0}
-                                        timeComplete={0}
-                                        errorProbability={0}
-                                        eraseOnComplete={false}
-                                        isSecure={false}
-                                    />
+                                <Stack c={'white'}>
+                                    <Box dangerouslySetInnerHTML={{ __html: v.content }} />
                                 </Stack>
                             </Box>
                         </Collapse>

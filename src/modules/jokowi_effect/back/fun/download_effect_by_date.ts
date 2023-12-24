@@ -4,6 +4,12 @@ import { prisma } from "@/modules/_global"
 import moment from "moment"
 import _ from "lodash"
 
+
+/**
+ * Fungsi untuk download Jokowi Effect.
+ * @param {date} date - menampilkan date.
+ * @returns Untuk download Jokowi Effect
+ */
 export default async function funDownloadEffectByDate({ date }: { date: any }) {
     let result
 

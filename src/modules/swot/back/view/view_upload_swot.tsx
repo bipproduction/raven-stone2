@@ -13,7 +13,10 @@ import { useAtom } from "jotai"
 import { isModalSwot } from "../val/modal_swot"
 import ModalUploadSwot from "../component/modal_upload_swot"
 
-
+/**
+ * Fungsi untuk menampilkan view Upload Swot.
+ * @returns Untuk menampilkan Hsil dari View Upload Swot
+ */
 export default function ViewUploadSwot() {
     const [json, setJson] = useState<any[]>([])
     const [openModal, setOpenModal] = useAtom(isModalSwot)

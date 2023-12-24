@@ -8,6 +8,14 @@ import TableDataStep from "../component/table_data_step";
 import { useRouter } from "next/navigation";
 import papa from "papaparse";
 
+/**
+ * Fungsi untuk menampilkan view Admin Step.
+ * @param {kandidat} kandidat - menampilkan kandidat.
+ * @param {params} params - menampilkan params.
+ * @param {datatable} datatable - menampilkan datatable.
+ * @param {datadownload} datadownload - menampilkan datadownload.
+ * @returns Untuk menampilkan keseluruhan dari View Admin Step
+ */
 export default function ViewAdminStep({ params, kandidat, datatable, datadownload }: { params: any, kandidat: any, datatable: any, datadownload: any }) {
     const router = useRouter();
     const [dataKandidat, setDataKandidat] = useState(kandidat)

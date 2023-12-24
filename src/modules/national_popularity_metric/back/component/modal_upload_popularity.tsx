@@ -8,6 +8,13 @@ import funUploadPopularity from "../fun/upload_popularity"
 import { useState } from "react"
 import { funLogUser } from "@/modules/user"
 
+
+/**
+ * Fungsi untuk menampilkan modal upload popularity.
+ * @param {data} data - menampilkan data.
+ * @param {onSuccess} onSuccess - menampilkan onSuccess.
+ * @returns Untuk menampilkan modal upload popularity
+ */
 export default function ModalUploadPopularity({ data, onSuccess }: { data: any, onSuccess: (val: any) => void }) {
     const [openModal, setOpenModal] = useAtom(isModalPopularity)
     const [isLoading, setLoading] = useState(false)

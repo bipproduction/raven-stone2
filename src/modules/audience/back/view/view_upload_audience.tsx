@@ -1,5 +1,4 @@
 'use client'
-
 import { ButtonBack } from "@/modules/_global"
 import { Box, Button, Group, Modal, ScrollArea, Stack, Table, Text, rem } from "@mantine/core"
 import { Dropzone } from "@mantine/dropzone"
@@ -13,20 +12,29 @@ import { useAtom } from "jotai"
 import { isModalAudience } from "../val/modal_audience"
 import ModalUploadAudience from "../component/modal_upload_audience"
 
+/**
+ * Layout halaman upload data audience pada dashboard admin
+ * @returns komponen halaman view updload data audience
+ */
+
 export default function ViewUploadAudience() {
     const [json, setJson] = useState<any[]>([])
     const [openModal, setOpenModal] = useAtom(isModalAudience)
 
-
+    // fungsi load data csv
     async function onLoad(data: any) {
         if (data.length > 0) {
+            // jika data yg diupload ada datanya (length>0)
             if (('id' in data[0]) && ('Provinsi' in data[0]) && ('Kabkot' in data[0]) && ('value' in data[0])) {
+                // jika format csv benar, maka variable json di isi dengan data csv
                 setJson(data as any)
             } else {
+                // jika format salah, makan variable json di set kosong daan tampil alert
                 setJson([])
                 toast('Format CSV salah', { theme: 'dark' })
             }
         } else {
+            // jika tidak ada datanya, maka variable json di set kosong, dan tampil alert
             setJson([])
             toast('Data Kosong', { theme: 'dark' })
         }
