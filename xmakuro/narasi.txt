@@ -1,0 +1,8 @@
+const total = 1000089
+const param = {
+    positive: 60,
+    negative: 20,
+    neutral: 20
+}
+
+dari data diatas tentukan nilai param.positive 60 bagian dari total , dan juga untuk negative dan neutral

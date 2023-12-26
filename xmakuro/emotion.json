@@ -1,0 +1,14 @@
+{
+    "positive": [
+        "Confidence",
+        "Supportive",
+        "Comfortable"
+    ],
+    "negative": [
+        "Negative",
+        "Disapproval"
+    ],
+    "neutral": [
+        "Undecided"
+    ]
+}
