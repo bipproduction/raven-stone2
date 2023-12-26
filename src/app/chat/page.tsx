@@ -237,7 +237,7 @@ export default function Page() {
 
                                     const filter = ["id", "", "SWMLDESCRIPTIONFROMYOURINTERNET_ADDRESS"]
                                     for (let f of filter) {
-                                        if (data === f) {
+                                        if (data.trim() === f.trim()) {
                                             data = "ulangi lagi | pertanyaan kurang lengkap !"
                                         }
                                     }
