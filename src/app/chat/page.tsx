@@ -160,7 +160,7 @@ export default function Page() {
                     </Stack> : <ScrollArea
                         viewportRef={viewport}
                         style={{
-                            height: "100%",
+                            height: "70%",
                             wordWrap: "break-word"
                         }}>
                         {content.content.map((v, k) => <Stack gap={"lg"} key={k}>
