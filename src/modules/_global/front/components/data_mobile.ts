@@ -1,4 +1,4 @@
-import { MdFreeCancellation, MdGrading, MdHub, MdJoinLeft, MdLiveTv, MdOutlineStarBorderPurple500, MdOutlineStars, MdStorage, MdVerifiedUser } from "react-icons/md";
+import { MdFreeCancellation, MdGrading, MdHub, MdJoinLeft, MdLiveTv, MdOutlineFace3, MdOutlineStarBorderPurple500, MdOutlineStars, MdStorage, MdVerifiedUser } from "react-icons/md";
 
 export const DataFrontMobile = [
     {
@@ -76,9 +76,9 @@ export const DataFrontMobile = [
     {
       key: "9",
       link: "/dashboard/chat-ai",
-      label: "CHAT AI",
+      label: "D-AYU AI",
       color: "#FFFFFF",
       garisBawah: "#C92A2A",
-      icon: MdVerifiedUser,
+      icon: MdOutlineFace3,
     },
   ]
