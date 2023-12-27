@@ -73,4 +73,12 @@ export const DataFrontNav = [
       garisBawah: "#C92A2A",
       icon: MdVerifiedUser,
     },
+    {
+      key: "9",
+      link: "/dashboard/chat-ai",
+      label: "CHAT AI",
+      color: "#FFFFFF",
+      garisBawah: "#C92A2A",
+      icon: MdVerifiedUser,
+    },
   ]
