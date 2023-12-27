@@ -113,7 +113,8 @@ export default function ViewChatAi() {
             <Text c={"white"} fz={24}>How can I help you today?</Text>
             <Text c={"white"}>More Than Chat</Text>
             <Text c={"white"}>Realtime Update Data Source</Text>
-          </Stack> : <ScrollArea
+          </Stack> : 
+          <ScrollArea
             viewportRef={viewport}
             p={"md"}
             style={{
