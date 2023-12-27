@@ -218,42 +218,42 @@ export default function Page() {
     </Box>
 
     function SideMenu() {
-        return <Stack bg={"#140A20"} h={"100%"}>
-            <Flex
-                direction={"column"}
-                h={"100%"}>
-                <Box
-                    p={"md"}
-                    bg={"#202239"}>
-                    <Flex gap={"md"} align={"center"}>
-                        <MdSunny size={36} color={"#408AE1"} />
-                        <Text w={"100%"} c={"white"}>SURYA AI</Text>
-                        <ActionIcon bg={"#202239"} variant="unstyled" onClick={() => {
-                            const ada = listContent.find((v) => v.id === content.id)
-                            if (ada === undefined && content.id !== "") {
-                                listContent.push(content)
-                                const _lisContent = _.cloneDeep(listContent)
-                                setListContent(_lisContent)
-                                setContent(defaultValue)
-                                return
-                            }
-
-                            const index = listContent.findIndex((i) => i.id === content.id)
-                            if (index > 0) {
-                                listContent[index] = content
-                                const _lisContent = _.cloneDeep(listContent)
-                                setListContent(_lisContent)
-                                setContent(defaultValue)
-                                return
-                            }
-
+        return <Flex
+            direction={"column"}
+            justify={"start"}
+            bg={"#140A20"}
+            h={"100%"}>
+            <Box
+                p={"md"}
+                bg={"#202239"}>
+                <Flex gap={"md"} align={"center"}>
+                    <MdSunny size={36} color={"#408AE1"} />
+                    <Text w={"100%"} c={"white"}>SURYA AI</Text>
+                    <ActionIcon bg={"#202239"} variant="unstyled" onClick={() => {
+                        const ada = listContent.find((v) => v.id === content.id)
+                        if (ada === undefined && content.id !== "") {
+                            listContent.push(content)
+                            const _lisContent = _.cloneDeep(listContent)
+                            setListContent(_lisContent)
                             setContent(defaultValue)
-                        }}>
-                            <MdEdit />
-                        </ActionIcon>
-                    </Flex>
-                </Box>
-            </Flex>
+                            return
+                        }
+
+                        const index = listContent.findIndex((i) => i.id === content.id)
+                        if (index > 0) {
+                            listContent[index] = content
+                            const _lisContent = _.cloneDeep(listContent)
+                            setListContent(_lisContent)
+                            setContent(defaultValue)
+                            return
+                        }
+
+                        setContent(defaultValue)
+                    }}>
+                        <MdEdit />
+                    </ActionIcon>
+                </Flex>
+            </Box>
             <ScrollArea pos={"relative"} >
                 {listContent.map((v, k) =>
                     <NavLink
@@ -273,6 +273,6 @@ export default function Page() {
                         </Stack>
                     </NavLink>)}
             </ScrollArea>
-        </Stack>
+        </Flex>
     }
 }
