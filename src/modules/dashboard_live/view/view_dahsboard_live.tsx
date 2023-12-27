@@ -5,12 +5,9 @@ import { Michroma } from 'next/font/google'
 import { useShallowEffect, useViewportSize } from "@mantine/hooks";
 import _, { shuffle, take } from "lodash";
 import { useState } from "react";
-import { TextLoop } from "easy-react-text-loop";
 import kabu from "../components/asset-data/kab_prov.json"
 import provi from "../components/asset-data/prov.json"
 import FlipMove from "react-flip-move";
-import notif from "../components/asset-data/notif_kab.json"
-import toast from "react-simple-toasts";
 import { useRouter } from "next/navigation";
 
 export const roboto_mono = Michroma({
