@@ -18,10 +18,10 @@ export default async function ListDashboardLive({data, persen}: {data: any, pers
                 spacing={{ base: 10, sm: 'xl' }}
                 verticalSpacing={{ base: 'md', sm: 'xl' }}
             >
-                <Box>
+                {/* <Box>
                     <ListPersen persen={persen} />
-                </Box>
-                <Box pt={30}>
+                </Box> */}
+                <Box >
                     <ListNotification data={data}  />
                 </Box>
             </SimpleGrid>
