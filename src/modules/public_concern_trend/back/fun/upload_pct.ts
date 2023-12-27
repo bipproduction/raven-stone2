@@ -3,6 +3,11 @@
 import { prisma } from "@/modules/_global"
 import { revalidatePath } from "next/cache";
 
+/**
+ * Fungsi untuk upload pct.
+ * @param {body} body - menampilkan body.
+ * @returns Untuk upload pct
+ */
 export default async function funUploadPct({ body }: { body: any }) {
     for (let i of body) {
         await prisma.publicConcernTrend.update({

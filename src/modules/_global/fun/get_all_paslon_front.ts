@@ -8,6 +8,9 @@ import { prisma } from "@/modules/_global"
 
 export default async function funGetAllPaslonFront() {
     const data = await prisma.paslon.findMany({
+        where: {
+            isActive: true,
+        },
         orderBy: {
             id: "asc"
         }

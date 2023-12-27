@@ -1,8 +1,12 @@
 'use server'
-
 import { prisma } from "@/modules/_global"
 import moment from "moment";
 import _, { ceil } from "lodash"
+
+/**
+ * Fungsi untuk get emotion jokowi effect area front.
+ * @returns Untuk  get emotion jokowi effect area front
+ */
 
 export default async function funGetEmotionJokowiEffectAreaFront() {
     const jamNow = new Date().getHours() + 1 + ':00:00'
@@ -29,33 +33,38 @@ export default async function funGetEmotionJokowiEffectAreaFront() {
         timeEmotion: v[0].timeEmotion
     }))
 
-    const dataFilter = await prisma.candidateEmotion.findMany({
-        where: {
-            idCandidate: 7,
-            dateEmotion: new Date(),
-            timeEmotion: findJam[0]?.timeEmotion
-        },
-        orderBy: {
-            timeEmotion: 'desc'
-        },
-        select: {
-            idProvinsi: true,
-            confidence: true,
-            dissapproval: true,
-            negative: true,
-            positive: true,
-            supportive: true,
-            uncomfortable: true,
-            undecided: true,
-            unsupportive: true,
-            timeEmotion: true,
-            AreaProvinsi: {
-                select: {
-                    name: true
+    let dataFilter: any[] = []
+    if (findJam.length > 0) {
+        dataFilter = await prisma.candidateEmotion.findMany({
+            where: {
+                idCandidate: 7,
+                dateEmotion: new Date(),
+                timeEmotion: findJam[0]?.timeEmotion
+            },
+            orderBy: {
+                timeEmotion: 'desc'
+            },
+            select: {
+                idProvinsi: true,
+                confidence: true,
+                dissapproval: true,
+                negative: true,
+                positive: true,
+                supportive: true,
+                uncomfortable: true,
+                undecided: true,
+                unsupportive: true,
+                timeEmotion: true,
+                AreaProvinsi: {
+                    select: {
+                        name: true
+                    }
                 }
             }
-        }
-    })
+        })
+    }
+
+
 
 
 

@@ -11,6 +11,11 @@ import ModalDeleteNotification from '../components/modal_delete_notification';
 import funGetAllNotification from '../fun/get_all_notification';
 
 
+/**
+ * Fungsi untuk menampilkan list notification.
+ * @param {data} data - menampilkan data.
+ * @returns Untuk menampilkan list notification
+ */
 export default function ListNotification({ data }: { data: any }) {
   const [isDataNotif, setDataNotif] = useState<any[]>(data)
   const router = useRouter()

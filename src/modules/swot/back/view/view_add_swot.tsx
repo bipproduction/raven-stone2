@@ -19,17 +19,17 @@ import { CiPickerEmpty } from 'react-icons/ci';
 import ModalAddSwot from '../component/modal_add_swot';
 import _, { isNull } from 'lodash';
 
-
 /**
  * Fungsi untuk menampilkan view Add Swot.
  * @param {candidate} candidate - menampilkan candidate.
  * @returns Untuk menampilkan Hsil dari View Add Swot
  */
+
 export default function ViewAddSwot({ candidate }: { candidate: any }) {
   const [isContent, setContent] = useState<string | null>('')
   const [dataCandidate, setDataCandidate] = useState(candidate)
   const [valOpenModal, setOpenModal] = useAtom(isModalSwot)
-  const [kosongkan, setKosongkan] = useState<string | null>("0")
+
   const dCategory = [
     {
       val: "STRENGTH"
@@ -72,21 +72,9 @@ export default function ViewAddSwot({ candidate }: { candidate: any }) {
   }
 
 
-  // function resetInput() {
-  //   setDataSwot({
-  //     idCandidate: "",
-  //     category: "",
-  //   })
-  // }
-
-  // function handleSubmit(e: React.FormEvent) {
-  //   e.preventDefault()
-  //   resetInput()
-  // }
-
   return (
     <>
-      {<Stack key={kosongkan}>
+      {<Stack>
         <ButtonBack />
         <Group pt={30}>
           <Text fw={"bold"}>ADD SWOT</Text>
@@ -104,13 +92,13 @@ export default function ViewAddSwot({ candidate }: { candidate: any }) {
                 value: String(pro.id),
                 label: pro.name
               }))}
+              value={(isDataSwot.idCandidate == '') ? null : isDataSwot.idCandidate}
               onChange={(val: any) =>
                 setDataSwot({
                   ...isDataSwot,
                   idCandidate: (val == null) ? '' : val
                 })
               }
-            // onSubmit={handleSubmit}
             />
           </Box>
           <Box>
@@ -122,13 +110,13 @@ export default function ViewAddSwot({ candidate }: { candidate: any }) {
                 value: String(pro.val),
                 label: pro.val
               }))}
+              value={(isDataSwot.category == '') ? null : isDataSwot.category}
               onChange={(val: any) =>
                 setDataSwot({
                   ...isDataSwot,
                   category: (val == null) ? '' : val
                 })
               }
-            // onSubmit={handleSubmit}
             />
           </Box>
         </SimpleGrid>
@@ -223,17 +211,15 @@ export default function ViewAddSwot({ candidate }: { candidate: any }) {
         withCloseButton={false}
         closeOnClickOutside={false}
       >
-        <ModalAddSwot onClick={() => {
-          setKosongkan(_.random(1, 1000).toString())
-          setContent(_.isNull(editor?.getHTML() == null).toString())
-          // isContent?.toString()
-          // setKosongkan(_.isString(editor?.getHTML() == '<p></p>').toString())
-          //  editor?.isEmpty
-          // setTimeout(() => {
-          //   setContent(_.isEmpty().toString())
-          // }, 1)
-          console.log("dikclick")
-        }} dataSwot={isDataSwot} textContent={editor?.getHTML()}
+        <ModalAddSwot onSuccess={() => {
+          editor?.commands.setContent('<p></p>')
+          setDataSwot({
+            ...isDataSwot,
+            idCandidate: '',
+            category: ''
+          })
+        }}
+          dataSwot={isDataSwot} textContent={editor?.getHTML()}
         />
       </Modal>
     </>

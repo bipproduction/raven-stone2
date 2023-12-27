@@ -22,6 +22,12 @@ import { useAtom } from 'jotai';
 import { isModalJokowi } from '../val/modal_jokowi';
 import ModalEditJokowiEffect from '../component/modal_edit_jokowi_effect';
 
+
+/**
+ * Fungsi untuk menampilkan view edit admin Jokowi Effect.
+ * @param {data} data - menampilkan data.
+ * @returns Untuk menampilkan view edit admin Jokowi Effect
+ */
 export default function ViewEditAdminJokowi({ data }: { data: any }) {
   const ref = useRef<HTMLInputElement>(null);
   const router = useRouter();

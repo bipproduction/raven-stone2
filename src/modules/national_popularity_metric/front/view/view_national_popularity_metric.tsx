@@ -6,10 +6,18 @@ import EchartPopularity from '../components/echart_popularity';
 import EchartBarPopularity from '../components/echart_bar_popularity';
 import { PageSubTitle, funGetOnePaslon } from '@/modules/_global';
 import _ from 'lodash';
-import { funGetOnePopularityFront } from '../..';
+import { funGetOnePopularityFront, funGetPopularityFront } from '../..';
+import moment from "moment";
 
+/**
+ * Fungsi untuk Menampilkan view national popularity metric.
+ * @param {paslon} paslon - menampilkan paslon.
+ * @param {cpaslon} cpaslon - menampilkan cpaslon.
+ * @param {dataNow} dataNow - menampilkan dataNow.
+ * @returns Untuk Menampilkan view national popularity metric
+ */
 
-export default function ViewNationalPopularityMetric({ paslon, cpaslon, dataNow }: { paslon: any, cpaslon: any, dataNow: any }) {
+export default function ViewNationalPopularityMetric({ paslon, cpaslon, dataNow, dbChart }: { paslon: any, cpaslon: any, dataNow: any, dbChart: any }) {
 
   const [isPaslon, setPaslon] = useState<any>(1)
   const [isDataPaslon, setDataPaslon] = useState(cpaslon)
@@ -24,10 +32,13 @@ export default function ViewNationalPopularityMetric({ paslon, cpaslon, dataNow 
     negative: Number(isDataNow?.negative),
     dissapproval: Number(isDataNow?.dissapproval),
   })
+  const [isChartLine, setChartLine] = useState(dbChart)
 
   async function onGenerate() {
     const loadPaslon = await funGetOnePaslon({ paslon: isPaslon })
     setDataPaslon(loadPaslon)
+    const loadChart = await funGetPopularityFront({ paslon: isPaslon, startDate: moment(new Date()).subtract(7, "days").format("YYYY-MM-DD"), endDate: moment(new Date()).format("YYYY-MM-DD") })
+    setChartLine(loadChart)
     const loadNow = await funGetOnePopularityFront({ paslon: isPaslon })
     setDataNow(loadNow)
     setDataChart({
@@ -45,17 +56,6 @@ export default function ViewNationalPopularityMetric({ paslon, cpaslon, dataNow 
 
   return (
     <>
-      <Box style={{
-        backgroundColor: "rgba(27,11,47,0.8)",
-        zIndex: 100,
-        position: "fixed",
-        width: "100%",
-        height: "100%",
-        top: 0,
-        left: 0,
-        backdropFilter: `blur(10px)`,
-        // opacity: 0.8,
-      }}></Box>
       <Box>
         <PageSubTitle text1='NATIONAL' text2='POPULARITY METRICS' />
         <Stack pt={10}>
@@ -78,7 +78,7 @@ export default function ViewNationalPopularityMetric({ paslon, cpaslon, dataNow 
           <Box pt={20}>
             <Grid justify="flex-end" align="center">
               <Grid.Col span={{ md: 7, lg: 7 }}>
-                <EchartPopularity />
+                <EchartPopularity data={isChartLine} paslon={isPaslon} />
               </Grid.Col>
               <Grid.Col span={{ md: 5, lg: 5 }}>
                 <EchartBarPopularity emotion={dataChart} />

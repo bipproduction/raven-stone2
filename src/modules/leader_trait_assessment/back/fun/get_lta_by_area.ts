@@ -3,6 +3,12 @@
 import { countProvince, prisma } from "@/modules/_global";
 import _ from "lodash"
 
+
+/**
+ * Fungsi untuk get leader trait assessment by area.
+ * @param {find} find - menampilkan find.
+ * @returns Untuk get leader trait assessment by area
+ */
 export default async function funGetLtaByArea({ find }: { find: any }) {
     let titleTrue, dataTable = <any>[], area, th
 
@@ -29,6 +35,9 @@ export default async function funGetLtaByArea({ find }: { find: any }) {
                         name: true
                     }
                 }
+            },
+            orderBy: {
+                idKabkot: 'asc'
             }
         })
 
@@ -65,6 +74,9 @@ export default async function funGetLtaByArea({ find }: { find: any }) {
                         name: true
                     }
                 }
+            },
+            orderBy: {
+                idProvinsi: 'asc'
             }
         })
 

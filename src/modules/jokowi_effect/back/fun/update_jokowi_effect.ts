@@ -3,6 +3,13 @@
 import { prisma } from "@/modules/_global"
 import { revalidatePath } from "next/cache";
 
+
+/**
+ * Fungsi untuk update Jokowi Effect.
+ * @param {data} data - menampilkan data.
+ * @param {textContent} textContent - menampilkan textContent.
+ * @returns Untuk update Jokowi Effect
+ */
 export default async function funUpdateJokowiEffect({ data, textContent }: { data: any, textContent: any }) {
     let y = new Date('1970-01-01 ' + data.timeContent)
     let isoDateTime = new Date(y.getTime() - (y.getTimezoneOffset() * 60000)).toISOString();

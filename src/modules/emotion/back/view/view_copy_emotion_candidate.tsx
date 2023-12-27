@@ -14,6 +14,11 @@ import ModalCopyEmotionCandidate from "../component/modal_copy_emotion_candidate
 import _ from "lodash"
 
 
+/**
+ * Fungsi untuk menampilkan view copy emotion candidate.
+ * @param {candidate} candidate - menampilkan candidate.
+ * @returns Untuk  menampilkan view copy emotion candidate
+ */
 export default function ViewCopyEmotionCandidate({ candidate }: { candidate: any }) {
     const [trueFrom, setTrueFrom] = useState<any>(null)
     const [trueTo, setTrueTo] = useState<any>(null)

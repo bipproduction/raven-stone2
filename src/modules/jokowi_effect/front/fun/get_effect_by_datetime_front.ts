@@ -4,6 +4,12 @@ import { prisma } from "@/modules/_global"
 import _ from "lodash"
 import moment from "moment"
 
+/**
+ * Fungsi untuk get effect front.
+ * @param {isDate} isDate - menampilkan isDate.
+ * @param {isTime} isTime - menampilkan isTime.
+ * @returns Untuk get effect front
+ */
 export default async function funGetEffectFront({ isDate, isTime }: { isDate: any, isTime?: any }) {
     let jamFix, isoDateTime, kondisi
     const jamNow = new Date().getHours() + 1 + ':00:00'

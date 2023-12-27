@@ -7,6 +7,17 @@ import { funGetRateFront } from '@/modules/national_popularity_metric';
 import _ from 'lodash';
 import { DetailRegionalDataPairing } from '@/modules/emotion';
 
+
+/**
+ * Fungsi untuk Menampilkan view pairing.
+ * @param {paslon} paslon - menampilkan paslon.
+ * @param {provinsi} provinsi - menampilkan provinsi.
+ * @param {cpaslon} cpaslon - menampilkan cpaslon.
+ * @param {data} data - menampilkan data.
+ * @param {audience} audience - menampilkan audience.
+ * @param {rate} rate - menampilkan rate.
+ * @returns Untuk Menampilkan view pairing
+ */
 export default function ViewaPairing({ paslon, provinsi, cpaslon, data, audience, rate }: { paslon: any, provinsi: any, cpaslon: any, data: any, audience: any, rate: any }) {
   const [isData, setData] = useState(data)
   const [isRate, setRate] = useState(rate)
@@ -37,17 +48,6 @@ export default function ViewaPairing({ paslon, provinsi, cpaslon, data, audience
 
   return (
     <>
-      <Box style={{
-        backgroundColor: "rgba(27,11,47,0.8)",
-        zIndex: 100,
-        position: "fixed",
-        width: "100%",
-        height: "100%",
-        top: 0,
-        left: 0,
-        backdropFilter: `blur(10px)`,
-        // opacity: 0.8,
-      }}></Box>
       <Stack>
         <PageSubTitle text1='REGIONAL' text2='DATA PAIRING' />
         <Box
@@ -100,23 +100,25 @@ export default function ViewaPairing({ paslon, provinsi, cpaslon, data, audience
                 </Box>
               </Box>
             </SimpleGrid>
-            <Box pt={40} pb={20}>
+            {/* <Box pt={40} pb={20}>
               <Text fz={24} fs="italic" c={"#6ABD45"} ta={'center'} >SUCCESS PROBABILITY PROJECTION</Text>
-            </Box>
-            <Box
-              style={{
-                backgroundColor: "#269214",
-                padding: 20,
-                borderRadius: 10
-              }}
-            >
-              <Text ta={"center"} c={"white"} fz={55} fw={"bold"}>
-                {(isRate) ? isRate.rate + '%' : '0%'}
-              </Text>
+            </Box> */}
+            <Box pt={40}>
+              <Box
+                style={{
+                  backgroundColor: "#269214",
+                  padding: 20,
+                  borderRadius: 10
+                }}
+              >
+                <Text ta={"center"} c={"white"} fz={55} fw={"bold"}>
+                  {(isRate) ? isRate.rate + '%' : '0%'}
+                </Text>
+              </Box>
             </Box>
           </Grid.Col>
           <Grid.Col span={{ md: 7, lg: 7 }}>
-            <ScrollArea h={600}>
+            <ScrollArea h={"67vh"}>
               {isData.map((v: any, i: any) => (
                 <Box key={i}>
                   <DetailRegionalDataPairing dataEmotion={v} dataAudience={audience} />

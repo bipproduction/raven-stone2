@@ -4,6 +4,7 @@ import { isModalStep } from '../val/modal_step';
 import { Alert, Box, Button, Group, Text } from '@mantine/core';
 import funUpdateStep from '../fun/update_step';
 import toast from 'react-simple-toasts';
+import { funLogUser } from '@/modules/user';
 
 
 /**
@@ -18,9 +19,8 @@ export default function ModalEditStep({ dataStep, textContent }: { dataStep: any
   async function editStep() {
     const res = await funUpdateStep({ data: dataStep, textContent: textContent });
     if (!res.success) return toast("Failed! " + res.message, { theme: "dark" });
-    // await funLogUser({ act: "ADD", desc: `User Add Data ML-AI (ID : ${res.id})` })
+    await funLogUser({ act: "EDIT", desc: `User EDIT Data Step` })
     toast("Success", { theme: "dark" });
-    console.log(dataStep, textContent)
     setOpenModal(false);
 }
 

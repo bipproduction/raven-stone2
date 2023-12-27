@@ -30,9 +30,11 @@
     "@tiptap/starter-kit": "^2.1.12",
     "@types/lodash": "^4.14.200",
     "@types/papaparse": "^5.3.10",
+    "@types/showdown": "^2.0.6",
     "animate-css-reactjs": "^1.0.3",
     "animate.css-react": "^1.1.0",
     "colors": "^1.4.0",
+    "dangerously-set-html-content": "^1.1.0",
     "dayjs": "^1.11.10",
     "easy-react-text-loop": "^1.0.2",
     "echarts": "^5.4.3",
@@ -51,7 +53,9 @@
     "react-icons": "^4.11.0",
     "react-simple-toasts": "^5.10.0",
     "react-type-animation": "^3.2.0",
-    "react-typing-dynamics": "^1.1.2"
+    "react-typing-dynamics": "^1.1.2",
+    "showdown": "^2.1.0",
+    "superjson": "^2.2.1"
   },
   "devDependencies": {
     "@types/node": "^20",

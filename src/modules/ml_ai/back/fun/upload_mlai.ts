@@ -4,6 +4,12 @@ import { prisma } from "@/modules/_global"
 import { revalidatePath } from "next/cache";
 import moment from "moment";
 
+
+/**
+ * Fungsi untuk upload ml ai.
+ * @param {body} body - menampilkan body.
+ * @returns Untuk upload ml ai
+ */
 export default async function funUploadMlai({ body }: { body: any }) {
     let pas, date, y, isoDateTime, cek
     for (let i of body) {

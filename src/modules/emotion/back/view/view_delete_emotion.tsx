@@ -13,6 +13,13 @@ import ModalDelPaslon from '../component/modal_del_paslon';
 import funGetAllJamEmotionCandidate from '../fun/get_all_emotion_candidate';
 import ModalDelCandidate from '../component/modal_del_candidate';
 
+
+/**
+ * Fungsi untuk menampilkan view delete emotion.
+ * @param {candidate} candidate - menampilkan candidate.
+ * @param {paslon} paslon - menampilkan paslon.
+ * @returns Untuk  menampilkan view delete emotion
+ */
 export default function ViewDeleteEmotion({ paslon, candidate }: { paslon: any, candidate: any }) {
 
   // CANDIDATE

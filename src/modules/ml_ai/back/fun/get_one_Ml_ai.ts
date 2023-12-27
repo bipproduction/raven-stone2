@@ -2,6 +2,11 @@
 
 import { prisma } from "@/modules/_global"
 
+/**
+ * Fungsi untuk get one ml ai.
+ * @param {id} id - menampilkan id.
+ * @returns Untuk get one ml ai
+ */
 export default async function funGetOneMlAi({id}: {id : any}) {
     const data = await prisma.mlAi.findUnique({
         where: {

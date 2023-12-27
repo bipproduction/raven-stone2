@@ -14,6 +14,10 @@ import { isModalJokowi } from "../val/modal_jokowi"
 import ModalUploadJokowi from "../component/modal_upload_jokowi"
 
 
+/**
+ * Fungsi untuk menampilkan view upload Jokowi Effect.
+ * @returns Untuk menampilkan view upload Jokowi Effect
+ */
 export default function ViewUploadJokowi() {
     const [json, setJson] = useState<any[]>([])
     const [openModal, setOpenModal] = useAtom(isModalJokowi)

@@ -9,9 +9,16 @@ import { useEffect, useState } from "react";
 import papa from "papaparse"
 import TableDataPopularity from "../component/table_popularity";
 
+/**
+ * Fungsi untuk menampilkan view admin popularity.
+ * @param {param} param - menampilkan param.
+ * @param {datatable} datatable - menampilkan datatable.
+ * @param {datadownload} datadownload - menampilkan datadownload.
+ * @returns Untuk menampilkan view admin popularity
+ */
 export default function ViewAdminPopularity({ param, datatable, datadownload }: { param: any, datatable: any, datadownload: any }) {
     const router = useRouter()
-
+    const [dataDownload, setDataDownload] = useState(datadownload)
     const [isDate, setDate] = useState<any>(param.date)
 
 
@@ -19,7 +26,8 @@ export default function ViewAdminPopularity({ param, datatable, datadownload }: 
 
     useEffect(() => {
         setDate((param.date == null) ? new Date() : new Date(param.date))
-    }, [param])
+        setDataDownload(datadownload)
+    }, [param, datadownload])
 
 
 
@@ -83,14 +91,14 @@ export default function ViewAdminPopularity({ param, datatable, datadownload }: 
                                         cursor: "pointer",
                                     }}
                                     onClick={() => {
-                                        const dataJson = datadownload.data
+                                        const dataJson = dataDownload.data
 
                                         const jsonData = papa.unparse(dataJson)
                                         const jsonDataUrl = "data:text/csv;charset=utf-8," + encodeURIComponent(jsonData)
 
                                         const jsonDwnloadLink = document.createElement("a")
                                         jsonDwnloadLink.href = jsonDataUrl
-                                        jsonDwnloadLink.download = datadownload.title + ".csv"
+                                        jsonDwnloadLink.download = dataDownload.title + ".csv"
                                         jsonDwnloadLink.click()
                                     }}
                                 >
@@ -122,7 +130,10 @@ export default function ViewAdminPopularity({ param, datatable, datadownload }: 
             </Box>
             {!_.isNull(datatable.title) && (
                 <Box pt={20}>
-                    <TableDataPopularity title={datatable.title} data={datatable.data} />
+                    <TableDataPopularity param={param} title={datatable.title} data={datatable.data} datajam={datatable.dataJam}
+                        onLoad={(val) => {
+                            setDataDownload(val)
+                        }} />
                 </Box>
             )}
         </>

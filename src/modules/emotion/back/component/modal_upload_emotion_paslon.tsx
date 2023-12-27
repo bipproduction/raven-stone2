@@ -8,6 +8,13 @@ import funUploadEmotionPaslon from "../fun/upload_emotion_paslon"
 import { useState } from "react"
 import { funLogUser } from "@/modules/user"
 
+
+/**
+ * Fungsi untuk menampilkan Modal upload emotion paslon.
+ * @param {data} data - menampilkan data.
+ * @param {onSuccess} onSuccess - menampilkan onSuccess.
+ * @returns Untuk menampilkan Modal upload emotion paslon
+ */
 export default function ModalUploadEmotionPaslon({ data, onSuccess }: { data: any, onSuccess: (val: any) => void }) {
     const [openModal, setOpenModal] = useAtom(isModalEmotionPaslon)
     const [isLoading, setLoading] = useState(false)

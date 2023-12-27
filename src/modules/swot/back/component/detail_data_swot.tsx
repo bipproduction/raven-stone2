@@ -1,12 +1,10 @@
 'use client'
-
 import { ActionIcon, Box, Center, Collapse, Group, Stack, Table, Text } from "@mantine/core";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { CiRead, CiUnread } from "react-icons/ci";
 import { MdDelete, MdEditCalendar } from "react-icons/md";
-import TextAnimation from "react-typing-dynamics";
-
+import InnerHTML from 'dangerously-set-html-content'
 
 /**
  * Fungsi untuk menampilkan Detail Data Swot.
@@ -83,17 +81,8 @@ export default function DetailDataSwot({ v, i, onClick }: { v: any; i: any, onCl
                                 <Text c={"white"} fw={"bold"} fz={20} mb={10}>
                                     Content
                                 </Text>
-                                <Stack c={"white"}>
-                                    <TextAnimation
-                                        phrases={[...v.content.split('\n')]}
-                                        typingSpeed={0}
-                                        backspaceDelay={0}
-                                        eraseDelay={0}
-                                        timeComplete={0}
-                                        errorProbability={0}
-                                        eraseOnComplete={false}
-                                        isSecure={false}
-                                    />
+                                <Stack c={'white'}>
+                                    <Box dangerouslySetInnerHTML={{ __html: v.content }} />
                                 </Stack>
                             </Box>
                         </Collapse>

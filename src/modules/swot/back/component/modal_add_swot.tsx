@@ -4,6 +4,7 @@ import { isModalSwot } from '../val/modal_swot';
 import { Alert, Box, Button, Group, Text } from '@mantine/core';
 import toast from 'react-simple-toasts';
 import funAddSwot from '../fun/add_swot';
+import { funLogUser } from '@/modules/user';
 
 /**
  * Fungsi untuk menampilkan Modal Add Swot.
@@ -11,17 +12,16 @@ import funAddSwot from '../fun/add_swot';
  * @param {textContent} textContent - menampilkan textContent.
  * @returns Untuk menampilkan Modal Add Swot
  */
-export default function ModalAddSwot({ dataSwot, textContent, onClick }: { onClick: () => void, dataSwot: any, textContent: any }) {
+export default function ModalAddSwot({ dataSwot, textContent, onSuccess }: { onSuccess: () => void, dataSwot: any, textContent: any }) {
     const [valOpenModal, setOpenModal] = useAtom(isModalSwot)
 
     async function addSwot() {
-        // const res = await funAddSwot({ data: dataSwot, textContent: textContent });
-        // if (!res.success) return toast("Failed! " + res.message, { theme: "dark" });
-        // // await funLogUser({ act: "ADD", desc: `User Add Data ML-AI (ID : ${res.id})` })
-        // toast("Success", { theme: "dark" });
+        const res = await funAddSwot({ data: dataSwot, textContent: textContent });
+        if (!res.success) return toast("Failed! " + res.message, { theme: "dark" });
+        await funLogUser({ act: "ADD", desc: `User Add Data Swot` })
+        toast("Success", { theme: "dark" });
         setOpenModal(false);
-        onClick()
-        // onSuccess(true)
+        onSuccess()
     }
 
     return (

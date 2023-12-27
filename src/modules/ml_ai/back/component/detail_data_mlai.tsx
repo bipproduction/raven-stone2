@@ -1,14 +1,18 @@
 'use client'
-
 import { ActionIcon, Box, Center, Collapse, Group, Stack, Table, Text } from "@mantine/core";
 import { useState } from "react";
 import { CiEdit, CiRead, CiUnread } from "react-icons/ci";
 import { MdDelete, MdEditCalendar } from "react-icons/md";
 import moment from "moment";
-import { FaRegEdit } from "react-icons/fa";
-import { LuClipboardEdit } from "react-icons/lu";
 import { useRouter } from "next/navigation";
-import TextAnimation from "react-typing-dynamics";
+
+/**
+ * Fungsi untuk menampilkan detail data ml ai.
+ * @param {v} v - menampilkan v.
+ * @param {i} i - menampilkan i.
+ * @param {onClick} onClick - menampilkan onClick.
+ * @returns Untuk menampilkan detail data ml ai
+ */
 
 export default function DetailDataMLAI({ v, i, onClick }: { v: any; i: any, onClick: (val: any) => void }) {
     const formatDate = moment.utc(v.timeContent).format('HH:mm');
@@ -18,6 +22,7 @@ export default function DetailDataMLAI({ v, i, onClick }: { v: any; i: any, onCl
     function callBackDelete({ idDel }: { idDel: any }) {
         onClick(idDel)
     }
+
     return (
         <>
             <Table.Tbody key={i}>
@@ -79,17 +84,8 @@ export default function DetailDataMLAI({ v, i, onClick }: { v: any; i: any, onCl
                                 <Text c={"white"} fw={"bold"} fz={20} mb={10}>
                                     Content
                                 </Text>
-                                <Stack c={"white"}>
-                                    <TextAnimation
-                                        phrases={[...v.content.split('\n')]}
-                                        typingSpeed={0}
-                                        backspaceDelay={0}
-                                        eraseDelay={0}
-                                        timeComplete={0}
-                                        errorProbability={0}
-                                        eraseOnComplete={false}
-                                        isSecure={false}
-                                    />
+                                <Stack c={'white'}>
+                                    <Box dangerouslySetInnerHTML={{ __html: v.content }} />
                                 </Stack>
                             </Box>
                         </Collapse>

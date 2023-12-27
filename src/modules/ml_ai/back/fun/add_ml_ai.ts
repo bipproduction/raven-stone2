@@ -3,6 +3,12 @@
 import { prisma } from "@/modules/_global";
 import { revalidatePath } from "next/cache";
 
+/**
+ * Fungsi untuk add ml ai.
+ * @param {data} data - menampilkan data.
+ * @param {textContent} textContent - menampilkan textContent.
+ * @returns Untuk add ml ai
+ */
 export default async function funAddMlAi({ data, textContent }: { data: any, textContent: any }) {
 
     let y = new Date('1970-01-01 ' + data.timeContent)

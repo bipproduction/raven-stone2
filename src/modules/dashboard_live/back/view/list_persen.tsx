@@ -6,6 +6,11 @@ import { CiEdit } from 'react-icons/ci';
 import { MdDelete } from 'react-icons/md';
 
 
+/**
+ * Fungsi untuk menampilkan list persen.
+ * @param {persen} persen - menampilkan persen.
+ * @returns Untuk menampilkan list persen
+ */
 export default function ListPersen({ persen }: { persen: any }) {
   const [isDataPersen, setDataPersen] = useState<any[]>(persen)
   const router = useRouter()

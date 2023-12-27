@@ -12,7 +12,10 @@ import { isModalPopularity } from "../val/modal_popularity";
 import ModalCopyPopularity from "../component/modal_copy_popularity";
 import funCekPopularity from "../fun/cek_popularity_by_date";
 
-
+/**
+ * Fungsi untuk menampilkan view copy popularity.
+ * @returns Untuk menampilkan view copy popularity
+ */
 export default function ViewCopyPopularity() {
     const [trueFrom, setTrueFrom] = useState<any>(null)
     const [trueTo, setTrueTo] = useState<any>(null)

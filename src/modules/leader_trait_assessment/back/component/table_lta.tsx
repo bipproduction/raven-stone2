@@ -3,6 +3,14 @@
 import { Box, ScrollArea, Table, Text } from "@mantine/core";
 import { useEffect, useState } from "react";
 
+
+/**
+ * Fungsi untuk menampilkan table data leader trait assessment.
+ * @param {data} data - menampilkan data.
+ * @param {title} title - menampilkan title.
+ * @param {th} th - menampilkan th.
+ * @returns Untuk menampilkan table data leader trait assessment
+ */
 export default function TableDataLTA({ title, data, th }: { title: string, data: any, th: any }) {
     const [isData, setData] = useState(data)
 

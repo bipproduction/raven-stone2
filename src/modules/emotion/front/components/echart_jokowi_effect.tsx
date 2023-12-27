@@ -1,23 +1,21 @@
 'use client'
-
 import { useShallowEffect } from '@mantine/hooks'
 import React, { useEffect, useState } from 'react'
 import { EChartsOption, color } from "echarts";
 import EChartsReact from "echarts-for-react";
 import { ActionIcon, Box, Button, Divider, Group, LoadingOverlay, Menu, Popover, Stack, Text, Title } from '@mantine/core';
-import { WARNA } from '@/modules/_global';
 import { DatePicker } from '@mantine/dates';
 import moment from 'moment';
 import toast from 'react-simple-toasts';
-import { HiDotsHorizontal } from 'react-icons/hi';
 import { funGetEmotionCandidateChartFront } from '../..';
 import * as echarts from 'echarts';
 
-
 /**
  * Fungsi untuk menampilkan echart jokowi effect.
- * @returns {component} menampilakn echart jokowi effect.
+ * @param {data} data - menampilkan data.
+ * @returns Untuk  menampilkan echart jokowi effect
  */
+
 export default function EchartJokowiEffect({ data }: { data: any }) {
     const [options, setOptions] = useState<EChartsOption>({})
     const [value, setValue] = useState<[Date | null, Date | null]>([null, null])
@@ -62,7 +60,6 @@ export default function EchartJokowiEffect({ data }: { data: any }) {
         setLoadingWeek(false)
         setLoadingData(false)
 
-        
     }
 
     useShallowEffect(() => {
@@ -93,7 +90,7 @@ export default function EchartJokowiEffect({ data }: { data: any }) {
                     boundaryGap: false,
                     data: !dataChart
                         ? []
-                        : dataChart!.map((v: any) => moment(v.date).format('DD-MM-YYYY')),
+                        : dataChart!.map((v: any) => v.date),
                     axisLabel: {
                         color: "white",
                         rotate: 30
@@ -204,9 +201,9 @@ export default function EchartJokowiEffect({ data }: { data: any }) {
             <Box>
                 <Group justify='flex-end'>
                     <Group>
-                        <Button loading={isLoadingMonth} variant={(isButton == 'month') ? 'filled' : 'subtle'} c={"white"} onClick={() => onChooseTime('month') }>Month</Button>
-                        <Divider orientation="vertical" />
                         <Button loading={isLoadingWeek} variant={(isButton == 'week') ? 'filled' : 'subtle'} c={"white"} onClick={() => onChooseTime('week')}>Week</Button>
+                        <Divider orientation="vertical" />
+                        <Button loading={isLoadingMonth} variant={(isButton == 'month') ? 'filled' : 'subtle'} c={"white"} onClick={() => onChooseTime('month')}>Month</Button>
                         <Divider orientation="vertical" />
                         <Menu opened={showPopDate} position='bottom-end'>
                             <Menu.Target>
@@ -266,8 +263,8 @@ export default function EchartJokowiEffect({ data }: { data: any }) {
                 <Box pos={"relative"}>
                     <LoadingOverlay
                         visible={loadingData}
-                         overlayProps={{ radius: "sm", blur: "8px",  bg: "rgba(27,11,47,0.8)" }}
-                         loaderProps={{color: "white"}}
+                        overlayProps={{ radius: "sm", blur: "8px", bg: "rgba(27,11,47,0.8)" }}
+                        loaderProps={{ color: "white" }}
                     />
                     <EChartsReact style={{
                         height: 300, width: "auto"

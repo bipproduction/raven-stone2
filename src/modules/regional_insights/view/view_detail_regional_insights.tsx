@@ -33,6 +33,18 @@ const provinsi = [
 
 ]
 
+/**
+ * Fungsi untuk menampilkan view detail regional insights.
+ * @param {parameter} parameter - menampilkan parameter.
+ * @param {emotion} emotion - menampilkan emotion.
+ * @param {audience} audience - menampilkan audience.
+ * @param {rhi} rhi - menampilkan rhi.
+ * @param {lta} lta - menampilkan lta.
+ * @param {pct} pct - menampilkan pct.
+ * @param {region} region - menampilkan region.
+ * @param {kabupaten} kabupaten - menampilkan kabupaten.
+ * @returns Untuk menampilkan view detail regional insights
+ */
 export default function ViewDetailRegionalInsights({ parameter, emotion, audience, rhi, lta, pct, region, kabupaten }: { parameter: any, emotion: any, audience: any, rhi: any, lta: any, pct: any, region: any, kabupaten: any }) {
   const [isEmotion, setEmotion] = useState(emotion)
   const [isKabupaten, setKabupaten] = useState(null)
@@ -80,14 +92,14 @@ export default function ViewDetailRegionalInsights({ parameter, emotion, audienc
             <Box pt={20} key={i} pb={20}>
               <Grid gutter={40}>
                 <Grid.Col span={{ md: 6, lg: 6 }}>
-                  <DetailRegionHotIssue data={rhi.filter((v: any) => v.idKabkot === item.idKabkot)} />
+                  <Text fz={25} fw={"bold"} c={"white"}>{item.name}</Text>
+                  <DetailSentimentAnalysis dataAudience={audience} dataEmotion={item} />
                   <Box pt={40}>
                     <DetailEchartPublicRegionalInsights dataPct={pct.filter((v: any) => v.idKabkot === item.idKabkot)} />
                   </Box>
                 </Grid.Col>
                 <Grid.Col span={{ md: 6, lg: 6 }}>
-                  <Text fz={33} fw={"bold"} c={"white"}>{item.name}</Text>
-                  <DetailSentimentAnalysis dataAudience={audience} dataEmotion={item} />
+                  <DetailRegionHotIssue data={rhi.filter((v: any) => v.idKabkot === item.idKabkot)} />
                   <Box pt={40}>
                     <DetailEcahrtBarPolarRegionalInsights dataLta={lta.filter((v: any) => v.idKabkot === item.idKabkot)} />
                   </Box>
