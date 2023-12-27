@@ -50,66 +50,20 @@ export default function Page() {
         backgroundColor: "#696884",
         display: "flex"
     }}>
-        <Drawer opened={openDrawer} onClose={() => setOpenDrawer(false)}>
-
+        <Drawer
+            p={0}
+            role="dialog"
+            size={"xs"}
+            opened={openDrawer}
+            onClose={() => setOpenDrawer(false)}>
+            <SideMenu />
         </Drawer>
         <Box style={{
             width: 300,
             backgroundColor: "#140A20",
             display: !(match ?? false) ? "none" : "block"
         }}>
-            <Flex direction={"column"}>
-                <Box
-                    p={"md"}
-                    bg={"#202239"}>
-                    <Flex gap={"md"} align={"center"}>
-                        <MdSunny size={36} color={"#408AE1"} />
-                        <Text w={"100%"} c={"white"}>SURYA AI</Text>
-                        <ActionIcon bg={"#202239"} variant="unstyled" onClick={() => {
-                            const ada = listContent.find((v) => v.id === content.id)
-                            if (ada === undefined && content.id !== "") {
-                                listContent.push(content)
-                                const _lisContent = _.cloneDeep(listContent)
-                                setListContent(_lisContent)
-                                setContent(defaultValue)
-                                return
-                            }
-
-                            const index = listContent.findIndex((i) => i.id === content.id)
-                            if (index > 0) {
-                                listContent[index] = content
-                                const _lisContent = _.cloneDeep(listContent)
-                                setListContent(_lisContent)
-                                setContent(defaultValue)
-                                return
-                            }
-
-                            setContent(defaultValue)
-                        }}>
-                            <MdEdit />
-                        </ActionIcon>
-                    </Flex>
-                </Box>
-            </Flex>
-            <ScrollArea pos={"relative"}>
-                {listContent.map((v, k) =>
-                    <NavLink
-                        pos={"relative"}
-                        onClick={() => {
-
-                        }}
-                        p={"sm"}
-                        label={<Text fz={"sm"} lineClamp={1} >{v.title}</Text>}
-                        c={"gray"} key={k} >
-                        <Stack gap={"xs"} >
-                            <UnstyledButton onClick={() => setContent(v)} c={"white"} p={"0"}>Insert</UnstyledButton>
-                            <UnstyledButton c={"white"} p={"0"} onClick={() => {
-                                const baru = listContent.filter((c) => c.id !== v.id)
-                                setListContent(baru)
-                            }}>Delete</UnstyledButton>
-                        </Stack>
-                    </NavLink>)}
-            </ScrollArea>
+            <SideMenu />
         </Box>
         <Box style={{
             width: "100%",
@@ -124,11 +78,11 @@ export default function Page() {
                     width: "100%",
                     padding: 8
                 }}>
-                <Flex>
+                <Flex gap={"md"} align={"center"}>
                     <Box style={{
                         display: (match ?? true) ? "none" : "block"
                     }}>
-                        <Burger onClick={() => {
+                        <Burger color="gray" onClick={() => {
                             setOpenDrawer(true)
                         }} />
 
@@ -159,6 +113,7 @@ export default function Page() {
                         <Text c={"white"}>Realtime Update Data Source</Text>
                     </Stack> : <ScrollArea
                         viewportRef={viewport}
+                        p={"md"}
                         style={{
                             height: "70%",
                             wordWrap: "break-word"
@@ -261,4 +216,63 @@ export default function Page() {
             </Box>
         </Box>
     </Box>
+
+    function SideMenu() {
+        return <Stack bg={"#140A20"} h={"100%"}>
+            <Flex
+                direction={"column"}
+                h={"100%"}>
+                <Box
+                    p={"md"}
+                    bg={"#202239"}>
+                    <Flex gap={"md"} align={"center"}>
+                        <MdSunny size={36} color={"#408AE1"} />
+                        <Text w={"100%"} c={"white"}>SURYA AI</Text>
+                        <ActionIcon bg={"#202239"} variant="unstyled" onClick={() => {
+                            const ada = listContent.find((v) => v.id === content.id)
+                            if (ada === undefined && content.id !== "") {
+                                listContent.push(content)
+                                const _lisContent = _.cloneDeep(listContent)
+                                setListContent(_lisContent)
+                                setContent(defaultValue)
+                                return
+                            }
+
+                            const index = listContent.findIndex((i) => i.id === content.id)
+                            if (index > 0) {
+                                listContent[index] = content
+                                const _lisContent = _.cloneDeep(listContent)
+                                setListContent(_lisContent)
+                                setContent(defaultValue)
+                                return
+                            }
+
+                            setContent(defaultValue)
+                        }}>
+                            <MdEdit />
+                        </ActionIcon>
+                    </Flex>
+                </Box>
+            </Flex>
+            <ScrollArea pos={"relative"} >
+                {listContent.map((v, k) =>
+                    <NavLink
+                        pos={"relative"}
+                        onClick={() => {
+
+                        }}
+                        p={"sm"}
+                        label={<Text fz={"sm"} lineClamp={1} >{v.title}</Text>}
+                        c={"gray"} key={k} >
+                        <Stack gap={"xs"} >
+                            <UnstyledButton onClick={() => setContent(v)} c={"white"} p={"0"}>Insert</UnstyledButton>
+                            <UnstyledButton c={"white"} p={"0"} onClick={() => {
+                                const baru = listContent.filter((c) => c.id !== v.id)
+                                setListContent(baru)
+                            }}>Delete</UnstyledButton>
+                        </Stack>
+                    </NavLink>)}
+            </ScrollArea>
+        </Stack>
+    }
 }
