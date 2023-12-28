@@ -12,20 +12,24 @@ export async function funGetAllSetUser() {
     //proses untuk menampilkan semua data yang ada di user
     // yaitu yang berada pada select
     const data = await prisma.user.findMany({
-        where: {
-            isActive: true,
-        },
+        // where: {
+        //     isActive: true,
+        // },
         select: {
             id: true,
             name: true,
             email: true,
             password: true,
             phone: true,
+            isActive: true,
             UserRole: {
                 select: {
                     name: true
                 }
             }
+        },
+        orderBy:{
+            idUserRole: 'asc'
         }
     })
 
