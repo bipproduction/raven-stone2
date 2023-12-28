@@ -1,5 +1,5 @@
 "use client"
-import { ActionIcon, Box, Button, Center, Group, Modal, Stack, Table, Title } from '@mantine/core';
+import { ActionIcon, Box, Button, Center, Group, Modal, Stack, Switch, Table, Title } from '@mantine/core';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { MdDelete, MdOutlineModeEdit } from 'react-icons/md';
@@ -16,8 +16,12 @@ import ModalDelSetUser from '../components/modal_del_set_user';
 export default function ViewSettingUser({ data }: { data: any }) {
   const router = useRouter()
   const [lisData, setListData] = useState<any[]>(data)
-  const [dataDelete, setDataDelete] = useState("")
   const [valOpenModal, setOpenModal] = useAtom(isModalSetUser)
+  // const [dataDelete, setDataDelete] = useState("")
+  const [dataDelete, setDataDelete] = useState({
+    idUser: "",
+    active: false
+  })
 
   async function deluser() {
     const newData = await funGetAllSetUser()
@@ -43,6 +47,11 @@ export default function ViewSettingUser({ data }: { data: any }) {
               <Table.Th>Phone</Table.Th>
               <Table.Th>
                 <Center>
+                  Active
+                </Center>
+              </Table.Th>
+              <Table.Th>
+                <Center>
                   Action
                 </Center>
               </Table.Th>
@@ -59,7 +68,19 @@ export default function ViewSettingUser({ data }: { data: any }) {
                 <Table.Td>{v.phone}</Table.Td>
                 <Table.Td>
                   <Group justify="center">
-                    <Box>
+                    <Switch checked={v.isActive} size="md" onLabel="ON" offLabel="OFF" onChange={(val) => {
+                      setOpenModal(true)
+                      setDataDelete({
+                        ...dataDelete,
+                        idUser: v.id,
+                        active: val.currentTarget.checked
+                      })
+                    }} />
+                  </Group>
+                </Table.Td>
+                <Table.Td>
+                  <Group justify="center">
+                    {/* <Box>
                       <ActionIcon
                         color="red.9"
                         onClick={() => {
@@ -70,7 +91,7 @@ export default function ViewSettingUser({ data }: { data: any }) {
                       >
                         <MdDelete size="23" />
                       </ActionIcon>
-                    </Box>
+                    </Box> */}
                     <Box>
                       <ActionIcon
                         color="yellow.9"
@@ -95,10 +116,10 @@ export default function ViewSettingUser({ data }: { data: any }) {
         withCloseButton={false}
         closeOnClickOutside={false}
       >
-        <ModalDelSetUser id={dataDelete} 
-        onSuccess={(val) => {
-          deluser()
-        }} />
+        <ModalDelSetUser id={dataDelete}
+          onSuccess={(val) => {
+            deluser()
+          }} />
       </Modal>
     </>
   );
