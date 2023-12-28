@@ -14,6 +14,10 @@ import { isModalStep } from "../val/modal_step"
 import ModalUploadStep from "../component/modal_upload_step"
 
 
+/**
+ * Fungsi untuk menampilkan view Upload step.
+ * @returns Untuk menampilkan Hsil dari View Upload step
+ */
 export default function ViewUploadStep() {
     const [json, setJson] = useState<any[]>([])
     const [openModal, setOpenModal] = useAtom(isModalStep)

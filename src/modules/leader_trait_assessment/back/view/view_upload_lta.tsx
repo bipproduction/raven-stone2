@@ -14,6 +14,10 @@ import { isModalLta } from "../val/modal_lta"
 import ModalUploadLta from "../component/modal_upload_lta"
 
 
+/**
+ * Fungsi untuk menampilkan view upload leader trait assessment.
+ * @returns Untuk menampilkan view upload leader trait assessment
+ */
 export default function ViewUploadLTA() {
     const [json, setJson] = useState<any[]>([])
     const [openModal, setOpenModal] = useAtom(isModalLta)

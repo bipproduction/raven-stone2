@@ -1,18 +1,24 @@
 'use client'
-
-import { ActionIcon, AppShell, Box, Burger, Group, Menu, Modal, NavLink, UnstyledButton, rem } from "@mantine/core";
+import { ActionIcon, AppShell, Box, Burger, Group, Menu, Modal, NavLink, ScrollArea, UnstyledButton, rem } from "@mantine/core";
 import { useDisclosure, useShallowEffect } from "@mantine/hooks";
 import { usePathname, useRouter } from "next/navigation";
 import { FaUserCircle, FaUserTie } from "react-icons/fa";
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import { useState } from "react";
 import { funLogout } from "@/modules/auth";
-import toast from "react-simple-toasts";
 import { funLogUser } from "@/modules/user";
 import { useAtom } from "jotai";
 import { isModalLayout } from "../val/isModalLayout";
 import ModalLogout from "./modal_logout";
 
+/**
+ * Menampilkan layout admin,
+ * berisikan menu navbar, header dan modal logout
+ * @param name nama user 
+ * @param menu list menu yang diperbolehkan utk diakses
+ * @param children content children
+ * @returns komponen layout admin
+ */
 
 export default function LayoutAdmin({ name, menu, children }: { name: any, menu: any | null, children: React.ReactNode; }) {
     const [valOpenModal, setOpenModal] = useAtom(isModalLayout)
@@ -205,6 +211,7 @@ export default function LayoutAdmin({ name, menu, children }: { name: any, menu:
                     </Group>
                 </AppShell.Header>
                 <AppShell.Navbar p="md" pb={30}>
+                    <ScrollArea >
 
                     {(menu && menu.menuEmotion && menu.menuEmotion.length > 0) &&
                         // {(dataEmotion.length > 0) &&
@@ -323,6 +330,8 @@ export default function LayoutAdmin({ name, menu, children }: { name: any, menu:
                             })}
                         </NavLink>
                     }
+                    </ScrollArea>
+
 
                 </AppShell.Navbar>
                 <AppShell.Main bg={"#EAEAEA"}>

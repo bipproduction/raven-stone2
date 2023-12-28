@@ -13,6 +13,11 @@ import { useAtom } from "jotai"
 import { isModalEmotionPaslon } from "../val/modal_emotion"
 import ModalUploadEmotionPaslon from "../component/modal_upload_emotion_paslon"
 
+
+/**
+ * Fungsi untuk menampilkan view upload emotion paslon.
+ * @returns Untuk  menampilkan view upload emotion paslon
+ */
 export default function ViewUploadEmotionPaslon() {
     const [json, setJson] = useState<any[]>([])
     const [openModal, setOpenModal] = useAtom(isModalEmotionPaslon)
@@ -189,10 +194,29 @@ export default function ViewUploadEmotionPaslon() {
 
                                     </Box>
                                 </Box>
-                                <Group >
-                                    <Button mt={20} fullWidth bg={"dark"} onClick={() => {
-                                        setOpenModal(true)
-                                    }}>UPLOAD</Button>
+                                <Group justify="flex-end">
+                                    <Box
+                                        style={{
+                                            padding: 10,
+                                            borderRadius: 5,
+                                            paddingLeft: 20,
+                                            paddingRight: 20,
+                                            position: "fixed",
+                                            bottom: 30,
+                                            right: 30,
+                                            backgroundColor: "green",
+                                            boxShadow: "2px solid gray",
+                                            cursor: 'pointer'
+                                        }}
+                                        onClick={() => {
+                                            setOpenModal(true)
+                                        }}
+                                    >
+                                        <Group>
+                                            <AiOutlineUpload size={25} color={"white"} />
+                                            <Text fw={"bold"} c={"white"}>UPLOAD</Text>
+                                        </Group>
+                                    </Box>
                                 </Group>
                             </>
                         )

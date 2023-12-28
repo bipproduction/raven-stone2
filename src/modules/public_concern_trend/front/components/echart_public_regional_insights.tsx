@@ -1,6 +1,5 @@
 'use client'
-
-import { COLOR_EMOTION } from '@/modules/_global';
+import { COLOR_EMOTION, COLOR_PCT } from '@/modules/_global';
 import { Box, Group, Text } from '@mantine/core';
 import { useShallowEffect } from '@mantine/hooks';
 import { EChartsOption } from 'echarts';
@@ -8,28 +7,41 @@ import EChartsReact from 'echarts-for-react';
 import _ from 'lodash';
 import React, { useState } from 'react';
 
+/**
+ * Fungsi untuk menampilkan echart public regional insights.
+ * @param {DataPct} DataPct - menampilkan DataPct.
+ * @returns Untuk menampilkan echart public regional insights
+ */
+
 export default function EchartPublicRegionalInsights({ dataPct }: { dataPct: any }) {
   const [options, setOptions] = useState<EChartsOption>({})
-  const [dataChart, setDataChart] = useState<any>({
-    infrastruktur: Number(dataPct[0].infrastruktur),
-    keadilanSosial: Number(dataPct[0].keadilanSosial),
-    kemiskinan: Number(dataPct[0].kemiskinan),
-    lapanganPekerjaan: Number(dataPct[0].lapanganPekerjaan),
-    layananKesehatan: Number(dataPct[0].layananKesehatan),
-    pendidikan: Number(dataPct[0].pendidikan),
-  })
-
+  const [dataChart, setDataChart] = useState<any>()
 
   useShallowEffect(() => {
-    loadData()
-  }, [])
+    setDataChart({
+      infrastructure: Number(dataPct[0].infrastruktur),
+      social_justice: Number(dataPct[0].keadilanSosial),
+      poverty: Number(dataPct[0].kemiskinan),
+      jobs: Number(dataPct[0].lapanganPekerjaan),
+      health_services: Number(dataPct[0].layananKesehatan),
+      education: Number(dataPct[0].pendidikan),
+    })
+    loadData(dataChart)
+  }, [dataPct, dataChart])
 
-  const loadData = () => {
+  const loadData = (dataLoad: any) => {
     const option: EChartsOption = {
       tooltip: {
         trigger: "axis",
         axisPointer: {
           type: "shadow",
+        },
+        formatter: function (params: any) {
+          return (
+            _.upperCase(params[0].name) +
+            " : " +
+            Intl.NumberFormat().format(params[0].value)
+          );
         },
       },
       grid: {
@@ -41,7 +53,7 @@ export default function EchartPublicRegionalInsights({ dataPct }: { dataPct: any
       yAxis: [
         {
           type: "category",
-          data: ['Education', 'Health Services', 'Infrastructure', 'Poverty', 'Social Justice', 'Jobs'],
+          data: _.keys(dataLoad).map((v) => (v)).filter((v) => v != "name" && v != "idProvinsi"),
           axisTick: {
             alignWithLabel: true,
           },
@@ -49,9 +61,11 @@ export default function EchartPublicRegionalInsights({ dataPct }: { dataPct: any
             color: "white",
             fontSize: "12",
             fontWeight: "bold",
-            // formatter: function (params: any) {
-            //   return _.startCase(params);
-            // },
+            formatter: function (params: any) {
+              return (
+                _.startCase(params)
+              );
+            },
           },
         },
       ],
@@ -70,15 +84,13 @@ export default function EchartPublicRegionalInsights({ dataPct }: { dataPct: any
           name: "Direct",
           type: "bar",
           barWidth: "60%",
-          data: Object.keys(dataChart ?? []).map(
+          data: Object.keys(dataLoad ?? []).map(
             (v: any, i: any) =>
             ({
               name: v,
-              value: dataChart[v],
+              value: dataLoad[v],
               itemStyle: {
-                color:
-                  COLOR_EMOTION.find((v2) => v2.id == String(i))
-                    ?.color ?? "gray",
+                color: COLOR_PCT[i],
               },
             })
           ),

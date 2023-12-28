@@ -6,14 +6,21 @@ import toast from "react-simple-toasts"
 import { isModalStep } from "../val/modal_step"
 import funDelStepById from "../fun/del_step"
 import { funLogUser } from "@/modules/user"
+import { funLogout } from "@/modules/auth"
 
 
+/**
+ * Fungsi untuk menampilkan Modal Delete Step.
+ * @param {id} id - menampilkan id.
+ * @param {onSuccess} onSuccess - menampilkan onSuccess.
+ * @returns Untuk menampilkan Modal Delete Step
+ */
 export default function ModalDeleteStep({ id, onSuccess }: { id: any, onSuccess: (val: any) => void }) {
     const [openModal, setOpenModal] = useAtom(isModalStep)
 
     async function onDelete() {
         await funDelStepById({ idData: id })
-        await funLogUser({ act: "DELETE", desc: `User Delete Data Step (ID: ${id})` })
+        await funLogUser({act: "DELETE", desc: `User Delete Data Step (ID : ${id})`})
         toast('Success', { theme: 'dark' })
         setOpenModal(false)
         onSuccess(true)

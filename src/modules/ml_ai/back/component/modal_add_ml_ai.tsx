@@ -1,3 +1,4 @@
+'use client'
 import { Alert, Box, Button, Group, Text } from '@mantine/core';
 import React from 'react';
 import funAddMlAi from '../fun/add_ml_ai';
@@ -6,7 +7,14 @@ import { useAtom } from 'jotai';
 import { isModalMlai } from '../val/modal_mlai';
 import { funLogUser } from '@/modules/user';
 
-export default function ModalAddMlAi({ dataMlAi, textContent }: { dataMlAi: any, textContent: any }) {
+/**
+ * Fungsi untuk menampilkan modal add ml ai.
+ * @param {dataMlAi} dataMlAi - menampilkan dataMlAi.
+ * @param {textContent} textContent - menampilkan textContent.
+ * @returns Untuk menampilkan modal add ml ai
+ */
+
+export default function ModalAddMlAi({ dataMlAi, textContent, onSuccess }: { dataMlAi: any, textContent: any, onSuccess: (val: any) => void }) {
   const [valOpenModal, setOpenModal] = useAtom(isModalMlai)
 
   async function addMlAi() {
@@ -14,8 +22,10 @@ export default function ModalAddMlAi({ dataMlAi, textContent }: { dataMlAi: any,
     if (!res.success) return toast("Failed! " + res.message, { theme: "dark" });
     await funLogUser({ act: "ADD", desc: `User Add Data ML-AI (ID : ${res.id})` })
     toast("Success", { theme: "dark" });
+    onSuccess(true)
     setOpenModal(false);
   }
+  
   return (
     <>
       <Box>

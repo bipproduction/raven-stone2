@@ -4,7 +4,7 @@ import funGetAccessAdmin from "./back/fun/get_access_admin";
 import prisma from "./bin/prisma";
 import PageSubTitle from "./front/components/PageSubtitle";
 import { WARNA } from "./fun/COLOR";
-import { COLOR_EMOTION, COLOR_LEADER } from "./fun/COLOR_EMOTION";
+import { COLOR_EMOTION, COLOR_LEADER, COLOR_PCT } from "./fun/COLOR_EMOTION";
 import funCekAkses from "./fun/cek_access";
 import { countKabkot } from "./fun/count_kabkot";
 import { countProvince } from "./fun/count_province";
@@ -31,6 +31,7 @@ export { funCekAkses }
 export { funGetAccessAdmin }
 export { COLOR_EMOTION }
 export { COLOR_LEADER }
+export { COLOR_PCT }
 export { WARNA }
 export { PageSubTitle }
 export { funGetOneProvinsi }

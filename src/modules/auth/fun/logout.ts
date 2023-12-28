@@ -1,10 +1,14 @@
 'use server'
-
 import { cookies } from "next/headers"
-import { redirect } from "next/navigation"
+
+/**
+ * Login user
+ * @returns array data success dan message
+ */
 
 export async function funLogout() {
 
+    // menghapus cookies
     cookies().delete('_tknRV')
 
     return {

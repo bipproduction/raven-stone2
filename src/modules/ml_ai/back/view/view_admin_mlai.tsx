@@ -11,6 +11,15 @@ import { DateInput } from "@mantine/dates";
 import moment from "moment";
 import { useShallowEffect } from "@mantine/hooks";
 
+
+/**
+ * Fungsi untuk menampilkan view admin ml ai.
+ * @param {params} params - menampilkan params.
+ * @param {paslon} paslon - menampilkan paslon.
+ * @param {datatable} datatable - menampilkan datatable.
+ * @param {datadownload} datadownload - menampilkan datadownload.
+ * @returns Untuk menampilkan view admin ml ai
+ */
 export default function ViewAdminMLAI({ params, paslon, datatable, datadownload }: { params: any, paslon: any, datatable: any, datadownload: any }) {
     const router = useRouter();
     const [dataPaslon, setDataPaslon] = useState(paslon)

@@ -8,6 +8,13 @@ import toast from 'react-simple-toasts';
 import { funLogUser } from '../..';
 import { AnyNaptrRecord } from 'dns';
 
+
+/**
+ * Fungsi untuk menampilkan Modal Add User Role.
+ * @param {isName} isName - menampilkan isName.
+ * @param {value} value - menampilkan value.
+ * @returns Untuk menampilkan Modal Add User Role
+ */
 export default function ModalAddUserRole({isName, value,}: {isName: any, value: any}) {
   const router = useRouter()
   const [valOpenModal, setOpenModal] = useAtom(isModalRoleUser)

@@ -3,6 +3,10 @@
 import { prisma } from "@/modules/_global"
 import _ from "lodash"
 
+/**
+ * Fungsi untuk ambil data seeder user access.
+ * @returns hasil untuk data seeder user access
+ */
 export default async function funSeederRhi() {
 
     const cek = await prisma.regionHotIssues.count()

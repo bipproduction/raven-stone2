@@ -1,15 +1,33 @@
 'use client'
-
 import { Box, Group, ScrollArea, Select, Table, Text } from "@mantine/core";
 import { useEffect, useState } from "react";
+import { funDownloadPopularityByDate, funGetPopularityByDate } from "../..";
 
-export default function TableDataPopularity({ title, data }: { title: string, data: any }) {
+/**
+ * Fungsi untuk menampilkan modal upload popularity.
+ * @param {data} data - menampilkan data.
+ * @param {title} title - menampilkan title.
+ * @returns Untuk menampilkan modal upload popularity
+ */
+
+export default function TableDataPopularity({ param, title, data, datajam, onLoad }: { param: any, title: string, data: any, datajam: any, onLoad: (val: any) => void }) {
     const [isData, setData] = useState(data)
-    let angka
+    const [dataJam, setDataJam] = useState(datajam)
+    const [isJam, setJam] = useState((dataJam.length > 0) ? dataJam[0].timeEmotion : null)
+
+    async function getLoad(valJam: any) {
+        setJam(valJam)
+        param['jam'] = valJam
+        const dataDB = await funGetPopularityByDate({ find: param })
+        setData(dataDB.data)
+        const dataDownload = await funDownloadPopularityByDate({ find: param })
+        onLoad(dataDownload)
+    }
 
     useEffect(() => {
         setData(data)
-    }, [data])
+        setJam((datajam.length > 0) ? datajam[0].timeEmotion : null)
+    }, [data, datajam])
 
     return (
         <>
@@ -25,6 +43,17 @@ export default function TableDataPopularity({ title, data }: { title: string, da
                         <Text fw={"bold"} c={"white"}>
                             {title}
                         </Text>
+                        {
+                            (datajam.length > 0) &&
+                            <Select
+                                data={datajam.map((can: any) => ({
+                                    value: String(can.timeEmotion),
+                                    label: can.timeEmotion
+                                }))}
+                                value={isJam}
+                            onChange={(val) => getLoad(val)}
+                            />
+                        }
                     </Group>
 
                     <Box pt={20}>

@@ -1,8 +1,13 @@
 'use server'
-
 import { funGetOnePaslon, prisma } from "@/modules/_global"
 import moment from "moment"
 import _ from "lodash"
+
+/**
+ * Fungsi untuk get emotion paslon date area.
+ * @param {find} find - menampilkan find.
+ * @returns Untuk  get emotion paslon date area
+ */
 
 export default async function funGetEmotionPaslonDateArea({ find }: { find: any }) {
     let emotion, dataJam, titleA, kondisi, kondisi2, thTrue, prov, result, jamFix, formatJam, isoDateTime
@@ -34,7 +39,7 @@ export default async function funGetEmotionPaslonDateArea({ find }: { find: any 
             timeEmotion: true
         },
         orderBy: {
-            id: 'desc'
+            timeEmotion: 'desc'
         }
     });
 

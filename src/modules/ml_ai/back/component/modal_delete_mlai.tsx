@@ -7,7 +7,12 @@ import { isModalMlai } from "../val/modal_mlai"
 import funDelMlaiById from "../fun/del_mlai_by_id"
 import { funLogUser } from "@/modules/user"
 
-
+/**
+ * Fungsi untuk menampilkan modal add ml ai.
+ * @param {dataMlAi} dataMlAi - menampilkan dataMlAi.
+ * @param {textContent} textContent - menampilkan textContent.
+ * @returns Untuk menampilkan modal add ml ai
+ */
 export default function ModalDeleteMlai({ id, onSuccess }: { id: any, onSuccess: (val: any) => void }) {
     const [openModal, setOpenModal] = useAtom(isModalMlai)
 

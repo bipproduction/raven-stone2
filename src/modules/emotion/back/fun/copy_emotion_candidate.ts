@@ -3,6 +3,13 @@
 import { prisma } from "@/modules/_global"
 import _ from "lodash"
 
+
+/**
+ * Fungsi untuk copy emotion candidate.
+ * @param {dateFrom} dateFrom - menampilkan dateFrom.
+ * @param {dateTo} dateTo - menampilkan dateTo.
+ * @returns Untuk  copy emotion candidate
+ */
 export default async function funCopyEmotionCandidate({ dateFrom, dateTo, candidate }: { dateFrom: any, dateTo: any, candidate: any }) {
 
 

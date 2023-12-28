@@ -1,8 +1,6 @@
 'use client'
-
 import { ButtonBack, WARNA } from '@/modules/_global';
 import { ActionIcon, Box, Button, Group, Modal, Select, SimpleGrid, Stack, Text, TextInput } from '@mantine/core';
-import { DateInput, TimeInput } from '@mantine/dates';
 import React, { useEffect, useRef, useState } from 'react';
 import { AiOutlineClockCircle } from 'react-icons/ai';
 import { RichTextEditor, Link } from '@mantine/tiptap';
@@ -18,11 +16,15 @@ import TextStyle from '@tiptap/extension-text-style';
 import { CiPickerEmpty } from 'react-icons/ci';
 import { useRouter } from 'next/navigation';
 import toast from 'react-simple-toasts';
-import moment from 'moment';
 import { useAtom } from 'jotai';
 import { isModalStep } from '../val/modal_step';
 import ModalAddStep from '../component/modal_add_step';
 
+/**
+ * Fungsi untuk menampilkan view Add step.
+ * @param {candidate} candidate - menampilkan candidate.
+ * @returns Untuk menampilkan keseluruhan dari View Add step
+ */
 
 export default function ViewAddStep({ candidate }: { candidate: any, }) {
     const ref = useRef<HTMLInputElement>(null);
@@ -79,7 +81,7 @@ export default function ViewAddStep({ candidate }: { candidate: any, }) {
         content: isContent,
     });
     const [isDataStep, setDataStep] = useState({
-        candidate: "",
+        idCandidate: "",
         category: "",
         sentiment: ""
     })
@@ -111,10 +113,11 @@ export default function ViewAddStep({ candidate }: { candidate: any, }) {
                                 value: String(pro.id),
                                 label: pro.name
                             }))}
+                            value={(isDataStep.idCandidate == '') ? null : isDataStep.idCandidate}
                             onChange={(val: any) =>
                                 setDataStep({
                                     ...isDataStep,
-                                    candidate: (val == null) ? '' : val
+                                    idCandidate: (val == null) ? '' : val
                                 })
                             }
                         />
@@ -128,6 +131,7 @@ export default function ViewAddStep({ candidate }: { candidate: any, }) {
                                 value: String(pro.val),
                                 label: pro.val
                             }))}
+                            value={(isDataStep.category == '') ? null : isDataStep.category}
                             onChange={(val: any) =>
                                 setDataStep({
                                     ...isDataStep,
@@ -145,6 +149,7 @@ export default function ViewAddStep({ candidate }: { candidate: any, }) {
                                 value: String(pro.val),
                                 label: pro.label
                             }))}
+                            value={(isDataStep.sentiment == '') ? null : isDataStep.sentiment}
                             onChange={(val: any) =>
                                 setDataStep({
                                     ...isDataStep,
@@ -243,7 +248,15 @@ export default function ViewAddStep({ candidate }: { candidate: any, }) {
                 withCloseButton={false}
                 closeOnClickOutside={false}
             >
-                <ModalAddStep dataStep={isDataStep} textContent={editor?.getHTML()} />
+                <ModalAddStep dataStep={isDataStep} textContent={editor?.getHTML()} onSuccess={() => {
+                    editor?.commands.setContent('<p></p>')
+                    setDataStep({
+                        ...isDataStep,
+                        idCandidate: '',
+                        category: '',
+                        sentiment: ''
+                    })
+                }} />
             </Modal>
         </>
     );

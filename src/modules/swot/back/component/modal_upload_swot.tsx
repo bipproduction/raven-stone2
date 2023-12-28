@@ -8,8 +8,12 @@ import funUploadSwot from "../fun/upload_swot"
 import { funLogUser } from "@/modules/user"
 
 
-
-
+/**
+ * Fungsi untuk menampilkan Modal Upload Swot.
+ * @param {data} data - menampilkan data.
+ * @param {onSuccess} onSuccess - menampilkan onSuccess.
+ * @returns Untuk menampilkan Modal Upload Swot
+ */
 export default function ModalUploadSwot({ data, onSuccess }: { data: any, onSuccess: (val: any) => void }) {
     const [openModal, setOpenModal] = useAtom(isModalSwot)
 

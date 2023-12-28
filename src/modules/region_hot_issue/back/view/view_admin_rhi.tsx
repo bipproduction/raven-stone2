@@ -8,6 +8,15 @@ import toast from "react-simple-toasts"
 import papa from "papaparse"
 import TableDataRHI from "../component/table_rhi"
 
+
+/**
+ * Fungsi untuk menampilkan view Admin rhi.
+ * @param {param} param - menampilkan param.
+ * @param {provinsi} provinsi - menampilkan provinsi.
+ * @param {datatable} datatable - menampilkan datatable.
+ * @param {datadownload} datadownload - menampilkan datadownload.
+ * @returns Untuk menampilkan view Admin rhi
+ */
 export default function ViewAdminRHI({ param, provinsi, datatable, datadownload }: { param: any, provinsi: any, datatable: any, datadownload: any }) {
     const router = useRouter()
 

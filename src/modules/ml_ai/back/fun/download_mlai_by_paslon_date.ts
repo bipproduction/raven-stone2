@@ -4,6 +4,13 @@ import { funGetOnePaslon, prisma } from "@/modules/_global"
 import moment from "moment"
 import _ from "lodash"
 
+
+/**
+ * Fungsi untuk download ml ai paslon date.
+ * @param {paslon} paslon - menampilkan paslon.
+ * @param {date} date - menampilkan date.
+ * @returns Untuk download ml ai paslon date
+ */
 export default async function funDownloadMlaiPaslonDate({ paslon, date }: { paslon: any, date: any }) {
     let result
     const dPaslon = await funGetOnePaslon({ paslon: paslon })

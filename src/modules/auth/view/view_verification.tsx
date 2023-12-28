@@ -18,11 +18,11 @@ import { funSetCookies } from "../fun/set_cookies";
 import { funLogUser } from "@/modules/user";
 import { WARNA } from "@/modules/_global";
 
-
 /**
- * Fungsi untuk menampilkan view varification.
- * @returns {component} menampilakn view varification.
+ * Menampilkan layout view verification
+ * @returns komponen view verification
  */
+
 export default function ViewVerification() {
   const focusTrapRef = useFocusTrap()
   const router = useRouter()
@@ -31,9 +31,13 @@ export default function ViewVerification() {
   const [inputOTP, setInputOTP] = useState<any>()
   const [isUser, setUser] = useAtom(isIdUser)
 
-
+  // fungsi untuk mengirim kembali code verification terbaru
   async function onResend() {
+
+    // proses pengambilan nomer 4 digit random untuk code verfication
     const code = Math.floor(Math.random() * 1000) + 1000
+
+    // proses pengiriman code verification melalui wa
     const res = await fetch(`https://wa.wibudev.com/code?nom=${isValPhone}&text=${code}`)
       .then(
         async (res) => {
@@ -47,13 +51,16 @@ export default function ViewVerification() {
       );
   }
 
+  // fungsi untuk mengecek code verification yang telah diinputkan
   async function getVerification() {
     if (isOTP == inputOTP) {
+      // jika kode benar
       const setC = await funSetCookies({ user: isUser })
-      await funLogUser({ act: 'LOGIN', desc:`User login` })
+      await funLogUser({ act: 'LOGIN', desc: `User login` })
       router.push('/dashboard/summary')
       toast("Verification code is correct", { theme: "dark" })
     } else {
+      // jika salah
       toast("Incorrect verification code", { theme: "dark" })
     }
   }

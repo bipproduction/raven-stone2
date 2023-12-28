@@ -1,11 +1,18 @@
 'use client'
-
 import { ActionIcon, Box, Center, Collapse, Group, Stack, Table, Text } from "@mantine/core";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { CiRead, CiUnread } from "react-icons/ci";
 import { MdDelete, MdEditCalendar } from "react-icons/md";
+import InnerHTML from 'dangerously-set-html-content'
 
+/**
+ * Fungsi untuk menampilkan Detail Data Swot.
+ * @param {v} v - menampilkan v.
+ * @param {i} i - menampilkan i.
+ * @param {onClick} onClick - menampilkan onClick.
+ * @returns Untuk menampilkan Hsil dari Detail Data Swot
+ */
 export default function DetailDataSwot({ v, i, onClick }: { v: any; i: any, onClick: (val: any) => void }) {
     const open = useState(false);
     const router = useRouter();
@@ -34,6 +41,15 @@ export default function DetailDataSwot({ v, i, onClick }: { v: any; i: any, onCl
                                     </ActionIcon>
                                 </Group>
                             </Stack>
+                            <ActionIcon
+                                variant="transparent"
+                                color="rgba(5, 128, 23, 1)"
+                                size="xl"
+                                aria-label="Edit"
+                                onClick={() => router.push("swot/edit/" + v.id)}
+                            >
+                                <MdEditCalendar size={20} />
+                            </ActionIcon>
                             <ActionIcon
                                 variant="transparent"
                                 color="rgba(209, 4, 4, 1)"
@@ -65,7 +81,9 @@ export default function DetailDataSwot({ v, i, onClick }: { v: any; i: any, onCl
                                 <Text c={"white"} fw={"bold"} fz={20} mb={10}>
                                     Content
                                 </Text>
-                                <Text c={"white"}>{v.content}</Text>
+                                <Stack c={'white'}>
+                                    <Box dangerouslySetInnerHTML={{ __html: v.content }} />
+                                </Stack>
                             </Box>
                         </Collapse>
                     </Table.Td>

@@ -13,7 +13,10 @@ import { useAtom } from "jotai"
 import { isModalRhi } from "../val/modal_rhi"
 import ModalUploadRhi from "../component/modal_upload_rhi"
 
-
+/**
+ * Fungsi untuk menampilkan view Upload Rhi.
+ * @returns Untuk menampilkan view Upload Rhi
+ */
 export default function ViewUploadRhi() {
     const [json, setJson] = useState<any[]>([])
     const [openModal, setOpenModal] = useAtom(isModalRhi)

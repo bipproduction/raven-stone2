@@ -22,8 +22,11 @@ import { useAtom } from 'jotai';
 import { isModalJokowi } from '../val/modal_jokowi';
 import ModalAddJokowiEffect from '../component/modal_add_jokowi_effect';
 import { useShallowEffect } from '@mantine/hooks';
-import funCekAddJokowiEffect from '../fun/cek_add_jokowi_effect';
 
+/**
+ * Fungsi untuk menampilkan add admin Jokowi Effect.
+ * @returns Untuk menampilkan add admin Jokowi Effect
+ */
 
 export default function ViewAddAdminJokowi() {
   const is_client = useState(false)
@@ -60,7 +63,7 @@ export default function ViewAddAdminJokowi() {
   });
 
   const [isDataJokowi, setIsDataJokowi] = useState({
-    dateContent: moment(new Date()).format('YYYY-MM-DD'),
+    dateContent: '',
     timeContent: ""
   })
 
@@ -86,7 +89,7 @@ export default function ViewAddAdminJokowi() {
             <DateInput valueFormat="DD-MM-YYYY" required
               label={"Tanggal"}
               placeholder="Pilih Tanggal"
-              value={new Date(isDataJokowi.dateContent)}
+              value={(isDataJokowi.dateContent == '') ? null : new Date(isDataJokowi.dateContent)}
               onChange={(e) => {
                 setIsDataJokowi({
                   ...isDataJokowi,
@@ -201,13 +204,12 @@ export default function ViewAddAdminJokowi() {
       >
         <ModalAddJokowiEffect dataJokowi={isDataJokowi} textContent={editor?.getHTML()}
           onSuccess={(val) => {
-            //TODO: RESET FORM ADD 
-            // setIsDataJokowi({
-            //   ...isDataJokowi,
-            //   timeContent: '',
-            //   dateContent: moment(new Date()).format('YYYY-MM-DD')
-            // })
-            // setContent('')
+            editor?.commands.setContent('<p></p>')
+            setIsDataJokowi({
+              ...isDataJokowi,
+              timeContent: '',
+              dateContent: ''
+            })
           }
           }
         />

@@ -3,6 +3,12 @@
 import { countProvince, prisma } from "@/modules/_global";
 import _ from "lodash"
 
+
+/**
+ * Fungsi untuk Download function download Rhi By Area.
+ * @param {find} find - menampilkan find.
+ * @returns Untuk Download function download Rhi By Area
+ */
 export default async function funDownloadRhiByArea({ find }: { find: any }) {
     let titleTrue, dataTable = <any>[], area
 

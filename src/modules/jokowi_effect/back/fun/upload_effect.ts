@@ -4,6 +4,12 @@ import { prisma } from "@/modules/_global"
 import { revalidatePath } from "next/cache";
 import moment from "moment";
 
+
+/**
+ * Fungsi untuk upload Jokowi Effect.
+ * @param {body} body - menampilkan body.
+ * @returns Untuk upload Jokowi Effect
+ */
 export default async function funUploadEffect({ body }: { body: any }) {
     let date, y, isoDateTime
     for (let i of body) {

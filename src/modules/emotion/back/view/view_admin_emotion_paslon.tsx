@@ -10,12 +10,23 @@ import toast from "react-simple-toasts";
 import TableDataEmotionPaslon from "../component/table_emotion_paslon";
 import papa from "papaparse"
 
+
+/**
+ * Fungsi untuk menampilkan view emotion paslon.
+ * @param {param} param - menampilkan param.
+ * @param {provinsi} provinsi - menampilkan provinsi.
+ * @param {paslon} paslon - menampilkan paslon.
+ * @param {datatable} datatable - menampilkan datatable.
+ * @param {datadownload} datadownload - menampilkan datadownload.
+ * @returns Untuk  menampilkan view emotion paslon
+ */
 export default function ViewAdminEmotionPaslon({ param, provinsi, paslon, datatable, datadownload }: { param: any, provinsi: any, paslon: any, datatable: any, datadownload: any }) {
     const router = useRouter()
     const today = new Date();
 
     const [dataProvinsi, setDataProvinsi] = useState(provinsi)
     const [dataPaslon, setDataPaslon] = useState<any>(paslon)
+    const [dataDownload, setDataDownload] = useState(datadownload)
     const [isProvinsi, setProvinsi] = useState<any>(param.idProvinsi || null)
     const [isPaslon, setPaslon] = useState<any>(param.idPaslon || null)
     const [isDate, setDate] = useState<any>((_.isNull(param.date)) ? today : new Date(param.date))
@@ -26,7 +37,8 @@ export default function ViewAdminEmotionPaslon({ param, provinsi, paslon, datata
         setProvinsi((param.idProvinsi == 0) ? null : param.idProvinsi)
         setPaslon((param.idPaslon == 0) ? null : param.idPaslon)
         setDate((param.date == null) ? new Date() : new Date(param.date))
-    }, [param])
+        setDataDownload(datadownload)
+    }, [param, datadownload])
 
     async function onProvinsi({ idProv }: { idProv: any }) {
         setProvinsi(idProv)
@@ -118,14 +130,14 @@ export default function ViewAdminEmotionPaslon({ param, provinsi, paslon, datata
                                     }}
 
                                     onClick={() => {
-                                        const dataJson = datadownload.data
+                                        const dataJson = dataDownload.data
 
                                         const jsonData = papa.unparse(dataJson)
                                         const jsonDataUrl = "data:text/csv;charset=utf-8," + encodeURIComponent(jsonData)
 
                                         const jsonDwnloadLink = document.createElement("a")
                                         jsonDwnloadLink.href = jsonDataUrl
-                                        jsonDwnloadLink.download = datadownload.title + ".csv"
+                                        jsonDwnloadLink.download = dataDownload.title + ".csv"
                                         jsonDwnloadLink.click()
                                     }}
 
@@ -158,7 +170,16 @@ export default function ViewAdminEmotionPaslon({ param, provinsi, paslon, datata
             </Box>
             {!_.isNull(datatable.title) && (
                 <Box pt={20}>
-                    <TableDataEmotionPaslon param={param} title={datatable.title} data={datatable.data} th={datatable.th} datajam={datatable.jam} />
+                    <TableDataEmotionPaslon
+                        param={param}
+                        title={datatable.title}
+                        data={datatable.data}
+                        th={datatable.th}
+                        datajam={datatable.jam}
+                        onLoad={(val) => {
+                            setDataDownload(val)
+                        }}
+                    />
                 </Box>
             )}
         </>

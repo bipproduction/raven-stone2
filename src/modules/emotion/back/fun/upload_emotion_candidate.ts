@@ -1,9 +1,14 @@
 'use server'
-
 import { prisma } from "@/modules/_global";
 import moment from "moment";
 import { revalidatePath } from "next/cache";
 
+
+/**
+ * Fungsi untuk upload emotion candidate.
+ * @param {body} body - menampilkan body.
+ * @returns Untuk  upload emotion candidate
+ */
 export default async function funUploadEmotionCandidate({ body }: { body: any }) {
     let date, isoDateTime, y, pas, time_csv
 

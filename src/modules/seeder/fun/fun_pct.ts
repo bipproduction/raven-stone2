@@ -3,6 +3,11 @@
 import { prisma } from "@/modules/_global"
 import _ from "lodash"
 
+
+/**
+ * Fungsi untuk ambil data seeder Public  .
+ * @returns hasil untuk data seeder Public 
+ */
 export default async function funSeederPct() {
     const cek = await prisma.publicConcernTrend.count()
     if (cek > 0) {

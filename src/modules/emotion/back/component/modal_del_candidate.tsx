@@ -6,6 +6,15 @@ import toast from 'react-simple-toasts';
 import funDelJamEmotionCandidate from '../fun/del_emotion_candidate';
 import { funLogUser } from '@/modules/user';
 
+
+/**
+ * Fungsi untuk menampilkan Modal delete candidate.
+ * @param {isCandidate} isCandidate - menampilkan isCandidate.
+ * @param {isDateCan} isDateCan - menampilkan isDateCan.
+ * @param {valuejamCan} valuejamCan - menampilkan valuejamCan.
+ * @param {onSuccess} onSuccess - menampilkan onSuccess.
+ * @returns Untuk menampilkan Modal delete candidate
+ */
 export default function ModalDelCandidate({ isCandidate, isDateCan, valueJamCan, onSuccess }: { isCandidate: any, isDateCan: any, valueJamCan: any, onSuccess: (val: any) => void }) {
     const [valOpenModal, setOpenModal] = useAtom(isModalEmotionCandidate)
     const [isLoading, setLoading] = useState(false)

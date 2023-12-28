@@ -3,6 +3,12 @@
 import { prisma } from "@/modules/_global"
 import { revalidatePath } from "next/cache";
 
+
+/**
+ * Fungsi untuk upload leader trait assessment by area.
+ * @param {body} body - menampilkan body.
+ * @returns Untuk upload leader trait assessment by area
+ */
 export default async function funUploadLta({ body }: { body: any }) {
     for (let i of body) {
         await prisma.leaderTraitAssessment.update({
