@@ -8,6 +8,7 @@ import superjson from 'superjson'
 import showdown from 'showdown'
 import { IoArrowBackCircleSharp } from "react-icons/io5";
 import { useRouter } from "next/navigation";
+import { WARNA } from "@/modules/_global";
 
 
 export default function ViewChatAiV2() {
@@ -63,7 +64,7 @@ export default function ViewChatAiV2() {
     </Drawer>
     <Box style={{
       width: 300,
-      backgroundColor: "#140A20",
+      backgroundColor: "#180928",
       display: !(match ?? false) ? "none" : "block"
     }}>
       <SideMenu />
@@ -73,7 +74,7 @@ export default function ViewChatAiV2() {
       height: "100vh",
       display: "flex",
       flexDirection: "column",
-      backgroundColor: "#202239"
+      backgroundColor: WARNA.ungu
     }}>
       <Box
         style={{
@@ -167,7 +168,7 @@ export default function ViewChatAiV2() {
               <Flex
                 p={"md"}
                 align={"center"}
-                bg={"#1F2239"}
+                bg={"#180928"}
                 w={{ md: 660, lg: 700, sm: 500, xs: "100%" }}
                 style={{
                   border: "1px solid gray",
@@ -245,15 +246,15 @@ export default function ViewChatAiV2() {
     return <Flex
       direction={"column"}
       justify={"start"}
-      bg={"#140A20"}
+      bg={"#180928"}
       h={"100%"}>
       <Box
         p={"md"}
-        bg={"#202239"}>
+        bg={"#1d0a30"}>
         <Flex gap={"md"} align={"center"}>
           <MdOutlineFace3 size={36} color={"#408AE1"} />
           <Text w={"100%"} c={"white"}>D-AYU AI</Text>
-          <ActionIcon bg={"#202239"} variant="unstyled" onClick={() => {
+          <ActionIcon bg={"#1d0a30"} variant="unstyled" onClick={() => {
             const ada = listContent.find((v) => v.id === content.id)
             if (ada === undefined && content.id !== "") {
               listContent.push(content)
