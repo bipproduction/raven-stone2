@@ -242,7 +242,7 @@ export default function DashboardLive({ dataPersen, dataNotif, emotionPersen }: 
                                             <Text style={{
                                                 fontSize: 20,
                                                 fontWeight: "bolder"
-                                            }}>{_.isNaN(emotionPersen[1].positive) ? 0 : emotionPersen[1].positive} %</Text>
+                                            }}>{_.isNaN(emotionPersen[2].positive) ? 0 : emotionPersen[2].positive} %</Text>
                                             <Group justify="end" style={{
                                                 fontWeight: "bold"
                                             }} p={0} c={"white"} >
@@ -263,7 +263,7 @@ export default function DashboardLive({ dataPersen, dataNotif, emotionPersen }: 
                                             <Text style={{
                                                 fontSize: 20,
                                                 fontWeight: "bolder"
-                                            }}>{_.isNaN(emotionPersen[1].neutral) ? 0 : emotionPersen[1].neutral} %</Text>
+                                            }}>{_.isNaN(emotionPersen[2].neutral) ? 0 : emotionPersen[2].neutral} %</Text>
                                             <Group justify="end" style={{
                                                 fontWeight: "bold"
                                             }} p={0} c={"white"} >
@@ -284,7 +284,7 @@ export default function DashboardLive({ dataPersen, dataNotif, emotionPersen }: 
                                             <Text style={{
                                                 fontSize: 20,
                                                 fontWeight: "bolder"
-                                            }}>{_.isNaN(emotionPersen[1].negative) ? 0 : emotionPersen[1].negative} %</Text>
+                                            }}>{_.isNaN(emotionPersen[2].negative) ? 0 : emotionPersen[2].negative} %</Text>
                                             <Group justify="end" style={{
                                                 fontWeight: "bold"
                                             }} p={0} c={"white"} >
@@ -328,7 +328,7 @@ export default function DashboardLive({ dataPersen, dataNotif, emotionPersen }: 
                                         <Group>
                                             <Box>
                                                 {/* <Text>{dataPersen[1]?.positive} %</Text> */}
-                                                <Text>{_.isNaN(emotionPersen[2].positive) ? 0 : emotionPersen[2].positive} %</Text>
+                                                <Text>{_.isNaN(emotionPersen[3].positive) ? 0 : emotionPersen[3].positive} %</Text>
                                                 <Group justify="flex-end">
                                                     <Text bg={"#06D974"} fz={10}>positive</Text>
                                                 </Group>
@@ -338,7 +338,7 @@ export default function DashboardLive({ dataPersen, dataNotif, emotionPersen }: 
                                         <Group>
                                             <Box>
                                                 {/* <Text>{dataPersen[1]?.neutral} %</Text> */}
-                                                <Text>{_.isNaN(emotionPersen[2].neutral) ? 0 : emotionPersen[2].neutral} %</Text>
+                                                <Text>{_.isNaN(emotionPersen[3].neutral) ? 0 : emotionPersen[3].neutral} %</Text>
                                                 <Group justify="flex-end">
                                                     <Text bg={'gray'} fz={10}>neutral</Text>
                                                 </Group>
@@ -348,7 +348,7 @@ export default function DashboardLive({ dataPersen, dataNotif, emotionPersen }: 
                                         <Group>
                                             <Box>
                                                 {/* <Text>{dataPersen[1]?.negative} %</Text> */}
-                                                <Text>{_.isNaN(emotionPersen[2].negative) ? 0 : emotionPersen[2].negative} %</Text>
+                                                <Text>{_.isNaN(emotionPersen[3].negative) ? 0 : emotionPersen[3].negative} %</Text>
                                                 <Group justify="flex-end">
                                                     <Text bg={"#E01E1E"} fz={10}>negative</Text>
                                                 </Group>
@@ -375,7 +375,7 @@ export default function DashboardLive({ dataPersen, dataNotif, emotionPersen }: 
                                         <Group>
                                             <Box>
                                                 {/* <Text>{dataPersen[2]?.positive} %</Text> */}
-                                                <Text>{_.isNaN(emotionPersen[3].positive) ? 0 : emotionPersen[3].positive} %</Text>
+                                                <Text>{_.isNaN(emotionPersen[1].positive) ? 0 : emotionPersen[1].positive} %</Text>
                                                 <Group justify="flex-end">
                                                     <Text bg={"#06D974"} fz={10}>positive</Text>
                                                 </Group>
@@ -385,7 +385,7 @@ export default function DashboardLive({ dataPersen, dataNotif, emotionPersen }: 
                                         <Group>
                                             <Box>
                                                 {/* <Text>{dataPersen[2]?.neutral} %</Text> */}
-                                                <Text>{_.isNaN(emotionPersen[3].neutral) ? 0 : emotionPersen[3].neutral} %</Text>
+                                                <Text>{_.isNaN(emotionPersen[1].neutral) ? 0 : emotionPersen[1].neutral} %</Text>
                                                 <Group justify="flex-end">
                                                     <Text bg={'gray'} fz={10}>neutral</Text>
                                                 </Group>
@@ -395,7 +395,7 @@ export default function DashboardLive({ dataPersen, dataNotif, emotionPersen }: 
                                         <Group>
                                             <Box>
                                                 {/* <Text>{dataPersen[2]?.negative} %</Text> */}
-                                                <Text>{_.isNaN(emotionPersen[3].negative) ? 0 : emotionPersen[3].negative} %</Text>
+                                                <Text>{_.isNaN(emotionPersen[1].negative) ? 0 : emotionPersen[1].negative} %</Text>
                                                 <Group justify="flex-end">
                                                     <Text bg={"#E01E1E"} fz={10}>negative</Text>
                                                 </Group>

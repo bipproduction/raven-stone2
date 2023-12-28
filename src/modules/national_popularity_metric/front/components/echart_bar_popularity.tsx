@@ -77,7 +77,7 @@ export default function EchartBarPopularity({ emotion }: { emotion: any }) {
   }
   return (
     <>
-      <Box>s
+      <Box>
         <EChartsReact style={{
           height: 400,
           width: 400,
