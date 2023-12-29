@@ -1,3 +1,4 @@
+'use client'
 import { Alert, Box, Button, Group, Text } from '@mantine/core';
 import { useAtom } from 'jotai';
 import React from 'react';
@@ -14,8 +15,7 @@ import { funLogUser } from '@/modules/user';
  * @returns komponen modal
  */
 
-
-export default function ModalAddNotification({ isData }: { isData: any }) {
+export default function ModalAddNotification({ isData, onSuccess }: { isData: any, onSuccess: (val: any) => void }) {
   const [valOpenModal, setOpenModal] = useAtom(isModalDashboardLive)
 
   async function addNotification() {
@@ -23,6 +23,7 @@ export default function ModalAddNotification({ isData }: { isData: any }) {
     if (!create.success) return toast(create.message, { theme: "dark" });
     await funLogUser({ act: "ADD", desc: `User Add Data Notification (ID : ${create.id})` })
     toast("Success", { theme: "dark" });
+    onSuccess(true)
     setOpenModal(false);
   }
 
