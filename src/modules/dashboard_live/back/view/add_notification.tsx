@@ -8,11 +8,11 @@ import ModalAddNotification from '../components/modal_add_notification';
 import { useFocusTrap } from '@mantine/hooks';
 import toast from 'react-simple-toasts';
 
-
 /**
  * Fungsi untuk menampilkan add notification.
  * @returns Untuk menampilkan add notification
  */
+
 export default function AddNotification() {
   const focusTrapRef = useFocusTrap();
   const [valOpenModal, setOpenModal] = useAtom(isModalDashboardLive)
@@ -44,6 +44,7 @@ export default function AddNotification() {
               placeholder='Notificaton'
               label={"Notificaton"}
               required
+              value={dataNotif.description}
               onChange={(val) =>
                 setDataNotif({
                   ...dataNotif,
@@ -63,7 +64,13 @@ export default function AddNotification() {
         withCloseButton={false}
         closeOnClickOutside={false}
       >
-        <ModalAddNotification isData={dataNotif} />
+        <ModalAddNotification isData={dataNotif}
+          onSuccess={() => {
+            setDataNotif({
+              ...dataNotif,
+              description: ""
+            })
+          }} />
       </Modal>
     </>
   );

@@ -3,7 +3,7 @@ import { useShallowEffect } from '@mantine/hooks'
 import React, { useState } from 'react'
 import { EChartsOption } from "echarts";
 import EChartsReact from "echarts-for-react";
-import { Box, Button, Divider, Group, Menu } from '@mantine/core';
+import { Box, Button, Divider, Group, LoadingOverlay, Menu } from '@mantine/core';
 import * as echarts from 'echarts';
 import moment from 'moment';
 import toast from 'react-simple-toasts';
@@ -24,19 +24,32 @@ export default function EchartSummary({ paslon, data }: { paslon: any, data: any
     const [newDateStart, setNewDateStart] = useState(moment(new Date("2023-09-01")).format("YYYY-MM-DD"))
     const [newDateEnd, setNewDateEnd] = useState(moment(new Date()).format("YYYY-MM-DD"))
     const [okButton, setOkButton] = useState(false)
+    const [isLoadingMonth, setLoadingMonth] = useState(false)
+    const [isLoadingWeek, setLoadingWeek] = useState(false)
+    const [isLoadingCustom, setLoadingCustom] = useState(false)
+    const [isLoadingToday, setLoadingToday] = useState(false)
+    const [loadingData, setLoadingData] = useState(false)
 
     async function onChooseTime(time: any) {
         let startDate
         setButton(time)
         let endDate = moment(new Date()).format('YYYY-MM-DD')
         if (time == 'month') {
+            setLoadingMonth(true)
+            setLoadingData(true)
             startDate = moment(new Date()).subtract(1, "months").format("YYYY-MM-DD")
         } else if (time == 'week') {
+            setLoadingWeek(true)
+            setLoadingData(true)
             startDate = moment(new Date()).subtract(7, "days").format("YYYY-MM-DD")
         } else if (time == 'custom') {
+            setLoadingCustom(true)
+            setLoadingData(true)
             startDate = newDateStart
             endDate = newDateEnd
         } else if (time == 'today') {
+            setLoadingToday(true)
+            setLoadingData(true)
             startDate = moment(new Date()).format('YYYY-MM-DD')
         }
 
@@ -45,6 +58,12 @@ export default function EchartSummary({ paslon, data }: { paslon: any, data: any
         const loadChart = await funGetEmotionPaslonChartFront({ paslon: paslon, startDate: startDate, endDate: endDate })
         setListData(loadChart)
         loadData(loadChart)
+        setLoadingCustom(false)
+        setLoadingMonth(false)
+        setLoadingWeek(false)
+        setLoadingToday(false)
+        setLoadingData(false)
+
 
     }
 
@@ -223,15 +242,15 @@ export default function EchartSummary({ paslon, data }: { paslon: any, data: any
             <Box>
                 <Group justify='flex-end'>
                     <Group>
-                        <Button variant={(isButton == 'today') ? 'filled' : 'subtle'} c={"white"} onClick={() => onChooseTime('today')}>Today</Button>
+                        <Button loading={isLoadingToday} variant={(isButton == 'today') ? 'filled' : 'subtle'} c={"white"} onClick={() => onChooseTime('today')}>Today</Button>
                         <Divider orientation="vertical" />
-                        <Button variant={(isButton == 'week') ? 'filled' : 'subtle'} c={"white"} onClick={() => onChooseTime('week')}>Week</Button>
+                        <Button loading={isLoadingWeek} variant={(isButton == 'week') ? 'filled' : 'subtle'} c={"white"} onClick={() => onChooseTime('week')}>Week</Button>
                         <Divider orientation="vertical" />
-                        <Button variant={(isButton == 'month') ? 'filled' : 'subtle'} c={"white"} onClick={() => onChooseTime('month')}>Month</Button>
+                        <Button loading={isLoadingMonth} variant={(isButton == 'month') ? 'filled' : 'subtle'} c={"white"} onClick={() => onChooseTime('month')}>Month</Button>
                         <Divider orientation="vertical" />
                         <Menu opened={showPopDate} position='bottom-end'>
                             <Menu.Target>
-                                <Button variant={(isButton == 'custom') ? 'filled' : 'subtle'} c={"white"} onClick={() => setPopDate(true)}>Custom</Button>
+                                <Button loading={isLoadingCustom} variant={(isButton == 'custom') ? 'filled' : 'subtle'} c={"white"} onClick={() => setPopDate(true)}>Custom</Button>
                             </Menu.Target>
                             <Menu.Dropdown p={20}>
                                 <DatePicker
@@ -284,7 +303,14 @@ export default function EchartSummary({ paslon, data }: { paslon: any, data: any
                         </Menu>
                     </Group>
                 </Group>
-                <EChartsReact style={{ height: 300 }} option={options} />
+                <Box pos={"relative"}>
+                    <LoadingOverlay
+                        visible={loadingData}
+                        overlayProps={{ radius: "sm", blur: "8px", bg: "rgba(27,11,47,0.8)" }}
+                        loaderProps={{ color: "white" }}
+                    />
+                    <EChartsReact style={{ height: 300 }} option={options} />
+                </Box>
             </Box>
         </>
     )
