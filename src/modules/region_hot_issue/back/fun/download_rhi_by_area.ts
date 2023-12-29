@@ -27,6 +27,9 @@ export default async function funDownloadRhiByArea({ find }: { find: any }) {
                         name: true
                     }
                 }
+            },
+            orderBy: {
+                idKabkot: 'asc'
             }
         })
 
