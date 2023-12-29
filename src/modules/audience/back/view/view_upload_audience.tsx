@@ -153,10 +153,29 @@ export default function ViewUploadAudience() {
 
                                     </Box>
                                 </Box>
-                                <Group >
-                                    <Button mt={20} fullWidth bg={"dark"} onClick={() => {
-                                        setOpenModal(true)
-                                    }}>UPLOAD</Button>
+                                <Group justify="flex-end">
+                                    <Box
+                                        style={{
+                                            padding: 10,
+                                            borderRadius: 5,
+                                            paddingLeft: 20,
+                                            paddingRight: 20,
+                                            position: "fixed",
+                                            bottom: 30,
+                                            right: 30,
+                                            backgroundColor: "green",
+                                            boxShadow: "2px solid gray",
+                                            cursor: 'pointer'
+                                        }}
+                                        onClick={() => {
+                                            setOpenModal(true)
+                                        }}
+                                    >
+                                        <Group>
+                                            <AiOutlineUpload size={25} color={"white"} />
+                                            <Text fw={"bold"} c={"white"}>UPLOAD</Text>
+                                        </Group>
+                                    </Box>
                                 </Group>
                             </>
                         )
