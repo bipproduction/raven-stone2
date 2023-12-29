@@ -1,5 +1,4 @@
 'use client'
-
 import { ButtonBack } from "@/modules/_global"
 import { Box, Button, Group, Modal, ScrollArea, Stack, Table, Text, rem } from "@mantine/core"
 import { Dropzone } from "@mantine/dropzone"
@@ -13,11 +12,11 @@ import { useAtom } from "jotai"
 import { isModalPct } from "../val/modal_pct"
 import ModalUploadPct from "../component/modal_upload_pct"
 
-
 /**
  * Fungsi untuk menampilkan view upload pct.
  * @returns Untuk menampilkan view upload pct
  */
+
 export default function ViewUploadPct() {
     const [json, setJson] = useState<any[]>([])
     const [openModal, setOpenModal] = useAtom(isModalPct)
@@ -170,10 +169,29 @@ export default function ViewUploadPct() {
 
                                     </Box>
                                 </Box>
-                                <Group >
-                                    <Button mt={20} fullWidth bg={"dark"} onClick={() => {
-                                        setOpenModal(true)
-                                    }}>UPLOAD</Button>
+                                <Group justify="flex-end">
+                                    <Box
+                                        style={{
+                                            padding: 10,
+                                            borderRadius: 5,
+                                            paddingLeft: 20,
+                                            paddingRight: 20,
+                                            position: "fixed",
+                                            bottom: 30,
+                                            right: 30,
+                                            backgroundColor: "green",
+                                            boxShadow: "2px solid gray",
+                                            cursor: 'pointer'
+                                        }}
+                                        onClick={() => {
+                                            setOpenModal(true)
+                                        }}
+                                    >
+                                        <Group>
+                                            <AiOutlineUpload size={25} color={"white"} />
+                                            <Text fw={"bold"} c={"white"}>UPLOAD</Text>
+                                        </Group>
+                                    </Box>
                                 </Group>
                             </>
                         )

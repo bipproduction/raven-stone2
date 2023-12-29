@@ -1,11 +1,11 @@
 'use client'
-
 import { Alert, Box, Button, Group, Text } from "@mantine/core"
 import { useAtom } from "jotai"
 import toast from "react-simple-toasts"
 import { isModalPct } from "../val/modal_pct"
 import funUploadPct from "../fun/upload_pct"
 import { funLogUser } from "@/modules/user"
+import { useState } from "react"
 
 /**
  * Fungsi untuk menampilkan modal upload pct.
@@ -13,12 +13,16 @@ import { funLogUser } from "@/modules/user"
  * @param {onSuccess} onSuccess - menampilkan onSuccess.
  * @returns Untuk menampilkan modal upload pct
  */
+
 export default function ModalUploadPct({ data, onSuccess }: { data: any, onSuccess: (val: any) => void }) {
     const [openModal, setOpenModal] = useAtom(isModalPct)
+    const [isLoading, setLoading] = useState(false)
 
     async function onUpload() {
+        setLoading(true)
         await funUploadPct({ body: data })
         await funLogUser({ act: "UPLOAD", desc: `User Uploads Data Public Concerns Trends` })
+        setLoading(false)
         toast('Success', { theme: 'dark' })
         setOpenModal(false)
         onSuccess(true)
@@ -40,7 +44,7 @@ export default function ModalUploadPct({ data, onSuccess }: { data: any, onSucce
                         >
                             NO
                         </Button>
-                        <Button radius={10} color="gray.7" w={150} onClick={() => onUpload()}>
+                        <Button loading={isLoading} radius={10} color="gray.7" w={150} onClick={() => onUpload()}>
                             YES
                         </Button>
                     </Group>
