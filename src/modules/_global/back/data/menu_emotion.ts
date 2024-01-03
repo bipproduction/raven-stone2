@@ -12,10 +12,15 @@ export const menu_emotion = [
 ]
 
 export const menu_data1 = [
+    // {
+    //     key: "md2",
+    //     link: "/dashboard-admin/national-popularity-metric",
+    //     label: "NATIONAL POPULARITY METRIC",
+    // }
     {
         key: "md2",
-        link: "/dashboard-admin/national-popularity-metric",
-        label: "NATIONAL POPULARITY METRIC",
+        link: "/dashboard-admin/rate-popularity",
+        label: "RATE POPULARITY",
     }
 ]
 
