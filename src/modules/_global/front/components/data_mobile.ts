@@ -25,14 +25,14 @@ export const DataFrontMobile = [
       garisBawah: "#C92A2A",
       icon: MdOutlineStarBorderPurple500,
     },
-    {
-      key: "3",
-      link: "/dashboard/regional-insights",
-      label: "REGIONAL INSIGHTS",
-      color: "#FFFFFF",
-      garisBawah: "#C92A2A",
-      icon: MdOutlineStars,
-    },
+    // {
+    //   key: "3",
+    //   link: "/dashboard/regional-insights",
+    //   label: "REGIONAL INSIGHTS",
+    //   color: "#FFFFFF",
+    //   garisBawah: "#C92A2A",
+    //   icon: MdOutlineStars,
+    // },
     {
       key: "4",
       link: "/dashboard/regional-data-pairing",
