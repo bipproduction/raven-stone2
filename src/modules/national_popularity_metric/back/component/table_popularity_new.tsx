@@ -41,6 +41,7 @@ export default function TableDataPopularityNew({ param, title, data, datajam }: 
     useShallowEffect(() => {
         setData(data)
         setJam((datajam.length > 0) ? datajam[0].timeEmotion : null)
+        setDataJam(datajam)
     }, [data, datajam])
 
     return (
@@ -60,33 +61,37 @@ export default function TableDataPopularityNew({ param, title, data, datajam }: 
                         <Group>
                             {
                                 (dataJam.length > 0) &&
-                                <Select
-                                    data={dataJam.map((can: any) => ({
-                                        value: String(can.timeEmotion),
-                                        label: can.timeEmotion
-                                    }))}
-                                    value={isJam}
-                                    onChange={(val) => getLoad(val)}
-                                />
-                            }
-                            <Menu shadow="md" width={200}>
-                                <Menu.Target>
-                                    <ActionIcon variant="filled" color="gray" aria-label="Settings">
-                                        <HiDotsVertical style={{ width: '70%', height: '70%' }} stroke={1.5} />
-                                    </ActionIcon>
-                                </Menu.Target>
+                                <>
 
-                                <Menu.Dropdown>
-                                    <Menu.Item leftSection={<MdEditCalendar style={{ width: rem(14), height: rem(14), color: 'rgba(5, 128, 23, 1)' }} />}>
-                                        Edit
-                                    </Menu.Item>
-                                    <Menu.Item
-                                        leftSection={<MdDelete style={{ width: rem(14), height: rem(14), color: 'rgba(209, 4, 4, 1)' }} />}
-                                        onClick={() => { setOpenModal(true) }}>
-                                        Delete
-                                    </Menu.Item>
-                                </Menu.Dropdown>
-                            </Menu>
+                                    <Select
+                                        data={dataJam.map((can: any) => ({
+                                            value: String(can.timeEmotion),
+                                            label: can.timeEmotion
+                                        }))}
+                                        value={isJam}
+                                        onChange={(val) => getLoad(val)}
+                                    />
+                                    <Menu shadow="md" width={200}>
+                                        <Menu.Target>
+                                            <ActionIcon variant="filled" color="gray" aria-label="Settings">
+                                                <HiDotsVertical style={{ width: '70%', height: '70%' }} stroke={1.5} />
+                                            </ActionIcon>
+                                        </Menu.Target>
+
+                                        <Menu.Dropdown>
+                                            <Menu.Item leftSection={<MdEditCalendar style={{ width: rem(14), height: rem(14), color: 'rgba(5, 128, 23, 1)' }} />}
+                                            onClick={()=>{router.push("/dashboard-admin/rate-popularity/edit/"+isData[0].id)}}>
+                                                Edit
+                                            </Menu.Item>
+                                            <Menu.Item
+                                                leftSection={<MdDelete style={{ width: rem(14), height: rem(14), color: 'rgba(209, 4, 4, 1)' }} />}
+                                                onClick={() => { setOpenModal(true) }}>
+                                                Delete
+                                            </Menu.Item>
+                                        </Menu.Dropdown>
+                                    </Menu>
+                                </>
+                            }
                         </Group>
                     </Group>
 

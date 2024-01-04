@@ -1,5 +1,6 @@
 'use server'
 import { prisma } from "@/modules/_global"
+import { revalidatePath } from "next/cache";
 
 export default async function funAddRatePopularity({ dataTime, dataRate }: { dataTime: any, dataRate: any }) {
     const jamFix = new Date('1970-01-01 ' + dataTime.time);
@@ -40,6 +41,8 @@ export default async function funAddRatePopularity({ dataTime, dataRate }: { dat
     await prisma.paslonPopularityNew.createMany({
         data: data
     })
+
+    revalidatePath('dashboard-admin/rate-popularity?&date=' + dataTime.date)
 
     return true
 

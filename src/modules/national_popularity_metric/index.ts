@@ -1,9 +1,11 @@
 import funDownloadPopularityByDate from "./back/fun/download_popularity_by_date";
+import funGetDataEditRate from "./back/fun/get_data_edit_rate";
 import funGetPopularityByDate from "./back/fun/get_popularity_by_date";
 import ViewAddRatePaslon from "./back/view/view_add_rate";
 import ViewAdminPopularity from "./back/view/view_admin_popularity";
 import ViewAdminPopularityNew from "./back/view/view_admin_popularity_new";
 import ViewCopyPopularity from "./back/view/view_copy_popularity";
+import ViewEditRatePaslon from "./back/view/view_edit_rate";
 import ViewUploadPopularity from "./back/view/view_upload_popularity";
 import funGetChartRateNew from "./front/fun/get_chart_rate_new";
 import funGetOnePopularityFront from "./front/fun/get_one_popularity_by_paslon";
@@ -27,3 +29,5 @@ export { ViewAdminPopularityNew }
 export { ViewAddRatePaslon }
 export { funGetChartRateNew }
 export { funGetRateFrontNew }
+export { ViewEditRatePaslon }
+export { funGetDataEditRate }
