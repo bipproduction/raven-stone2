@@ -47,6 +47,7 @@ export default async function funGetAllRatePopularityNew({ find }: { find: any }
                 isActive: true
             },
             select: {
+                id: true,
                 idPaslon: true,
                 Paslon: {
                     select: {
