@@ -10,6 +10,7 @@ import funGetOnePopularityFront from "./front/fun/get_one_popularity_by_paslon";
 import funGetPopularityNew from "./front/fun/get_one_popularity_new";
 import funGetPopularityFront from "./front/fun/get_popularity_front";
 import funGetRateFront from "./front/fun/get_rate";
+import funGetRateFrontNew from "./front/fun/get_rate_new";
 import ViewNationalPopularityMetric from "./front/view/view_national_popularity_metric";
 
 export { ViewNationalPopularityMetric }
@@ -25,3 +26,4 @@ export { funGetPopularityNew }
 export { ViewAdminPopularityNew }
 export { ViewAddRatePaslon }
 export { funGetChartRateNew }
+export { funGetRateFrontNew }
