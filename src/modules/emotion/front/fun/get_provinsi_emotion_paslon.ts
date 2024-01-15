@@ -10,7 +10,7 @@ export default async function funGetProvinsiEmotionPaslon() {
     // PASLON 1 - PRABOWO
     const data = await prisma.paslonEmotion.findMany({
         where: {
-            idPaslon: 1,
+            idPaslon: 2,
             dateEmotion: new Date(),
             timeEmotion: {
                 lt: IniisoDateTime
@@ -30,33 +30,36 @@ export default async function funGetProvinsiEmotionPaslon() {
         timeEmotion: v[0].timeEmotion
     }))
 
-    const dataFilter = await prisma.paslonEmotion.findMany({
-        where: {
-            idPaslon: 1,
-            dateEmotion: new Date(),
-            timeEmotion: findJam[0]?.timeEmotion
-        },
-        orderBy: {
-            timeEmotion: 'desc'
-        },
-        select: {
-            idProvinsi: true,
-            confidence: true,
-            dissapproval: true,
-            negative: true,
-            positive: true,
-            supportive: true,
-            uncomfortable: true,
-            undecided: true,
-            unsupportive: true,
-            timeEmotion: true,
-            AreaProvinsi: {
-                select: {
-                    name: true
+    let dataFilter: any[] = []
+    if (findJam.length > 0) {
+        dataFilter = await prisma.paslonEmotion.findMany({
+            where: {
+                idPaslon: 1,
+                dateEmotion: new Date(),
+                timeEmotion: findJam[0]?.timeEmotion
+            },
+            orderBy: {
+                timeEmotion: 'desc'
+            },
+            select: {
+                idProvinsi: true,
+                confidence: true,
+                dissapproval: true,
+                negative: true,
+                positive: true,
+                supportive: true,
+                uncomfortable: true,
+                undecided: true,
+                unsupportive: true,
+                timeEmotion: true,
+                AreaProvinsi: {
+                    select: {
+                        name: true
+                    }
                 }
             }
-        }
-    })
+        })
+    }
 
     const formatProvinsi = dataFilter.map((v: any) => ({
         ..._.omit(v, ["AreaProvinsi"]),
@@ -78,9 +81,9 @@ export default async function funGetProvinsiEmotionPaslon() {
     }))
 
     const sortData = _.orderBy(dataAkhir, "confidence", 'desc').map((v, i) => ({
-        idProvinsi: v.idProvinsi,
-        provinsi: v.name,
-        // confidence: v.confidence,
+        id: v.idProvinsi,
+        name: v.name,
+        emotion: v.confidence,
         // dissapproval: v.dissapproval,
         // negative: v.negative,
         // positive: v.positive,
