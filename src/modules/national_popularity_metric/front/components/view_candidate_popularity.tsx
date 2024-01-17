@@ -43,7 +43,7 @@ export default function ViewCandidatePopularity({ dataPaslon, probability }: { d
                 </Text>
               </Grid.Col>
               <Grid.Col span={6}>
-                <Text ta={'start'} fw={"bold"} fz={70} c={"#1EBA1B"}>{probability}%</Text>
+                <Text ta={'start'} fw={"bold"} fz={70} c={"#228be6"}>{probability}%</Text>
               </Grid.Col>
             </Grid>
           </Grid.Col>
