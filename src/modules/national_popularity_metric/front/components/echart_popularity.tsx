@@ -88,7 +88,7 @@ export default function EchartPopularity({ data, paslon }: { data: any, paslon: 
             ? []
             : dataChart!.map((v: any) => v.rate),
           type: 'line',
-          color: "#ad001e",
+          color: "#228be6",
           showSymbol: false,
           areaStyle: {
             opacity: 1,
@@ -99,7 +99,7 @@ export default function EchartPopularity({ data, paslon }: { data: any, paslon: 
               },
               {
                 offset: 1,
-                color: 'rgba(124,3,13,1)'
+                color: 'rgba(34, 139, 230,1)'
               }
             ])
           },
