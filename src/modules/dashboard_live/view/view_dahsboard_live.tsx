@@ -12,6 +12,7 @@ import FlipMove from "react-flip-move";
 import notif from "../components/asset-data/notif_kab.json"
 import toast from "react-simple-toasts";
 import { useRouter } from "next/navigation";
+import { GoDotFill } from "react-icons/go";
 
 export const roboto_mono = Michroma({
     weight: "400",
@@ -89,7 +90,7 @@ export default function DashboardLive({ dataPersen, dataNotif, emotionPersen, da
             })
             set_list_prov(shuffle(data))
 
-        }, 10000)
+        }, 50000)
 
         return () => clearInterval(inter)
     }, [])
@@ -126,7 +127,7 @@ export default function DashboardLive({ dataPersen, dataNotif, emotionPersen, da
                     // ran = 5
                     kab = shuffle(kab)
                 }
-            }, 2000)
+            }, 50000)
 
             return () => clearInterval(inter)
         }
@@ -165,10 +166,11 @@ export default function DashboardLive({ dataPersen, dataNotif, emotionPersen, da
                                 </Flex>
                                 <FlipMove>
                                     {list_prov.map((v, k) => <Flex justify={"left"} key={v.id} align={"center"} gap={"md"}>
-                                        {v.emotion === 0 ? <MdArrowDropUp color={"green"} size={32} /> : v.emotion === 1 ? <MdRemove color={"gray"} size={32} /> : <MdArrowDropDown color={"red"} size={32} />}
-                                        <Text c={"yellow.2"} style={{
-                                            // fontSize: 12
-                                        }}><code>{_.startCase(_.lowerCase(v.name))}</code></Text>
+                                        {/* {v.emotion === 0 ? <MdArrowDropUp color={"green"} size={32} /> : v.emotion === 1 ? <MdRemove color={"gray"} size={32} /> : <MdArrowDropDown color={"red"} size={32} />} */}
+                                        <GoDotFill color={"gray"} size={25} />
+                                        <Text c={"yellow.2"} style={{}}>
+                                            <code>{_.startCase(_.lowerCase(v.name))}</code>
+                                        </Text>
                                     </Flex>)}
                                 </FlipMove>
                             </Box>
@@ -181,7 +183,8 @@ export default function DashboardLive({ dataPersen, dataNotif, emotionPersen, da
                                 </Flex>
                                 <FlipMove>
                                     {list_kab.map((v, k) => <Flex justify={"left"} key={v.id} align={"center"} gap={"md"}>
-                                        {v.emotion === 0 ? <MdArrowDropUp color={"green"} size={32} /> : v.emotion === 1 ? <MdRemove color={"gray"} size={32} /> : <MdArrowDropDown color={"red"} size={32} />}
+                                        {/* {v.emotion === 0 ? <MdArrowDropUp color={"green"} size={32} /> : v.emotion === 1 ? <MdRemove color={"gray"} size={32} /> : <MdArrowDropDown color={"red"} size={32} />} */}
+                                        <GoDotFill color={"gray"} size={25} />
                                         <Text c={"gray.1"} style={{
                                             // fontSize: 12
                                         }}><code>{_.startCase(_.lowerCase(v.name))}</code></Text>
