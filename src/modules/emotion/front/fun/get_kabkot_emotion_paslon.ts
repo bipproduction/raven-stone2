@@ -10,7 +10,7 @@ export default async function funGetKabkotEmotionPaslon() {
     // PASLON 1 - PRABOWO
     const data = await prisma.paslonEmotion.findMany({
         where: {
-            idPaslon: 1,
+            idPaslon: 2,
             dateEmotion: new Date(),
             timeEmotion: {
                 lt: IniisoDateTime
@@ -31,39 +31,58 @@ export default async function funGetKabkotEmotionPaslon() {
     }))
 
 
-    const dataFilter = await prisma.paslonEmotion.findMany({
-        where: {
-            idPaslon: 1,
-            dateEmotion: new Date(),
-            timeEmotion: findJam[0]?.timeEmotion
-        },
-        orderBy: {
-            confidence: 'desc',
-        },
-        select: {
-            idKabkot: true,
-            // confidence: true,
-            // dissapproval: true,
-            // negative: true,
-            // positive: true,
-            // supportive: true,
-            // uncomfortable: true,
-            // undecided: true,
-            // unsupportive: true,
-            // timeEmotion: true,
-            AreaKabkot: {
-                select: {
-                    name: true
+    let dataFilter: any[] = []
+    if (findJam.length > 0) {
+        dataFilter = await prisma.paslonEmotion.findMany({
+            where: {
+                idPaslon: 1,
+                dateEmotion: new Date(),
+                timeEmotion: findJam[0]?.timeEmotion
+            },
+            orderBy: {
+                timeEmotion: 'desc'
+            },
+            select: {
+                idKabkot: true,
+                confidence: true,
+                dissapproval: true,
+                negative: true,
+                positive: true,
+                supportive: true,
+                uncomfortable: true,
+                undecided: true,
+                unsupportive: true,
+                timeEmotion: true,
+                AreaKabkot: {
+                    select: {
+                        name: true
+                    }
                 }
-            }
-        },
-    })
+            },
+        })
+    }
 
-    
+
     const formatKabkot = dataFilter.map((v: any) => ({
         ..._.omit(v, ["AreaKabkot"]),
         name: v.AreaKabkot.name
     }))
 
-    return formatKabkot
+
+    const sortData = _.orderBy(formatKabkot, "confidence", 'desc').map((v: any) => ({
+        id: v.idKabkot,
+        name: _.toString(v.name),
+        emotion: v.confidence,
+        // dissapproval: v.dissapproval,
+        // negative: v.negative,
+        // positive: v.positive,
+        // supportive: v.supportive,
+        // uncomfortable: v.uncomfortable,
+        // undecided: v.undecided,
+        // unsupportive: v.unsupportive,
+        // timeEmotion: v.timeEmotion,
+    }))
+
+
+    return sortData
 }

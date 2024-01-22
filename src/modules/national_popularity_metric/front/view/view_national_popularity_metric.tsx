@@ -6,7 +6,7 @@ import EchartPopularity from '../components/echart_popularity';
 import EchartBarPopularity from '../components/echart_bar_popularity';
 import { PageSubTitle, funGetOnePaslon } from '@/modules/_global';
 import _ from 'lodash';
-import { funGetOnePopularityFront, funGetPopularityFront } from '../..';
+import { funGetChartRateNew, funGetOnePopularityFront, funGetPopularityFront, funGetPopularityNew } from '../..';
 import moment from "moment";
 
 /**
@@ -37,9 +37,11 @@ export default function ViewNationalPopularityMetric({ paslon, cpaslon, dataNow,
   async function onGenerate() {
     const loadPaslon = await funGetOnePaslon({ paslon: isPaslon })
     setDataPaslon(loadPaslon)
-    const loadChart = await funGetPopularityFront({ paslon: isPaslon, startDate: moment(new Date()).subtract(7, "days").format("YYYY-MM-DD"), endDate: moment(new Date()).format("YYYY-MM-DD") })
+    // const loadChart = await funGetPopularityFront({ paslon: isPaslon, startDate: moment(new Date()).subtract(7, "days").format("YYYY-MM-DD"), endDate: moment(new Date()).format("YYYY-MM-DD") })
+    const loadChart = await funGetChartRateNew({ paslon: isPaslon, startDate: moment(new Date()).subtract(7, "days").format("YYYY-MM-DD"), endDate: moment(new Date()).format("YYYY-MM-DD") })
     setChartLine(loadChart)
-    const loadNow = await funGetOnePopularityFront({ paslon: isPaslon })
+    // const loadNow = await funGetOnePopularityFront({ paslon: isPaslon })
+    const loadNow = await funGetPopularityNew({ paslon: isPaslon })
     setDataNow(loadNow)
     setDataChart({
       ...dataChart,

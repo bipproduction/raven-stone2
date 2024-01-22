@@ -6,7 +6,7 @@ import * as echarts from 'echarts';
 import { Box, Button, Divider, Group, Menu } from '@mantine/core';
 import EChartsReact from 'echarts-for-react';
 import moment from 'moment';
-import { funGetPopularityFront } from '../..';
+import { funGetChartRateNew, funGetPopularityFront } from '../..';
 import toast from 'react-simple-toasts';
 import { DatePicker } from '@mantine/dates';
 
@@ -41,7 +41,8 @@ export default function EchartPopularity({ data, paslon }: { data: any, paslon: 
 
     if (time == 'custom') setPopDate(false)
 
-    const loadChart = await funGetPopularityFront({ paslon: paslon, startDate: startDate, endDate: endDate })
+    // const loadChart = await funGetPopularityFront({ paslon: paslon, startDate: startDate, endDate: endDate })
+    const loadChart = await funGetChartRateNew({ paslon: paslon, startDate: startDate, endDate: endDate })
     setListData(loadChart)
     loadData(loadChart)
   }
@@ -87,7 +88,7 @@ export default function EchartPopularity({ data, paslon }: { data: any, paslon: 
             ? []
             : dataChart!.map((v: any) => v.rate),
           type: 'line',
-          color: "#ad001e",
+          color: "#228be6",
           showSymbol: false,
           areaStyle: {
             opacity: 1,
@@ -98,7 +99,7 @@ export default function EchartPopularity({ data, paslon }: { data: any, paslon: 
               },
               {
                 offset: 1,
-                color: 'rgba(124,3,13,1)'
+                color: 'rgba(34, 139, 230,1)'
               }
             ])
           },

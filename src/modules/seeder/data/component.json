@@ -16,9 +16,9 @@
     {
         "id": 3,
         "keyMenu": "md2",
-        "menu": "Admin National Popularity",
+        "menu": "Admin Rate Popularity",
         "name": "",
-        "label": "National Popularity"
+        "label": "Rate Popularity"
     },
     {
         "id": 4,

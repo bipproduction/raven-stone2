@@ -3,10 +3,9 @@ import { PageSubTitle, WARNA, funGetOnePaslon } from '@/modules/_global';
 import { Box, Button, Grid, Group, Image, ScrollArea, Select, SimpleGrid, Stack, Text } from '@mantine/core';
 import React, { useState } from 'react';
 import { funGetPairingFront } from '..';
-import { funGetRateFront } from '@/modules/national_popularity_metric';
+import { funGetRateFront, funGetRateFrontNew } from '@/modules/national_popularity_metric';
 import _ from 'lodash';
 import { DetailRegionalDataPairing } from '@/modules/emotion';
-
 
 /**
  * Fungsi untuk Menampilkan view pairing.
@@ -18,6 +17,7 @@ import { DetailRegionalDataPairing } from '@/modules/emotion';
  * @param {rate} rate - menampilkan rate.
  * @returns Untuk Menampilkan view pairing
  */
+
 export default function ViewaPairing({ paslon, provinsi, cpaslon, data, audience, rate }: { paslon: any, provinsi: any, cpaslon: any, data: any, audience: any, rate: any }) {
   const [isData, setData] = useState(data)
   const [isRate, setRate] = useState(rate)
@@ -41,7 +41,8 @@ export default function ViewaPairing({ paslon, provinsi, cpaslon, data, audience
     const dataLoadDB = await funGetPairingFront({ paslon: isPaslon, region: isProvinsi })
     setData(dataLoadDB)
 
-    const dataLoadRate = await funGetRateFront({ paslon: isPaslon })
+    // const dataLoadRate = await funGetRateFront({ paslon: isPaslon })
+    const dataLoadRate = await funGetRateFrontNew({ paslon: isPaslon })
     setRate(dataLoadRate)
 
   }

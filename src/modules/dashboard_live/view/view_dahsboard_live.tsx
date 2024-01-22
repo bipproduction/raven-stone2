@@ -12,6 +12,7 @@ import FlipMove from "react-flip-move";
 import notif from "../components/asset-data/notif_kab.json"
 import toast from "react-simple-toasts";
 import { useRouter } from "next/navigation";
+import { GoDotFill } from "react-icons/go";
 
 export const roboto_mono = Michroma({
     weight: "400",
@@ -44,10 +45,10 @@ const get_variant = function (par: type_variant) {
  * @returns Untuk menampilkan dashboard live
  */
 
-export default function DashboardLive({ dataPersen, dataNotif, emotionPersen }: { dataPersen: any, dataNotif: any, emotionPersen: any }) {
-    const [list_prov, set_list_prov] = useState<any[]>(provi)
+export default function DashboardLive({ dataPersen, dataNotif, emotionPersen, dataProvinsi, dataKabkot }: { dataPersen: any, dataNotif: any, emotionPersen: any, dataProvinsi: any, dataKabkot: any }) {
+    const [list_prov, set_list_prov] = useState<any[]>(dataProvinsi)
     // const [list_media, set_list_media] = useState<any[]>([])
-    const [list_kab, set_list_kab] = useState<any[]>(kabu)
+    const [list_kab, set_list_kab] = useState<any[]>(dataKabkot)
     const [list_notif, set_list_notif] = useState<any[]>([])
     const router = useRouter()
 
@@ -89,7 +90,7 @@ export default function DashboardLive({ dataPersen, dataNotif, emotionPersen }: 
             })
             set_list_prov(shuffle(data))
 
-        }, 10000)
+        }, 50000)
 
         return () => clearInterval(inter)
     }, [])
@@ -97,36 +98,39 @@ export default function DashboardLive({ dataPersen, dataNotif, emotionPersen }: 
     useShallowEffect(() => {
         let index = 0
         // let ran = _.random(0, kabu.length - 1)
-        let kab = _.clone(shuffle(kabu))
-        const inter = setInterval(() => {
+        let kab = _.clone(shuffle(list_kab))
 
-            for (let k in kab) {
-                kab[k].emotion = _.random(0, 2)
-            }
+        if (kab.length > 0) {
+            const inter = setInterval(() => {
 
-            const a = kab[index]
-            const b = kab[index + 1]
+                for (let k in kab) {
+                    kab[k].emotion = _.random(0, 2)
+                }
 
-            a.emotion = 2
+                const a = kab[index]
+                const b = kab[index + 1]
 
-            const idx = _.indexOf(kab.map((v) => v.id), a.id)
-            if (idx) {
-                kab.splice(idx, 1)
-            }
+                a.emotion = 2
 
-            kab[index + 1] = a
-            kab[index] = b
-            kab[index].emotion = 0
-            set_list_kab(take(kab, 10))
-            index++;
-            if (index > 10) {
-                index = 0
-                // ran = 5
-                kab = shuffle(kab)
-            }
-        }, 2000)
+                const idx = _.indexOf(kab.map((v) => v.id), a.id)
+                if (idx) {
+                    kab.splice(idx, 1)
+                }
 
-        return () => clearInterval(inter)
+                kab[index + 1] = a
+                kab[index] = b
+                kab[index].emotion = 0
+                set_list_kab(take(kab, 10))
+                index++;
+                if (index > 10) {
+                    index = 0
+                    // ran = 5
+                    kab = shuffle(kab)
+                }
+            }, 50000)
+
+            return () => clearInterval(inter)
+        }
     }, [])
 
     const view = useViewportSize()
@@ -162,10 +166,11 @@ export default function DashboardLive({ dataPersen, dataNotif, emotionPersen }: 
                                 </Flex>
                                 <FlipMove>
                                     {list_prov.map((v, k) => <Flex justify={"left"} key={v.id} align={"center"} gap={"md"}>
-                                        {v.emotion === 0 ? <MdArrowDropUp color={"green"} size={32} /> : v.emotion === 1 ? <MdRemove color={"gray"} size={32} /> : <MdArrowDropDown color={"red"} size={32} />}
-                                        <Text c={"yellow.2"} style={{
-                                            // fontSize: 12
-                                        }}><code>{v.name}</code></Text>
+                                        {/* {v.emotion === 0 ? <MdArrowDropUp color={"green"} size={32} /> : v.emotion === 1 ? <MdRemove color={"gray"} size={32} /> : <MdArrowDropDown color={"red"} size={32} />} */}
+                                        <GoDotFill color={"gray"} size={25} />
+                                        <Text c={"yellow.2"} style={{}}>
+                                            <code>{_.startCase(_.lowerCase(v.name))}</code>
+                                        </Text>
                                     </Flex>)}
                                 </FlipMove>
                             </Box>
@@ -178,10 +183,11 @@ export default function DashboardLive({ dataPersen, dataNotif, emotionPersen }: 
                                 </Flex>
                                 <FlipMove>
                                     {list_kab.map((v, k) => <Flex justify={"left"} key={v.id} align={"center"} gap={"md"}>
-                                        {v.emotion === 0 ? <MdArrowDropUp color={"green"} size={32} /> : v.emotion === 1 ? <MdRemove color={"gray"} size={32} /> : <MdArrowDropDown color={"red"} size={32} />}
+                                        {/* {v.emotion === 0 ? <MdArrowDropUp color={"green"} size={32} /> : v.emotion === 1 ? <MdRemove color={"gray"} size={32} /> : <MdArrowDropDown color={"red"} size={32} />} */}
+                                        <GoDotFill color={"gray"} size={25} />
                                         <Text c={"gray.1"} style={{
                                             // fontSize: 12
-                                        }}><code>{v.kab_name}</code></Text>
+                                        }}><code>{_.startCase(_.lowerCase(v.name))}</code></Text>
                                     </Flex>)}
                                 </FlipMove>
                             </Box>
@@ -230,9 +236,9 @@ export default function DashboardLive({ dataPersen, dataNotif, emotionPersen }: 
                                     gap={"md"}
                                     style={{
                                         borderRadius: 20
-                                    }} 
+                                    }}
                                     pt={10}
-                                    >
+                                >
                                     <Flex align={"center"} p={0}>
                                         <Flex px={"lg"} pb={10} direction={"column"} gap={0} p={0} >
                                             {/* <Text style={{
