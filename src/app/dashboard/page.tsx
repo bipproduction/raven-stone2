@@ -2,7 +2,7 @@ import { cookies } from "next/headers"
 import _ from "lodash"
 import { redirect } from "next/navigation"
 import { funCekAkses } from "@/modules/_global"
-import { DashboardLive, funGetAllNotif, funGetPersenLiveFront } from "@/modules/dashboard_live"
+import { DashboardLive, ViewDahsboardLive2, funGetAllNotif, funGetPersenLiveFront } from "@/modules/dashboard_live"
 import { funGetEmotionPersenPaslonFront, funGetKabkotEmotionPaslon, funGetProvinsiEmotionPaslon } from "@/modules/emotion"
 
 export default async function Page() {
@@ -22,7 +22,8 @@ export default async function Page() {
 
     return (
         <>
-            <DashboardLive dataPersen={dataPersen} dataNotif={dataNotif} emotionPersen={dataEmotionPersen} dataProvinsi={dataProv} dataKabkot={dataKab} />
+            {/* <DashboardLive dataPersen={dataPersen} dataNotif={dataNotif} emotionPersen={dataEmotionPersen} dataProvinsi={dataProv} dataKabkot={dataKab} /> */}
+            <ViewDahsboardLive2 dataPersen={dataPersen} dataNotif={dataNotif} emotionPersen={dataEmotionPersen} dataProvinsi={dataProv} dataKabkot={dataKab} />
         </>
     )
 }
