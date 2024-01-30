@@ -264,41 +264,41 @@ export default function ViewDahsboardLive2({ dataPersen, dataNotif, emotionPerse
 
                 <Grid gutter="xs">
                   <Grid.Col span={4.5}>
-                    <ChartPaslon />
+                    <ChartPaslon persen={emotionPersen[1]} />
                   </Grid.Col>
                   <Grid.Col span={3}>
                     <Stack>
                       <Box pt={85}>
                         <Center>
                           <Group>
-                            <Text fz={12} c={WARNA.hijau}>54.0 %</Text>
-                            <Text ml={5} mr={5} fz={13}>POSITIVE</Text>
-                            <Text fz={12} c={WARNA.hijau}>54.0 %</Text>
+                            <Text fz={11} c={WARNA.hijau}>{_.isNaN(emotionPersen[1].positive) ? 0 : emotionPersen[1].positive} %</Text>
+                            <Text ml={5} mr={5} fz={11.5}>POSITIVE</Text>
+                            <Text fz={11} c={WARNA.hijau}>{_.isNaN(emotionPersen[2].positive) ? 0 : emotionPersen[2].positive} %</Text>
                           </Group>
                         </Center>
                       </Box>
                       <Box pt={35} pb={35}>
                         <Center>
                           <Group>
-                            <Text fz={12} c={"white"}>54.0 %</Text>
-                            <Text ml={5} mr={5} fz={13}>NEUTRAL</Text>
-                            <Text fz={12} c={"white"}>54.0 %</Text>
+                            <Text fz={11} c={"white"}>{_.isNaN(emotionPersen[1].neutral) ? 0 : emotionPersen[1].neutral} %</Text>
+                            <Text ml={5} mr={5} fz={11.5}>NEUTRAL</Text>
+                            <Text fz={11} c={"white"}>{_.isNaN(emotionPersen[2].neutral) ? 0 : emotionPersen[2].neutral} %</Text>
                           </Group>
                         </Center>
                       </Box>
                       <Box >
                         <Center>
                           <Group>
-                            <Text fz={12} c={WARNA.merah}>54.0 %</Text>
-                            <Text ml={5} mr={5} fz={12}>NEGATIVE</Text>
-                            <Text fz={12} c={WARNA.merah}>54.0 %</Text>
+                            <Text fz={11} c={WARNA.merah}>{_.isNaN(emotionPersen[1].negative) ? 0 : emotionPersen[1].negative} %</Text>
+                            <Text ml={5} mr={5} fz={11}>NEGATIVE</Text>
+                            <Text fz={11} c={WARNA.merah}>{_.isNaN(emotionPersen[2].negative) ? 0 : emotionPersen[2].negative} %</Text>
                           </Group>
                         </Center>
                       </Box>
                     </Stack>
                   </Grid.Col>
                   <Grid.Col span={4.5}>
-                    <ChartPaslon2 />
+                    <ChartPaslon2 persen={emotionPersen[2]} />
                   </Grid.Col>
                 </Grid>
 

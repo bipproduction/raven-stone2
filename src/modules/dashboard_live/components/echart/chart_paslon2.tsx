@@ -4,8 +4,9 @@ import { EChartsOption } from 'echarts';
 import EChartsReact from 'echarts-for-react';
 import { useShallowEffect } from '@mantine/hooks';
 import { Box } from '@mantine/core';
+import _ from 'lodash';
 
-export default function ChartPaslon2() {
+export default function ChartPaslon2({ persen }: { persen: any }) {
   const [options, setOptions] = useState<EChartsOption>({})
 
 
@@ -29,6 +30,7 @@ export default function ChartPaslon2() {
       },
       xAxis: {
         type: "value",
+        max: 100,
         show: false,
         axisLabel: {
           color: "white",
@@ -47,7 +49,7 @@ export default function ChartPaslon2() {
           fontSize: "12",
           fontWeight: "bold",
         },
-        data: ['NEGATiVE', 'NEUTRAL', 'POSITIVE']
+        data: ['NEGATIVE', 'NEUTRAL', 'POSITIVE']
       },
       series: [
         {
@@ -66,15 +68,15 @@ export default function ChartPaslon2() {
           },
           data: [
             {
-              value: 31.05,
-              name: 'NEGATiVE',
+              value: _.isNaN(persen.negative) ? 0 : persen.negative,
+              name: 'NEGATIVE',
               itemStyle: {
                 color: "red",
                 borderRadius: 30
               }
             },
             {
-              value: 17.05,
+              value: _.isNaN(persen.neutral) ? 0 : persen.neutral,
               name: 'NEUTRAL',
               itemStyle: {
                 color: "white",
@@ -82,7 +84,7 @@ export default function ChartPaslon2() {
               }
             },
             {
-              value: 65.05,
+              value: _.isNaN(persen.positive) ? 0 : persen.positive,
               name: 'POSITIVE',
               itemStyle: {
                 color: "green",
