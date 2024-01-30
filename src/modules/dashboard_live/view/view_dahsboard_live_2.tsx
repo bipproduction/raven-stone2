@@ -215,7 +215,7 @@ export default function ViewDahsboardLive2({ dataPersen, dataNotif, emotionPerse
                 // background: `linear-gradient(0deg, rgba(10,66,82,1) 0%, rgba(12,22,55,0) 16%)`,
                 height: "40vh",
                 borderRadius: 10,
-                opacity: 0.7
+                opacity: 1
               }}
             >
               <Grid>
@@ -261,135 +261,53 @@ export default function ViewDahsboardLive2({ dataPersen, dataNotif, emotionPerse
               }}
             >
               <Box pt={40} >
-                <Flex
-                gap="xs"
-                  justify="center"
-                  align="center"
-                  direction="row"
-                  wrap="wrap"
-                >
-                  <Box w={"40%"}>
+
+                <Grid gutter="xs">
+                  <Grid.Col span={4.5}>
                     <ChartPaslon />
-                  </Box>
-                  <Box w={"10%"}>
+                  </Grid.Col>
+                  <Grid.Col span={3}>
                     <Stack>
-                      <Box pt={30}>
-                        <Text>POSITIVE</Text>
+                      <Box pt={85}>
+                        <Center>
+                          <Group>
+                            <Text fz={12} c={WARNA.hijau}>54.0 %</Text>
+                            <Text ml={5} mr={5} fz={13}>POSITIVE</Text>
+                            <Text fz={12} c={WARNA.hijau}>54.0 %</Text>
+                          </Group>
+                        </Center>
                       </Box>
-                      <Box pt={30} pb={30}>
-                        <Text>NEUTRAL</Text>
+                      <Box pt={35} pb={35}>
+                        <Center>
+                          <Group>
+                            <Text fz={12} c={"white"}>54.0 %</Text>
+                            <Text ml={5} mr={5} fz={13}>NEUTRAL</Text>
+                            <Text fz={12} c={"white"}>54.0 %</Text>
+                          </Group>
+                        </Center>
                       </Box>
                       <Box >
-                        <Text>NEGATIVE</Text>
+                        <Center>
+                          <Group>
+                            <Text fz={12} c={WARNA.merah}>54.0 %</Text>
+                            <Text ml={5} mr={5} fz={12}>NEGATIVE</Text>
+                            <Text fz={12} c={WARNA.merah}>54.0 %</Text>
+                          </Group>
+                        </Center>
                       </Box>
                     </Stack>
-                  </Box>
-                  <Box w={"40%"}>
+                  </Grid.Col>
+                  <Grid.Col span={4.5}>
                     <ChartPaslon2 />
-                  </Box>
+                  </Grid.Col>
+                </Grid>
 
-                </Flex>
               </Box>
-
-              {/* <Grid p={20}>
-                <Grid.Col span={5}>
-
-                    <Box
-                      style={{
-                        backgroundColor: WARNA.hijau,
-                        padding: 10,
-                        border: `1px solid ${WARNA.bgGradasi}`,
-                        borderRadius: 5
-                      }}
-                    >
-                      <Text ta={"center"}>58. 90 %</Text>
-
-                    </Box>
-                    <Box pt={30}>
-                      <Box
-                        style={{
-                          backgroundColor: 'white',
-                          padding: 10,
-                          border: `1px solid ${WARNA.bgGradasi}`,
-                          borderRadius: 5
-                        }}
-                      >
-                        <Text ta={"center"} c={WARNA.hijau}>58. 90 %</Text>
-
-                      </Box>
-                    </Box>
-                    <Box pt={30}>
-                      <Box
-                        style={{
-                          backgroundColor: WARNA.merah,
-                          padding: 10,
-                          border: `1px solid ${WARNA.bgGradasi}`,
-                          borderRadius: 5
-                        }}
-                      >
-                        <Text ta={"center"}>58. 90 %</Text>
-
-                      </Box>
-                    </Box>
-
-                    <ChartPaslon/>
-                </Grid.Col>
-                <Grid.Col span={1}>
-                  <Text>POSITIVE</Text>
-                </Grid.Col>
-                <Grid.Col span={5}>
-                  <Container px={0} size="30rem" pl={50} pr={50} >
-
-                    <Box
-                      style={{
-                        backgroundColor: WARNA.hijau,
-                        padding: 10,
-                        border: `1px solid ${WARNA.bgGradasi}`,
-                        borderRadius: 5
-                      }}
-                    >
-                      <Text ta={"center"}>58. 90 %</Text>
-
-                    </Box>
-                    <Box pt={30}>
-                      <Box
-                        style={{
-                          backgroundColor: 'white',
-                          padding: 10,
-                          border: `1px solid ${WARNA.bgGradasi}`,
-                          borderRadius: 5
-                        }}
-                      >
-                        <Text ta={"center"} c={WARNA.hijau}>58. 90 %</Text>
-
-                      </Box>
-                    </Box>
-                    <Box pt={30}>
-                      <Box
-                        style={{
-                          backgroundColor: WARNA.merah,
-                          padding: 10,
-                          border: `1px solid ${WARNA.bgGradasi}`,
-                          borderRadius: 5
-                        }}
-                      >
-                        <Text ta={"center"}>58. 90 %</Text>
-
-                      </Box>
-                    </Box>
-                  </Container>
-                  <ChartPaslon2/>
-                </Grid.Col>
-              </Grid> */}
             </Box>
-
             {/* kedua 2 penutup */}
-
-
-
           </Stack>
         </Box>
-      </Flex>
-    </Stack>
-  </BackgroundImage>
+      </Flex >
+    </Stack >
+  </BackgroundImage >
 }

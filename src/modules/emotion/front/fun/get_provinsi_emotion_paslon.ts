@@ -34,7 +34,7 @@ export default async function funGetProvinsiEmotionPaslon() {
     if (findJam.length > 0) {
         dataFilter = await prisma.paslonEmotion.findMany({
             where: {
-                idPaslon: 1,
+                idPaslon: 2,
                 dateEmotion: new Date(),
                 timeEmotion: findJam[0]?.timeEmotion
             },
