@@ -29,8 +29,8 @@ export default function ChartPaslon() {
         }
       },
       grid: {
-        left: '3%',
-        right: '4%',
+        left: '5%',
+        right: '-8%',
         bottom: '3%',
         containLabel: true
       },
@@ -64,7 +64,7 @@ export default function ChartPaslon() {
           type: 'bar',
           stack: 'total',
           label: {
-            show: true,
+            show: false,
             fontSize: 16,
             formatter: (a) => {
               return `${a.value + "%"}`;
