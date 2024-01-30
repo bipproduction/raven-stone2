@@ -5,6 +5,7 @@ import EChartsReact from 'echarts-for-react';
 import { useShallowEffect } from '@mantine/hooks';
 import { Box } from '@mantine/core';
 import { Michroma } from 'next/font/google';
+import _ from 'lodash';
 export const roboto_mono = Michroma({
   weight: "400",
   subsets: ["latin", "latin-ext"],
@@ -12,7 +13,7 @@ export const roboto_mono = Michroma({
   preload: true,
   style: ["normal"]
 })
-export default function ChartPaslon() {
+export default function ChartPaslon({ persen }: { persen: any }) {
   const [options, setOptions] = useState<EChartsOption>({})
 
 
@@ -36,6 +37,7 @@ export default function ChartPaslon() {
       },
       xAxis: {
         type: "value",
+        max: 100,
         inverse: true,
         show: false,
         axisLabel: {
@@ -56,7 +58,7 @@ export default function ChartPaslon() {
           fontSize: "12",
           fontWeight: "bold",
         },
-        data: ['NEGATiVE', 'NEUTRAL', 'POSITIVE']
+        data: ['NEGATIVE', 'NEUTRAL', 'POSITIVE']
       },
       series: [
         {
@@ -75,15 +77,15 @@ export default function ChartPaslon() {
           },
           data: [
             {
-              value: '45.05',
-              name: 'NEGATiVE',
+              value: _.isNaN(persen.negative) ? 0 : persen.negative,
+              name: 'NEGATIVE',
               itemStyle: {
                 color: "red",
                 borderRadius: 30
               }
             },
             {
-              value: 10.05,
+              value: _.isNaN(persen.neutral) ? 0 : persen.neutral,
               name: 'NEUTRAL',
               itemStyle: {
                 color: "white",
@@ -91,7 +93,7 @@ export default function ChartPaslon() {
               }
             },
             {
-              value: 35.05,
+              value: _.isNaN(persen.positive) ? 0 : persen.positive,
               name: 'POSITIVE',
               itemStyle: {
                 color: "green",
