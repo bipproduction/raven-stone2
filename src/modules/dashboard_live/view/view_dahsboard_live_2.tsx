@@ -260,9 +260,9 @@ export default function ViewDahsboardLive2({ dataPersen, dataNotif, emotionPerse
                 opacity: 0.7
               }}
             >
-              <Box pt={40} >
+              <Box pt={40}>
 
-                <Grid gutter="xs">
+                {/* <Grid gutter="xs">
                   <Grid.Col span={4.5}>
                     <ChartPaslon persen={emotionPersen[1]} />
                   </Grid.Col>
@@ -300,7 +300,54 @@ export default function ViewDahsboardLive2({ dataPersen, dataNotif, emotionPerse
                   <Grid.Col span={4.5}>
                     <ChartPaslon2 persen={emotionPersen[2]} />
                   </Grid.Col>
-                </Grid>
+                </Grid> */}
+
+                <Flex
+                  gap="xs"
+                  justify="center"
+                  align="center"
+                  direction="row"
+                  wrap="wrap"
+                >
+                  <Box w={"35%"}>
+                    <ChartPaslon persen={emotionPersen[1]} />
+                  </Box>
+                  <Box w={"27%"}>
+                    <Stack>
+                      <Box pt={30}>
+                        <Center>
+                          <Group>
+                            <Text fz={11} c={"green"}>{_.isNaN(emotionPersen[1].positive) ? 0 : emotionPersen[1].positive} %</Text>
+                            <Text ml={5} mr={5} fz={11.5}>POSITIVE</Text>
+                            <Text fz={11} c={"green"}>{_.isNaN(emotionPersen[2].positive) ? 0 : emotionPersen[2].positive} %</Text>
+                          </Group>
+                        </Center>
+                      </Box>
+                      <Box pt={35} pb={35}>
+                        <Center>
+                          <Group>
+                            <Text fz={11} c={"white"}>{_.isNaN(emotionPersen[1].neutral) ? 0 : emotionPersen[1].neutral} %</Text>
+                            <Text ml={5} mr={5} fz={11.5}>NEUTRAL</Text>
+                            <Text fz={11} c={"white"}>{_.isNaN(emotionPersen[2].neutral) ? 0 : emotionPersen[2].neutral} %</Text>
+                          </Group>
+                        </Center>
+                      </Box>
+                      <Box >
+                        <Center>
+                          <Group>
+                            <Text fz={11} c={"red"}>{_.isNaN(emotionPersen[1].negative) ? 0 : emotionPersen[1].negative} %</Text>
+                            <Text ml={5} mr={5} fz={11.5}>NEGATIVE</Text>
+                            <Text fz={11} c={"red"}>{_.isNaN(emotionPersen[2].negative) ? 0 : emotionPersen[2].negative} %</Text>
+                          </Group>
+                        </Center>
+                      </Box>
+                    </Stack>
+                  </Box>
+                  <Box w={"35%"}>
+                  <ChartPaslon2 persen={emotionPersen[2]} />
+                  </Box>
+
+                </Flex>
 
               </Box>
             </Box>
