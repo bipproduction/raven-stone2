@@ -23,7 +23,7 @@ export default function ChartPaslon2({ persen }: { persen: any }) {
         }
       },
       grid: {
-        left: '-8%',
+        left: '-15%',
         right: '5%',
         bottom: '3%',
         containLabel: true
