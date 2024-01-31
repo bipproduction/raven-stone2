@@ -4,10 +4,15 @@ import { redirect } from "next/navigation"
 import { funCekAkses } from "@/modules/_global"
 import { DashboardLive, ViewDahsboardLive2, funGetAllNotif, funGetPersenLiveFront } from "@/modules/dashboard_live"
 import { funGetEmotionPersenPaslonFront, funGetKabkotEmotionPaslon, funGetProvinsiEmotionPaslon } from "@/modules/emotion"
+import { unsealData } from "iron-session"
+import { pwd_key_config } from "@/modules/_global/bin/val_global"
 
 export default async function Page() {
     const c = cookies().get("_tknRV")
     if (!c || !c.value || _.isEmpty(c.value)) return redirect('/')
+
+    const dataCookies = await unsealData(c.value, { password: pwd_key_config as string })
+    if (_.isEmpty(dataCookies)) return redirect('/')
 
     const cekAkses: any = await funCekAkses()
 

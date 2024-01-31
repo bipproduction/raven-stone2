@@ -10,6 +10,7 @@ export default async function Layout({ children }: { children: React.ReactNode }
     if (!c || !c.value || _.isEmpty(c.value)) return redirect('/')
 
     const dataCookies = await unsealData(c.value, { password: pwd_key_config as string })
+    if (_.isEmpty(dataCookies)) return redirect('/')
     
     const cekAkses = await funCekAkses()
     if (cekAkses && cekAkses.dashboardUser && !cekAkses.dashboardAdmin) return redirect('/dashboard/summary')
