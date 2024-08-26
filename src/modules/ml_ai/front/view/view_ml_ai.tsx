@@ -1,9 +1,9 @@
 "use client"
-import { ActionIcon, Box, Button, Grid, Group, Image, Menu, ScrollArea, Select, Stack, Text } from '@mantine/core';
-import { DateInput } from '@mantine/dates';
+import { ActionIcon, Box, Button, Divider, Grid, Group, Image, Indicator, Menu, ScrollArea, Select, Stack, Text } from '@mantine/core';
+import { DateInput, DatePickerProps } from '@mantine/dates';
 import React, { useState } from 'react';
 import { TypeAnimation } from 'react-type-animation';
-import { funGetMlaiFront } from '../..';
+import { funGetDateMlAiFront, funGetMlaiFront } from '../..';
 import _ from 'lodash';
 import { PageSubTitle, funGetOnePaslon } from '@/modules/_global';
 import { HiDotsHorizontal } from "react-icons/hi"
@@ -12,6 +12,7 @@ import { _valReadIdMlai } from '../val/val_mlai';
 import Wrapper from '../component/wrapper_push_id';
 import Head from 'next/head';
 import TextAnimation from 'react-typing-dynamics';
+import moment from 'moment';
 
 /**
  * Fungsi untuk menampilkan view ml ai.
@@ -20,11 +21,12 @@ import TextAnimation from 'react-typing-dynamics';
  * @param {cpaslon} cpaslon - menampilkan cpaslon.
  * @returns Untuk menampilkan view ml ai
  */
-export default function ViewMlAi({ data, paslon, cpaslon }: { data: any, paslon: any, cpaslon: any }) {
+export default function ViewMlAi({ data, dataTanggal, paslon, cpaslon }: { data: any, dataTanggal: any, paslon: any, cpaslon: any }) {
     const [dataMlai, setDataMlai] = useState(data.data)
     const [dataJamMlai, setDataJamMlai] = useState(data.dataJam)
     const [dataPaslon, setDataPaslon] = useState(paslon)
     const [isDate, setDate] = useState<any>(new Date())
+    const [isMonth, setMonth] = useState<any>(moment(new Date().getMonth()).format('MM'))
     const [isBTime, setBTime] = useState(data.isJam)
     const [isPaslon, setPaslon] = useState(1)
     const [isCapres, setCapres] = useState(cpaslon.nameCapres.toUpperCase())
@@ -32,6 +34,20 @@ export default function ViewMlAi({ data, paslon, cpaslon }: { data: any, paslon:
     const [isCawapres, setCawapres] = useState(cpaslon.nameCawapres.toUpperCase())
     const [isImgCawapres, setImgCawapres] = useState(`/img/candidate/${cpaslon.imgCawapres}`)
     const [valRead, setRead] = useAtom(_valReadIdMlai)
+    const [isListTgl, setListTgl] = useState(dataTanggal)
+
+
+    const dayRenderer: DatePickerProps['renderDay'] = (date) => {
+        const coba = moment(date).format('YYYY-MM-DD')
+        const day = date.getDate()
+        const muncul = isListTgl.includes(coba)
+        return (
+            <Indicator size={6} radius="xs" label={<Divider my="md" />} position="bottom-center" color="green" offset={-2} disabled={!muncul}>
+                <div>{day}</div>
+            </Indicator>
+        );
+    };
+
 
     async function chooseDate(value: any) {
         setDate(value)
@@ -51,6 +67,8 @@ export default function ViewMlAi({ data, paslon, cpaslon }: { data: any, paslon:
         setPaslon(value)
         const dataDB = await funGetMlaiFront({ isPaslon: value, isDate: isDate })
         const dataLoadPaslon = await funGetOnePaslon({ paslon: value })
+        const loadTgl = await funGetDateMlAiFront({ isPaslon: value, date: isDate })
+        setListTgl(loadTgl)
         setCapres((dataLoadPaslon?.nameCapres.toUpperCase()))
         setCawapres((dataLoadPaslon?.nameCawapres.toUpperCase()))
         setImgCapres(`/img/candidate/${dataLoadPaslon?.imgCapres}`)
@@ -59,6 +77,16 @@ export default function ViewMlAi({ data, paslon, cpaslon }: { data: any, paslon:
         setDataJamMlai(dataDB.dataJam)
         setBTime(dataDB.isJam)
     }
+
+    async function changeMonth(value: any) {
+        const monthKlik = moment(value).format('MM')
+        if (monthKlik != isMonth) {
+            setMonth(monthKlik)
+            const loadTgl = await funGetDateMlAiFront({ isPaslon: isPaslon, date: value })
+            setListTgl(loadTgl)
+        }
+    }
+
 
     function RubahHTML(c: any) {
         return {
@@ -108,6 +136,8 @@ export default function ViewMlAi({ data, paslon, cpaslon }: { data: any, paslon:
                                     onChange={(val) => {
                                         chooseDate(val)
                                     }}
+                                    renderDay={dayRenderer}
+                                    onDateChange={(val) => { changeMonth(val) }}
                                 />
                                 {
                                     dataJamMlai.slice(0, 5).map((item: any, i: any) => {
@@ -128,7 +158,7 @@ export default function ViewMlAi({ data, paslon, cpaslon }: { data: any, paslon:
                                     <Menu shadow="md" width={200}>
                                         <Menu.Target>
                                             <ActionIcon variant="subtle" color="rgba(255, 255, 255, 1)" aria-label="Settings">
-                                                <HiDotsHorizontal style={{ width: '70%', height: '70%' }} stroke={1.5} />
+                                                <HiDotsHorizontal style={{ width: '70%', height: '70%' }} />
                                             </ActionIcon>
                                         </Menu.Target>
                                         <Menu.Dropdown>
