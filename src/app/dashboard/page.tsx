@@ -27,8 +27,8 @@ export default async function Page() {
 
     return (
         <>
-            {/* <DashboardLive dataPersen={dataPersen} dataNotif={dataNotif} emotionPersen={dataEmotionPersen} dataProvinsi={dataProv} dataKabkot={dataKab} /> */}
-            <ViewDahsboardLive2 dataPersen={dataPersen} dataNotif={dataNotif} emotionPersen={dataEmotionPersen} dataProvinsi={dataProv} dataKabkot={dataKab} />
+            <DashboardLive dataPersen={dataPersen} dataNotif={dataNotif} emotionPersen={dataEmotionPersen} dataProvinsi={dataProv} dataKabkot={dataKab} />
+            {/* <ViewDahsboardLive2 dataPersen={dataPersen} dataNotif={dataNotif} emotionPersen={dataEmotionPersen} dataProvinsi={dataProv} dataKabkot={dataKab} /> */}
         </>
     )
 }
