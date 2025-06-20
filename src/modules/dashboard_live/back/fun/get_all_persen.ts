@@ -30,7 +30,7 @@ export default async function funGetAllPersen() {
     }
   })
 
-  const dataOmit = data.map((item) => ({
+  const dataOmit = data.map((item: any) => ({
     ..._.omit(item, ["Paslon"]),
     capres: item.Paslon.nameCapres,
     cawapres: item.Paslon.nameCawapres,

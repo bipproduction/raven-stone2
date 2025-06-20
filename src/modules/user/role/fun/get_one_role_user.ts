@@ -38,7 +38,7 @@ export default async function funGetOneRoleUser({ id }: { id: number }) {
     // untuk data component yaitu proses looping agak mendapatkan struktur data yang di inginkan
     const allData = {
         dataRole: data,
-        dataComponent: dataAccess.map((v) => (v.idComponent))
+        dataComponent: dataAccess.map((v: any) => (v.idComponent))
     }
 
 
