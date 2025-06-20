@@ -1,8 +1,6 @@
-import { Select } from '@mantine/core';
 "use server"
 
 import { prisma } from "@/modules/_global";
-import { UserRole } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 
 

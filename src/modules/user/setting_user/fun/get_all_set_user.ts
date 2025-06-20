@@ -34,7 +34,7 @@ export async function funGetAllSetUser() {
     })
 
     // proses omit untuk merapikan hasil dari data user, sesuai apa yang kita inginkan
-    const dataOmit = data.map((item) => ({
+    const dataOmit = data.map((item: any) => ({
         ..._.omit(item, ["User"], ["userRole"]),
         name: item.name,
         email: item.email,

@@ -1,6 +1,5 @@
 "use server"
 import { prisma } from "@/modules/_global";
-import { LiveDashboardNotif } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 
 /**
@@ -9,7 +8,7 @@ import { revalidatePath } from "next/cache";
  * @returns array success, message, id
  */
 
-export default async function funAddNotification({ data }: { data: LiveDashboardNotif }) {
+export default async function funAddNotification({ data }: { data: any }) {
     const insert = await prisma.liveDashboardNotif.create({
         data: {
             description: data.description

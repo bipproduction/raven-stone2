@@ -59,7 +59,7 @@ export default async function funGetLogUser({ body }: { body: any }) {
     })
 
     // proses omit untuk merapikan hasil dari nama user agar sesuai apa yg diinginkan
-    const result = data.map((v) => ({
+    const result = data.map((v: any) => ({
         ..._.omit(v, ['User']),
         name: v.User.name,
 

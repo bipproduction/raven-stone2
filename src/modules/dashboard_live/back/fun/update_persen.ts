@@ -1,7 +1,6 @@
 "use server"
 
 import { prisma } from "@/modules/_global"
-import { LiveDashboardPersen } from "@prisma/client"
 import { revalidatePath } from "next/cache";
 
 /**
