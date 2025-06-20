@@ -113,7 +113,7 @@ export default function ViewLayout({ children }: { children: React.ReactNode }) 
                     <NavLink
                       label={<Text>SETTING</Text>}
                       childrenOffset={28}
-                      c={'SETTING' ? "white" : "dark"}
+                      c="white"
                       variant="subtle"
                       active
                       style={{
@@ -125,7 +125,7 @@ export default function ViewLayout({ children }: { children: React.ReactNode }) 
                     >
                       {/* <NavLink
                         label={<Text>DOWNLOAD</Text>}
-                        c={'SETTING' ? "white" : "dark"}
+                        c="white"
                         variant="subtle"
                         active
                         style={{
@@ -138,7 +138,7 @@ export default function ViewLayout({ children }: { children: React.ReactNode }) 
                       /> */}
                       <NavLink
                         label={<Text>LOGOUT</Text>}
-                        c={'SETTING' ? "white" : "dark"}
+                        c="white"
                         variant="subtle"
                         active
                         style={{
