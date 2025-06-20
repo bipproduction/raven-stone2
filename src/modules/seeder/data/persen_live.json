@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "idPaslon": 1,
+        "positive": 49.06,
+        "neutral": 12.88,
+        "negative": 38.06
+    },
+    {
+        "id": 2,
+        "idPaslon": 2,
+        "positive": 38.06,
+        "neutral": 12.88,
+        "negative": 49.06
+    },
+    {
+        "id": 3,
+        "idPaslon": 3,
+        "positive": 36.21,
+        "neutral": 12.22,
+        "negative": 51.57
+    }
+]

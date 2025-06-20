@@ -1,0 +1,83 @@
+[
+    {
+        "id": "UserDeveloper1",
+        "idUserRole": 1,
+        "name": "Amalia",
+        "email": "amalia_dev@bip.com",
+        "password": "amalia@developer",
+        "phone": "628980185458",
+        "isAllArea": true
+    },
+    {
+        "id": "UserDeveloper2",
+        "idUserRole": 1,
+        "name": "Lukman",
+        "email": "lukman_dev@bip.com",
+        "password": "lukman@developer",
+        "phone": "6287701790942",
+        "isAllArea": true
+    },
+    {
+        "id": "UserDeveloper3",
+        "idUserRole": 1,
+        "name": "Malik",
+        "email": "malik_dev@bip.com",
+        "password": "malik@developer",
+        "phone": "6289697338821",
+        "isAllArea": true
+    },
+    {
+        "id": "UserDataEntry1",
+        "idUserRole": 2,
+        "name": "Amalia DE",
+        "email": "amalia_admin@bip.com",
+        "password": "amalia@admin",
+        "phone": "628980185458",
+        "isAllArea": true
+    },
+    {
+        "id": "UserDataEntry2",
+        "idUserRole": 2,
+        "name": "Lukman DE",
+        "email": "lukman_admin@bip.com",
+        "password": "lukman@admin",
+        "phone": "6287701790942",
+        "isAllArea": true
+    },
+    {
+        "id": "UserDataEntry3",
+        "idUserRole": 2,
+        "name": "Malik DE",
+        "email": "malik_admin@bip.com",
+        "password": "malik@admin",
+        "phone": "6289697338821",
+        "isAllArea": true
+    },
+    {
+        "id": "UserGuest1",
+        "idUserRole": 3,
+        "name": "Amalia G",
+        "email": "amalia_guest@bip.com",
+        "password": "amalia@guest",
+        "phone": "628980185458",
+        "isAllArea": true
+    },
+    {
+        "id": "UserGuest2",
+        "idUserRole": 3,
+        "name": "Lukman G",
+        "email": "lukman_guest@bip.com",
+        "password": "lukman@guest",
+        "phone": "6287701790942",
+        "isAllArea": true
+    },
+    {
+        "id": "UserGuest3",
+        "idUserRole": 3,
+        "name": "Malik G",
+        "email": "malik_guest@bip.com",
+        "password": "malik@guest",
+        "phone": "6289697338821",
+        "isAllArea": true
+    }
+]

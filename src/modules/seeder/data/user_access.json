@@ -1,0 +1,162 @@
+[
+    {
+        "id": 1,
+        "idUserRole": 1,
+        "idComponent": 1
+    },
+    {
+        "id": 2,
+        "idUserRole": 1,
+        "idComponent": 2
+    },
+    {
+        "id": 3,
+        "idUserRole": 1,
+        "idComponent": 3
+    },
+    {
+        "id": 4,
+        "idUserRole": 1,
+        "idComponent": 4
+    },
+    {
+        "id": 5,
+        "idUserRole": 1,
+        "idComponent": 5
+    },
+    {
+        "id": 6,
+        "idUserRole": 1,
+        "idComponent": 6
+    },
+    {
+        "id": 7,
+        "idUserRole": 1,
+        "idComponent": 7
+    },
+    {
+        "id": 8,
+        "idUserRole": 1,
+        "idComponent": 8
+    },
+    {
+        "id": 9,
+        "idUserRole": 1,
+        "idComponent": 9
+    },
+    {
+        "id": 10,
+        "idUserRole": 1,
+        "idComponent": 10
+    },
+    {
+        "id": 11,
+        "idUserRole": 1,
+        "idComponent": 11
+    },
+    {
+        "id": 12,
+        "idUserRole": 1,
+        "idComponent": 12
+    },
+    {
+        "id": 13,
+        "idUserRole": 1,
+        "idComponent": 13
+    },
+    {
+        "id": 14,
+        "idUserRole": 1,
+        "idComponent": 14
+    },
+    {
+        "id": 15,
+        "idUserRole": 1,
+        "idComponent": 15
+    },
+    {
+        "id": 16,
+        "idUserRole": 1,
+        "idComponent": 16
+    },
+    {
+        "id": 30,
+        "idUserRole": 1,
+        "idComponent": 17
+    },
+    {
+        "id": 32,
+        "idUserRole": 1,
+        "idComponent": 18
+    },
+    {
+        "id": 17,
+        "idUserRole": 2,
+        "idComponent": 1
+    },
+    {
+        "id": 18,
+        "idUserRole": 2,
+        "idComponent": 2
+    },
+    {
+        "id": 19,
+        "idUserRole": 2,
+        "idComponent": 3
+    },
+    {
+        "id": 20,
+        "idUserRole": 2,
+        "idComponent": 4
+    },
+    {
+        "id": 21,
+        "idUserRole": 2,
+        "idComponent": 5
+    },
+    {
+        "id": 22,
+        "idUserRole": 2,
+        "idComponent": 6
+    },
+    {
+        "id": 23,
+        "idUserRole": 2,
+        "idComponent": 7
+    },
+    {
+        "id": 24,
+        "idUserRole": 2,
+        "idComponent": 8
+    },
+    {
+        "id": 25,
+        "idUserRole": 2,
+        "idComponent": 9
+    },
+    {
+        "id": 26,
+        "idUserRole": 2,
+        "idComponent": 10
+    },
+    {
+        "id": 27,
+        "idUserRole": 2,
+        "idComponent": 11
+    },
+    {
+        "id": 28,
+        "idUserRole": 2,
+        "idComponent": 16
+    },
+    {
+        "id": 31,
+        "idUserRole": 2,
+        "idComponent": 17
+    },
+    {
+        "id": 29,
+        "idUserRole": 3,
+        "idComponent": 16
+    }
+]

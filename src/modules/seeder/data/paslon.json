@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "nameCapres": "Anies Baswedan",
+        "imgCapres": "c5.png",
+        "nameCawapres": "Muhaimin Iskandar",
+        "imgCawapres": "c6.png"
+    },
+    {
+        "id": 2,
+        "nameCapres": "Prabowo Subianto",
+        "imgCapres": "c1.png",
+        "nameCawapres": "Gibran Rakabuming",
+        "imgCawapres": "c2.png"
+    },
+    {
+        "id": 3,
+        "nameCapres": "Ganjar Pranowo",
+        "imgCapres": "c3.png",
+        "nameCawapres": "Mahfud MD",
+        "imgCawapres": "c4.png"
+    }
+]
