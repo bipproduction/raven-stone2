@@ -231,7 +231,7 @@ export default function ViewChatAiV2() {
                     new Promise(r => setTimeout(scrollToBottom, 1000))
 
                   }}>
-                    <MdSend style={{ width: '70%', height: '70%' }} stroke={1.5} />
+                    <MdSend style={{ width: '70%', height: '70%' }} stroke="1.5" />
                 </ActionIcon>
               </Flex>
               <Center c="gray" p={"sm"} fz={12}>D-AYU AI can make mistakes. Consider checking important information.</Center>
@@ -311,7 +311,7 @@ export default function ViewChatAiV2() {
           onClick={() => router.push("/dashboard/summary")}
         >
           <ActionIcon variant="subtle" color="gray" size="lg" aria-label="Settings">
-            <IoArrowBackCircleSharp style={{ width: '70%', height: '70%' }} stroke={1.5} />
+            <IoArrowBackCircleSharp style={{ width: '70%', height: '70%' }} stroke="1.5" />
           </ActionIcon>
           <Text c={"gray"}>BACK</Text>
         </Group>

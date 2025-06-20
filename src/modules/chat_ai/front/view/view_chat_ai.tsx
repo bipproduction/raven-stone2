@@ -290,7 +290,7 @@ export default function ViewChatAi() {
           onClick={() => router.push("/dashboard/summary")}
         >
           <ActionIcon variant="subtle" color="gray" size="lg" aria-label="Settings">
-            <IoArrowBackCircleSharp style={{ width: '70%', height: '70%' }} stroke={1.5} />
+            <IoArrowBackCircleSharp style={{ width: '70%', height: '70%' }} stroke="1.5" />
           </ActionIcon>
           <Text c={"gray"}>BACK</Text>
         </Group>
