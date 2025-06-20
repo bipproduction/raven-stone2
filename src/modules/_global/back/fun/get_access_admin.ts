@@ -47,7 +47,7 @@ export default async function funGetAccessAdmin() {
     // looping menu emotion
     for (let i of menu_emotion) {
         // mencari menu yg sesuai dg access menu dari database
-        let a = result.find((x) => x.keyMenu == i.key)
+        let a = result.find((x: any) => x.keyMenu == i.key)
         if (a) {
             // jika ada, maka menu masuk ke variable emotion
             emotion.push(i)
@@ -57,7 +57,7 @@ export default async function funGetAccessAdmin() {
     // looping menu data 1
     for (let i of menu_data1) {
         // mencari menu yg sesuai dg access menu dari database
-        let a = result.find((x) => x.keyMenu == i.key)
+        let a = result.find((x: any) => x.keyMenu == i.key)
         if (a) {
             // jika ada, maka menu masuk ke variable data1
             data1.push(i)
@@ -67,7 +67,7 @@ export default async function funGetAccessAdmin() {
     // looping menu data region
     for (let i of menu_region) {
         // mencari menu yg sesuai dg access menu dari database
-        let a = result.find((x) => x.keyMenu == i.key)
+        let a = result.find((x: any) => x.keyMenu == i.key)
         if (a) {
             // jika ada, maka menu masuk ke variable region
             region.push(i)
@@ -77,7 +77,7 @@ export default async function funGetAccessAdmin() {
     // looping menu data 2
     for (let i of menu_data2) {
         // mencari menu yg sesuai dg access menu dari database
-        let a = result.find((x) => x.keyMenu == i.key)
+        let a = result.find((x: any) => x.keyMenu == i.key)
         if (a) {
             // jika ada, maka menu masuk ke variable data2
             data2.push(i)
@@ -87,7 +87,7 @@ export default async function funGetAccessAdmin() {
     // looping menu data developer
     for (let i of menu_developer) {
         // mencari menu yg sesuai dg access menu dari database
-        let a = result.find((x) => x.keyMenu == i.key)
+        let a = result.find((x: any) => x.keyMenu == i.key)
         if (a) {
             // jika ada, maka menu masuk ke variable dev
             dev.push(i)
