@@ -74,7 +74,7 @@ export default function TableDataPopularityNew({ param, title, data, datajam }: 
                                     <Menu shadow="md" width={200}>
                                         <Menu.Target>
                                             <ActionIcon variant="filled" color="gray" aria-label="Settings">
-                                                <HiDotsVertical style={{ width: '70%', height: '70%' }} stroke={1.5} />
+                                                <HiDotsVertical style={{ width: '70%', height: '70%' }} stroke="1.5" />
                                             </ActionIcon>
                                         </Menu.Target>
 

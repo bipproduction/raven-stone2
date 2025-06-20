@@ -82,7 +82,7 @@ export default function ViewDetailRegionalInsights({ parameter, emotion, audienc
                 onChange={(val: any) => onChoose(val)}
               />
               <ActionIcon variant="subtle" onClick={() => router.push("/dashboard/regional-insights")} color="rgba(255, 255, 255, 1)" aria-label="close">
-                <AiOutlineClose style={{ width: '80%', height: '80%' }} stroke={1.5} />
+                <AiOutlineClose style={{ width: '80%', height: '80%' }} stroke="1.5" />
               </ActionIcon>
             </Group>
           </Group>

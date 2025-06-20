@@ -167,7 +167,7 @@ export default function ViewSummary({ summaryTable, paslon, effect, emotion, loc
                       <Menu shadow="md" width={200}>
                         <Menu.Target>
                           <ActionIcon variant="subtle" color="rgba(255, 255, 255, 1)" aria-label="Settings">
-                            <HiDotsHorizontal style={{ width: '70%', height: '70%' }} stroke={1.5} />
+                            <HiDotsHorizontal style={{ width: '70%', height: '70%' }} stroke="1.5" />
                           </ActionIcon>
                         </Menu.Target>
                         <Menu.Dropdown>

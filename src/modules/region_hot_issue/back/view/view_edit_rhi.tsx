@@ -118,7 +118,7 @@ export default function ViewEditRhi({ data }: { data: any }) {
 
               <RichTextEditor.ControlsGroup>
                 <RichTextEditor.Control interactive={false}>
-                  <CiPickerEmpty size="1rem" stroke={1.5} />
+                  <CiPickerEmpty size="1rem" stroke="1.5" />
                 </RichTextEditor.Control>
                 <RichTextEditor.Color color="#F03E3E" />
                 <RichTextEditor.Color color="#7048E8" />
