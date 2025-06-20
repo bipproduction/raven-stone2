@@ -175,7 +175,7 @@ export default function LayoutAdmin({ name, menu, children }: { name: any, menu:
                                     >
                                         <FaUserCircle
                                             style={{ width: "70%", height: "70%" }}
-                                            stroke={1.5}
+                                            stroke="1.5"
                                         />
                                     </ActionIcon>
                                 </Menu.Target>

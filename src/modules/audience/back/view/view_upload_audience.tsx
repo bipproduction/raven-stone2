@@ -78,19 +78,19 @@ export default function ViewUploadAudience() {
                             <Dropzone.Accept>
                                 <AiOutlineUpload
                                     style={{ width: rem(52), height: rem(52), color: 'var(--mantine-color-blue-6)' }}
-                                    stroke={1.5}
+                                    stroke="1.5"
                                 />
                             </Dropzone.Accept>
                             <Dropzone.Reject>
                                 <MdCancelPresentation
                                     style={{ width: rem(52), height: rem(52), color: 'var(--mantine-color-red-6)' }}
-                                    stroke={1.5}
+                                    stroke="1.5"
                                 />
                             </Dropzone.Reject>
                             <Dropzone.Idle>
                                 <GrDocumentCsv
                                     style={{ width: rem(52), height: rem(52), color: 'var(--mantine-color-dimmed)' }}
-                                    stroke={1.5}
+                                    stroke="1.5"
                                 />
                             </Dropzone.Idle>
 
