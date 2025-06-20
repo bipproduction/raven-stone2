@@ -68,7 +68,7 @@ export async function GET() {
       })
 
       // data emosi yg sudah terfilter (by candidate id hari ini)
-      const dataFilter = dataEmotionYesterday.filter(x => !dataCandidateToday.some(y => y.idPaslon === x.idPaslon));
+      const dataFilter = dataEmotionYesterday.filter((x: any) => !dataCandidateToday.some((y: any) => y.idPaslon === x.idPaslon));
 
       // cek data
       if (dataFilter.length > 0) {
