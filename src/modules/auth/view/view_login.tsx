@@ -9,6 +9,7 @@ import { funLogin } from '..';
 import { funSetCookies } from '../fun/set_cookies';
 import { funLogUser } from '@/modules/user';
 import { WARNA } from '@/modules/_global';
+import packageJson from '../../../../package.json';
 
 /**
  * Menampilkan layout login
@@ -87,12 +88,16 @@ export default function ViewLogin() {
                 bg={"white"}
                 fullWidth
                 loading={isLoading}
+                loaderProps={{ color: WARNA.ungu }}
                 onClick={() => {
                   onLogin()
                 }}
               >
                 Login
               </Button>
+              <Group justify="center" mt={10}>
+                <Text fz={12} c="dimmed">v{packageJson.version}</Text>
+              </Group>
             </Box>
           </Flex>
         </Box>
