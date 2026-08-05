@@ -5,9 +5,9 @@ import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { LuShieldCheck } from "react-icons/lu"
 import toast from 'react-simple-toasts';
-import { useAtom } from 'jotai';
-import { isCode, isIdUser, isPhone } from '../val/val_auth';
-import { ViewVerification, funLogin } from '..';
+import { funLogin } from '..';
+import { funSetCookies } from '../fun/set_cookies';
+import { funLogUser } from '@/modules/user';
 import { WARNA } from '@/modules/_global';
 
 /**
@@ -21,43 +21,24 @@ export default function ViewLogin() {
 
   const [isEmail, setEmail] = useState("")
   const [isPassword, setPassword] = useState("")
-  const [isOTP, setOTP] = useAtom(isCode)
-  const [isValPhone, setValPhone] = useAtom(isPhone)
-  const [isUser, setUser] = useAtom(isIdUser)
-  const [isVerif, setVerif] = useState(false)
+  const [isLoading, setLoading] = useState(false)
 
   async function onLogin() {
     if (isEmail == "" || isPassword == "")
       return toast('Please fill in completely', { theme: 'dark' })
 
+    setLoading(true)
     const cek = await funLogin({ email: isEmail, pass: isPassword })
-    if (!cek.success)
+    if (!cek.success) {
+      setLoading(false)
       return toast(cek.message, { theme: 'dark' })
+    }
 
-    // proses pengambilan nomer 4 digit random untuk code verfication
-    const code = Math.floor(Math.random() * 1000) + 1000
-
-    // proses pengiriman code verification melalui wa
-    const res = await fetch(`https://wa.wibudev.com/code?nom=${cek.phone}&text=${code}`)
-      .then(
-        async (res) => {
-          if (res.status == 200) {
-            toast('Verification code has been sent', { theme: 'dark' })
-            setValPhone(cek.phone)
-            setOTP(code)
-            setUser(cek.id)
-            setVerif(true)
-          } else {
-            toast('Error', { theme: 'dark' })
-          }
-        }
-      );
+    await funSetCookies({ user: cek.id })
+    await funLogUser({ act: 'LOGIN', desc: `User login` })
+    router.push('/dashboard/summary')
   }
 
-  // jika code verification telah terkirim maka view akan diarahkan ke view verification
-  if (isVerif) return <ViewVerification />
-
-  // jika code verification belum terkirim maka yang tampil akan view login
   return (
     <>
       <Box
@@ -105,7 +86,7 @@ export default function ViewLogin() {
                 c={WARNA.ungu}
                 bg={"white"}
                 fullWidth
-
+                loading={isLoading}
                 onClick={() => {
                   onLogin()
                 }}
