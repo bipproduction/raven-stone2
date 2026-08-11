@@ -11,18 +11,21 @@ import { isModalEmotionPaslon } from "../val/modal_emotion"
 /**
  * Modal konfirmasi generate emotion paslon.
  * @param {paslon} paslon - id paslon, null berarti seluruh paslon.
- * @param {date} date - tanggal terpilih untuk generate.
- * @param {existing} existing - jumlah data yang sudah ada pada tanggal & jam generate.
+ * @param {startDate} startDate - tanggal awal rentang untuk generate.
+ * @param {endDate} endDate - tanggal akhir rentang untuk generate.
+ * @param {existing} existing - jumlah data yang sudah ada pada rentang & jam generate.
  * @param {onSuccess} onSuccess - dipanggil setelah generate berhasil.
  */
 export default function ModalGenerateEmotionPaslon({
     paslon,
-    date,
+    startDate,
+    endDate,
     existing,
     onSuccess,
 }: {
     paslon: any
-    date: any
+    startDate: any
+    endDate: any
     existing: number
     onSuccess: (val: any) => void
 }) {
@@ -32,7 +35,7 @@ export default function ModalGenerateEmotionPaslon({
     async function onGenerate() {
         setLoading(true)
         try {
-            const res = await funGenerateEmotionPaslon({ paslon, date, replace: existing > 0 })
+            const res = await funGenerateEmotionPaslon({ paslon, startDate, endDate, replace: existing > 0 })
             if (!res.success) return toast(res.message, { theme: "dark" })
 
             await funLogUser({

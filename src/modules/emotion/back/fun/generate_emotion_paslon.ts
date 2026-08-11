@@ -3,29 +3,40 @@
 import { prisma } from "@/modules/_global"
 import { revalidatePath } from "next/cache"
 import { buildEmotionMetrics, MIN_AUDIENCE } from "./build_emotion_metrics"
-import { GENERATE_TIME, toDateOnly, todayDateOnly, toTimeEmotion } from "./generate_emotion_val"
+import { expandDateRange, GENERATE_TIME, todayDateOnly, toTimeEmotion } from "./generate_emotion_val"
 
 const CHUNK_SIZE = 2000
 
 /**
- * Generate data emotion paslon untuk seluruh wilayah pada tanggal terpilih jam 01:00.
+ * Generate data emotion paslon untuk seluruh wilayah pada rentang tanggal terpilih jam 01:00.
+ * Setiap tanggal mendapat nilai metrik acak sendiri (berbeda antar tanggal).
  * Total seluruh metrik per wilayah dijamin tidak melebihi nilai audience wilayah tersebut.
  * @param paslon id paslon, atau null untuk seluruh paslon
- * @param date tanggal terpilih (default: hari ini)
- * @param replace hapus dulu data pada tanggal & jam generate sebelum mengisi ulang
+ * @param startDate tanggal awal rentang (default: hari ini)
+ * @param endDate tanggal akhir rentang (default: sama dengan startDate)
+ * @param replace hapus dulu data pada rentang & jam generate sebelum mengisi ulang
  */
 export default async function funGenerateEmotionPaslon({
     paslon,
-    date,
+    startDate,
+    endDate,
     replace = false,
 }: {
     paslon?: any
-    date?: any
+    startDate?: any
+    endDate?: any
     replace?: boolean
 }) {
-    const dateEmotion = date ? toDateOnly(date) : todayDateOnly()
     const timeEmotion = toTimeEmotion(GENERATE_TIME)
     const filterPaslon = paslon ? { idPaslon: Number(paslon) } : {}
+
+    const start = startDate ?? todayDateOnly()
+    const end = endDate ?? start
+    const dates = expandDateRange(start, end)
+
+    if (dates.length == 0) {
+        return { success: false, message: "Rentang tanggal tidak valid" }
+    }
 
     const paslons = await prisma.paslon.findMany({
         where: paslon ? { id: Number(paslon) } : {},
@@ -53,31 +64,35 @@ export default async function funGenerateEmotionPaslon({
     let deleted = 0
     if (replace) {
         const del = await prisma.paslonEmotion.deleteMany({
-            where: { dateEmotion, timeEmotion, ...filterPaslon },
+            where: { dateEmotion: { in: dates }, timeEmotion, ...filterPaslon },
         })
         deleted = del.count
     } else {
         const existing = await prisma.paslonEmotion.count({
-            where: { dateEmotion, timeEmotion, ...filterPaslon },
+            where: { dateEmotion: { in: dates }, timeEmotion, ...filterPaslon },
         })
         if (existing > 0) {
             return { success: false, message: "Data sudah ada", exists: true }
         }
     }
 
+    // Metrik dibangun ulang per (tanggal, paslon, wilayah) supaya tiap tanggal
+    // menghasilkan nilai acak yang berbeda.
     const rows = []
-    for (const p of paslons) {
-        for (const w of wilayah) {
-            const metrics = buildEmotionMetrics({ audience: w.value })
-            if (metrics == null) continue
-            rows.push({
-                idPaslon: p.id,
-                idProvinsi: w.idProvinsi,
-                idKabkot: w.idKabkot,
-                dateEmotion,
-                timeEmotion,
-                ...metrics,
-            })
+    for (const dateEmotion of dates) {
+        for (const p of paslons) {
+            for (const w of wilayah) {
+                const metrics = buildEmotionMetrics({ audience: w.value })
+                if (metrics == null) continue
+                rows.push({
+                    idPaslon: p.id,
+                    idProvinsi: w.idProvinsi,
+                    idKabkot: w.idKabkot,
+                    dateEmotion,
+                    timeEmotion,
+                    ...metrics,
+                })
+            }
         }
     }
 
@@ -94,6 +109,7 @@ export default async function funGenerateEmotionPaslon({
         inserted: rows.length,
         paslon: paslons.length,
         wilayah: wilayah.length,
+        dates: dates.length,
         skipped: audiences.length - wilayah.length,
     }
 }

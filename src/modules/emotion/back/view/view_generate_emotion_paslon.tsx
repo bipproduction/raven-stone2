@@ -2,7 +2,7 @@
 
 import { ButtonBack } from "@/modules/_global"
 import { Box, Button, Modal, Select, Stack, Text } from "@mantine/core"
-import { DateInput } from "@mantine/dates"
+import { DatePickerInput } from "@mantine/dates"
 import { useAtom } from "jotai"
 import { useState } from "react"
 import toast from "react-simple-toasts"
@@ -21,17 +21,18 @@ const ALL_PASLON = "ALL"
 export default function ViewGenerateEmotionPaslon({ paslon }: { paslon: any }) {
     const [openModal, setOpenModal] = useAtom(isModalEmotionPaslon)
     const [isPaslon, setPaslon] = useState<any>(ALL_PASLON)
-    const [isDate, setDate] = useState<Date>(new Date())
+    const [isRange, setRange] = useState<[Date | null, Date | null]>([new Date(), new Date()])
     const [isExisting, setExisting] = useState(0)
     const [isChecking, setChecking] = useState(false)
 
     const idPaslon = isPaslon == ALL_PASLON ? null : isPaslon
+    const [startDate, endDate] = isRange
 
     async function onCek() {
-        if (!isDate) return toast("Silahkan pilih tanggal", { theme: "dark" })
+        if (!startDate || !endDate) return toast("Silahkan pilih rentang tanggal", { theme: "dark" })
         setChecking(true)
         try {
-            const cek = await funCekGenerateEmotionPaslon({ paslon: idPaslon, date: isDate })
+            const cek = await funCekGenerateEmotionPaslon({ paslon: idPaslon, startDate, endDate })
             setExisting(cek.total)
             setOpenModal(true)
         } catch (e: any) {
@@ -62,19 +63,22 @@ export default function ViewGenerateEmotionPaslon({ paslon }: { paslon: any }) {
                             searchable
                             onChange={(val) => setPaslon(val ?? ALL_PASLON)}
                         />
-                        <DateInput
+                        <DatePickerInput
+                            type="range"
                             valueFormat="DD-MM-YYYY"
                             required
-                            value={isDate}
-                            label={"Tanggal"}
-                            placeholder="Pilih Tanggal"
-                            onChange={(val) => setDate(val as Date)}
+                            allowSingleDateInRange
+                            value={isRange}
+                            label={"Rentang Tanggal"}
+                            placeholder="Pilih rentang tanggal"
+                            onChange={(val) => setRange(val)}
                         />
                         <Box style={{ backgroundColor: "white", padding: 16, borderRadius: 10 }}>
                             <Text size="sm">
                                 Jam: <b>{GENERATE_TIME.slice(0, 5)}</b>
                             </Text>
                             <Text size="sm">Wilayah: seluruh kabupaten/kota</Text>
+                            <Text size="sm">Data digenerate untuk setiap tanggal dalam rentang (nilai berbeda tiap tanggal).</Text>
                             <Text size="sm">
                                 Nilai tiap metrik 3-4 digit, total seluruh metrik tidak melebihi audience wilayah.
                             </Text>
@@ -95,7 +99,8 @@ export default function ViewGenerateEmotionPaslon({ paslon }: { paslon: any }) {
             >
                 <ModalGenerateEmotionPaslon
                     paslon={idPaslon}
-                    date={isDate}
+                    startDate={startDate}
+                    endDate={endDate}
                     existing={isExisting}
                     onSuccess={() => setExisting(0)}
                 />
