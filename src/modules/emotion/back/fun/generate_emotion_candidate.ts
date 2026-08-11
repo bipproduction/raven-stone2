@@ -2,7 +2,7 @@
 
 import { prisma } from "@/modules/_global"
 import { revalidatePath } from "next/cache"
-import { buildEmotionMetrics, MIN_AUDIENCE } from "./build_emotion_metrics"
+import { buildEmotionMetrics, makeSentimentBias, MIN_AUDIENCE } from "./build_emotion_metrics"
 import { GENERATE_TIME, todayDateOnly, toTimeEmotion } from "./generate_emotion_val"
 
 const CHUNK_SIZE = 2000
@@ -64,8 +64,13 @@ export default async function funGenerateEmotionCandidate({
 
     const rows = []
     for (const c of candidates) {
+        // Satu profil sentimen acak per kandidat, dipakai ke SEMUA wilayah.
+        // Kalau di-random per wilayah, agregat lintas ~500 wilayah akan rata kembali
+        // ke proporsi seragam; profil per-kandidat inilah yang membuat persentase
+        // POSITIVE/NEGATIVE agregat tiap kandidat berbeda (dan berubah tiap generate).
+        const bias = makeSentimentBias(Math.random() * 2 - 1)
         for (const w of wilayah) {
-            const metrics = buildEmotionMetrics({ audience: w.value })
+            const metrics = buildEmotionMetrics({ audience: w.value, bias })
             if (metrics == null) continue
             rows.push({
                 idCandidate: c.id,
