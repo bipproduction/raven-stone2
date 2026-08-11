@@ -8,6 +8,7 @@ import ViewCopyEmotionCandidate from "./back/view/view_copy_emotion_candidate";
 import ViewCopyEmotionPaslon from "./back/view/view_copy_emotion_paslon";
 import ViewDeleteEmotion from "./back/view/view_delete_emotion";
 import ViewGenerateEmotionCandidate from "./back/view/view_generate_emotion_candidate";
+import ViewGenerateEmotionPaslon from "./back/view/view_generate_emotion_paslon";
 import ViewUploadEmotionCandidate from "./back/view/view_upload_emotion_candidate";
 import ViewUploadEmotionPaslon from "./back/view/view_upload_emotion_paslon";
 import DetailRegionalDataPairing from "./front/components/detail_regional_data_pairing";
@@ -55,3 +56,4 @@ export { funGetEmotionPaslonChartFront }
 export { funGetProvinsiEmotionPaslon }
 export { funGetKabkotEmotionPaslon }
 export { ViewGenerateEmotionCandidate }
+export { ViewGenerateEmotionPaslon }

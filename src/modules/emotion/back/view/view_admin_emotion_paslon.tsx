@@ -101,7 +101,7 @@ export default function ViewAdminEmotionPaslon({ param, provinsi, paslon, datata
                             padding: 16,
                             borderRadius: 10
                         }}>
-                            <Group justify="center">
+                            <Group justify="center" grow>
                                 <Box
                                     style={{
                                         border: "1px dashed gray",
@@ -113,6 +113,19 @@ export default function ViewAdminEmotionPaslon({ param, provinsi, paslon, datata
                                 >
                                     <Text ta={"center"} size="xl" inline>
                                         UPLOAD DATA
+                                    </Text>
+                                </Box>
+                                <Box
+                                    style={{
+                                        border: "1px dashed gray",
+                                        borderRadius: 10,
+                                        padding: 40,
+                                        cursor: "pointer",
+                                    }}
+                                    onClick={() => router.push("/dashboard-admin/emotion-paslon/generate")}
+                                >
+                                    <Text ta={"center"} size="xl" inline>
+                                        GENERATE DATA
                                     </Text>
                                 </Box>
                             </Group>

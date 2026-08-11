@@ -5,7 +5,37 @@ export const GENERATE_TIME = "01:00:00"
 
 /** Tanggal hari ini tanpa komponen jam, sesuai kolom dateEmotion (@db.Date). */
 export function todayDateOnly() {
-    return new Date(moment().format("YYYY-MM-DD"))
+    return toDateOnly(new Date())
+}
+
+/** Tanggal terpilih tanpa komponen jam, sesuai kolom dateEmotion (@db.Date). */
+export function toDateOnly(date: Date | string) {
+    return new Date(moment(date).format("YYYY-MM-DD"))
+}
+
+/**
+ * Membentuk daftar tanggal (dateOnly) dari start sampai end secara inklusif.
+ * Bila end mendahului start, urutan otomatis ditukar. Dibatasi MAX_RANGE_DAYS
+ * agar tidak membuat range raksasa yang tidak sengaja.
+ */
+export const MAX_RANGE_DAYS = 366
+
+export function expandDateRange(start: Date | string, end: Date | string): Date[] {
+    let from = moment(start).startOf("day")
+    let to = moment(end).startOf("day")
+    if (to.isBefore(from)) {
+        const tmp = from
+        from = to
+        to = tmp
+    }
+
+    const dates: Date[] = []
+    const cursor = from.clone()
+    while (!cursor.isAfter(to) && dates.length < MAX_RANGE_DAYS) {
+        dates.push(new Date(cursor.format("YYYY-MM-DD")))
+        cursor.add(1, "day")
+    }
+    return dates
 }
 
 /** Konversi "HH:mm:ss" ke bentuk yang dipakai kolom timeEmotion (@db.Time). */
