@@ -1,6 +1,13 @@
 import { describe, expect, it } from "vitest"
-import { buildSwotContent, escapeHtml, MAX_POINTS, MIN_POINTS, pickRandom } from "./build_swot_content"
-import { SWOT_CATEGORIES, SWOT_PHRASES } from "./swot_phrases"
+import {
+    buildSwotValue,
+    buildSwotValues,
+    escapeHtml,
+    pickRandom,
+    SENTENCES_PER_VALUE,
+    VALUES_PER_CATEGORY,
+} from "./build_swot_content"
+import { SWOT_CATEGORIES, SWOT_SENTENCES } from "./swot_phrases"
 
 /** LCG deterministik untuk test yang butuh urutan acak yang bisa direproduksi. */
 function lcg(seed: number) {
@@ -11,9 +18,15 @@ function lcg(seed: number) {
     }
 }
 
-/** Hitung jumlah <li> dalam string HTML. */
-function countLi(html: string) {
-    return (html.match(/<li>/g) ?? []).length
+/** Ambil teks paragraf dari satu value HTML <p>...</p>. */
+function paragraphText(html: string) {
+    const m = html.match(/^<p>([\s\S]*)<\/p>$/)
+    return m ? m[1] : ""
+}
+
+/** Pisah paragraf menjadi kalimat (berakhir titik). */
+function splitSentences(text: string) {
+    return text.split(/(?<=\.)\s+/).filter((s) => s.trim().length > 0)
 }
 
 describe("build_swot_content", () => {
@@ -35,53 +48,61 @@ describe("build_swot_content", () => {
         expect(escapeHtml("a < b & c > d")).toBe("a &lt; b &amp; c &gt; d")
     })
 
-    it("buildSwotContent menghasilkan bullet list HTML", () => {
-        const html = buildSwotContent("STRENGTH", lcg(5))
-        expect(html.startsWith("<ul>")).toBe(true)
-        expect(html.endsWith("</ul>")).toBe(true)
-        expect(countLi(html)).toBeGreaterThanOrEqual(MIN_POINTS)
+    it("buildSwotValue menghasilkan satu paragraf HTML", () => {
+        const html = buildSwotValue("STRENGTH", lcg(5))
+        expect(html.startsWith("<p>")).toBe(true)
+        expect(html.endsWith("</p>")).toBe(true)
     })
 
-    it("jumlah poin selalu antara MIN_POINTS dan MAX_POINTS", () => {
+    it("tiap value berisi tepat SENTENCES_PER_VALUE kalimat", () => {
         const random = lcg(7)
         for (let i = 0; i < 500; i++) {
             for (const cat of SWOT_CATEGORIES) {
-                const n = countLi(buildSwotContent(cat, random))
-                expect(n).toBeGreaterThanOrEqual(MIN_POINTS)
-                expect(n).toBeLessThanOrEqual(MAX_POINTS)
+                const html = buildSwotValue(cat, random)
+                const sentences = splitSentences(paragraphText(html))
+                expect(sentences.length).toBe(SENTENCES_PER_VALUE)
             }
         }
     })
 
-    it("setiap poin berasal dari pool kategori yang benar", () => {
+    it("setiap kalimat berasal dari pool kategori yang benar dan diakhiri titik", () => {
         const random = lcg(9)
         for (const cat of SWOT_CATEGORIES) {
-            const html = buildSwotContent(cat, random)
-            const items = Array.from(html.matchAll(/<li>(.*?)<\/li>/g)).map((m) => m[1])
-            items.forEach((text) => expect(SWOT_PHRASES[cat]).toContain(text))
+            const sentences = splitSentences(paragraphText(buildSwotValue(cat, random)))
+            sentences.forEach((s) => {
+                expect(s.endsWith(".")).toBe(true)
+                expect(SWOT_SENTENCES[cat]).toContain(s)
+            })
         }
     })
 
-    it("poin dalam satu kategori tidak duplikat", () => {
+    it("kalimat dalam satu value tidak duplikat", () => {
         const random = lcg(11)
         for (let i = 0; i < 200; i++) {
-            const html = buildSwotContent("THREAT", random)
-            const items = Array.from(html.matchAll(/<li>(.*?)<\/li>/g)).map((m) => m[1])
-            expect(new Set(items).size).toBe(items.length)
+            const sentences = splitSentences(paragraphText(buildSwotValue("THREAT", random)))
+            expect(new Set(sentences).size).toBe(sentences.length)
         }
+    })
+
+    it("buildSwotValues menghasilkan VALUES_PER_CATEGORY value", () => {
+        const values = buildSwotValues("OPPORTUNITY", lcg(13))
+        expect(values.length).toBe(VALUES_PER_CATEGORY)
+        values.forEach((v) => {
+            expect(v.startsWith("<p>")).toBe(true)
+            expect(splitSentences(paragraphText(v)).length).toBe(SENTENCES_PER_VALUE)
+        })
     })
 
     it("menghasilkan konten berbeda antar generate (acak)", () => {
-        const random = lcg(13)
+        const random = lcg(17)
         const outputs = new Set<string>()
-        for (let i = 0; i < 20; i++) outputs.add(buildSwotContent("OPPORTUNITY", random))
-        // Dengan 20 kali generate, mayoritas hasil harus berbeda (bukan konstan).
+        for (let i = 0; i < 20; i++) outputs.add(buildSwotValue("OPPORTUNITY", random))
         expect(outputs.size).toBeGreaterThan(5)
     })
 
-    it("keempat kategori punya pool frasa yang cukup", () => {
+    it("keempat kategori punya pool kalimat yang cukup", () => {
         for (const cat of SWOT_CATEGORIES) {
-            expect(SWOT_PHRASES[cat].length).toBeGreaterThanOrEqual(MAX_POINTS)
+            expect(SWOT_SENTENCES[cat].length).toBeGreaterThanOrEqual(SENTENCES_PER_VALUE)
         }
     })
 })
