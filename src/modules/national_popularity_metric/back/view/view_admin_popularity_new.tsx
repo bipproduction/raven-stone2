@@ -72,6 +72,19 @@ export default function ViewAdminPopularityNew({ param, datatable }: { param: an
                                 ADD RATE
                             </Text>
                         </Box>
+                        <Box
+                            style={{
+                                border: "1px dashed gray",
+                                borderRadius: 10,
+                                padding: 40,
+                                cursor: "pointer",
+                            }}
+                            onClick={() => router.push("/dashboard-admin/rate-popularity/generate")}
+                        >
+                            <Text ta={"center"} size="xl" inline>
+                                GENERATE
+                            </Text>
+                        </Box>
                     </Group>
                 </SimpleGrid>
             </Box>

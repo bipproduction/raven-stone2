@@ -4,6 +4,7 @@ import funGetPopularityByDate from "./back/fun/get_popularity_by_date";
 import ViewAddRatePaslon from "./back/view/view_add_rate";
 import ViewAdminPopularity from "./back/view/view_admin_popularity";
 import ViewAdminPopularityNew from "./back/view/view_admin_popularity_new";
+import ViewGenerateRate from "./back/view/view_generate_rate";
 import ViewCopyPopularity from "./back/view/view_copy_popularity";
 import ViewEditRatePaslon from "./back/view/view_edit_rate";
 import ViewUploadPopularity from "./back/view/view_upload_popularity";
@@ -26,6 +27,7 @@ export { funGetOnePopularityFront }
 export { funGetPopularityFront }
 export { funGetPopularityNew }
 export { ViewAdminPopularityNew }
+export { ViewGenerateRate }
 export { ViewAddRatePaslon }
 export { funGetChartRateNew }
 export { funGetRateFrontNew }
