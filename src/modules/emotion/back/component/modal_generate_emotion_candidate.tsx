@@ -11,15 +11,21 @@ import { isModalEmotionCandidate } from "../val/modal_emotion"
 /**
  * Modal konfirmasi generate emotion candidate.
  * @param {candidate} candidate - id kandidat, null berarti seluruh kandidat.
- * @param {existing} existing - jumlah data yang sudah ada pada tanggal & jam generate.
+ * @param {startDate} startDate - tanggal awal rentang untuk generate.
+ * @param {endDate} endDate - tanggal akhir rentang untuk generate.
+ * @param {existing} existing - jumlah data yang sudah ada pada rentang & jam generate.
  * @param {onSuccess} onSuccess - dipanggil setelah generate berhasil.
  */
 export default function ModalGenerateEmotionCandidate({
     candidate,
+    startDate,
+    endDate,
     existing,
     onSuccess,
 }: {
     candidate: any
+    startDate: any
+    endDate: any
     existing: number
     onSuccess: (val: any) => void
 }) {
@@ -29,7 +35,7 @@ export default function ModalGenerateEmotionCandidate({
     async function onGenerate() {
         setLoading(true)
         try {
-            const res = await funGenerateEmotionCandidate({ candidate, replace: existing > 0 })
+            const res = await funGenerateEmotionCandidate({ candidate, startDate, endDate, replace: existing > 0 })
             if (!res.success) return toast(res.message, { theme: "dark" })
 
             await funLogUser({
