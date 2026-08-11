@@ -61,8 +61,8 @@ export default function ViewGenerateSwot({ candidate }: { candidate: any }) {
                         <Box style={{ backgroundColor: "white", padding: 16, borderRadius: 10 }}>
                             <Text size="sm">Tiap kandidat diisi 4 kategori: STRENGTH, WEAKNESS, OPPORTUNITY, THREAT.</Text>
                             <Text size="sm">
-                                Tiap kategori berisi 3 value, dan tiap value adalah 1 paragraf berisi 3 kalimat acak
-                                yang berbeda tiap kali generate ulang.
+                                Tiap kategori berisi 3 value, dan tiap value adalah 1 paragraf bergaya berita dengan
+                                panjang bervariasi (minimal 3 kalimat) yang berbeda tiap kali generate ulang.
                             </Text>
                             <Text size="sm">SWOT lama kandidat akan diganti (replace) saat generate.</Text>
                         </Box>

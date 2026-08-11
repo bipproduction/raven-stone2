@@ -8,9 +8,10 @@ import { SWOT_CATEGORIES } from "./swot_phrases"
 /**
  * Generate data SWOT untuk kandidat terpilih (atau seluruh kandidat).
  * Tiap kandidat diisi 4 kategori (STRENGTH/WEAKNESS/OPPORTUNITY/THREAT), dan tiap
- * kategori berisi 3 value. Tiap value adalah satu paragraf berisi 3 kalimat acak
- * dari pool kalimat — berbeda tiap generate. Data SWOT lama kandidat dinonaktifkan
- * dulu (replace) sebelum diisi ulang.
+ * kategori berisi 3 value. Tiap value adalah satu paragraf bergaya berita yang
+ * dirangkai dari pool kalimat (lead + body + closing) dengan panjang bervariasi
+ * (minimal 3 kalimat) — berbeda tiap generate. Data SWOT lama kandidat
+ * dinonaktifkan dulu (replace) sebelum diisi ulang.
  * @param candidate id kandidat, atau null untuk seluruh kandidat
  * @param replace nonaktifkan dulu SWOT existing kandidat sebelum mengisi ulang
  */
@@ -51,6 +52,7 @@ export default async function funGenerateSwot({
     for (const c of candidates) {
         for (const category of SWOT_CATEGORIES) {
             // 3 value per kategori → 3 baris terpisah (tampilan front merotasi acak di antaranya).
+            // Tiap value = paragraf bergaya berita, panjang bervariasi (min 3 kalimat).
             for (const content of buildSwotValues(category)) {
                 rows.push({ idCandidate: c.id, category, content })
             }
