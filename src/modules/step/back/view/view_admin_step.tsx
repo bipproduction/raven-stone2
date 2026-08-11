@@ -96,6 +96,20 @@ export default function ViewAdminStep({ params, kandidat, datatable, datadownloa
                                 padding: 40,
                                 cursor: "pointer",
                             }}
+                            onClick={() => router.push("/dashboard-admin/step/generate")}
+                        >
+                            <Text ta={"center"} size="xl" inline>
+                                GENERATE
+                            </Text>
+                        </Box>
+
+                        <Box
+                            style={{
+                                border: "1px dashed gray",
+                                borderRadius: 10,
+                                padding: 40,
+                                cursor: "pointer",
+                            }}
 
                             onClick={() => {
                                 const dataJson = datadownload.data
