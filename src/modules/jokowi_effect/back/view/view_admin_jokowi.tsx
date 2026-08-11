@@ -85,6 +85,20 @@ export default function ViewAdminJokowi({ param, datatable, datadownload }: { pa
                                 padding: 40,
                                 cursor: "pointer",
                             }}
+                            onClick={() => router.push("/dashboard-admin/jokowi-effect/generate")}
+                        >
+                            <Text ta={"center"} size="xl" inline>
+                                GENERATE
+                            </Text>
+                        </Box>
+
+                        <Box
+                            style={{
+                                border: "1px dashed gray",
+                                borderRadius: 10,
+                                padding: 40,
+                                cursor: "pointer",
+                            }}
 
                             onClick={() => {
                                 const dataJson = datadownload.data
