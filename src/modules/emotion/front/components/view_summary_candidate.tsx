@@ -1,10 +1,13 @@
 "use client"
 import { Box, Button, Grid, Group, Image, SimpleGrid, Text } from '@mantine/core';
 import React from 'react';
-import EchartSummary from './echart_summary';
+import dynamic from 'next/dynamic';
 import ViewTop10 from './view_top10';
 import { WARNA } from '@/modules/_global';
 import _ from 'lodash';
+
+// echarts touches `window` at import time, so load client-only to avoid SSR "window is not defined"
+const EchartSummary = dynamic(() => import('./echart_summary'), { ssr: false });
 
 /**
  * Fungsi untuk menampilkan summary candidate.
