@@ -4,7 +4,10 @@ import { DateInput } from '@mantine/dates';
 import React, { useState } from 'react';
 import { funGetEffectFront } from '../..';
 import { PageSubTitle, WARNA } from '@/modules/_global';
-import { EchartJokowiEffect, Top10JokowiEffect } from '@/modules/emotion';
+import { Top10JokowiEffect } from '@/modules/emotion';
+import dynamic from 'next/dynamic';
+// echarts menyentuh `window` saat import — muat client-only agar tidak crash SSR.
+const EchartJokowiEffect = dynamic(() => import('@/modules/emotion/front/components/echart_jokowi_effect'), { ssr: false });
 import { HiDotsHorizontal } from "react-icons/hi"
 import { useAtom } from 'jotai';
 import { _valReadIdEffect } from '../val/val_jokowi_effect';

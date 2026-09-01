@@ -1,6 +1,9 @@
 "use client"
 import { PageSubTitle, WARNA } from '@/modules/_global';
-import { DetailSentimentAnalysis, funGetEmotionDetailRegionalFront } from '@/modules/emotion';
+import { funGetEmotionDetailRegionalFront } from '@/modules/emotion';
+import dynamic from 'next/dynamic';
+// echarts menyentuh `window` saat import — muat client-only agar tidak crash SSR.
+const DetailSentimentAnalysis = dynamic(() => import('@/modules/emotion/front/components/detail_sentiment_analysis'), { ssr: false });
 import { DetailEcahrtBarPolarRegionalInsights } from '@/modules/leader_trait_assessment';
 import { DetailEchartPublicRegionalInsights } from '@/modules/public_concern_trend';
 import { DetailRegionHotIssue } from '@/modules/region_hot_issue';

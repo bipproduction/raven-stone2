@@ -57,3 +57,79 @@ describe("summary page keeps echarts out of the SSR graph", () => {
     expect(src).not.toMatch(/^\s*import\s+EchartSummary\s+from\s+['"]\.\/echart_summary['"]/m);
   });
 });
+
+describe("emotion barrel does not drag echarts into the SSR graph", () => {
+  const barrel = "src/modules/emotion/index.ts";
+
+  // Any of these statically imported by the barrel re-triggers the eager-echarts
+  // cascade: importing any function from the barrel would then evaluate echarts on
+  // the server and throw "window is not defined" (the /dashboard/summary 500).
+  const echartsComponents = [
+    "detail_regional_data_pairing",
+    "detail_sentiment_analysis",
+    "echart_jokowi_effect",
+    "sentiment_analysis",
+  ];
+
+  it("does not import any echarts chart component in index.ts", () => {
+    const src = read(barrel);
+    for (const comp of echartsComponents) {
+      expect(src).not.toMatch(new RegExp(`import\\s+\\w+\\s+from\\s+['"][^'"]*${comp}['"]`));
+    }
+  });
+
+  it("does not export the echarts chart components", () => {
+    const src = read(barrel);
+    for (const name of [
+      "DetailRegionalDataPairing",
+      "DetailSentimentAnalysis",
+      "EchartJokowiEffect",
+      "SentimentAnalysis",
+    ]) {
+      expect(src).not.toMatch(new RegExp(`export\\s*\\{\\s*${name}\\s*\\}`));
+    }
+  });
+});
+
+describe("echarts consumers load charts via dynamic ssr:false, not the barrel", () => {
+  const cases: { file: string; component: string; module: string }[] = [
+    {
+      file: "src/modules/pairing/view/viewa_pairing.tsx",
+      component: "DetailRegionalDataPairing",
+      module: "detail_regional_data_pairing",
+    },
+    {
+      file: "src/modules/regional_insights/view/view_detail_regional_insights.tsx",
+      component: "DetailSentimentAnalysis",
+      module: "detail_sentiment_analysis",
+    },
+    {
+      file: "src/modules/regional_insights/view/view_regional_insights.tsx",
+      component: "SentimentAnalysis",
+      module: "sentiment_analysis",
+    },
+    {
+      file: "src/modules/jokowi_effect/front/view/view_jokowi_effect.tsx",
+      component: "EchartJokowiEffect",
+      module: "echart_jokowi_effect",
+    },
+  ];
+
+  for (const { file, component, module } of cases) {
+    it(`loads ${component} via dynamic ssr:false in ${file}`, () => {
+      const src = read(file);
+      expect(src).toMatch(
+        new RegExp(
+          `const\\s+${component}\\s*=\\s*dynamic\\(\\s*\\(\\)\\s*=>\\s*import\\(\\s*['"][^'"]*${module}['"]\\s*\\)\\s*,\\s*\\{\\s*ssr:\\s*false\\s*\\}\\s*\\)`
+        )
+      );
+    });
+
+    it(`does not import ${component} from the emotion barrel in ${file}`, () => {
+      const src = read(file);
+      expect(src).not.toMatch(
+        new RegExp(`import\\s*\\{[^}]*\\b${component}\\b[^}]*\\}\\s*from\\s*['"]@/modules/emotion['"]`)
+      );
+    });
+  }
+});

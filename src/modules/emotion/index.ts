@@ -11,10 +11,12 @@ import ViewGenerateEmotionCandidate from "./back/view/view_generate_emotion_cand
 import ViewGenerateEmotionPaslon from "./back/view/view_generate_emotion_paslon";
 import ViewUploadEmotionCandidate from "./back/view/view_upload_emotion_candidate";
 import ViewUploadEmotionPaslon from "./back/view/view_upload_emotion_paslon";
-import DetailRegionalDataPairing from "./front/components/detail_regional_data_pairing";
-import DetailSentimentAnalysis from "./front/components/detail_sentiment_analysis";
-import EchartJokowiEffect from "./front/components/echart_jokowi_effect";
-import SentimentAnalysis from "./front/components/sentiment_analysis";
+// NOTE: Komponen chart berbasis echarts (DetailRegionalDataPairing, DetailSentimentAnalysis,
+// EchartJokowiEffect, SentimentAnalysis) SENGAJA tidak di-re-export dari barrel ini.
+// echarts menyentuh `window` saat import, sehingga meng-export-nya di sini menyeret echarts
+// ke SSR graph setiap kali ada yang meng-import fungsi apa pun dari barrel → "window is not defined".
+// Consumer harus meng-import komponen itu langsung via `next/dynamic(..., { ssr: false })`.
+// Lihat src/modules/emotion/front/view/ssr_safe_echarts.test.ts.
 import Top10JokowiEffect from "./front/components/top10_jokowi_effect";
 import funGetEmotionCandidateChartFront from "./front/fun/get_emotion_candidate_chart_front";
 import funGetEmotionDetailRegionalFront from "./front/fun/get_emotion_detail_regional_front";
@@ -39,10 +41,6 @@ export { ViewUploadEmotionPaslon }
 export { ViewUploadEmotionCandidate }
 export { ViewCopyEmotionPaslon }
 export { ViewCopyEmotionCandidate }
-export { DetailRegionalDataPairing }
-export { SentimentAnalysis }
-export { DetailSentimentAnalysis }
-export { EchartJokowiEffect }
 export { Top10JokowiEffect }
 export { funGetEmotionRegionalFront }
 export { funGetEmotionDetailRegionalFront }

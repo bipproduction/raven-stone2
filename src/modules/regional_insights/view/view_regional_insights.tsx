@@ -1,6 +1,9 @@
 "use client"
 import { PageSubTitle, WARNA } from '@/modules/_global';
-import { SentimentAnalysis, funGetEmotionRegionalFront } from '@/modules/emotion';
+import { funGetEmotionRegionalFront } from '@/modules/emotion';
+import dynamic from 'next/dynamic';
+// echarts menyentuh `window` saat import — muat client-only agar tidak crash SSR.
+const SentimentAnalysis = dynamic(() => import('@/modules/emotion/front/components/sentiment_analysis'), { ssr: false });
 import { EcahrtBarPolarRegionalInsights } from '@/modules/leader_trait_assessment';
 import { EchartPublicRegionalInsights } from '@/modules/public_concern_trend';
 import { Box, Button, Grid, Group, Select, Stack, Text, TextInput } from '@mantine/core';

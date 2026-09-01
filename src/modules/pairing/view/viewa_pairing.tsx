@@ -5,7 +5,9 @@ import React, { useState } from 'react';
 import { funGetPairingFront } from '..';
 import { funGetRateFront, funGetRateFrontNew } from '@/modules/national_popularity_metric';
 import _ from 'lodash';
-import { DetailRegionalDataPairing } from '@/modules/emotion';
+import dynamic from 'next/dynamic';
+// echarts menyentuh `window` saat import — muat client-only agar tidak crash SSR.
+const DetailRegionalDataPairing = dynamic(() => import('@/modules/emotion/front/components/detail_regional_data_pairing'), { ssr: false });
 
 /**
  * Fungsi untuk Menampilkan view pairing.
