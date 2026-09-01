@@ -3,7 +3,13 @@ import { ActionIcon, Box, Button, Divider, Grid, Group, Image, Menu, ScrollArea,
 import React, { useState } from 'react';
 import ViewSummaryCandidate from '../components/view_summary_candidate';
 import { PageSubTitle, WARNA } from '@/modules/_global';
-import { EchartJokowiEffect, Top10JokowiEffect } from '../..';
+import Top10JokowiEffect from '../components/top10_jokowi_effect';
+import dynamic from 'next/dynamic';
+
+// Import chart components directly (not via the emotion barrel) — the barrel eagerly pulls
+// every echarts component, which references `window` at import and breaks SSR.
+// echarts touches `window` at import time, so load client-only to avoid SSR "window is not defined".
+const EchartJokowiEffect = dynamic(() => import('../components/echart_jokowi_effect'), { ssr: false });
 import { useAtom } from 'jotai';
 import { _valReadIdEffect } from '@/modules/jokowi_effect/front/val/val_jokowi_effect';
 import { funGetEffectFront } from '@/modules/jokowi_effect';
