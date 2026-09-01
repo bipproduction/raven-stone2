@@ -15,7 +15,17 @@ import { pwd_key_config } from "@/modules/_global/bin/val_global"
  */
 export default async function funLogUser({ act, desc }: { act: any, desc: any }) {
     const c = cookies().get("_tknRV")
-    const dataCookies = await unsealData(c!.value, { password: pwd_key_config as string })
+    // Tanpa cookie sesi (mis. belum login / sesi kadaluarsa) tidak ada user untuk dicatat.
+    // Guard ini mencegah `c!.value` melempar "Cannot read properties of undefined (reading 'value')"
+    // yang sebelumnya menggagalkan render di server.
+    if (!c?.value) {
+        return {
+            success: false,
+            message: 'Tidak ada sesi user'
+        }
+    }
+
+    const dataCookies = await unsealData(c.value, { password: pwd_key_config as string })
 
 
     if (dataCookies && dataCookies.cIdUser) {
