@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+### Fixed
+- Halaman **dashboard/summary** tidak lagi menampilkan "Application error" (HTTP 500 `ReferenceError: window is not defined`). Penyebabnya barrel `@/modules/emotion` meng-import komponen echarts secara statis, sehingga meng-import fungsi apa pun dari barrel ikut menyeret echarts (yang menyentuh `window` saat import) ke SSR graph. Komponen chart kini dimuat via `next/dynamic(..., { ssr: false })` dan tidak lagi di-re-export dari barrel; consumer di modul `pairing`, `regional_insights`, dan `jokowi_effect` disesuaikan.
+- `funLogUser` tidak lagi melempar `Cannot read properties of undefined (reading 'value')` saat cookie sesi `_tknRV` tidak ada (belum login / sesi kadaluarsa) — kini guard cookie dan mengembalikan hasil gagal yang aman tanpa menggagalkan render server.
+
+## [0.2.0] - 2026-09-01
 ### Added
 - Emotion Editor > Paslon: halaman **Generate** yang mengisi data emotion seluruh kabupaten/kota pada **rentang tanggal terpilih** jam 01:00, baik untuk satu paslon maupun semua paslon sekaligus. Data digenerate untuk setiap tanggal dalam rentang dengan nilai acak yang berbeda tiap tanggal. Setiap metrik bernilai 3-4 digit dan total seluruh metrik per wilayah dibatasi agar tidak melebihi nilai audience wilayah tersebut.
 - Rate Popularity: halaman **Generate** yang mengisi data rate popularity untuk seluruh paslon (atau satu paslon) pada **rentang tanggal terpilih** jam 01:00. Rate tiap paslon berupa persentase 0-100% yang **independen** (tidak dijumlahkan menjadi 100%): tiap paslon punya base rate acak sendiri per generate, lalu tiap tanggal berfluktuasi wajar di sekitar base itu sehingga garis rate naik-turun masuk akal dan berbeda tiap kali generate ulang. Cek dan replace (nonaktifkan `isActive`) data existing mencakup seluruh tanggal dalam rentang pada jam generate.
