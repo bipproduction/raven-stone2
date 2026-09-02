@@ -196,34 +196,41 @@ export default function ViewChatAiV2() {
                   variant="subtle"
                    size="lg"
                   onClick={async () => {
+                    const question = ask
                     setAsk("")
                     const id = `${_.random(11111, 99999)}${_.random(11111, 99999)}${_.random(11111, 99999)}`
                     if (_.isEmpty(content.id)) {
                       content.id = id
-                      content.title = ask
+                      content.title = question
                     }
 
                     const isi = {
                       "id": id,
-                      "q": ask,
+                      "q": question,
                       "a": ""
                     }
 
                     content.content.push(isi)
                     new Promise(r => setTimeout(scrollToBottom, 1000))
-                    const res = await fetch(`https://surya-ai.wibudev.com/ask/${ask}`)
-                    let data = await res.text()
 
-                    const filter = ["id", "", "SWMLDESCRIPTIONFROMYOURINTERNET_ADDRESS"]
-                    for (let f of filter) {
-                      if (data.trim() === f.trim()) {
-                        data = "ulangi lagi | pertanyaan kurang lengkap !"
-                      }
+                    // Panggil route internal (token Claude proxy disimpan di server).
+                    let answer: string
+                    try {
+                      const res = await fetch("/api/chat-ai", {
+                        method: "POST",
+                        headers: { "content-type": "application/json" },
+                        body: JSON.stringify({ question }),
+                      })
+                      const json = await res.json()
+                      if (!res.ok) throw new Error(json?.error ?? `HTTP ${res.status}`)
+                      answer = json.answer
+                    } catch (e: any) {
+                      // Tampilkan error agar spinner berhenti, bukan menggantung selamanya.
+                      answer = `⚠️ ${e?.message ?? "Gagal mendapat jawaban"}. Silakan coba lagi.`
                     }
-                    // console.log(data)
 
                     const _isi = content.content.find((val) => val.id === id)
-                    _isi.a = data
+                    _isi.a = answer
 
                     content.content[content.content.findIndex((v) => v.id === id)] = _isi
                     const _baru = _.cloneDeep(content)
