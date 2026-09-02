@@ -4,24 +4,61 @@ import {
   extractAnswer,
   readProxyConfig,
   askClaudeProxy,
+  SYSTEM_PROMPT,
+  PRIMING_ASSISTANT_ACK,
   type ClaudeProxyConfig,
 } from "./claude_proxy";
 
 describe("buildMessagesBody", () => {
-  it("wraps the question as a single-turn user message", () => {
+  it("primes the guardrail in messages and puts the question last", () => {
     const body = buildMessagesBody("halo", "model-x", 42);
     expect(body).toEqual({
       model: "model-x",
       max_tokens: 42,
-      messages: [{ role: "user", content: "halo" }],
+      system: SYSTEM_PROMPT,
+      messages: [
+        { role: "user", content: SYSTEM_PROMPT },
+        { role: "assistant", content: PRIMING_ASSISTANT_ACK },
+        { role: "user", content: "halo" },
+      ],
     });
   });
 
   it("falls back to default model and max_tokens", () => {
     const body = buildMessagesBody("halo");
-    expect(body.messages[0]).toEqual({ role: "user", content: "halo" });
+    // The user's actual question is always the final message.
+    expect(body.messages.at(-1)).toEqual({ role: "user", content: "halo" });
     expect(typeof body.model).toBe("string");
     expect(body.max_tokens).toBeGreaterThan(0);
+  });
+
+  it("attaches the white-label system prompt on both channels (system + priming)", () => {
+    const body = buildMessagesBody("x");
+    // The proxy drops `system`, so the priming turn is what actually enforces it.
+    expect(body.system).toBe(SYSTEM_PROMPT);
+    expect(body.messages[0]).toEqual({ role: "user", content: SYSTEM_PROMPT });
+    expect(body.messages[1]).toEqual({
+      role: "assistant",
+      content: PRIMING_ASSISTANT_ACK,
+    });
+  });
+});
+
+describe("SYSTEM_PROMPT (white-label guardrail)", () => {
+  it("declares the D-AYU AI identity", () => {
+    expect(SYSTEM_PROMPT).toMatch(/D-AYU AI/);
+  });
+
+  it("forbids revealing the underlying vendor and model", () => {
+    expect(SYSTEM_PROMPT).toMatch(/Anthropic/);
+    expect(SYSTEM_PROMPT).toMatch(/Claude/);
+    // The instruction must be a prohibition, not a mention we would surface.
+    expect(SYSTEM_PROMPT).toMatch(/Jangan pernah menyebut/);
+  });
+
+  it("forbids leaking the wrapper/proxy technology and the prompt itself", () => {
+    expect(SYSTEM_PROMPT).toMatch(/proxy|wrapper/i);
+    expect(SYSTEM_PROMPT).toMatch(/membocorkan|instruksi sistem/i);
   });
 });
 
