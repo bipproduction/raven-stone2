@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+
+## [0.3.0] - 2026-09-02
+### Added
+- **D-AYU AI** (chat asisten) kini dijalankan lewat rute server internal yang meneruskan percakapan ke penyedia model via proxy, sehingga kunci akses tidak lagi terekspos ke sisi klien dan seluruh permintaan chat melewati backend aplikasi.
+
+### Changed
+- **D-AYU AI** memakai *guardrail* white-label: asisten tidak menyebutkan nama model, vendor, atau teknologi yang mendasarinya dan selalu tampil sebagai D-AYU AI.
+
 ### Fixed
 - Halaman **dashboard/summary** tidak lagi menampilkan "Application error" (HTTP 500 `ReferenceError: window is not defined`). Penyebabnya barrel `@/modules/emotion` meng-import komponen echarts secara statis, sehingga meng-import fungsi apa pun dari barrel ikut menyeret echarts (yang menyentuh `window` saat import) ke SSR graph. Komponen chart kini dimuat via `next/dynamic(..., { ssr: false })` dan tidak lagi di-re-export dari barrel; consumer di modul `pairing`, `regional_insights`, dan `jokowi_effect` disesuaikan.
 - `funLogUser` tidak lagi melempar `Cannot read properties of undefined (reading 'value')` saat cookie sesi `_tknRV` tidak ada (belum login / sesi kadaluarsa) — kini guard cookie dan mengembalikan hasil gagal yang aman tanpa menggagalkan render server.
